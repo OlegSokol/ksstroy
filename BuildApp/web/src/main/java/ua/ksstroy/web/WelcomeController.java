@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ua.ksstroy.hibermodel.*;
-import ua.ksstroy.logic.*;
-import ua.ksstroy.persistence.*;
+import ua.ksstroy.hibermodel.ProductDAOimplementation;
+import ua.ksstroy.logic.HelloWorldService;
+import ua.ksstroy.logic.ProductDAO;
+
+
 
 
 @Controller
@@ -34,7 +36,8 @@ public class WelcomeController {
 
 		model.put("title", helloWorldService.getTitle(""));
 		model.put("msg", helloWorldService.getDesc());
-		App.addProduct("moloko");
+		ProductDAO name = new ProductDAOimplementation();
+		name.addProduct("moloko");
 		return "index";
 	}
 
@@ -48,7 +51,10 @@ public class WelcomeController {
 		
 		model.addObject("title", helloWorldService.getTitle(name));
 		model.addObject("msg", helloWorldService.getDesc());
-		
+
+
+		ProductDAO dao = new ProductDAOimplementation();
+		dao.addProduct("colbasa");
 		return model;
 
 	}
