@@ -7,9 +7,9 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>hibernate</module>
+		<module>core</module>
+		<module>dao</module>
 		<module>web</module>
-		<module>businessLigic</module>
 	</modules>
 
 	<build>
