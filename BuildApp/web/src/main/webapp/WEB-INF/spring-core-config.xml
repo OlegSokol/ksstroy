@@ -8,8 +8,6 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd ">
  
-	<context:component-scan base-package="ua.ksstroy.logic" />
-	<context:component-scan base-package="ua.ksstroy.hibermodel" />
-	<context:component-scan base-package="ua.ksstroy.persistence" />
+	<context:component-scan base-package="ua.ksstroy" />
 
 </beans>

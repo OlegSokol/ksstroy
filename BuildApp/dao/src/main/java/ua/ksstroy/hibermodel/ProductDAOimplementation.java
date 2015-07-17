@@ -1,11 +1,12 @@
 package ua.ksstroy.hibermodel;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
 import ua.ksstroy.logic.ProductDAO;
 import ua.ksstroy.persistence.HibernateUtil;
 
-
+@Component("dao")
 public class ProductDAOimplementation implements ProductDAO 
 {
 	public void addProduct( String productName ) {

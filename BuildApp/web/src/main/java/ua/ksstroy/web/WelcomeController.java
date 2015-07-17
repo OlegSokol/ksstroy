@@ -2,6 +2,8 @@ package ua.ksstroy.web;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +23,14 @@ import ua.ksstroy.logic.ProductDAO;
 @Controller
 public class WelcomeController {
 
+	@Resource
+	private HelloWorldService helloWorldService;
+	@Resource
+	private ProductDAO dao;
+
 	private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
-	private final HelloWorldService helloWorldService;
-	private ProductDAO dao = new ProductDAOimplementation();
 
-	@Autowired
-	public WelcomeController(HelloWorldService helloWorldService) {
-		this.helloWorldService = helloWorldService;
-	}
-
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Map<String, Object> model) {
 
