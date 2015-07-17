@@ -23,6 +23,7 @@ public class WelcomeController {
 
 	private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 	private final HelloWorldService helloWorldService;
+	private ProductDAO dao = new ProductDAOimplementation();
 
 	@Autowired
 	public WelcomeController(HelloWorldService helloWorldService) {
@@ -53,7 +54,6 @@ public class WelcomeController {
 		model.addObject("msg", helloWorldService.getDesc());
 
 
-		ProductDAO dao = new ProductDAOimplementation();
 		dao.addProduct("colbasa");
 		return model;
 
