@@ -25,8 +25,7 @@ public class WelcomeController {
 
 	@Resource
 	private HelloWorldService helloWorldService;
-	@Resource
-	private ProductDAO dao;
+
 
 	private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
@@ -38,8 +37,7 @@ public class WelcomeController {
 
 		model.put("title", helloWorldService.getTitle(""));
 		model.put("msg", helloWorldService.getDesc());
-		ProductDAO name = new ProductDAOimpl();
-		name.addProduct("moloko");
+		helloWorldService.addProduct("moloko");
 		return "index";
 	}
 
@@ -55,7 +53,7 @@ public class WelcomeController {
 		model.addObject("msg", helloWorldService.getDesc());
 
 
-		dao.addProduct("colbasa");
+		helloWorldService.addProduct(name);
 		return model;
 
 	}

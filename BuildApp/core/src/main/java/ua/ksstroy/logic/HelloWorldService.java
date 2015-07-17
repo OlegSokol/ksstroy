@@ -1,12 +1,18 @@
 package ua.ksstroy.logic;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-@Service
+@Component
 public class HelloWorldService {
+	
+	@Resource
+	private ProductDAO dao;
 
 	private static final Logger logger = LoggerFactory.getLogger(HelloWorldService.class);
 
@@ -27,6 +33,11 @@ public class HelloWorldService {
 		}else{
 			return "Hello " + name;
 		}
+		
+	}
+
+	public void addProduct(String name) {
+		dao.addProduct(name);
 		
 	}
 
