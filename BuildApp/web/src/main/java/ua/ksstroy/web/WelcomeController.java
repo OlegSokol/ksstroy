@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ua.ksstroy.hibermodel.ProductDAOimplementation;
+import ua.ksstroy.hibermodel.ProductDAOimpl;
 import ua.ksstroy.logic.HelloWorldService;
 import ua.ksstroy.logic.ProductDAO;
 
@@ -38,7 +38,7 @@ public class WelcomeController {
 
 		model.put("title", helloWorldService.getTitle(""));
 		model.put("msg", helloWorldService.getDesc());
-		ProductDAO name = new ProductDAOimplementation();
+		ProductDAO name = new ProductDAOimpl();
 		name.addProduct("moloko");
 		return "index";
 	}

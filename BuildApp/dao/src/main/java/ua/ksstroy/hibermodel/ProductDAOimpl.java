@@ -7,7 +7,7 @@ import ua.ksstroy.logic.ProductDAO;
 import ua.ksstroy.persistence.HibernateUtil;
 
 @Component("dao")
-public class ProductDAOimplementation implements ProductDAO 
+public class ProductDAOimpl implements ProductDAO 
 {
 	public void addProduct( String productName ) {
 		System.out.println("Maven + Hibernate + MySQL");
