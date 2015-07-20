@@ -1,5 +1,6 @@
 package ua.ksstroy.hibermodel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,12 +14,11 @@ import javax.persistence.ManyToMany;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 
 @Entity
 @Table(name = "users")
-public class User implements java.io.Serializable {
+public class UserModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -31,11 +31,14 @@ public class User implements java.io.Serializable {
 	@Column(name = "ROLE", nullable = false)
 	private String role;
 	
+	@Column(name = "PASSWORD", nullable = false)
+	private String password;
+	
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="user_project_rel", 
 		joinColumns= @JoinColumn(name="user"), 
 		inverseJoinColumns= @JoinColumn(name="project"))
-	private List<Project> projects;
+	private List<ProjectModel> projects;
 
 	public Integer getId() {
 		return this.Id;
@@ -61,12 +64,20 @@ public class User implements java.io.Serializable {
 		this.role = role;
 	}
 
-	public List<Project> getProjects() {
+	public List<ProjectModel> getProjects() {
 		return projects;
 	}
 
-	public void setProjects(List<Project> projects) {
+	public void setProjects(List<ProjectModel> projects) {
 		this.projects = projects;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	
