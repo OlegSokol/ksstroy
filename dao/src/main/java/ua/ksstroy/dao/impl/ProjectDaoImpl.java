@@ -1,10 +1,8 @@
 package ua.ksstroy.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
@@ -21,17 +19,9 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public List<Project> getAllProjectsByUserName(Integer userId) {
 		List<Project> projects = new ArrayList<>();
-		for (Object project : createProjectQuery(userId).list()) 
+		for (Object project : ((UserModel)session.get(UserModel.class, userId)).getProjects()) 
 			projects.add(convertProject((ProjectModel) project));
 		return projects;
-	}
-
-	private Query createProjectQuery(Integer userId) {
-		Query query = session.createQuery(
-				"SELECT p FROM ProjectModel p " + 
-				"WHERE (:user in elements(p.users))");
-		query.setEntity("user", session.get(UserModel.class, userId));
-		return query;
 	}
 
 	private Project convertProject(ProjectModel projectModel) {

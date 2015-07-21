@@ -2,7 +2,7 @@ package ua.ksstroy.logic.work;
 
 public interface WorkManager {
 	
-	WorkHierarchyData getRootWorkHierarchy();
+	WorkHierarchyData getRootWorkHierarchy(String projectId);
 	
 	void addGroupToGroup(String groupName, String parentGroupId);
 

@@ -2,7 +2,7 @@ package ua.ksstroy.logic.zone;
 
 public interface ZoneManager {
 	
-	ZoneHierarchyData getRootZoneHierarchy();
+	ZoneHierarchyData getRootZoneHierarchy(String projectId);
 	
 	void addGroupToGroup(String groupName, String parentGroupId);
 
