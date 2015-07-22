@@ -3,10 +3,20 @@ package ua.ksstroy.logic.zone;
 import java.util.List;
 
 public class ZoneHierarchyData {
-	
+
+	private String name;
+
 	private List<ZoneHierarchyData> groups;
-	
+
 	private List<ZoneData> zones;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public List<ZoneHierarchyData> getGroups() {
 		return groups;

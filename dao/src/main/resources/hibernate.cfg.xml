@@ -11,7 +11,7 @@
         <property name="hibernate.connection.password">stroy</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-     <!--    <mapping resource="com/mkyong/common/Stock.hbm.xml"></mapping> -->
+        
         <mapping  class="ua.ksstroy.hibermodel.ProjectModel"></mapping>
         <mapping  class="ua.ksstroy.hibermodel.UserModel"></mapping>
     </session-factory>
