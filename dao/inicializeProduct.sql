@@ -32,6 +32,17 @@ CREATE TABLE `user_project_rel` (
 );
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (33, 1);
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
+
+
+DROP TABLE IF EXISTS `zone_data`;
+CREATE TABLE `zone_data` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(20) NOT NULL,
+  `width` double NOT NULL,
+  `height` double NOT NULL,
+  `value` double NOT NULL,
+  `mesure_name` VARCHAR(20) NOT NULL
+);
   
   
   
