@@ -1,9 +1,3 @@
-DROP TABLE IF EXISTS `product`;
-CREATE TABLE `product` (
-  `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `PRODUCT_NAME` VARCHAR(20) NOT NULL
-);
-  
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -34,13 +28,12 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (33, 1);
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
 
-DROP TABLE IF EXISTS `zone_data`;
-CREATE TABLE `zone_data` (
+DROP TABLE IF EXISTS `zone`;
+CREATE TABLE `zone` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(20) NOT NULL,
   `width` double NOT NULL,
   `height` double NOT NULL,
-  `value` double NOT NULL,
   `mesure_name` VARCHAR(20) NOT NULL
 );
   

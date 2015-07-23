@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "zone_data")
+@Table(name = "zones")
 public class ZoneModel implements Serializable {
 
 	@Id
@@ -26,9 +26,6 @@ public class ZoneModel implements Serializable {
 
 	@Column(name = "height")
 	private Double height;
-
-	@Column(name = "value")
-	private Double value;
 
 	@Column(name = "mesure_name")
 	private String mesureName;
@@ -63,14 +60,6 @@ public class ZoneModel implements Serializable {
 
 	public void setHeight(Double height) {
 		this.height = height;
-	}
-
-	public Double getValue() {
-		return value;
-	}
-
-	public void setValue(Double value) {
-		this.value = value;
 	}
 
 	public String getMesureName() {
