@@ -15,6 +15,5 @@
         <mapping  class="ua.ksstroy.hibermodel.ProjectModel"></mapping>
         <mapping  class="ua.ksstroy.hibermodel.UserModel"></mapping>
     </session-factory>
-    <!-- Drop and re-create the database schema on startup -->
-  <property name="hbm2ddl.auto">create</property>
+
 </hibernate-configuration>

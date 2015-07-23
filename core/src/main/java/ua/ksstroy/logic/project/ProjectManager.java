@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProjectService {
+public class ProjectManager {
 	
 	@Resource
 	ProjectDao projectDao;

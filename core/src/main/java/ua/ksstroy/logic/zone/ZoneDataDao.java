@@ -6,56 +6,36 @@ import java.util.List;
 <<<<<<< HEAD
  * РРЅС‚РµСЂС„РµР№СЃ СЃР»СѓР¶РёС‚ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ С‚Р°Р±Р»РёС†РµР№ СЃРѕРґРµСЂР¶Р°С‰РµР№ Р·РѕРЅС‹
 =======
- * Интерфейс служит для управления таблицей содержащей зоны
+ * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 >>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
  */
 
 public interface ZoneDataDao {
 
 	/*
-<<<<<<< HEAD
 	 * РґРѕР±Р°РІРёС‚СЊ РёРјСЏ Р·РѕРЅС‹
-=======
-	 * добавить имя зоны
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 	void addZoneName(String zoneName);
 
 	/*
-<<<<<<< HEAD
 	 * РґРѕР±Р°РІРёС‚СЊ С€РёСЂРёРЅСѓ
-=======
-	 * добавить ширину
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 	void addZoneWidth(Double width);
 
 	/*
-<<<<<<< HEAD
 	 * РґРѕР±Р°РІРёС‚СЊ РІС‹СЃРѕС‚Сѓ
-=======
-	 * добавить высоту
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 
 	void addZoneHeight(Double height);
 
 	/*
-<<<<<<< HEAD
 	 * РїСЂРµРґРїРѕР»Р°РіР°РµРј С‡С‚Рѕ СЌС‚Рѕ РїСЂРѕРёР·РІРµРґРµРЅРёРµ С€РёСЂРёРЅС‹ РЅР° РІС‹СЃРѕС‚Сѓ
-=======
-	 * предполагаем что это произведение ширины на высоту
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 
 	void addZoneValue(Double value);
 
 	/*
-<<<<<<< HEAD
 	 * РїРѕР»СѓС‡РёС‚СЊ Р·РѕРЅСѓ РїРѕ РёРјРµРЅРё
-=======
-	 * получить зону по имени
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 * 
 	 * @return List<ZoneData>
 	 */
@@ -63,33 +43,21 @@ public interface ZoneDataDao {
 	List<ZoneData> getAllZoneDataByName(String zoneName);
 
 	/*
-<<<<<<< HEAD
 	 * РґРѕР±Р°РІРёС‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ Р·РѕРЅС‹
-=======
-	 * добавить дополнительные зоны
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 
 	List<ZoneData> addZoneAdditional(String zoneName, Double width,
 			Double height, Double value);
 
 	/*
-<<<<<<< HEAD
 	 * РґРѕР±Р°РІРёС‚СЊ РёР·Р±С‹С‚РѕС‡РЅС‹Рµ Р·РѕРЅС‹
-=======
-	 * добавить избыточные зоны
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 
 	List<ZoneData> addZoneSurplus(String zoneName, Double width, Double height,
 			Double value);
 
 	/*
-<<<<<<< HEAD
 	 * РґРѕР±Р°РІРёС‚СЊ РІРµР»РёС‡РёРЅСѓ РёР·РјРµСЂРµРЅРёСЏ
-=======
-	 * добавить величину измерения
->>>>>>> 86c2d4d2f842eceee2d529d2cf60ec21e3196ea8
 	 */
 
 	void addZoneMesureName(String mesureName);
