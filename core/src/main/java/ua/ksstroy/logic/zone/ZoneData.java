@@ -8,15 +8,15 @@ public class ZoneData {
 
 	private String name;
 
-	private List<ZoneData> additional;
+	private List<ZoneData> additional; // дополнетельные зоны?
 
-	private List<ZoneData> surplus;
+	private List<ZoneData> surplus; // избыточные зоны?
 
 	private Double width;
-	
+
 	private Double height;
-	
-	private Double value;
+
+	private Double value; // что за поле, произведение ширины на высоту?
 
 	private String mesureName;
 
