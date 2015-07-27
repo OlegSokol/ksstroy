@@ -45,7 +45,7 @@ public class ZoneImpl implements Zone
 
 	public Double getValue()
 	{
-		return zoneData.getValue();
+		return getHeight()*getWidth();
 	}
 	
 	
