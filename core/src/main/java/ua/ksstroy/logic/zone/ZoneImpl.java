@@ -1,3 +1,5 @@
+package ua.ksstroy.logic.zone;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,9 +7,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-
+@Component
 public class ZoneImpl implements Zone
 {
+	@Resource
+	ZoneData zoneData;
 	public String getId()
 	{
 		return zoneData.getId();
@@ -18,7 +22,7 @@ public class ZoneImpl implements Zone
 		return zoneData.getName();
 	}
 		
-	public List<Zone> getAdditional()
+	public List<ZoneData> getAdditional()
 	{
 		return zoneData.getAdditional();
 	}
@@ -30,7 +34,7 @@ public class ZoneImpl implements Zone
 
 	public Mesure getMesure()
 	{
-		return zoneData.getMesure();
+		return zoneData.getMesureName();
 	}
 
 	public Double getWidth()
