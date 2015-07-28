@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public abstract class ZoneImpl implements Zone
 {
 	@Resource
-	ZoneData zoneData;
+	ZoneData zoneData; 
 	public String getId()
 	{
 		return zoneData.getId();
@@ -32,9 +32,9 @@ public abstract class ZoneImpl implements Zone
 		return zoneData.getSurplus();
 	}
 
-	public Mesure getMesure()
+	public Measure getMeasure()
 	{
-		return zoneData.getMesureName();
+		return zoneData.getMeasureName();
 	}
 */
 	public Double getWidth()
