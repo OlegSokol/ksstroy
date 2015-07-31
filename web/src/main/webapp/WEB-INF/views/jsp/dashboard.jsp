@@ -5,16 +5,18 @@
 	<head>
 		<title>ua.ksstroy</title>
 		
+			<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/bootstrap.css'/>" />
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<spring:url value="/resources/css/hello.css" var="css" />
+		<spring:url value="/resources/css/mainStyle.css" var="css" />
 		<link href="${css}" rel="stylesheet" />
 		<spring:url value="/resources/js/hello.js" var="js" />
 		<script src="${js}"></script>
 	</head>	
 	<body>
-	
-		<h1>${title}</h1>
+	<div id="wraper">
+		<h4>Projects</h4>
 		
 		<p>
 		<c:if test="${empty projects}">
@@ -22,8 +24,9 @@
 		</c:if>
 	
 		<c:forEach items="${projects}" var="entry">
-	       	${entry.projectName}<br>
+	      <a href="./projects/${entry.projectName}">${entry.projectName}</a> <br>
 		</c:forEach>
 		
+	</div><!-- END OF WRAPER -->
 	</body>
 </html>

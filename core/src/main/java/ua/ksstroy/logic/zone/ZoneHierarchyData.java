@@ -2,6 +2,14 @@ package ua.ksstroy.logic.zone;
 
 import java.util.List;
 
+/*	
+The class is binary three pure data
+representation based on a ZoneGroup implementation. 
+Are sends to web tier and vice-versa.
+Doesn't contains any business logic 
+
+*/
+
 public class ZoneHierarchyData {
 
 	private String name;

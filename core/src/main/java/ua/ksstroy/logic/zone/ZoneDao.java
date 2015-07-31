@@ -1,6 +1,10 @@
 package ua.ksstroy.logic.zone;
 
 import java.util.List;
+/*
+ *A data Access interface is used to separate low level data accessing API 
+ *  from high level business services.
+ */
 
 public interface ZoneDao {
 	
