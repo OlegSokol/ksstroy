@@ -9,8 +9,8 @@ import java.util.List;
  (e.g Zone "Kitchen" contains surplus zones: Windows, Door etc.)
 */
 
-public class ZoneData {
-
+public class ZoneData {  
+	//Saloed:make this class the implement of Zone
 	private String id;
 
 	private String name;
