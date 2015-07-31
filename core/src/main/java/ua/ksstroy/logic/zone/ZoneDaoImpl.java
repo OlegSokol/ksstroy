@@ -1,61 +1,62 @@
 package ua.ksstroy.logic.zone;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ZoneDaoImpl implements ZoneDao {
 	//Saloed: Mock - Test zonedaoImpl
-	List<Zone> getAllZones()
+	public List<Zone> getAllZones()
 	{
-		List<Zone> allZones = new List<Zone>;
+		List<Zone> allZones = new ArrayList<Zone>();
 		return allZones;
 	}
 
-	Zone getZoneById(String zoneId)
+	public Zone getZoneById(String zoneId)
 	{
-		Zone zone = new Zone;
+		Zone zone = new ZoneImpl();
 		return zone;
 	}
 
-	List<Zone> getZonesByParentGroupId(String groupId)
+	public List<Zone> getZonesByParentGroupId(String groupId)
 	{
-		List<Zone> groupZones = new List<Zone>;
+		List<Zone> groupZones = new ArrayList<Zone>();
 		return groupZones;
 	}
-	//Saloed: ???
-	List<Zone> getZonesByParentZoneId(String groupId)
+	
+	public List<Zone> getZonesByParentZoneId(String groupId)
 	{
-		List<Zone> zoneZones = new List<Zone>;
+		List<Zone> zoneZones = new ArrayList<Zone>();
 		return zoneZones;
 	}
 
-	List<ZoneGroup> getGroupsByParentGroupId(String groupId)
+	public List<ZoneGroup> getGroupsByParentGroupId(String groupId)
 	{
-		List<Zone> groupGroups = new List<Zone>;
+		List<ZoneGroup> groupGroups = new ArrayList<ZoneGroup>();
 		return groupGroups;
 	}
 
-	ZoneGroup getRootZoneGroup()
+	public ZoneGroup getRootZoneGroup()
 	{
-		ZoneGroup zoneGroup  = new ZoneGroup;
+		ZoneGroup zoneGroup  = new ZoneGroupImpl();
 		return zoneGroup;
 	}
 
-	void addGroupToGroup(String groupName, String parentGroupId)
+	public void addGroupToGroup(String groupName, String parentGroupId)
 	{
 		
 	}
 
-	void storeZone(Zone zone, String parentGroupId)
+	public void storeZone(Zone zone, String parentGroupId)
 	{
 		
 	}
 
-	void storeZoneToZone(Zone zone, String parentZoneId)
+	public void storeZoneToZone(Zone zone, String parentZoneId)
 	{
 		
 	}
 
-	void removeZoneFromZone(Zone zone, String parentZoneId)
+	public void removeZoneFromZone(Zone zone, String parentZoneId)
 	{
 		
 	}

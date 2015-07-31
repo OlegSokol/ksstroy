@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 @Component
-public abstract class ZoneImpl implements Zone
+public class ZoneImpl implements Zone
 {
 	@Resource
 	ZoneData zoneData; 
@@ -22,21 +22,24 @@ public abstract class ZoneImpl implements Zone
 		return zoneData.getName();
 	}
 		
-	/* public List<ZoneData> getAdditional()
+	public List<Zone> getAdditional()
 	{
-		return zoneData.getAdditional();
+		List<Zone> zoneAdds = new ArrayList<Zone>();
+		return zoneAdds;
 	}
 
 	public List<Zone> getSurplus()
 	{
-		return zoneData.getSurplus();
+		List<Zone> zoneSurplus = new ArrayList<Zone>();
+		return zoneSurplus;
 	}
 
 	public Measure getMeasure()
 	{
-		return zoneData.getMeasureName();
+		Measure measure = Measure.M2;
+		return measure;
 	}
-*/
+
 	public Double getWidth()
 	{
 		return zoneData.getWidth();
