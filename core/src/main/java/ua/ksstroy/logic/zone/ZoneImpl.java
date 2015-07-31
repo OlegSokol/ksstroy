@@ -7,11 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class ZoneImpl implements Zone
 {
-	@Resource
-	ZoneData zoneData; 
+	ZoneData zoneData = new ZoneData(); 
 	public String getId()
 	{
 		return zoneData.getId();
