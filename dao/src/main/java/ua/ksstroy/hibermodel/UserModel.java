@@ -6,18 +6,19 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "users")
+@Table(name = "users", catalog = "ksstroy")
 public class UserModel implements Serializable {
 
 	@Id
@@ -30,14 +31,12 @@ public class UserModel implements Serializable {
 
 	@Column(name = "ROLE", nullable = false)
 	private String role;
-	
+
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
-	
-	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="user_project_rel", 
-		joinColumns= @JoinColumn(name="user"), 
-		inverseJoinColumns= @JoinColumn(name="project"))
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinTable(name = "user_project_rel", joinColumns = @JoinColumn(name = "user"), inverseJoinColumns = @JoinColumn(name = "project"))
 	private List<ProjectModel> projects;
 
 	public Integer getId() {
@@ -80,5 +79,4 @@ public class UserModel implements Serializable {
 		this.password = password;
 	}
 
-	
 }

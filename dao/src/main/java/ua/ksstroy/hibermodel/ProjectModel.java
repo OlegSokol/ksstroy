@@ -5,29 +5,31 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToMany;
 
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "projects")
+@Table(name = "projects", catalog = "ksstroy")
 public class ProjectModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
 	private Integer Id;
-	
+
 	@Column(name = "PROJECT_NAME", nullable = false)
 	private String projectName;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
-	@ManyToMany(mappedBy="projects")
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
 	private List<UserModel> users;
 
 	public Integer getId() {
@@ -61,8 +63,5 @@ public class ProjectModel implements Serializable {
 	public void setUsers(List<UserModel> users) {
 		this.users = users;
 	}
-	
-	
 
-	
 }

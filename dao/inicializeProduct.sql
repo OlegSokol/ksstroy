@@ -28,23 +28,45 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (33, 1);
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
 
-DROP TABLE IF EXISTS `zone`;
-CREATE TABLE `zone` (
+DROP TABLE IF EXISTS `zones`;
+CREATE TABLE `zones` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(20) NOT NULL,
   `width` double NOT NULL,
   `height` double NOT NULL,
   `mesure_name` VARCHAR(20) NOT NULL
 );
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+DROP TABLE IF EXISTS `adddit_zones`;
+CREATE TABLE `adddit_zones` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(20) NOT NULL,
+  `width` double NOT NULL,
+  `height` double NOT NULL,
+  `mesure_name` VARCHAR(20) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS `surplus_zones`;
+CREATE TABLE `surplus_zones` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(20) NOT NULL,
+  `width` double NOT NULL,
+  `height` double NOT NULL,
+  `mesure_name` VARCHAR(20) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE `groups` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(20) NOT NULL
+);
+
+
+DROP TABLE IF EXISTS `sub_groups`;
+CREATE TABLE `sub_groups` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(20) NOT NULL
+);

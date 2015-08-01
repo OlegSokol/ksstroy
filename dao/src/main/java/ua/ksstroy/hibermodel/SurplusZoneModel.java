@@ -2,21 +2,18 @@ package ua.ksstroy.hibermodel;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "zones", catalog = "ksstroy")
-public class ZoneModel implements Serializable {
+@Table(name = "surplus_zones", catalog = "ksstroy")
+public class SurplusZoneModel {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -35,11 +32,9 @@ public class ZoneModel implements Serializable {
 	@Column(name = "mesure_name")
 	private String mesureName;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "surplus_zones")
-	private Set<SurplusZoneModel> setSurZones = new LinkedHashSet<>();
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "adddit_zones")
-	private Set<AdditionalZonesModel> setAddZones = new LinkedHashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", nullable = false)
+	private ZoneModel zoneModel;
 
 	public Integer getId() {
 		return id;
@@ -81,20 +76,12 @@ public class ZoneModel implements Serializable {
 		this.mesureName = mesureName;
 	}
 
-	public Set<SurplusZoneModel> getSetSurZones() {
-		return setSurZones;
+	public ZoneModel getZoneModel() {
+		return zoneModel;
 	}
 
-	public void setSetSurZones(Set<SurplusZoneModel> setSurZones) {
-		this.setSurZones = setSurZones;
-	}
-
-	public Set<AdditionalZonesModel> getSetAddZones() {
-		return setAddZones;
-	}
-
-	public void setSetAddZones(Set<AdditionalZonesModel> setAddZones) {
-		this.setAddZones = setAddZones;
+	public void setZoneModel(ZoneModel zoneModel) {
+		this.zoneModel = zoneModel;
 	}
 
 }
