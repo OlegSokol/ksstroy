@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "surplus_zones", catalog = "ksstroy")
-public class SurplusZoneModel {
+public class SurplusZonesModel {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

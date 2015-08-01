@@ -3,7 +3,9 @@ package ua.ksstroy.hibermodel;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,10 +40,14 @@ public class ZoneModel implements Serializable {
 	private String mesureName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "surplus_zones")
-	private Set<SurplusZoneModel> setSurZones = new LinkedHashSet<>();
+	private List<SurplusZonesModel> setSurZones = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "adddit_zones")
-	private Set<AdditionalZonesModel> setAddZones = new LinkedHashSet<>();
+	private List<AdditionalZonesModel> setAddZones = new ArrayList<>();
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", nullable = false)
+	private GroupsModel groupsModel;
 
 	public Integer getId() {
 		return id;
@@ -81,20 +89,28 @@ public class ZoneModel implements Serializable {
 		this.mesureName = mesureName;
 	}
 
-	public Set<SurplusZoneModel> getSetSurZones() {
+	public List<SurplusZonesModel> getSetSurZones() {
 		return setSurZones;
 	}
 
-	public void setSetSurZones(Set<SurplusZoneModel> setSurZones) {
+	public void setSetSurZones(List<SurplusZonesModel> setSurZones) {
 		this.setSurZones = setSurZones;
 	}
 
-	public Set<AdditionalZonesModel> getSetAddZones() {
+	public List<AdditionalZonesModel> getSetAddZones() {
 		return setAddZones;
 	}
 
-	public void setSetAddZones(Set<AdditionalZonesModel> setAddZones) {
+	public void setSetAddZones(List<AdditionalZonesModel> setAddZones) {
 		this.setAddZones = setAddZones;
+	}
+
+	public GroupsModel getGroupsModel() {
+		return groupsModel;
+	}
+
+	public void setGroupsModel(GroupsModel groupsModel) {
+		this.groupsModel = groupsModel;
 	}
 
 }

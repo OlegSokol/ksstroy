@@ -2,8 +2,8 @@ package ua.ksstroy.hibermodel;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +25,8 @@ public class GroupsModel {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sub_groups")
-	private Set<SubGroupsModel> setSubGroups = new LinkedHashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "zones")
+	private List<ZoneModel> setZoneMod = new ArrayList<ZoneModel>();
 
 	public Integer getId() {
 		return id;
@@ -44,12 +44,12 @@ public class GroupsModel {
 		this.name = name;
 	}
 
-	public Set<SubGroupsModel> getSetSubGroups() {
-		return setSubGroups;
+	public List<ZoneModel> getSetZoneMod() {
+		return setZoneMod;
 	}
 
-	public void setSetSubGroups(Set<SubGroupsModel> setSubGroups) {
-		this.setSubGroups = setSubGroups;
+	public void setSetZoneMod(List<ZoneModel> setZoneMod) {
+		this.setZoneMod = setZoneMod;
 	}
 
 }
