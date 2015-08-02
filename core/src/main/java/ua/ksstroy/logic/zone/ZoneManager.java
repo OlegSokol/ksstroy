@@ -3,16 +3,19 @@ package ua.ksstroy.logic.zone;
 public interface ZoneManager {
 	/*
 	 * An objects that is used by the web tier to view and manage data from a
-	 * data-base (e.g MySQL); with already affected in runtime business logic rules.
+	 * data-base (e.g MySQL); with already affected in runtime business logic
+	 * rules.
 	 */
-	ZoneHierarchyData getRootZoneHierarchy(String projectId);
+	ZoneHierarchyData getRootZoneHierarchy(Integer projectId);
 
-	void addGroupToGroup(String groupName, String parentGroupId);
+	void addGroup(String groupName, Integer parentGroupId);
 
-	void addZone(ZoneData zone, String parentGroupId);
+	void addGroupToGroup(String groupName, Integer parentGroupId);
 
-	void addZoneToZone(ZoneData zone, String parentZoneId);
+	void addZone(ZoneData zone, Integer parentGroupId);
 
-	void subtractZoneFromZone(ZoneData zone, String parentZoneId);
+	void addAdditionalZoneToZone(ZoneData zone, Integer parentZoneId);
+
+	void addSurplusZoneToZone(ZoneData zone, Integer parentZoneId);
 
 }
