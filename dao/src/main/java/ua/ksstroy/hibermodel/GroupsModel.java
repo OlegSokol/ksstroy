@@ -6,17 +6,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "groups", catalog = "ksstroy")
-public class GroupsModel implements Serializable{
+public class GroupsModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -26,8 +29,27 @@ public class GroupsModel implements Serializable{
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "zones")
-	private List<ZoneModel> setZoneMod = new ArrayList<ZoneModel>();
+	/*
+	 * One to many group for zones
+	 */
+
+	@OneToMany(mappedBy = "groupsModel")
+	private List<ZoneModel> zones = new ArrayList<ZoneModel>();
+
+	/*
+	 * Many to one subgroups for rootgroup same one entity
+	 */
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "parent_id")
+	private GroupsModel rootgroup;
+
+	/*
+	 * One to many root rootgroup for subgroups same one entity
+	 */
+
+	@OneToMany(mappedBy = "rootgroup")
+	private List<GroupsModel> subgroups = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -45,12 +67,28 @@ public class GroupsModel implements Serializable{
 		this.name = name;
 	}
 
-	public List<ZoneModel> getSetZoneMod() {
-		return setZoneMod;
+	public GroupsModel getRootgroup() {
+		return rootgroup;
 	}
 
-	public void setSetZoneMod(List<ZoneModel> setZoneMod) {
-		this.setZoneMod = setZoneMod;
+	public void setRootgroup(GroupsModel rootgroup) {
+		this.rootgroup = rootgroup;
+	}
+
+	public List<GroupsModel> getSubgroups() {
+		return subgroups;
+	}
+
+	public void setSubgroups(List<GroupsModel> subgroups) {
+		this.subgroups = subgroups;
+	}
+
+	public List<ZoneModel> getZones() {
+		return zones;
+	}
+
+	public void setZones(List<ZoneModel> zones) {
+		this.zones = zones;
 	}
 
 }

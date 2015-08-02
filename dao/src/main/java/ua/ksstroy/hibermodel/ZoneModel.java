@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,14 +40,26 @@ public class ZoneModel implements Serializable {
 	@Column(name = "mesure_name")
 	private String mesureName;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "surplus_zones")
-	private List<SurplusZonesModel> setSurZones = new ArrayList<>();
+	/*
+	 * One to many zone for surplusesZones
+	 */
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "adddit_zones")
-	private List<AdditionalZonesModel> setAddZones = new ArrayList<>();
+	@OneToMany(mappedBy = "zonesSurpluses")
+	private List<SurplusZonesModel> surpluses = new ArrayList<>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
+	/*
+	 * One to many zone for addotionalZones
+	 */
+
+	@OneToMany(mappedBy = "zonesAdditionals")
+	private List<AdditionalZonesModel> additionals = new ArrayList<>();
+
+	/*
+	 * Many to one zones for group
+	 */
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "group_for_zones_id")
 	private GroupsModel groupsModel;
 
 	public Integer getId() {
@@ -89,20 +102,20 @@ public class ZoneModel implements Serializable {
 		this.mesureName = mesureName;
 	}
 
-	public List<SurplusZonesModel> getSetSurZones() {
-		return setSurZones;
+	public List<SurplusZonesModel> getSurpluses() {
+		return surpluses;
 	}
 
-	public void setSetSurZones(List<SurplusZonesModel> setSurZones) {
-		this.setSurZones = setSurZones;
+	public void setSurpluses(List<SurplusZonesModel> surpluses) {
+		this.surpluses = surpluses;
 	}
 
-	public List<AdditionalZonesModel> getSetAddZones() {
-		return setAddZones;
+	public List<AdditionalZonesModel> getAdditionals() {
+		return additionals;
 	}
 
-	public void setSetAddZones(List<AdditionalZonesModel> setAddZones) {
-		this.setAddZones = setAddZones;
+	public void setAdditionals(List<AdditionalZonesModel> additionals) {
+		this.additionals = additionals;
 	}
 
 	public GroupsModel getGroupsModel() {

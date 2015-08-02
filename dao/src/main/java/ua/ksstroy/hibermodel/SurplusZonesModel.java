@@ -4,6 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "surplus_zones", catalog = "ksstroy")
-public class SurplusZonesModel implements Serializable{
+public class SurplusZonesModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -33,10 +34,14 @@ public class SurplusZonesModel implements Serializable{
 
 	@Column(name = "mesure_name")
 	private String mesureName;
+	
+	/*
+	 * Many to one surpluses for zone
+	 */
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
-	private ZoneModel zoneModel;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "zones_surpluses")
+	private ZoneModel zonesSurpluses;
 
 	public Integer getId() {
 		return id;
@@ -78,12 +83,12 @@ public class SurplusZonesModel implements Serializable{
 		this.mesureName = mesureName;
 	}
 
-	public ZoneModel getZoneModel() {
-		return zoneModel;
+	public ZoneModel getZonesSurpluses() {
+		return zonesSurpluses;
 	}
 
-	public void setZoneModel(ZoneModel zoneModel) {
-		this.zoneModel = zoneModel;
+	public void setZonesSurpluses(ZoneModel zonesSurpluses) {
+		this.zonesSurpluses = zonesSurpluses;
 	}
 
 }

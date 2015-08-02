@@ -30,36 +30,40 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
 DROP TABLE IF EXISTS `zones`;
 CREATE TABLE `zones` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(20) NOT NULL,
-  `width` double NOT NULL,
-  `height` double NOT NULL,
-  `mesure_name` VARCHAR(20) NOT NULL
+  `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(50) NULL DEFAULT NULL,
+  `width` double NULL DEFAULT NULL,
+  `height` double NULL DEFAULT NULL,
+  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
+  `group_for_zones_id` BIGINT(20) NULL DEFAULT NULL
 );
 
 
 DROP TABLE IF EXISTS `adddit_zones`;
 CREATE TABLE `adddit_zones` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(20) NOT NULL,
-  `width` double NOT NULL,
-  `height` double NOT NULL,
-  `mesure_name` VARCHAR(20) NOT NULL
+  `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(50) NULL DEFAULT NULL,
+  `width` double NULL DEFAULT NULL,
+  `height` double NULL DEFAULT NULL,
+  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
+  `zones_additionals` BIGINT(20) NULL DEFAULT NULL
 );
 
 
 DROP TABLE IF EXISTS `surplus_zones`;
 CREATE TABLE `surplus_zones` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(20) NOT NULL,
-  `width` double NOT NULL,
-  `height` double NOT NULL,
-  `mesure_name` VARCHAR(20) NOT NULL
+   `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(50) NULL DEFAULT NULL,
+  `width` double NULL DEFAULT NULL,
+  `height` double NULL DEFAULT NULL,
+  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
+  `zones_surpluses` BIGINT(20) NULL DEFAULT NULL
 );
 
 
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(20) NOT NULL
+    `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50) NULL DEFAULT NULL,
+    `parent_id` BIGINT(20) NULL DEFAULT NULL
 );

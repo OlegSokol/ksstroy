@@ -18,8 +18,5 @@
 		<mapping class="ua.ksstroy.hibermodel.ProjectModel"></mapping>
 		<mapping class="ua.ksstroy.hibermodel.UserModel"></mapping>
 		<mapping class="ua.ksstroy.hibermodel.GroupsModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.ZoneModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.SurplusZonesModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.AdditionalZonesModel"></mapping>
 	</session-factory>
 </hibernate-configuration>
