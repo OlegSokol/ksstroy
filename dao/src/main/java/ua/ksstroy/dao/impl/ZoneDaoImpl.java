@@ -2,12 +2,19 @@ package ua.ksstroy.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.springframework.stereotype.Component;
+
 import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneDao;
 import ua.ksstroy.logic.zone.ZoneGroup;
+import ua.ksstroy.persistence.HibernateUtil;
 
+@Component("zoneDao")
 public class ZoneDaoImpl implements ZoneDao {
 
+	private Session session = HibernateUtil.getSessionFactory().openSession();
+	
 	@Override
 	public List<Zone> getAllZones() {
 		// TODO Auto-generated method stub

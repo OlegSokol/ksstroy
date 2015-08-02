@@ -2,6 +2,8 @@ package ua.ksstroy.hibermodel;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "adddit_zones", catalog = "ksstroy")
-public class AdditionalZonesModel {
+public class AdditionalZonesModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
