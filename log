@@ -1,0 +1,186 @@
+[33mcommit 2fd6471eeecb328c60cd8a6265a5737d77097a72[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Mon Jul 20 19:58:32 2015 +0300
+
+    Part of design boundaries between modules
+
+[33mcommit a60144ef474a00f8b7b1f230b2198fc3e0a7785b[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Mon Jul 20 10:55:43 2015 +0300
+
+    Hibernate many-to-many test
+
+[33mcommit 8ebdab34fdb3cd261323241983d5b3acaeb72d18[m
+Author: Saloed <saloed96@gmail.com>
+Date:   Sun Jul 19 23:28:49 2015 +0300
+
+    check
+
+[33mcommit 3673c6430c8b9632fcfa88285aae0bf8f0493b9b[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Sat Jul 18 09:49:26 2015 +0300
+
+    Fix some eclipse problems with maven
+
+[33mcommit bc51de63a29413bd24d741ffb3d7c48ce4b57ad8[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 23:33:25 2015 +0300
+
+    Change derectory structure
+
+[33mcommit f69b7d0610f6926874292af9740454d5e080ffca[m
+Merge: a01dfc8 5d80e59
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 23:27:35 2015 +0300
+
+    Merge branch 'lyashenkoGS repository'
+
+[33mcommit 5d80e594fb4a7ad2dfd1132bea0e3db90d67c6dc[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 23:14:47 2015 +0300
+
+    Deploy by one command: mvn clean install tomcat7:deploy
+
+[33mcommit 18327fdc602c632c024609ab3df31c07bce4a575[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 23:13:37 2015 +0300
+
+    Change data sources
+
+[33mcommit 7709b4f43c5ec54d0a78c25ac7287181fbc9badc[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 23:12:48 2015 +0300
+
+    Separate spring configs
+
+[33mcommit eaccab7452b330b5ca53a17b4e70231888081cd8[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 21:02:08 2015 +0300
+
+    Cleanup ui and Move beans configuration to core module
+
+[33mcommit 0f90260f7a4c5ab7d7464a67a42286ba6e83f96b[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 19:39:41 2015 +0300
+
+    Move dao calls to core
+
+[33mcommit b93f6b3e7a73da1de8e0f29a3c9ed0249cd70f5e[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 19:26:42 2015 +0300
+
+    Renaming
+
+[33mcommit 28abf760538cc02bdb3284dcf17a92aacc957b9f[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 19:21:20 2015 +0300
+
+    Autowire dao by spring
+
+[33mcommit 917c8676cb464774f395c814feeb018cbc69b1bf[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 19:02:00 2015 +0300
+
+    Convert dao to field
+
+[33mcommit 766fd4d20487d788deda9a29ea5cf4db58c3be4b[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 18:24:49 2015 +0300
+
+    Rename modules
+
+[33mcommit 1948740b600f9c301ecbaa14b27e7842039dd4a0[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Fri Jul 17 18:13:00 2015 +0300
+
+    Ignore eclipse files
+
+[33mcommit 256b67353a494ebfc9a8287983d261907a0864fc[m
+Author: LyashenkoGS <Lyashenkogs@gmail.com>
+Date:   Fri Jul 17 17:26:56 2015 +0300
+
+    12
+    
+    12
+
+[33mcommit a01dfc876458ef34c59561a02bca99069add92be[m
+Author: Saloed <saloed96@gmail.com>
+Date:   Thu Jul 16 21:59:52 2015 +0300
+
+    Phone Push Test
+
+[33mcommit 8bdc0b68f3df9b662df4d316b666650f8fa95f2b[m
+Merge: 991e12d 4fb44bf
+Author: Saloed <saloed96@gmail.com>
+Date:   Thu Jul 16 21:43:14 2015 +0300
+
+    Merge branch 'master' of git@github.com:Vsevolod-Osmachko/ksstroy.git
+
+[33mcommit 991e12d5347cd05d0ca7ac57017b9f182833d468[m
+Author: Saloed <saloed96@gmail.com>
+Date:   Thu Jul 16 21:42:57 2015 +0300
+
+    azx
+
+[33mcommit 80ebc3aaa6596cf50ebec5ad129f7fb643f1c991[m
+Author: Saloed <saloed96@gmail.com>
+Date:   Thu Jul 16 21:36:35 2015 +0300
+
+    asd
+
+[33mcommit 4fb44bf505963d5e17b8a364cab957b8067506e3[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Thu Jul 16 10:03:07 2015 +0300
+
+    Git test complete
+
+[33mcommit db757531185803f519bdb44fd00363478d4b7b38[m
+Author: anatolij <dormidontov.anatolij@gmail.com>
+Date:   Thu Jul 16 09:59:29 2015 +0300
+
+    name_commit
+
+[33mcommit 954c93659164096e8876b2591cc4e57954968d5e[m
+Merge: bb4d3ae f6747c3
+Author: Saloed <saloed96@gmail.com>
+Date:   Thu Jul 16 09:52:11 2015 +0300
+
+    Merged Commit
+
+[33mcommit f6747c308f4c5f28e7033e5392936969e2a397bf[m
+Author: KooZ <koozbalda@gmail.com>
+Date:   Thu Jul 16 09:47:23 2015 +0300
+
+    kooz ok
+
+[33mcommit bb4d3aed59e23b3d6987b7e682817b8d01d54c31[m
+Author: Saloed <saloed96@gmail.com>
+Date:   Thu Jul 16 09:46:51 2015 +0300
+
+    Toha ok
+
+[33mcommit e7a11390ca2d6989e7112c5bd66192ce4736397a[m
+Author: Evgeniy Sobolev <evgeniysobolev91@gmail.com>
+Date:   Thu Jul 16 09:37:59 2015 +0300
+
+    Parapapa
+
+[33mcommit 71e93d6403b15aec3ad62197a78b5c30529b5524[m
+Author: Vsevolod Osmachko <vsevolod.osmachko@travisperkins.co.uk>
+Date:   Thu Jul 16 09:26:11 2015 +0300
+
+    test commit
+
+[33mcommit 2f13cf84f4d7ab3e43cb46ca67f910172aec3e7e[m
+Author: LyashenkoGS <Lyashenkogs@gmail.com>
+Date:   Thu Jul 16 04:54:00 2015 +0300
+
+    alfa
+    
+    alfaEdition
+
+[33mcommit 1641664cb2c4b767ef07cae7f9f957df1f54b9be[m
+Author: Vsevolod-Osmachko <seva.os.e@gmail.com>
+Date:   Wed Jul 15 18:40:31 2015 +0300
+
+    Initial commit

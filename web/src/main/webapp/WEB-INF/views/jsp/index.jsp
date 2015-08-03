@@ -23,7 +23,9 @@
 			<h2>KS STROY PROJECT</h2>
 			<p>
 				<a href="./projects" class="btn btn-default">PROJECTS</a> 
+				<a href="./worktypes" class="btn btn-default">WORK TYPES</a> 
 						</p>
+			
 		</div>
 
 

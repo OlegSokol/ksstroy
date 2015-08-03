@@ -2,16 +2,21 @@ package ua.ksstroy.logic.worktype;
 
 import java.util.List;
 
+import ua.ksstroy.logic.material.MaterialData;
+import ua.ksstroy.logic.zone.Measure;
+
 public class WorkTypeData {
 	
+	private Integer id;
+
 	private String name;
 
 	private String description;
+	
+	private Measure measure;
+	
+	private Double unitPrice;
 
-	private Double getPricePerMesure;
-	
-	private String mesureName;
-	
 	private List<MaterialData> materials;
 
 	public String getName() {
@@ -39,19 +44,27 @@ public class WorkTypeData {
 	}
 
 	public Double getGetPricePerMesure() {
-		return getPricePerMesure;
+		return unitPrice;
 	}
 
 	public void setGetPricePerMesure(Double getPricePerMesure) {
-		this.getPricePerMesure = getPricePerMesure;
+		this.unitPrice = getPricePerMesure;
 	}
 
-	public String getMesureName() {
-		return mesureName;
+	public Measure getMeasure() {
+		return measure;
 	}
 
-	public void setMesureName(String mesureName) {
-		this.mesureName = mesureName;
+	public void setMeasure(Measure measure) {
+		this.measure = measure;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
