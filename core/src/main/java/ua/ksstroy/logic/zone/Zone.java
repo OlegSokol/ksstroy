@@ -17,7 +17,7 @@ public interface Zone {
 
 	public List<Zone> getSurplus();
 
-	public Measure getMeasure();
+	public Measure getMeasureName();
 
 	public Double getWidth();
 
