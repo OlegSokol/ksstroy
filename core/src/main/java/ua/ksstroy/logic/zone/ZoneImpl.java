@@ -10,49 +10,104 @@ import org.springframework.stereotype.Component;
 public class ZoneImpl implements Zone
 {
 	ZoneData zoneData = new ZoneData(); 
+
+	private String id;
+
+	private String name;
+
+	private List<Zone> additional; 
+
+	private List<Zone> surplus; 
+
+	private Double width;
+
+	private Double height;
+
+	private Double value; 
+
+	private Measure measureName;
+
 	public String getId()
 	{
-		return zoneData.getId();
+		return this.id;
 	}
-	
+
+	public void setId()
+	{
+		this.id = zoneData.getId();
+	}
+
 	public String getName()
 	{
-		return zoneData.getName();
+		return this.name;
 	}
-		
+
+	public void setName()
+	{
+		this.name = zoneData.getName();
+	}
+
 	public List<Zone> getAdditional()
 	{
-		List<Zone> zoneAdds = new ArrayList<Zone>();
-		return zoneAdds;
+		return this.additional;
+	}
+
+	public void setAdditional()
+	{
+		// need fix
+		List<ZoneData> tempZone = zoneData.getAdditional();
+
 	}
 
 	public List<Zone> getSurplus()
 	{
-		List<Zone> zoneSurplus = new ArrayList<Zone>();
-		return zoneSurplus;
+		return this.surplus;
 	}
 
-	public Measure getMeasure()
+	public void setSurplus()
 	{
-		Measure measure = Measure.M2;
-		return measure;
+		//need fix
+		List<ZoneData> tempZone = zoneData.getAdditional();
+		System.out.println(tempZone.isEmpty());
+	}
+
+	public Measure getMeasureName()
+	{
+		return this.measureName;
+	}
+
+	public void setMesuareName()
+	{
+		this.measureName = zoneData.getMeasureName();
 	}
 
 	public Double getWidth()
 	{
-		return zoneData.getWidth();
+		return this.width;
 	}
 
+	public void setWidth()
+	{
+		this.width = zoneData.getWidth();
+	}
 	public Double getHeight()
 	{
-		return zoneData.getHeight();
+		return this.height;
+	}
+
+	public void setHeight()
+	{
+		this.height = zoneData.getHeight();
 	}
 
 	public Double getValue()
 	{
-		return getHeight()*getWidth();
+		return this.value;
 	}
-	
-	
-	
+
+	public void setValue()
+	{
+		this.value = this.height * this.width;
+
+	}
 }
