@@ -3,11 +3,20 @@ package ua.ksstroy.logic.zone;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class ZoneManagerImpl implements ZoneManager {
+	
+	@Resource
+	ZoneDaoImpl zoneDaoImpl;
+	
 	//3 temp Fields    need Help
-	ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
-	ZoneGroupImpl zoneGroupImpl  = new ZoneGroupImpl();
-	ZoneData zoneData = new ZoneData();	
+	//ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+	//ZoneGroupImpl zoneGroupImpl  = new ZoneGroupImpl();
+	//ZoneData zoneData = new ZoneData();	
 	
 	@Override
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
