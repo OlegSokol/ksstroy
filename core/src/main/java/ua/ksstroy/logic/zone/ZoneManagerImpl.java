@@ -57,30 +57,30 @@ public class ZoneManagerImpl implements ZoneManager {
 
 	private ZoneData convertZoneToZoneData(Zone zone){
 		ZoneData convZoneData = new ZoneData();
+		
+		List<ZoneData> additionalList = new ArrayList<ZoneData>();
+		if (!zone.getAdditional().isEmpty()){
+			for (Zone tempZone: zone.getAdditional()){
+				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
+				additionalList.add(tempZoneData);
+			}
+		}
+		
+		List<ZoneData> surplusList = new ArrayList<ZoneData>();
+		if(!zone.getSurplus().isEmpty()){
+			for (Zone tempZone: zone.getSurplus()){
+				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
+				surplusList.add(tempZoneData);
+			}
+		}
+		
 		convZoneData.setHeight(zone.getHeight());
 		convZoneData.setId(zone.getId());
 		convZoneData.setName(zone.getName());
 		convZoneData.setWidth(zone.getWidth());
 		convZoneData.setMesureName(zone.getMeasure().toString());
-		
-		if (!zone.getAdditional().isEmpty()){
-			List<ZoneData> additionalList = new ArrayList<ZoneData>();
-			for (Zone tempZone: zone.getAdditional()){
-				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
-				additionalList.add(tempZoneData);
-			}
-			convZoneData.setAdditional(additionalList);
-		}
-		
-		if(!zone.getSurplus().isEmpty()){
-			List<ZoneData> surplusList = new ArrayList<ZoneData>();
-			for (Zone tempZone: zone.getSurplus()){
-				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
-				surplusList.add(tempZoneData);
-			}
-			convZoneData.setSurplus(surplusList);
-		}
-			
+		convZoneData.setAdditional(additionalList);
+		convZoneData.setSurplus(surplusList);
 		return convZoneData;
 	}
 	
