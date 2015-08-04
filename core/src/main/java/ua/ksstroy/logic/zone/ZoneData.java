@@ -25,7 +25,7 @@ public class ZoneData {
 
 	private Double value; 
 
-	private Measure measureName;
+	private String measureName;
 
 	public List<ZoneData> getAdditional() {
 		return additional;
@@ -67,11 +67,11 @@ public class ZoneData {
 		this.name = name;
 	}
 
-	public Measure getMeasureName() {
+	public String getMeasureName() {
 		return measureName;
 	}
 
-	public void setMesureName(Measure mesureName) {
+	public void setMesureName(String mesureName) {
 		this.measureName = mesureName;
 	}
 

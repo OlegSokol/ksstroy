@@ -25,89 +25,78 @@ public class ZoneImpl implements Zone
 
 	private Double value; 
 
-	private Measure measureName;
+	private Measure measure;
 
-	public String getId()
-	{
-		return this.id;
+	public String getId() {
+		return id;
 	}
 
-	public void setId()
-	{
-		this.id = zoneData.getId();
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getName()
-	{
-		return this.name;
+	public String getName() {
+		return name;
 	}
 
-	public void setName()
-	{
-		this.name = zoneData.getName();
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public List<Zone> getAdditional()
-	{
-		return this.additional;
+	public List<Zone> getAdditional() {
+		return additional;
 	}
 
-	public void setAdditional()
-	{
-		// need fix
-		List<ZoneData> tempZone = zoneData.getAdditional();
-
+	public void setAdditional(List<Zone> additional) {
+		this.additional = additional;
+	}
+	
+	public void addAdditional(Zone zoneAddit) {
+		this.additional.add(zoneAddit);
 	}
 
-	public List<Zone> getSurplus()
-	{
-		return this.surplus;
+	public List<Zone> getSurplus() {
+		return surplus;
 	}
 
-	public void setSurplus()
-	{
-		//need fix
-		List<ZoneData> tempZone = zoneData.getAdditional();
-		System.out.println(tempZone.isEmpty());
+	public void setSurplus(List<Zone> surplus) {
+		this.surplus = surplus;
 	}
 
-	public Measure getMeasureName()
-	{
-		return this.measureName;
+	public void addSurplus(Zone zoneSurpl) {
+		this.surplus.add(zoneSurpl);
+	}
+	public Double getWidth() {
+		return width;
 	}
 
-	public void setMesuareName()
-	{
-		this.measureName = zoneData.getMeasureName();
+	public void setWidth(Double width) {
+		this.width = width;
 	}
 
-	public Double getWidth()
-	{
-		return this.width;
+	public Double getHeight() {
+		return height;
 	}
 
-	public void setWidth()
-	{
-		this.width = zoneData.getWidth();
-	}
-	public Double getHeight()
-	{
-		return this.height;
+	public void setHeight(Double height) {
+		this.height = height;
 	}
 
-	public void setHeight()
-	{
-		this.height = zoneData.getHeight();
+	public Double getValue() {
+		return value;
 	}
 
-	public Double getValue()
-	{
-		return this.value;
+	public void setValue(Double value) {
+		this.value = value;
 	}
 
-	public void setValue()
-	{
-		this.value = this.height * this.width;
-
+	public Measure getMeasure() {
+		return measure;
 	}
+
+	public void setMeasure(Measure measure) {
+		this.measure = measure;
+	}
+
+	
 }

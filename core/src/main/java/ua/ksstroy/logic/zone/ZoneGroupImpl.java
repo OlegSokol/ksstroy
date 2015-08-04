@@ -32,12 +32,16 @@ public class ZoneGroupImpl implements ZoneGroup {
 		this.groups = groups;
 	}
 
+	public void addGroup(ZoneGroup groupAdd) {
+		this.groups.add(groupAdd);
+	}
+	
 	public List<Zone> getZones() {
 		return this.zones;
 	}
 
-	public void setZone(List<Zone> zones) {
-		this.zones = zones;
+	public void addZone(Zone zoneAdd) {
+		this.zones.add(zoneAdd);
 	}
 
 }

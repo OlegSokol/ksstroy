@@ -14,6 +14,8 @@ import java.util.List;
 public interface ZoneGroup {
 
 	public String getName();
+	
+	public String getId();
 
 	public List<ZoneGroup> getGroups();
 

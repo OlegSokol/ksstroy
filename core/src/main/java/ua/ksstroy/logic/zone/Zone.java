@@ -15,9 +15,13 @@ public interface Zone {
 
 	public List<Zone> getAdditional();
 
+	public void addAdditional(Zone zoneAddit);
+	
 	public List<Zone> getSurplus();
 
-	public Measure getMeasureName();
+	public void addSurplus(Zone zoneSurpl);
+	
+	public Measure getMeasure();
 
 	public Double getWidth();
 
