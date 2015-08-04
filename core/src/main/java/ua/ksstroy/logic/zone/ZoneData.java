@@ -71,8 +71,8 @@ public class ZoneData {
 		return measureName;
 	}
 
-	public void setMesureName(String mesureName) {
-		this.measureName = mesureName;
+	public void setMeasureName(String measureName) {
+		this.measureName = measureName;
 	}
 
 	public Double getWidth() {

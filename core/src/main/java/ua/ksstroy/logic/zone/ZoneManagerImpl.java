@@ -11,12 +11,7 @@ import org.springframework.stereotype.Component;
 public class ZoneManagerImpl implements ZoneManager {
 	
 	@Resource
-	ZoneDaoImpl zoneDaoImpl;
-	
-	//3 temp Fields    need Help
-	//ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
-	//ZoneGroupImpl zoneGroupImpl  = new ZoneGroupImpl();
-	//ZoneData zoneData = new ZoneData();	
+	ZoneDaoImpl zoneDaoImpl;	
 	
 	@Override
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
@@ -28,7 +23,7 @@ public class ZoneManagerImpl implements ZoneManager {
 	@Override
 	public void addRootGroup(String groupName) {
 		// TODO Auto-generated method stub
-
+	
 	}
 
 	@Override
@@ -78,10 +73,74 @@ public class ZoneManagerImpl implements ZoneManager {
 		convZoneData.setId(zone.getId());
 		convZoneData.setName(zone.getName());
 		convZoneData.setWidth(zone.getWidth());
-		convZoneData.setMesureName(zone.getMeasure().toString());
+		convZoneData.setMeasureName(zone.getMeasure().toString());
 		convZoneData.setAdditional(additionalList);
 		convZoneData.setSurplus(surplusList);
 		return convZoneData;
+	}
+	
+	private Zone convertZoneDataToZone(ZoneData zoneData)
+	{
+		ZoneImpl convZone = new ZoneImpl();
+		
+		List<Zone> additionalList = new ArrayList<Zone>();
+		if (!zoneData.getAdditional().isEmpty()){
+			for (ZoneData tempZoneData: zoneData.getAdditional()){
+				Zone tempZone = convertZoneDataToZone(tempZoneData);
+				additionalList.add(tempZone);
+			}
+		}
+		
+		List<Zone> surplusList = new ArrayList<Zone>();
+		if (!zoneData.getSurplus().isEmpty()){
+			for (ZoneData tempZoneData: zoneData.getSurplus()){
+				Zone tempZone = convertZoneDataToZone(tempZoneData);
+				surplusList.add(tempZone);
+			}
+		}
+		Measure measure;
+		switch(zoneData.getMeasureName())
+		{
+			case "M": 
+				measure = Measure.M;
+			break;
+			case "MP": 
+				measure = Measure.MP;
+			break;
+			case "M2": 
+				measure = Measure.M2;
+			break;
+			case "M3": 
+				measure = Measure.M3;
+			break;
+			case "L": 
+				measure = Measure.L;
+			break;
+			case "ML": 
+				measure = Measure.ML;
+			break;
+			case "KG": 
+				measure = Measure.KG;
+			break;
+			case "T": 
+				measure = Measure.T;
+			break;
+			case "GR": 
+				measure = Measure.GR;
+			break;
+			
+			default: 
+				measure = Measure.EACH;
+		}
+		
+		convZone.setHeight(zoneData.getHeight());
+		convZone.setId(zoneData.getId());
+		convZone.setName(zoneData.getName());
+		convZone.setWidth(zoneData.getWidth());
+		convZone.setMeasure(measure);
+		convZone.setAdditional(additionalList);
+		convZone.setSurplus(surplusList);
+		return convZone;
 	}
 	
 	private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup)
@@ -114,4 +173,34 @@ public class ZoneManagerImpl implements ZoneManager {
 		return zoHiDa;
 	}
 	
+	//Useless Method yet
+	private ZoneGroup convertZoneHierarchyDataToZoneGroup(ZoneHierarchyData rootZoneHierarchyData)
+	{
+		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
+			
+		List<Zone> rootZone = new ArrayList<Zone>();
+		if (!rootZoneHierarchyData.getZones().isEmpty())
+		{
+			for (ZoneData tempZoneData: rootZoneHierarchyData.getZones())
+			{
+				rootZone.add(convertZoneDataToZone(tempZoneData));
+			}
+		}
+		
+		List<ZoneGroup> tempGroupList = new ArrayList<ZoneGroup>();
+		if(!rootZoneHierarchyData.getGroups().isEmpty())
+		{
+			for (ZoneHierarchyData tempHiGroup: rootZoneHierarchyData.getGroups())
+					{
+						tempGroupList.add(convertZoneHierarchyDataToZoneGroup(tempHiGroup));
+					}
+		}
+		
+		zoneGroup.setZones(rootZone);
+		zoneGroup.setGroups(tempGroupList);
+		zoneGroup.setId(rootZoneHierarchyData.getId());
+		zoneGroup.setName(rootZoneHierarchyData.getName());
+		
+		return zoneGroup;
+	}
 }

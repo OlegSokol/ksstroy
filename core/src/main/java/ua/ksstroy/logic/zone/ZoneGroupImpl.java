@@ -40,6 +40,10 @@ public class ZoneGroupImpl implements ZoneGroup {
 		return this.zones;
 	}
 
+	public void setZones(List<Zone> zones) {
+		this.zones = zones;
+	}
+	
 	public void addZone(Zone zoneAdd) {
 		this.zones.add(zoneAdd);
 	}

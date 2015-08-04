@@ -54,7 +54,7 @@ public class ZoneHierarchyMockFactory {
 			ZoneData zoneData=zoneDataList.get(i);
 			zoneData.setId(new Integer(i).toString());
 			zoneData.setName(i+"name");
-			zoneData.setMesureName(Measure.M2);
+			zoneData.setMeasureName("M2");
 			zoneData.setHeight((double)i+2);
 			zoneData.setWidth((double)i+1);
 			zoneData.setAdditional(zoneDataList);
