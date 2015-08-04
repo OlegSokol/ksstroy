@@ -2,6 +2,9 @@ package ua.ksstroy.logic.worktype;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class WorkTypeManagerImpl implements WorkTypeManager {
 
 	@Override
