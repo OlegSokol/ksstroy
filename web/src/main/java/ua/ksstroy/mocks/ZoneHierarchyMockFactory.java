@@ -3,6 +3,7 @@ package ua.ksstroy.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.logic.zone.ZoneData;
 import ua.ksstroy.logic.zone.ZoneHierarchyData;
 
@@ -53,7 +54,7 @@ public class ZoneHierarchyMockFactory {
 			ZoneData zoneData=zoneDataList.get(i);
 			zoneData.setId(new Integer(i).toString());
 			zoneData.setName(i+"name");
-			zoneData.setMesureName("m^2");
+			zoneData.setMesureName(Measure.M2);
 			zoneData.setHeight((double)i+2);
 			zoneData.setWidth((double)i+1);
 			zoneData.setAdditional(zoneDataList);

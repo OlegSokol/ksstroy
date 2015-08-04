@@ -14,7 +14,7 @@ import ua.ksstroy.persistence.HibernateUtil;
 public class ZoneDaoImpl implements ZoneDao {
 
 	private Session session = HibernateUtil.getSessionFactory().openSession();
-	
+
 	@Override
 	public List<Zone> getAllZones() {
 		// TODO Auto-generated method stub
