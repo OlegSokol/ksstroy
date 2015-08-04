@@ -37,7 +37,7 @@ public class AdditionalZonesModel implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "zones_additionals")
-	private ZoneModel zonesAdditionals;
+	private ZonesModel zonesAdditionals;
 
 	public Integer getId() {
 		return id;
@@ -79,11 +79,11 @@ public class AdditionalZonesModel implements Serializable {
 		this.mesureName = mesureName;
 	}
 
-	public ZoneModel getZonesAdditionals() {
+	public ZonesModel getZonesAdditionals() {
 		return zonesAdditionals;
 	}
 
-	public void setZonesAdditionals(ZoneModel zonesAdditionals) {
+	public void setZonesAdditionals(ZonesModel zonesAdditionals) {
 		this.zonesAdditionals = zonesAdditionals;
 	}
 

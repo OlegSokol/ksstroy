@@ -34,14 +34,14 @@ public class SurplusZonesModel implements Serializable {
 
 	@Column(name = "mesure_name")
 	private String mesureName;
-	
+
 	/*
 	 * Many to one surpluses for zone
 	 */
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "zones_surpluses")
-	private ZoneModel zonesSurpluses;
+	private ZonesModel zonesSurpluses;
 
 	public Integer getId() {
 		return id;
@@ -83,11 +83,11 @@ public class SurplusZonesModel implements Serializable {
 		this.mesureName = mesureName;
 	}
 
-	public ZoneModel getZonesSurpluses() {
+	public ZonesModel getZonesSurpluses() {
 		return zonesSurpluses;
 	}
 
-	public void setZonesSurpluses(ZoneModel zonesSurpluses) {
+	public void setZonesSurpluses(ZonesModel zonesSurpluses) {
 		this.zonesSurpluses = zonesSurpluses;
 	}
 

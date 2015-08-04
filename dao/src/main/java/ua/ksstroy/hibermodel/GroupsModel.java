@@ -34,7 +34,7 @@ public class GroupsModel implements Serializable {
 	 */
 
 	@OneToMany(mappedBy = "groupsModel")
-	private List<ZoneModel> zones = new ArrayList<ZoneModel>();
+	private List<ZonesModel> zones = new ArrayList<ZonesModel>();
 
 	/*
 	 * Many to one subgroups for rootgroup same one entity
@@ -83,11 +83,11 @@ public class GroupsModel implements Serializable {
 		this.subgroups = subgroups;
 	}
 
-	public List<ZoneModel> getZones() {
+	public List<ZonesModel> getZones() {
 		return zones;
 	}
 
-	public void setZones(List<ZoneModel> zones) {
+	public void setZones(List<ZonesModel> zones) {
 		this.zones = zones;
 	}
 

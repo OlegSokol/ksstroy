@@ -6,16 +6,16 @@ public interface ZoneManager {
 	 * data-base (e.g MySQL); with already affected in runtime business logic
 	 * rules.
 	 */
-	ZoneHierarchyData getRootZoneHierarchy(Integer projectId);
+	ZoneHierarchyData getRootZoneHierarchy(String projectId);
 
-	void addGroup(String groupName, Integer parentGroupId);
+	void addRootGroup(String groupName);
 
-	void addGroupToGroup(String groupName, Integer parentGroupId);
+	void addGroupToGroup(String groupName, String parentGroupId);
 
-	void addZone(ZoneData zone, Integer parentGroupId);
+	void addZone(ZoneData zone, String parentGroupId);
 
-	void addAdditionalZoneToZone(ZoneData zone, Integer parentZoneId);
+	void addZoneToZone(ZoneData zone, String parentZoneId);
 
-	void addSurplusZoneToZone(ZoneData zone, Integer parentZoneId);
+	void subtractZoneFromZone(ZoneData zone, String parentZoneId);
 
 }

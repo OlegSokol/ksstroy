@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "zones", catalog = "ksstroy")
-public class ZoneModel implements Serializable {
+public class ZonesModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
