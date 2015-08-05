@@ -38,7 +38,6 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 				workTypeId);
 		session.getTransaction().commit();
 		return convertModelToWorkType(model);
-
 	}
 
 	@Override
