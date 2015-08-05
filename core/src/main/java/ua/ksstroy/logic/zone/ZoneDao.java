@@ -20,6 +20,8 @@ public interface ZoneDao {
 
 	ZoneGroup getRootZoneGroup();
 	
+	void addRootGroup(String groupName);
+	
 	void addGroupToGroup(String groupName, String parentGroupId);
 
 	void storeZone(Zone zone, String parentGroupId);

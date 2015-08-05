@@ -52,6 +52,12 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
+	public void addRootGroup(String groupName) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
 		// TODO Auto-generated method stub
 

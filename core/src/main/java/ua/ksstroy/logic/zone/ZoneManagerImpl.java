@@ -7,29 +7,30 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ZoneManagerImpl implements ZoneManager {
 	
-	@Resource
-	ZoneDaoImpl zoneDaoImpl;	
+	//@Resource
+	//ZoneDaoImpl zoneDaoImpl;
+	ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 	
 	@Override
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
+		// TODO Auto-generated method stub
 		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup());
-			// TODO Auto-generated method stub
 		return zoHiDa;
 	}
 
 	@Override
 	public void addRootGroup(String groupName) {
 		// TODO Auto-generated method stub
-	
+		zoneDaoImpl.addRootGroup(groupName);
 	}
 
 	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

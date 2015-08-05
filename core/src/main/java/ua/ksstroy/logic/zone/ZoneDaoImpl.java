@@ -46,6 +46,12 @@ public class ZoneDaoImpl implements ZoneDao {
 		
 	}
 
+	@Override
+	public void addRootGroup(String groupName) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void storeZone(Zone zone, String parentGroupId)
 	{
 		
