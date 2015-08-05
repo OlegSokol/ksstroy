@@ -23,6 +23,7 @@ public interface Work {
 	public void setId(String id); 
 
 	public String getName(); 
+	
 	public void setName(String name); 
 
 	public Double getPlanedCost(); 
