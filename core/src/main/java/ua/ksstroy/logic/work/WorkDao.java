@@ -8,10 +8,10 @@ public interface WorkDao {
 
 	void addGroupToGroup(String groupName, String parentGroupId);
 
-	void addWork(WorkData work, String parentGroupId);
+	void addWork(Work work, String parentGroupId);
 
-	void addCoverToWork(CoverData cover, String workId);
+	void addCoverToWork(Cover cover, String workId);
 
-	void addAdjustmentToWork(AdjustmentData adjustment, String workId);
+	void addAdjustmentToWork(Adjustment adjustment, String workId);
 
 }

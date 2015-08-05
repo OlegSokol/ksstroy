@@ -5,7 +5,7 @@ public class WorkDaoImpl implements WorkDao {
 
 	@Override
 	public WorkHierarchyData getRootWorkHierarchy(String projectId) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -16,19 +16,19 @@ public class WorkDaoImpl implements WorkDao {
 	}
 
 	@Override
-	public void addWork(WorkData work, String parentGroupId) {
+	public void addWork(Work work, String parentGroupId) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void addCoverToWork(CoverData cover, String workId) {
+	public void addCoverToWork(Cover cover, String workId) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void addAdjustmentToWork(AdjustmentData adjustment, String workId) {
+	public void addAdjustmentToWork(Adjustment adjustment, String workId) {
 		// TODO Auto-generated method stub
 
 	}

@@ -6,8 +6,6 @@ import ua.ksstroy.logic.worktype.WorkTypeData;
 import ua.ksstroy.logic.zone.ZoneData;
 
 public class WorkImpl implements Work{
-
-	WorkData workData = new WorkData(); 
 	
 private String id;
 	
