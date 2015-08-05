@@ -4,10 +4,12 @@ import java.util.List;
 
 public class WorkManagerImpl implements WorkManager{
 
+	WorkDaoImpl workDaoImpl = new WorkDaoImpl();
+	
 	@Override
 	public WorkHierarchyData getRootWorkHierarchy(String projectId) {
 		// TODO Auto-generated method stub
-		return null;
+		return workDaoImpl.getRootWorkHierarchy(projectId);
 	}
 
 	@Override
@@ -18,7 +20,7 @@ public class WorkManagerImpl implements WorkManager{
 
 	@Override
 	public void addWork(WorkData work, String parentGroupId) {
-		// TODO Auto-generated method stub
+		WorkImpl workImpl= new WorkImpl();
 		
 	}
 

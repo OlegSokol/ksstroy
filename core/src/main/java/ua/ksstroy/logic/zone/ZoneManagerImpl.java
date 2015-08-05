@@ -10,8 +10,7 @@ import org.springframework.stereotype.Component;
 //@Component
 public class ZoneManagerImpl implements ZoneManager {
 	
-	//@Resource
-	//ZoneDaoImpl zoneDaoImpl;
+	ZoneDaoImpl zoneDaoImpl;	
 	ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 	
 	@Override
@@ -24,6 +23,7 @@ public class ZoneManagerImpl implements ZoneManager {
 	@Override
 	public void addRootGroup(String groupName) {
 		// TODO Auto-generated method stub
+		
 		zoneDaoImpl.addRootGroup(groupName);
 	}
 

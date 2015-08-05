@@ -1,29 +1,22 @@
 package ua.ksstroy.logic.zone;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Component;
-
-public class ZoneImpl implements Zone
-{
-	ZoneData zoneData = new ZoneData(); 
+public class ZoneImpl implements Zone {
 
 	private String id;
 
 	private String name;
 
-	private List<Zone> additional; 
+	private List<Zone> additional;
 
-	private List<Zone> surplus; 
+	private List<Zone> surplus;
 
 	private Double width;
 
 	private Double height;
 
-	private Double value; 
+	private Double value;
 
 	private Measure measure;
 
@@ -50,7 +43,7 @@ public class ZoneImpl implements Zone
 	public void setAdditional(List<Zone> additional) {
 		this.additional = additional;
 	}
-	
+
 	public void addAdditional(Zone zoneAddit) {
 		this.additional.add(zoneAddit);
 	}
@@ -66,6 +59,7 @@ public class ZoneImpl implements Zone
 	public void addSurplus(Zone zoneSurpl) {
 		this.surplus.add(zoneSurpl);
 	}
+
 	public Double getWidth() {
 		return width;
 	}
@@ -98,5 +92,4 @@ public class ZoneImpl implements Zone
 		this.measure = measure;
 	}
 
-	
 }

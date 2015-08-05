@@ -19,7 +19,8 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public List<Project> getAllProjectsByUserName(Integer userId) {
 		List<Project> projects = new ArrayList<>();
-		for (Object project : ((UserModel)session.get(UserModel.class, userId)).getProjects()) 
+		for (Object project : ((UserModel) session.get(UserModel.class, userId))
+				.getProjects())
 			projects.add(convertProject((ProjectModel) project));
 		return projects;
 	}
