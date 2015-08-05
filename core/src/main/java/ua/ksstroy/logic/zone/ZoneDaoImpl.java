@@ -17,6 +17,12 @@ public class ZoneDaoImpl implements ZoneDao {
 		return zone;
 	}
 
+	public ZoneGroup getGroupById(String groupId)
+	{
+		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
+		return zoneGroup;
+	}
+	
 	public List<Zone> getZonesByParentGroupId(String groupId)
 	{
 		List<Zone> groupZones = new ArrayList<Zone>();
