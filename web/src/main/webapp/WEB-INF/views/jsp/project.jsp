@@ -86,17 +86,6 @@
 		</div>
 	
 	
-	
-${myBox}<br>
-${myBox.boxList}<br>
-
-<ul>
-    <c:forEach var="box" items="${myBox.boxList}">
-        <li>
-            ${box.name} <!-- or whatever else you want to display -->
-        </li>
-    </c:forEach>
-</ul>
 
 
 
@@ -149,6 +138,8 @@ ${myBox.boxList}<br>
 </form>
 <!-- subtractZoneFromZone(ZoneData zone, String parentZoneId) -->
 
+
+<jsp:include page="node.jsp"/>
 
 		<script>
 			//show- hide zones list
