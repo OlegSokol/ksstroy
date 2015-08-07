@@ -16,39 +16,58 @@ public class ZoneManagerImpl implements ZoneManager {
 	
 	@Override
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
-		// TODO Auto-generated method stub
 		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup());
 		return zoHiDa;
 	}
 
 	@Override
 	public void addRootGroup(String groupName) {
-		// TODO Auto-generated method stub
+		//??? MEthod!
 		zoneDaoImpl.addRootGroup(groupName);
 	}
 
 	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
 		// TODO Auto-generated method stub
+		boolean nameFree = true;
+		List<ZoneGroup> subGroups = zoneDaoImpl.getGroupsByParentGroupId(parentGroupId);
+		for (ZoneGroup zoneGroup: subGroups)
+		{
+			if ( groupName.equals(zoneGroup.getName())) nameFree = false;
+		}
 		
+		if(nameFree)
+		{
+			zoneDaoImpl.addGroupToGroup(groupName, parentGroupId);
+		}
+		else
+		{
+			//  Saloed: throws NameConflictException
+		}
 	}
 
 	@Override
 	public void addZone(ZoneData zone, String parentGroupId) {
 		// TODO Auto-generated method stub
-
+		  // Saloed: ID check needed?
+		Zone zoneImpl = convertZoneDataToZone(zone);
+		zoneDaoImpl.storeZone(zoneImpl, parentGroupId);
 	}
 
 	@Override
 	public void addZoneToZone(ZoneData zone, String parentZoneId) {
 		// TODO Auto-generated method stub
-
+		  // Saloed: ID check needed?
+		Zone zoneImpl = convertZoneDataToZone(zone);
+		zoneDaoImpl.storeZoneToZone(zoneImpl, parentZoneId);
 	}
 
 	@Override
 	public void subtractZoneFromZone(ZoneData zone, String parentZoneId) {
 		// TODO Auto-generated method stub
-
+		  // Saloed: ID check needed?
+		Zone zoneImpl = convertZoneDataToZone(zone);
+		zoneDaoImpl.removeZoneFromZone(zoneImpl, parentZoneId);
 	}
 
 	private ZoneData convertZoneToZoneData(Zone zone){

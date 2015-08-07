@@ -16,8 +16,6 @@ public class ZoneImpl implements Zone {
 
 	private Double height;
 
-	private Double value;
-
 	private Measure measure;
 
 	public String getId() {
@@ -77,11 +75,21 @@ public class ZoneImpl implements Zone {
 	}
 
 	public Double getValue() {
+		
+		Double value = 0.0;
+		Double addValue = 0.0;
+		for( Zone addZone : getAdditional())
+		{
+			addValue+=addZone.getValue();
+		}
+		Double surValue = 0.0;
+		for( Zone surZone : getSurplus())
+		{
+			surValue+=surZone.getValue();
+		}
+		value = getHeight() * getWidth() + addValue - surValue;
 		return value;
-	}
-
-	public void setValue(Double value) {
-		this.value = value;
+		
 	}
 
 	public Measure getMeasure() {

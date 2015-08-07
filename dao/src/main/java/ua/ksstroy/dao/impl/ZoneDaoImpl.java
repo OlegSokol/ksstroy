@@ -24,7 +24,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	private Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public List<Zone> getAllZones() { // no full imlements
+	public List<Zone> getAllZones() { // no full implements
 		session.beginTransaction();
 		List<Zone> zones = new ArrayList<Zone>();
 		zones.add(convertAllZones());
