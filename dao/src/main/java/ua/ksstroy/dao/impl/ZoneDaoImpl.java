@@ -24,60 +24,79 @@ public class ZoneDaoImpl implements ZoneDao {
 	private Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public List<Zone> getAllZones() { // no full implements
+	public List<Zone> getAllZones() { // no work
+
 		session.beginTransaction();
+
 		List<Zone> zones = new ArrayList<Zone>();
 		zones.add(convertAllZones());
+
 		return zones;
 	}
 
 	private Zone convertAllZones() {
+
 		ZonesModel zonesModel = new ZonesModel();
+
 		ZoneImpl zone = new ZoneImpl();
+
 		zone.setId(zonesModel.getId().toString());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setName(zonesModel.getName());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setWidth(zonesModel.getWidth());
 		zone.setMeasure(Measure.M2);
+
 		return zone;
 	}
 
 	@Override
-	public Zone getZoneById(String zoneId) {
+	public Zone getZoneById(String zoneId) { // no work
+
 		session.beginTransaction();
+
 		ZonesModel model = (ZonesModel) session.get(ZonesModel.class, zoneId);
+
 		return convertZoneById(model);
 	}
 
 	private Zone convertZoneById(ZonesModel zonesModel) {
+
 		ZoneImpl zone = new ZoneImpl();
+
 		zone.setId(zonesModel.getId().toString());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setName(zonesModel.getName());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setWidth(zonesModel.getWidth());
 		zone.setMeasure(Measure.M2);
+
 		return zone;
 	}
 
 	@Override
 	public List<Zone> getZonesByParentGroupId(String groupId) {
+
 		List<Zone> zonesById = new ArrayList<>();
+
 		for (Object zones : ((GroupsModel) session.get(GroupsModel.class,
 				groupId)).getZones())
 			zonesById.add(convertZonesByParentGroupId((ZonesModel) zones));
+
 		return zonesById;
 	}
 
 	private Zone convertZonesByParentGroupId(ZonesModel zonesModel) {
+
 		ZoneImpl zone = new ZoneImpl();
+
 		zone.setId(zonesModel.getId().toString());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setName(zonesModel.getName());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setWidth(zonesModel.getWidth());
 		zone.setMeasure(Measure.M2);
+
 		return zone;
 	}
 
@@ -94,39 +113,49 @@ public class ZoneDaoImpl implements ZoneDao {
 				zoneId)).getSurpluses()) {
 			zones.add(convertSurplusZonesByParentZoneId((SurplusZonesModel) surplusZones));
 		}
+
 		return zones;
 	}
 
 	private Zone convertAdditionalZonesByParentZoneId(
 			AdditionalZonesModel zonesAdditionalModel) {
+
 		ZoneImpl zone = new ZoneImpl();
+
 		zone.setId(zonesAdditionalModel.getId().toString());
 		zone.setHeight(zonesAdditionalModel.getHeight());
 		zone.setName(zonesAdditionalModel.getName());
 		zone.setHeight(zonesAdditionalModel.getHeight());
 		zone.setWidth(zonesAdditionalModel.getWidth());
 		zone.setMeasure(Measure.M2);
+
 		return zone;
 	}
 
 	private Zone convertSurplusZonesByParentZoneId(
 			SurplusZonesModel zonesSurplusModel) {
+
 		ZoneImpl zone = new ZoneImpl();
+
 		zone.setId(zonesSurplusModel.getId().toString());
 		zone.setHeight(zonesSurplusModel.getHeight());
 		zone.setName(zonesSurplusModel.getName());
 		zone.setHeight(zonesSurplusModel.getHeight());
 		zone.setWidth(zonesSurplusModel.getWidth());
 		zone.setMeasure(Measure.M2);
+
 		return zone;
 	}
 
 	@Override
 	public List<ZoneGroup> getGroupsByParentGroupId(String groupId) {
+
 		List<ZoneGroup> subgroups = new ArrayList<ZoneGroup>();
+
 		for (Object groups : ((GroupsModel) session.get(GroupsModel.class,
 				groupId)).getSubgroups())
 			subgroups.add(convertGroupsByParentGroupId((GroupsModel) groups));
+
 		return subgroups;
 	}
 
@@ -139,38 +168,144 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public ZoneGroup getRootZoneGroup() { // It's Additional and surplus!!!What
-											// this method?
-		return null;
+	public ZoneGroup getRootZoneGroup() { // no work
+
+		session.beginTransaction();
+
+		return convertRootZoneGroup();
+	}
+
+	private ZoneGroup convertRootZoneGroup() {
+
+		ZonesModel zonesModel = new ZonesModel();
+		ZoneGroupImpl groupImpl = new ZoneGroupImpl();
+
+		groupImpl.setId(zonesModel.getId().toString());
+		groupImpl.setName(zonesModel.getName());
+
+		return groupImpl;
 	}
 
 	@Override
 	public void addRootGroup(String groupName) {
-		// TODO Auto-generated method stub
-		
+
+		session.beginTransaction();
+
+		GroupsModel rootGroup = new GroupsModel();
+		rootGroup.setName(groupName);
+
+		session.save(rootGroup);
+
+		session.getTransaction().commit();
+		session.close();
 	}
-	
+
 	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
-		// TODO Auto-generated method stub
 
+		String query = "UPDATE `ksstroy`.`groups` SET `parent_id`='"
+				+ parentGroupId + "' WHERE `name`='" + groupName + "';";
+
+		session.beginTransaction();
+
+		GroupsModel subGroup = new GroupsModel();
+		subGroup.setName(groupName);
+		session.save(subGroup);
+
+		session.createSQLQuery(query).executeUpdate();
+
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	@Override
-	public void storeZone(Zone zone, String parentGroupId) {
-		// TODO Auto-generated method stub
+	public void storeZone(Zone zone, String parentGroupId) { // no work
 
+		String query = "UPDATE `ksstroy`.`zones` SET `group_for_zones_id`='"
+				+ parentGroupId + "' WHERE `name`='"
+				+ zone.getName().toString() + "';";
+
+		session.beginTransaction();
+
+		ZonesModel zonesModel = convertStoreZone(zone);
+
+		session.save(zonesModel);
+		session.createSQLQuery(query).executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+
+	}
+
+	public ZonesModel convertStoreZone(Zone zone) {
+
+		ZonesModel model = new ZonesModel();
+
+		model.setId(Integer.parseInt(zone.getId()));
+		model.setName(zone.getName());
+		model.setHeight(zone.getHeight());
+		model.setWidth(zone.getWidth());
+		model.setMesureName(zone.getMeasure().toString());
+
+		return model;
 	}
 
 	@Override
 	public void storeZoneToZone(Zone zone, String parentZoneId) {
-		// TODO Auto-generated method stub
 
+		String queryAddditZones = "UPDATE `ksstroy`.`adddit_zones` SET `zones_additionals`='"
+				+ parentZoneId
+				+ "' WHERE `name`='"
+				+ zone.getName().toString()
+				+ "';";
+
+		String querySurplusZones = "UPDATE `ksstroy`.`surplus_zones` SET `zones_surpluses`='"
+				+ parentZoneId
+				+ "' WHERE `name`='"
+				+ zone.getName().toString()
+				+ "';";
+
+		session.beginTransaction();
+
+		SurplusZonesModel surplusZonesModel = convertSurplusZonesByParentZoneId(zone);
+		AdditionalZonesModel additionalZonesModel = convertAdditionalZonesByParentZoneId(zone);
+
+		session.save(surplusZonesModel);
+		session.save(additionalZonesModel);
+		session.createSQLQuery(queryAddditZones).executeUpdate();
+		session.createSQLQuery(querySurplusZones).executeUpdate();
+		session.getTransaction().commit();
+		session.close();
+
+	}
+
+	private SurplusZonesModel convertSurplusZonesByParentZoneId(Zone zone) {
+
+		SurplusZonesModel zonesSurplusModel = new SurplusZonesModel();
+
+		zonesSurplusModel.setId(Integer.parseInt(zone.getId()));
+		zonesSurplusModel.setName(zone.getName());
+		zonesSurplusModel.setHeight(zone.getHeight());
+		zonesSurplusModel.setWidth(zone.getWidth());
+		zonesSurplusModel.setMesureName(zone.getMeasure().toString());
+
+		return zonesSurplusModel;
+	}
+
+	private AdditionalZonesModel convertAdditionalZonesByParentZoneId(Zone zone) {
+
+		AdditionalZonesModel additionalZonesModel = new AdditionalZonesModel();
+
+		additionalZonesModel.setId(Integer.parseInt(zone.getId()));
+		additionalZonesModel.setName(zone.getName());
+		additionalZonesModel.setHeight(zone.getHeight());
+		additionalZonesModel.setWidth(zone.getWidth());
+		additionalZonesModel.setMesureName(zone.getMeasure().toString());
+
+		return additionalZonesModel;
 	}
 
 	@Override
 	public void removeZoneFromZone(Zone zone, String parentZoneId) {
-		// TODO Auto-generated method stub
 
 	}
 

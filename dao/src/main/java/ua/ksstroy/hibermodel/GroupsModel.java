@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +29,13 @@ public class GroupsModel implements Serializable {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	/*
+	 * One to one root group for project
+	 */
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "groups", cascade = CascadeType.ALL)
+	private ProjectModel projectModel;
 
 	/*
 	 * One to many group for zones
@@ -89,6 +97,14 @@ public class GroupsModel implements Serializable {
 
 	public void setZones(List<ZonesModel> zones) {
 		this.zones = zones;
+	}
+
+	public ProjectModel getProjectModel() {
+		return projectModel;
+	}
+
+	public void setProjectModel(ProjectModel projectModel) {
+		this.projectModel = projectModel;
 	}
 
 }
