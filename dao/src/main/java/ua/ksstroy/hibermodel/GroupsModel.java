@@ -31,13 +31,6 @@ public class GroupsModel implements Serializable {
 	private String name;
 
 	/*
-	 * One to one root group for project
-	 */
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "groups", cascade = CascadeType.ALL)
-	private ProjectModel projectModel;
-
-	/*
 	 * One to many group for zones
 	 */
 
@@ -97,14 +90,6 @@ public class GroupsModel implements Serializable {
 
 	public void setZones(List<ZonesModel> zones) {
 		this.zones = zones;
-	}
-
-	public ProjectModel getProjectModel() {
-		return projectModel;
-	}
-
-	public void setProjectModel(ProjectModel projectModel) {
-		this.projectModel = projectModel;
 	}
 
 }

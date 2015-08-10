@@ -1,9 +1,12 @@
 package ua.ksstroy.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.hibermodel.AdditionalZonesModel;
@@ -24,9 +27,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	private Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public List<Zone> getAllZones() { // no work
-
-		session.beginTransaction();
+	public List<Zone> getAllZones() {
 
 		List<Zone> zones = new ArrayList<Zone>();
 		zones.add(convertAllZones());
@@ -51,9 +52,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public Zone getZoneById(String zoneId) { // no work
-
-		session.beginTransaction();
+	public Zone getZoneById(String zoneId) {
 
 		ZonesModel model = (ZonesModel) session.get(ZonesModel.class, zoneId);
 
@@ -118,15 +117,15 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	private Zone convertAdditionalZonesByParentZoneId(
-			AdditionalZonesModel zonesAdditionalModel) {
+			AdditionalZonesModel zonesAdditModel) {
 
 		ZoneImpl zone = new ZoneImpl();
 
-		zone.setId(zonesAdditionalModel.getId().toString());
-		zone.setHeight(zonesAdditionalModel.getHeight());
-		zone.setName(zonesAdditionalModel.getName());
-		zone.setHeight(zonesAdditionalModel.getHeight());
-		zone.setWidth(zonesAdditionalModel.getWidth());
+		zone.setId(zonesAdditModel.getId().toString());
+		zone.setHeight(zonesAdditModel.getHeight());
+		zone.setName(zonesAdditModel.getName());
+		zone.setHeight(zonesAdditModel.getHeight());
+		zone.setWidth(zonesAdditModel.getWidth());
 		zone.setMeasure(Measure.M2);
 
 		return zone;
@@ -170,9 +169,9 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public ZoneGroup getRootZoneGroup() { // no work
 
-		session.beginTransaction();
+		ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
 
-		return convertRootZoneGroup();
+		return groupImpl;
 	}
 
 	private ZoneGroup convertRootZoneGroup() {
@@ -219,7 +218,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void storeZone(Zone zone, String parentGroupId) { // no work
+	public void storeZone(Zone zone, String parentGroupId) {
 
 		String query = "UPDATE `ksstroy`.`zones` SET `group_for_zones_id`='"
 				+ parentGroupId + "' WHERE `name`='"
@@ -271,8 +270,39 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		session.save(surplusZonesModel);
 		session.save(additionalZonesModel);
+
 		session.createSQLQuery(queryAddditZones).executeUpdate();
 		session.createSQLQuery(querySurplusZones).executeUpdate();
+
+		session.getTransaction().commit();
+		session.close();
+
+	}
+
+	@Override
+	public void removeZoneFromZone(Zone zone, String parentZoneId) {
+
+		String queryAddditZones = "DELETE FROM `ksstroy`.`adddit_zones` WHERE `name`='"
+				+ zone.getName().toString()
+				+ " and `zones_additionals`='"
+				+ parentZoneId + "';";
+
+		String querySurplusZones = "DELETE FROM `ksstroy`.`surplus_zones` WHERE `name`='"
+				+ zone.getName().toString()
+				+ " and `zones_surpluses`='"
+				+ parentZoneId + "';";
+
+		session.beginTransaction();
+
+		SurplusZonesModel surplusZonesModel = convertSurplusZonesByParentZoneId(zone);
+		AdditionalZonesModel additionalZonesModel = convertAdditionalZonesByParentZoneId(zone);
+
+		session.save(surplusZonesModel);
+		session.save(additionalZonesModel);
+
+		session.createSQLQuery(queryAddditZones).executeUpdate();
+		session.createSQLQuery(querySurplusZones).executeUpdate();
+
 		session.getTransaction().commit();
 		session.close();
 
@@ -302,11 +332,6 @@ public class ZoneDaoImpl implements ZoneDao {
 		additionalZonesModel.setMesureName(zone.getMeasure().toString());
 
 		return additionalZonesModel;
-	}
-
-	@Override
-	public void removeZoneFromZone(Zone zone, String parentZoneId) {
-
 	}
 
 }

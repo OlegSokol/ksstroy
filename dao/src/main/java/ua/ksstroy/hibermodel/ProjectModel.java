@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -33,10 +34,6 @@ public class ProjectModel implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
 	private List<UserModel> users;
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private GroupsModel groupsModel;
 
 	public Integer getId() {
 		return this.Id;
@@ -68,14 +65,6 @@ public class ProjectModel implements Serializable {
 
 	public void setUsers(List<UserModel> users) {
 		this.users = users;
-	}
-
-	public GroupsModel getGroupsModel() {
-		return groupsModel;
-	}
-
-	public void setGroupsModel(GroupsModel groupsModel) {
-		this.groupsModel = groupsModel;
 	}
 
 }
