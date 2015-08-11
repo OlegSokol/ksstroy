@@ -20,7 +20,6 @@
 <script
 	src="<c:url value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" />"></script>
 
-
 <link href="<c:url value="/resources/css/bootswatch.min.css" />"
 	rel="stylesheet">
 <link media="screen"
@@ -42,6 +41,9 @@
 <body>
 	<div id="wraper">
 
+
+
+
 		<div id="customer_start_data">
 			<div class="info_block">
 				<div class="panel panel-default">
@@ -51,105 +53,363 @@
 				<!-- END OF INFO BLOCK -->
 			</div>
 			<!-- END OF CUSTOMER -->
-			<div class="control_block" id="start_data">
-				<h4 class="block_title">Start data</h4>
-				<img class="adjust_icon" alt="view_icon"
-					src="<c:url value="/resources/img/ic_settings_grey600_24dp.png" />" /><br>
-				<a class="view_icon" href="./start_data_view"> <img
-					alt="view_icon"
-					src="<c:url value="/resources/img/ic_eye_black_24dp.png" />" />
-				</a>
-			</div>
 		</div>
-		<br>
+		control: expand all -double click<br> show details- click on
+		element <br>
 		<!-- END OF START_DATA-->
 
+		<div class="redactor_btn">redactor mode</div>
 
-		<!-- POP UP ZONES -->
-		<div id="zones_popup">
 
-			<ul>
-				<li>
-					<div class="control_block" id="start_data">
-						<h4 class="block_title">${zoneGraph.name}</h4>
-						<a class="adjust_icon" href="./start_data_adjust"><img
-							alt="view_icon"
-							src="<c:url value="/resources/img/ic_settings_grey600_24dp.png" />" /></a><br>
-						<a class="view_icon" href="./start_data_view"> <img
-							alt="view_icon"
-							src="<c:url value="/resources/img/ic_eye_black_24dp.png" />" />
-						</a>
-					</div>
-				</li>
+		<!-- getRootZoneHierarchy(String projectId) -->
+		<form action="getRootZoneHierarchy" method="post">
+			<input name="projectId" type="text"> <input type="submit"
+				value="getRootZoneHierarchy(String projectId)">
+		</form>
+		<!-- getRootZoneHierarchy(String projectId) -->
 
-			</ul>
+
+
+		<!-- addGroupToGroup(String groupName, String parentGroupId) -->
+		<form action="addGroupToGroup" method="post">
+			<input type="text" name="groupName"> <input type="text"
+				name="parentGroupId"> <input type="submit"
+				value="addGroupToGroup(String groupName, String parentGroupId)">
+		</form>
+		<!-- addGroupToGroup(String groupName, String parentGroupId) -->
+
+
+		<!-- addZone(ZoneData zone, String parentGroupId) -->
+		<form action="addZone" method="post">
+			<input type="text" name="zone"> <input type="text"
+				name="parentGroupId"> <input type="submit"
+				value="addZone(ZoneData zone, String parentGroupId)">
+		</form>
+		<!-- addZone(ZoneData zone, String parentGroupId) -->
+
+
+		<!-- addZoneToZone(ZoneData zone, String parentZoneId) -->
+		<form action="addZoneToZone" method="post">
+			<input type="text" name="zone"> <input type="text"
+				name="parentZoneId"> <input type="submit"
+				value="addZoneToZone(ZoneData zone, String parentZoneId)">
+		</form>
+		<!-- addZoneToZone(ZoneData zone, String parentZoneId) -->
+
+
+		<!-- subtractZoneFromZone(ZoneData zone, String parentZoneId) -->
+		<form action="subtractZoneFromZone" method="post">
+			<input type="text" name="zone"> <input type="text"
+				name="parentZoneId"> <input type="submit"
+				value="subtractZoneFromZone(ZoneData zone, String parentZoneId)">
+		</form>
+		<!-- subtractZoneFromZone(ZoneData zone, String parentZoneId) -->
+
+
+		<jsp:include page="node.jsp" />
+
+
+		<!-- CREATE NEW ELEMENT PANEL -->
+
+		<div id="constructor">
+			<!-- zone groups constructor -->
+
+
+			<li>
+				<div class="zones_basicView  ">
+					<img class="clickableIcon" alt="expand-collapse_btn"
+						src="<c:url value="/resources/img/expand_down.png" />"> New
+					group <img class="delete_btn" alt="delete_btn"
+						src="<c:url value="/resources/img/delete_btn.png" />">
+				</div>
+			</li>
+			<!-- expanded Groups -->
+
+
+
+			<li class="expanded">
+				<div class="zoneGroups_ExpandedView">
+					<form action="addGroupToGroup" method="post">
+						<table>
+							<tr>
+								<td>id</td>
+								<td><input type="text" name="groupName"
+									placeholder="TODO// automatic generate"></td>
+							</tr>
+							<tr>
+								<td>name</td>
+								<td><input type="text"></td>
+							</tr>
+							<tr>
+								<td>parent groupId</td>
+								<td><input type="text" name="parentGroupId"
+									placeholder="TODO//parent group"></td>
+							</tr>
+						</table>
+						<input class="accepth_changes_btn" type="image"
+							src="<c:url value="/resources/img/done_btn.png" />">
+					</form>
+				</div>
+			</li>
+			<!--END zone groups constructor -->
+
+
+			<!--  zones<ZoneData> constructor -->
+			<li>
+				<div class="zones_basicView  ">
+					<img class="clickableIcon" alt="expand-collapse_btn"
+						src="<c:url value="/resources/img/expand_down.png" />"> new
+					Zone <img class="delete_btn" alt="delete_btn"
+						src="<c:url value="/resources/img/delete_btn.png" />">
+				</div>
+			</li>
+			<!-- expanded Zones -->
+
+			<li class="expanded">
+				<div class="zoneGroups_ExpandedView">
+					<form action="addZone" method="post">
+						<table>
+					<tr>
+								<td>id</td>
+								<td><input type="text" name="id" placeholder="TODO// automatic generate"></td>
+							</tr>
+							<tr>
+								<td>name</td>
+								<td><input type="text" name="name" placeholder="TODO//validate"></td>
+							</tr>
+							<tr>
+								<td>parent groupId</td>
+								<td><input type="text" name="parentGroupId" placeholder="TODO//validation"></td>
+							</tr>
+                              
+                              	<tr>
+								<td>measureName</td>
+								<td><input type="text" name="measureName" placeholder="TODO//autocomplete"></td>
+							</tr>
+                              	<tr>
+								<td>width</td>
+								<td><input type="text" name="width" placeholder="TODO//append measure"></td>
+							</tr>
+                              
+                              
+                              	<tr>
+								<td>height</td>
+								<td><input type="text" name="heigh" placeholder="TODO//append measure"></td>
+							</tr>
+
+  <!-- value calculation only for usability! server side should calculate it itself -->
+                              	<tr>
+								<td>value</td>
+								<td><input type="text"  placeholder="TODO//=height*weight"></td>
+							</tr>
+							 <!-- value calculation only for usability! server side should calculate it itself -->
+						</table>
+						<input class="accepth_changes_btn" type="image"
+							src="<c:url value="/resources/img/done_btn.png" />">
+					</form>
+				</div>
+			</li>
+
+			<!--END expanded Zones -->
+
+			<!--END  Zones<ZoneData> constructor -->
+			<li>
+				<!--  additional constructor -->
+				<div class="zones_basicView">
+					<img class="clickableIcon" alt="expand-collapse_btn"
+						src="<c:url value="/resources/img/expand_down.png" />"> +
+					new additional <img class="delete_btn" alt="delete_btn"
+						src="<c:url value="/resources/img/delete_btn.png" />">
+				</div>
+			</li>
+
+			<li class="expanded">
+				<!-- expanded Additional -->
+
+				<div class="zoneGroups_ExpandedView ">
+					<form action="addZoneToZone" method="post">
+							<table>
+					<tr>
+								<td>id</td>
+								<td><input type="text" name="id" placeholder="TODO// automatic generate"></td>
+							</tr>
+							<tr>
+								<td>name</td>
+								<td><input type="text" name="name" placeholder="TODO//validate"></td>
+							</tr>
+							<tr>
+								<td>parent zoneId</td>
+								<td><input type="text" name="parentZoneId" placeholder="TODO//validation"></td>
+							</tr>
+                              
+                              	<tr>
+								<td>measureName</td>
+								<td><input type="text" name="measureName" placeholder="TODO//autocomplete"></td>
+							</tr>
+                              	<tr>
+								<td>width</td>
+								<td><input type="text" name="width" placeholder="TODO//append measure"></td>
+							</tr>
+                              
+                              
+                              	<tr>
+								<td>height</td>
+								<td><input type="text" name="heigh" placeholder="TODO//append measure"></td>
+							</tr>
+
+  <!-- value calculation only for usability! server side should calculate it itself -->
+                              	<tr>
+								<td>value</td>
+								<td><input type="text"  placeholder="TODO//=height*weight"></td>
+							</tr>
+							 <!-- value calculation only for usability! server side should calculate it itself -->
+						</table>
+						<input class="accepth_changes_btn" type="image"
+							src="<c:url value="/resources/img/done_btn.png" />">
+					</form>
+				</div>
+			</li>
+			<!--END expanded Additional -->
+			<!--END  additional  constructor-->
+
+			<li>
+				<div class="zones_basicView">
+					<img class="clickableIcon" alt="expand-collapse_btn"
+						src="<c:url value="/resources/img/expand_down.png" />"> -
+					new surplus <img class="delete_btn" alt="delete_btn"
+						src="<c:url value="/resources/img/delete_btn.png" />">
+				</div>
+			</li>
+			<!-- expanded surplus -->
+
+
+			<li class="expanded">
+				<div class="zoneGroups_ExpandedView">
+					<form action="subtractZoneFromZone" method="post">
+						<table>
+							<tr>
+								<td>id</td>
+								<td><input type="text"
+									placeholder="TODO//automatic generate"></td>
+							</tr>
+							<tr>
+								<td>name</td>
+								<td><input type="text" name="zone"></td>
+							</tr>
+							<tr>
+								<td>parent zoneId</td>
+								<td><input type="text" name="parentZoneId"
+									placeholder="TODO//parent group"></td>
+							</tr>
+						</table>
+						<input class="accepth_changes_btn" type="image"
+							src="<c:url value="/resources/img/done_btn.png" />">
+					</form>
+				</div>
+			</li>
+
+
+
+
+
 		</div>
-	
-	
+		<!-- END CREATE NEW ELEMENT PANEL -->
 
 
-
-
-<form action="formTest" method="post">
-<input type="submit" value="void form test ">
-</form>
-
-<!-- getRootZoneHierarchy(String projectId) -->
-<form action="getRootZoneHierarchy" method="post">
-<input name="projectId" type="text" >
-<input type="submit" value="getRootZoneHierarchy(String projectId)">
-</form>
-<!-- getRootZoneHierarchy(String projectId) -->
-
-
-
-<!-- addGroupToGroup(String groupName, String parentGroupId) -->
-<form action="addGroupToGroup" method="post">
-<input type="text" name="groupName">
-<input type="text" name="parentGroupId">
-<input type="submit" value="addGroupToGroup(String groupName, String parentGroupId)">
-</form>
-<!-- addGroupToGroup(String groupName, String parentGroupId) -->
-
-
-<!-- addZone(ZoneData zone, String parentGroupId) -->
-<form action="addZone" method="post">
-<input type="text" name="zone">
-<input type="text" name="parentGroupId">
-<input type="submit" value="addZone(ZoneData zone, String parentGroupId)">
-</form>
-<!-- addZone(ZoneData zone, String parentGroupId) -->
-
-
-<!-- addZoneToZone(ZoneData zone, String parentZoneId) -->
-<form action="addZoneToZone" method="post">
-<input type="text" name="zone">
-<input type="text" name="parentZoneId">
-<input type="submit" value="addZoneToZone(ZoneData zone, String parentZoneId)">
-</form>
-<!-- addZoneToZone(ZoneData zone, String parentZoneId) -->
-
-
-<!-- subtractZoneFromZone(ZoneData zone, String parentZoneId) -->
-<form action="subtractZoneFromZone" method="post">
-<input type="text" name="zone">
-<input type="text" name="parentZoneId">
-<input type="submit" value="subtractZoneFromZone(ZoneData zone, String parentZoneId)">
-</form>
-<!-- subtractZoneFromZone(ZoneData zone, String parentZoneId) -->
-
-
-<jsp:include page="node.jsp"/>
-
-		<script>
-			//show- hide zones list
+		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#start_data .adjust_icon").click(function() {
-					$("#zones_popup ").toggle("slide", 1000);
-				});
-				//show- hide zones list
+				//show expanded form on double click
+				$('li').dblclick(function() {
 
-			});//end ready function()
+					console.log($(this));
+					var clickedID = this.id;
+					var next = $(this).next();
+					console.log(next.hasClass("expanded"));
+					if (next.hasClass("expanded"))
+						next.toggle();
+				});
+
+				//	console.log($( ".clickableIcon" ).closest( ".subGroups" )[0]);
+				//toggle elements under speciyed group
+				/*			$( document ).on( "dblclick", function( event ) {
+								console.log($(".clickableIcon").closest( ".subGroups" ));
+				  $( ".clickableIcon").closest( ".subGroups" ).toggle();
+				});*/
+
+				//set default state of elements to hide;
+				$("#constructor").toggle();
+				$("input").attr('disabled', 'disabled');
+
+				//redactor button
+				$('.redactor_btn').click(function() {
+					console.log($(this).attr("class"));
+					//redactor mode activated: show controll elements
+					$(this).toggleClass("redactor_btn_clicked");
+					$("#constructor, .delete_btn").toggle();
+					if (!$("input").attr("disabled")) {
+						//toggle input to disabled state
+						$("input").attr('disabled', 'disabled');
+					} else {
+						$("input").removeAttr('disabled');
+					}
+				});
+
+				console.log("ready!");
+
+			});
+
+			//show subgroups icon only if has subroups
+
+			var clickable = document.getElementsByClassName("clickableIcon");
+			//console.log(clickable);
+
+			var arrayLength = clickable.length;
+			//console.log(arrayLength);
+			for (var i = 0; i < arrayLength; i++) {
+				//console.log(clickable[i]);
+
+				try {
+					if (((clickable[i]).parentNode.parentNode.nextElementSibling.nextElementSibling.className) == "subGroups") {
+						//console.log(clickable[i]);
+						//console.log(clickable[i].parentNode.parentNode.nextElementSibling.nextElementSibling);
+						//console.log($(clickable[i]));
+						$(clickable[i]).toggle();
+						//.nextElementSibling.nextElementSibling
+					}
+				} catch (err) {
+					//console.log(err);
+				}
+				try{
+				if (((clickable[i]).parentNode.parentNode.nextElementSibling.nextElementSibling.className) == "subZones") {
+					console
+							.log((clickable[i]).parentNode.parentNode.nextElementSibling.nextElementSibling.className);
+					console.log(clickable[i]);
+					$(clickable[i]).toggle();
+				}
+				}
+				catch (err) {
+					//console.log(err);
+				}
+				//Do something
+			}//
+
+			// end show subgroups icon only if has subroups
+
+			//hide subgroup element on click
+			document.onclick = function(event) {
+				if (event.target.getAttribute("class") == "clickableIcon") {
+					console.log(event.target);
+					var target = event.target;
+					console
+							.log(target.parentNode.parentNode.nextElementSibling.nextElementSibling);
+					var subGroups = target.parentNode.parentNode.nextElementSibling.nextElementSibling;
+					$(subGroups).toggle();//mix some Jquery
+				}
+				//end hide subgroup element on click
+			};
+			
+			
+			
 		</script>
 	</div>
 	<!-- END OF WRAPER -->

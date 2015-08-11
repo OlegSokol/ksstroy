@@ -51,18 +51,51 @@ public ModelAndView showZHD(@PathVariable String projectName){
 		zoneManager.addGroupToGroup(groupName, parentGroupId);
 		return("redirect:/projects/mock");
 	}
-	@RequestMapping (value="/projects/addZone", method=RequestMethod.POST)
-	public String addZone(@RequestParam("zone") String zoneId,@RequestParam("parentGroupId")String parentGroupId){
-		//TODO select ZoneData by zoneId parameter
-		ZoneData zone = new ZoneData();
-		zoneManager.addZone(zone,  parentGroupId);
+	
+	
+	/*
+	 * create new ZoneData object based on data from the web page
+	 * and invoke according ZoneManager method
+	 */
+		@RequestMapping (value="/projects/addZone", method=RequestMethod.POST)
+	public String addZone(@RequestParam("id") String id,@RequestParam("name")String name,@RequestParam("parentGroupId")String parentGroupId,@RequestParam("measureName")String measureName,@RequestParam("width")String width,@RequestParam("heigh")String height){
+	
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setId(id);
+		zoneFromWeb.setName(name);
+		try{
+		zoneFromWeb.setHeight( new Double(height).doubleValue());
+		zoneFromWeb.setWidth( new Double(width).doubleValue());}
+		catch(NumberFormatException exception){
+			//TODO: logging an exception
+			System.out.println("empty string from web!!!");
+		}
+		zoneFromWeb.setMesureName(measureName);
+		
+		zoneManager.addZone(zoneFromWeb,  parentGroupId);
 		return("redirect:/projects/mock");
 	}
+	
+		/*
+		 * create new ZoneData object representing additionalZone in some Zone,
+		 *  based on data from the web page
+		 * and invoke according ZoneManager method
+		 */
 	@RequestMapping (value="/projects/addZoneToZone", method=RequestMethod.POST)
-	public String addZoneToZone(@RequestParam("zone") String zoneId, @RequestParam("zone") String parentZoneId){
-		//TODO select ZoneData by zoneId parameter
-				ZoneData zone = new ZoneData();
-		zoneManager.addZoneToZone(zone, parentZoneId);
+	public String addZoneToZone(@RequestParam("id") String id,@RequestParam("name")String name,@RequestParam("parentZoneId")String parentZoneId,@RequestParam("measureName")String measureName,@RequestParam("width")String width,@RequestParam("heigh")String height){
+	
+		ZoneData additionalZoneFromWeb  = new ZoneData();
+		additionalZoneFromWeb .setId(id);
+		additionalZoneFromWeb .setName(name);
+		try{
+		additionalZoneFromWeb .setHeight( new Double(height).doubleValue());
+		additionalZoneFromWeb .setWidth( new Double(width).doubleValue());}
+		catch(NumberFormatException exception){
+			//TODO: logging an exception
+			System.out.println("empty string from web!!!");
+		}
+		additionalZoneFromWeb .setMesureName(measureName);
+		zoneManager.addZoneToZone(additionalZoneFromWeb, parentZoneId);
 		return("redirect:/projects/mock");
 	}
 	
