@@ -1,10 +1,10 @@
 package ua.ksstroy.logic.zone;
 
 public class NameConflictException extends Exception {
-	//  WHat Is THis!? 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 2977907984290973610L;
+
 }

@@ -21,12 +21,6 @@ public class ZoneManagerImpl implements ZoneManager {
 	}
 
 	@Override
-	public void addRootGroup(String groupName) {
-		//??? MEthod!
-		zoneDaoImpl.addRootGroup(groupName);
-	}
-
-	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
 		// TODO Auto-generated method stub
 		boolean nameFree = true;
@@ -42,30 +36,60 @@ public class ZoneManagerImpl implements ZoneManager {
 		}
 		else
 		{
-			//  Saloed: throws NameConflictException
+			//  Saloed:
+			//throw new NameConflictException();
 		}
 	}
 
 	@Override
 	public void addZone(ZoneData zone, String parentGroupId) {
 		// TODO Auto-generated method stub
-		  // Saloed: ID check needed?
+		boolean nameFree = true;
 		Zone zoneImpl = convertZoneDataToZone(zone);
-		zoneDaoImpl.storeZone(zoneImpl, parentGroupId);
+		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentGroupId);
+		for (Zone tempZone: subZones)
+		{
+			if ( zone.getName().equals(tempZone.getName())) nameFree = false;
+		}
+		
+		if(nameFree)
+		{
+			zoneDaoImpl.storeZone(zoneImpl, parentGroupId);
+		}
+		else
+		{
+			//  Saloed:
+			//throw new NameConflictException();
+		}
 	}
 
 	@Override
 	public void addZoneToZone(ZoneData zone, String parentZoneId) {
 		// TODO Auto-generated method stub
-		  // Saloed: ID check needed?
+		boolean nameFree = true;
+		List<Zone> zones = zoneDaoImpl.getZonesByParentZoneId(parentZoneId);
 		Zone zoneImpl = convertZoneDataToZone(zone);
-		zoneDaoImpl.storeZoneToZone(zoneImpl, parentZoneId);
+		for (Zone tempZone: zones)
+		{
+			if ( zone.getName().equals(tempZone.getName())) nameFree = false;
+		}
+		
+		if(nameFree)
+		{
+			zoneDaoImpl.storeZoneToZone(zoneImpl, parentZoneId);
+		}
+		else
+		{
+			//  Saloed:
+			//throw new NameConflictException();
+		}
+		
+		
 	}
 
 	@Override
 	public void subtractZoneFromZone(ZoneData zone, String parentZoneId) {
 		// TODO Auto-generated method stub
-		  // Saloed: ID check needed?
 		Zone zoneImpl = convertZoneDataToZone(zone);
 		zoneDaoImpl.removeZoneFromZone(zoneImpl, parentZoneId);
 	}
@@ -151,6 +175,7 @@ public class ZoneManagerImpl implements ZoneManager {
 			
 			default: 
 				measure = Measure.EACH;
+			break;
 		}
 		
 		convZone.setHeight(zoneData.getHeight());
