@@ -24,14 +24,11 @@ public class ProjectController {
 public ModelAndView showZHD(@PathVariable String projectName){
 	ModelAndView project =new ModelAndView("project");
 	project.addObject("projectName",projectName);//the project name from PathVariabl
-	project.addObject("zhd",ZoneHierarchyMockFactory.createZoneHierarchyDataWith2Groups());
+	project.addObject("zhd",zoneManager.getRootZoneHierarchy("33"));
 	return project;
-	
-	
 }
 	//TODO add current project name to SessionContext and use in redirect URL
 	//e.g project name = mock; redirect to project/mock
-	
 	@RequestMapping (value="/projects/formTest", method=RequestMethod.POST)
 	public String formTest(){
 		return("redirect:/projects/mock");

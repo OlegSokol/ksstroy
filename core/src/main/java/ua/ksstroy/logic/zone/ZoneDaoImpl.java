@@ -3,6 +3,8 @@ package ua.ksstroy.logic.zone;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component(value="MockDaoImpl")
 public class ZoneDaoImpl implements ZoneDao {
 	//Saloed: Mock - Test zonedaoImpl
 	public List<Zone> getAllZones()

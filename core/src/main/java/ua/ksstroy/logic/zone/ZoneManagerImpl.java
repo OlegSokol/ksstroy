@@ -5,23 +5,34 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-//@Component
+import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
+
+@Component(value="ZoneManagerImpl")
 public class ZoneManagerImpl implements ZoneManager {
 	
-	//@Resource
-	//ZoneDaoImpl zoneDaoImpl;	
-	ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+	@Autowired
+	@Qualifier("MockDaoImpl")
+	ZoneDaoImpl zoneDaoImpl;	
+	//ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 	
-	@Override
-	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
+	/*
+SAMPLE OF CUSTOM EXCEPTION IMPLEMENTATION 
+DISCLAIMER:IT COULD BE DOESNT AWFULL RIGHT
+	 */
+	public ZoneHierarchyData getRootZoneHierarchy(String projectId) throws Exception {
+if(zoneDaoImpl.getRootZoneGroup()==null)
+throw new  ZoneDaoDoesntExistException();
+	
 		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup());
 		return zoHiDa;
 	}
 
-	@Override
-	public void addGroupToGroup(String groupName, String parentGroupId) {
+	public void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException {
 		// TODO Auto-generated method stub
 		boolean nameFree = true;
 		List<ZoneGroup> subGroups = zoneDaoImpl.getGroupsByParentGroupId(parentGroupId);
@@ -41,7 +52,6 @@ public class ZoneManagerImpl implements ZoneManager {
 		}
 	}
 
-	@Override
 	public void addZone(ZoneData zone, String parentGroupId) {
 		// TODO Auto-generated method stub
 		boolean nameFree = true;
@@ -63,7 +73,6 @@ public class ZoneManagerImpl implements ZoneManager {
 		}
 	}
 
-	@Override
 	public void addZoneToZone(ZoneData zone, String parentZoneId) {
 		// TODO Auto-generated method stub
 		boolean nameFree = true;
@@ -87,7 +96,6 @@ public class ZoneManagerImpl implements ZoneManager {
 		
 	}
 
-	@Override
 	public void subtractZoneFromZone(ZoneData zone, String parentZoneId) {
 		// TODO Auto-generated method stub
 		Zone zoneImpl = convertZoneDataToZone(zone);
@@ -188,11 +196,12 @@ public class ZoneManagerImpl implements ZoneManager {
 		return convZone;
 	}
 	
-	private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup)
+	private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup) throws Exception
 	{
 		ZoneHierarchyData zoHiDa = new ZoneHierarchyData();
 			
 		List<ZoneData> rootZoneData = new ArrayList<ZoneData>();
+		
 		if (!rootZoneGroup.getZones().isEmpty())
 		{
 			for (Zone tempZone: rootZoneGroup.getZones())
@@ -247,5 +256,17 @@ public class ZoneManagerImpl implements ZoneManager {
 		zoneGroup.setName(rootZoneHierarchyData.getName());
 		
 		return zoneGroup;
+	}
+	/*
+	 * for test purposes ONLY!! 
+	 */
+	public static void main(String[] args) throws Exception {
+		ClassPathXmlApplicationContext context= new ClassPathXmlApplicationContext("spring-beans_FOR_TESTING.xml");
+		ZoneManagerImpl myZoneManager = (ZoneManagerImpl)context.getBean("ZoneManagerImpl");
+	
+		myZoneManager.getRootZoneHierarchy("33");
+	
+		
+		
 	}
 }
