@@ -1,12 +1,9 @@
 package ua.ksstroy.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.hibermodel.AdditionalZonesModel;
@@ -28,9 +25,15 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getAllZones() {
+		session.beginTransaction();
 
 		List<Zone> zones = new ArrayList<Zone>();
+
 		zones.add(convertAllZones());
+
+		session.save(zones);
+		session.getTransaction().commit();
+		session.close();
 
 		return zones;
 	}
@@ -53,8 +56,13 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public Zone getZoneById(String zoneId) {
+		session.beginTransaction();
 
 		ZonesModel model = (ZonesModel) session.get(ZonesModel.class, zoneId);
+
+		session.save(model);
+		session.getTransaction().commit();
+		session.close();
 
 		return convertZoneById(model);
 	}
@@ -167,9 +175,14 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public ZoneGroup getRootZoneGroup() { // no work
+	public ZoneGroup getRootZoneGroup() {
+		session.beginTransaction();
 
 		ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
+
+		session.save(groupImpl);
+		session.getTransaction().commit();
+		session.close();
 
 		return groupImpl;
 	}

@@ -1,12 +1,14 @@
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
-  `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `PROJECT_NAME` VARCHAR(64) NOT NULL,
-  `DESCRIPTION` VARCHAR(512) 
+  `DESCRIPTION` VARCHAR(512), 
+  `ID_GROUP` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`ID`, `ID_GROUP`) 
 );  
-INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`) VALUES (33, 'Cool Project', 'Very cool');
-INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`) VALUES (34, 'Another Cool Project', 'Super cool');
-INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`) VALUES (35, 'Not Cool Project', 'Not cool');
+INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (33, 'Cool Project', 'Very cool', '1');
+INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (34, 'Another Cool Project', 'Super cool', '1');
+INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (35, 'Not Cool Project', 'Not cool', '1');
 
 
 DROP TABLE IF EXISTS `users`;
