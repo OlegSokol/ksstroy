@@ -1,4 +1,4 @@
-package ua.ksstroy.hibermodel;
+package ua.ksstroy.models.project;
 
 import java.io.Serializable;
 import java.util.List;

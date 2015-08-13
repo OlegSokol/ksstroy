@@ -1,4 +1,4 @@
-package ua.ksstroy.hibermodel;
+package ua.ksstroy.models.zone;
 
 import static javax.persistence.GenerationType.IDENTITY;
 

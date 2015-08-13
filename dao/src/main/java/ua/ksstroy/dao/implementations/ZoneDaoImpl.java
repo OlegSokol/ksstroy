@@ -1,4 +1,4 @@
-package ua.ksstroy.dao.impl;
+package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
-import ua.ksstroy.hibermodel.AdditionalZonesModel;
-import ua.ksstroy.hibermodel.GroupsModel;
-import ua.ksstroy.hibermodel.SurplusZonesModel;
-import ua.ksstroy.hibermodel.ZonesModel;
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneDao;
 import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.logic.zone.ZoneGroupImpl;
 import ua.ksstroy.logic.zone.ZoneImpl;
+import ua.ksstroy.models.zone.AdditionalZonesModel;
+import ua.ksstroy.models.zone.GroupsModel;
+import ua.ksstroy.models.zone.SurplusZonesModel;
+import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
 @Component("zoneDao")

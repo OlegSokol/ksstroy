@@ -1,4 +1,4 @@
-package ua.ksstroy.hibermodel;
+package ua.ksstroy.models.worktype;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import ua.ksstroy.logic.zone.Measure;
-
+import ua.ksstroy.models.material.MaterialModel;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity

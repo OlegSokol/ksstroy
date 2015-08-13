@@ -1,4 +1,4 @@
-package ua.ksstroy.hibermodel;
+package ua.ksstroy.models.zone;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -15,8 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "adddit_zones", catalog = "ksstroy")
-public class AdditionalZonesModel implements Serializable {
+@Table(name = "surplus_zones", catalog = "ksstroy")
+public class SurplusZonesModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -35,9 +35,13 @@ public class AdditionalZonesModel implements Serializable {
 	@Column(name = "mesure_name")
 	private String mesureName;
 
+	/*
+	 * Many to one surpluses for zone
+	 */
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "zones_additionals")
-	private ZonesModel zonesAdditionals;
+	@JoinColumn(name = "zones_surpluses")
+	private ZonesModel zonesSurpluses;
 
 	public Integer getId() {
 		return id;
@@ -79,12 +83,12 @@ public class AdditionalZonesModel implements Serializable {
 		this.mesureName = mesureName;
 	}
 
-	public ZonesModel getZonesAdditionals() {
-		return zonesAdditionals;
+	public ZonesModel getZonesSurpluses() {
+		return zonesSurpluses;
 	}
 
-	public void setZonesAdditionals(ZonesModel zonesAdditionals) {
-		this.zonesAdditionals = zonesAdditionals;
+	public void setZonesSurpluses(ZonesModel zonesSurpluses) {
+		this.zonesSurpluses = zonesSurpluses;
 	}
 
 }

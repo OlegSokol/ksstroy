@@ -15,11 +15,18 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 		<!-- List of XML mapping files -->
-		<mapping class="ua.ksstroy.hibermodel.ProjectModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.UserModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.GroupsModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.ZonesModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.SurplusZonesModel"></mapping>
-		<mapping class="ua.ksstroy.hibermodel.AdditionalZonesModel"></mapping>
+		<mapping class="ua.ksstroy.models.project.ProjectModel"></mapping>
+		<mapping class="ua.ksstroy.models.project.UserModel"></mapping>
+		<mapping class="ua.ksstroy.models.zone.GroupsModel"></mapping>
+		<mapping class="ua.ksstroy.models.zone.ZonesModel"></mapping>
+		<mapping class="ua.ksstroy.models.zone.SurplusZonesModel"></mapping>
+		<mapping class="ua.ksstroy.models.zone.AdditionalZonesModel"></mapping>
+		
+		
+		
+		
+		
+		
+		
 	</session-factory>
 </hibernate-configuration>

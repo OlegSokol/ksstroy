@@ -1,13 +1,13 @@
-package ua.ksstroy.dao.impl;
+package ua.ksstroy.dao.implementations;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
-import ua.ksstroy.hibermodel.WorkTypeModel;
 import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeDao;
+import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
 @Component

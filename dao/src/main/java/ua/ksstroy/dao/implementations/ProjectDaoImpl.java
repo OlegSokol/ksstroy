@@ -1,4 +1,4 @@
-package ua.ksstroy.dao.impl;
+package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
-import ua.ksstroy.hibermodel.ProjectModel;
-import ua.ksstroy.hibermodel.UserModel;
 import ua.ksstroy.logic.project.Project;
 import ua.ksstroy.logic.project.ProjectDao;
+import ua.ksstroy.models.project.ProjectModel;
+import ua.ksstroy.models.project.UserModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
 @Component("projectDao")

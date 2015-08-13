@@ -1,4 +1,4 @@
-package ua.ksstroy.hibermodel;
+package ua.ksstroy.models.zone;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -45,7 +45,7 @@ public class GroupsModel implements Serializable {
 	private List<ZonesModel> zones = new ArrayList<ZonesModel>();
 
 	/*
-	 * Many to one subgroups for rootgroup same one entity
+	 * Many to one subgroups for root group same one entity
 	 */
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
@@ -53,7 +53,7 @@ public class GroupsModel implements Serializable {
 	private GroupsModel rootgroup;
 
 	/*
-	 * One to many root rootgroup for subgroups same one entity
+	 * One to many root root group for subgroups same one entity
 	 */
 
 	@OneToMany(mappedBy = "rootgroup")
