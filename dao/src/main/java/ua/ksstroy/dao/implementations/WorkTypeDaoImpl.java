@@ -1,13 +1,18 @@
 package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
+import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeDao;
+import ua.ksstroy.logic.zone.Measure;
+import ua.ksstroy.models.material.MaterialModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
@@ -49,23 +54,39 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 
 	@Override
 	public List<WorkType> getParentWorkTypes() {
-		// TODO Auto-generated method stub
-		List<WorkType> list = new ArrayList<>();
 		
-		WorkType wt1 = new WorkType();
-		wt1.setId(1);
-		wt1.setName("Name 1");
-		wt1.setDescription("Descr 1");
+		session.beginTransaction();
 		
+		List<WorkTypeModel> workTypeModelList = session.createCriteria(WorkTypeModel.class).list();
+		
+		session.getTransaction().commit();
+
 		WorkType wt2 = new WorkType();
 		wt2.setId(2);
 		wt2.setName("Name 2");
 		wt2.setDescription("Descr 2");
+		wt2.setMeasure(Measure.M2);
+		wt2.setUnitPrice(35.0);
 		
-		list.add(wt1);
-		list.add(wt2);
+		Material m = new Material();
+		m.setId(1);
+		m.setName("Material 3");
 		
-		return list;
+		Set s = new HashSet();
+		s.add(m);
+		wt2.setMaterials(s);
+
+		
+		List<WorkType> workTypeList = new ArrayList<>();
+		
+		for (WorkTypeModel workTypeModel : workTypeModelList) {
+			
+			workTypeList.add(convertModelToWorkType(workTypeModel));
+		}
+		
+//		workTypeList.add(wt1);
+		workTypeList.add(wt2);
+		return workTypeList;
 	}
 
 	@Override
@@ -82,10 +103,19 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		workType.setDescription(model.getDescription());
 		workType.setMeasure(model.getMeasure());
 		workType.setUnitPrice(model.getUnitPrice());
-		// workType.setMaterials(model.getMaterials());
+//		workType.setMaterials(model.getMaterials());
+		
+		Set<Material> materialsSet = new HashSet<>();
+		Set<MaterialModel> materialsModelSet = model.getMaterials();
+		for (MaterialModel materialModel : materialsModelSet) {
+			materialsSet.add(convertModelToMaterial(materialModel));
+		}
+		
+		workType.setMaterials(materialsSet);;
 
 		return workType;
 	}
+
 
 	private WorkTypeModel convertWorkTypeToModel(WorkType workType) {
 
@@ -96,8 +126,36 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		model.setDescription(workType.getDescription());
 		model.setMeasure(workType.getMeasure());
 		model.setUnitPrice(workType.getUnitPrice());
+		
+		Set<MaterialModel> materialsModelSet = new HashSet<>();
+		Set<Material> materialsSet = workType.getMaterials();
+		
+		for (Material material : materialsSet) {
+			
+			materialsModelSet.add(convertMaterialToModel(material));
+		}
+		
+		model.setMaterials(materialsModelSet);
 
 		return model;
 	}
 
+	private MaterialModel convertMaterialToModel(Material material) {
+
+		MaterialModel materialModel = new MaterialModel();
+		
+		materialModel.setId(material.getId());
+		materialModel.setName(material.getName());
+		return materialModel;
+	}
+
+	private Material convertModelToMaterial(MaterialModel materialModel) {
+		
+		Material material = new Material();
+		
+		material.setId(materialModel.getId());
+		material.setName(materialModel.getName());
+		
+		return material;
+	}
 }

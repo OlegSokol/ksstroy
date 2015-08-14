@@ -1,20 +1,19 @@
 package ua.ksstroy.models.worktype;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.material.MaterialModel;
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "worktypes", catalog = "ksstroy")
 public class WorkTypeModel implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id; 
 	
@@ -31,8 +30,12 @@ public class WorkTypeModel implements Serializable {
 	private Double unitPrice;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinTable(name = "worktype_material_rel", joinColumns = @JoinColumn(name = "worktype_id"), inverseJoinColumns = @JoinColumn(name = "material"))
-	private List<MaterialModel> materials;
+	@JoinTable(name = "worktype_material_rel", joinColumns = @JoinColumn(name = "worktype_id"), inverseJoinColumns = @JoinColumn(name = "material_id"))
+	private Set<MaterialModel> materials;
+//	
+//	@OneToOne
+//	@JoinColumn
+//	private WorkTypeModel workTypeModel;
 	
 	public Integer getId() {
 		return id;
@@ -57,11 +60,13 @@ public class WorkTypeModel implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	@Enumerated(EnumType.STRING)
 	public Measure getMeasure() {
 		return measure;
 	}
-
+	
+	@Enumerated(EnumType.STRING)
 	public void setMeasure(Measure measure) {
 		this.measure = measure;
 	}
@@ -74,12 +79,20 @@ public class WorkTypeModel implements Serializable {
 		this.unitPrice = unitPrice;
 	}
 
-	public List<MaterialModel> getMaterials() {
+	public Set<MaterialModel> getMaterials() {
 		return materials;
 	}
 
-	public void setMaterials(List<MaterialModel> materials) {
+	public void setMaterials(Set<MaterialModel> materials) {
 		this.materials = materials;
-	}	
+	}
+
+//	public WorkTypeModel getWorkTypeModel() {
+//		return workTypeModel;
+//	}
+//
+//	public void setWorkTypeModel(WorkTypeModel workTypeModel) {
+//		this.workTypeModel = workTypeModel;
+//	}	
 
 }

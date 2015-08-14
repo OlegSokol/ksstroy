@@ -21,6 +21,8 @@
 		<mapping class="ua.ksstroy.models.zone.ZonesModel"></mapping>
 		<mapping class="ua.ksstroy.models.zone.SurplusZonesModel"></mapping>
 		<mapping class="ua.ksstroy.models.zone.AdditionalZonesModel"></mapping>
+		<mapping class="ua.ksstroy.models.worktype.WorkTypeModel"></mapping>
+		<mapping class="ua.ksstroy.models.material.MaterialModel"></mapping>
 		
 		
 		

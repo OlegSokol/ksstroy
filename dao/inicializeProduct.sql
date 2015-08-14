@@ -69,3 +69,26 @@ CREATE TABLE `groups` (
     `name` VARCHAR(50) NULL DEFAULT NULL,
     `parent_id` BIGINT(20) NULL DEFAULT NULL
 );
+
+CREATE TABLE IF NOT EXISTS worktypes (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    parent_id INT(10) UNSIGNED,
+    name VARCHAR(50) NOT NULL,
+	description VARCHAR(400),
+	measure_name VARCHAR(50),
+	unit_price DOUBLE,
+	FOREIGN KEY (parent_id) REFERENCES worktypes(id)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS materials (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS worktype_material_rel (
+    worktype_id INT(10) UNSIGNED,
+    material_id INT(10) UNSIGNED,
+    FOREIGN KEY (worktype_id) REFERENCES worktypes(id),
+    FOREIGN KEY (material_id) REFERENCES materials(id),
+	PRIMARY KEY (worktype_id,material_id)
+) engine=InnoDB;

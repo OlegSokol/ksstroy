@@ -28,6 +28,9 @@
 					<th>#ID</th>
 					<th>Name</th>
 					<th>Description</th>
+					<th>Measure</th>
+					<th>Unit Price</th>
+					<th>Materials</th>
 				</tr>
 			</thead>
 
@@ -38,6 +41,15 @@
 				</td>
 				<td>${entry.name}</td>
 				<td>${entry.description}</td>
+				<td>${entry.measure}</td>
+				<td>${entry.unitPrice}</td>
+				<td>
+                	<c:forEach var="material" items="${entry.materials}" varStatus="loop">
+						${material.name}
+    					<c:if test="${not loop.last}">, </c:if>
+				  	</c:forEach>
+                </td>
+				
 				<td>
 				  <spring:url value="/worktypes/${entry.id}" var="viewUrl" />
 				  <spring:url value="/worktypes/${entry.id}/delete" var="deleteUrl" /> 
