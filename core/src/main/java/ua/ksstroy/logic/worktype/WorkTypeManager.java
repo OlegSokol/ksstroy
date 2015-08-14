@@ -8,7 +8,7 @@ public interface WorkTypeManager {
 	
 	public void addChildWorkType(WorkTypeData workTypeData, Integer parentWorkTypeId);
 	
-	public List<WorkTypeData> getParentWorkTypes();
+	public List<WorkType> getParentWorkTypes();
 	
 	public List<WorkTypeData> getChildWorkTypes(Integer workTypeId);
 	

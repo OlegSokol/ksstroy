@@ -1,5 +1,6 @@
 package ua.ksstroy.dao.implementations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -49,7 +50,22 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 	@Override
 	public List<WorkType> getParentWorkTypes() {
 		// TODO Auto-generated method stub
-		return null;
+		List<WorkType> list = new ArrayList<>();
+		
+		WorkType wt1 = new WorkType();
+		wt1.setId(1);
+		wt1.setName("Name 1");
+		wt1.setDescription("Descr 1");
+		
+		WorkType wt2 = new WorkType();
+		wt2.setId(2);
+		wt2.setName("Name 2");
+		wt2.setDescription("Descr 2");
+		
+		list.add(wt1);
+		list.add(wt2);
+		
+		return list;
 	}
 
 	@Override
