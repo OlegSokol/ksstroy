@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
+import ua.ksstroy.logic.zone.exceptions.NameConflictException;
 
 @Component(value="ZoneManagerImpl")
 public class ZoneManagerImpl implements ZoneManager {
@@ -33,7 +34,6 @@ throw new  ZoneDaoDoesntExistException();
 	}
 
 	public void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException {
-		// TODO Auto-generated method stub
 		boolean nameFree = true;
 		List<ZoneGroup> subGroups = zoneDaoImpl.getGroupsByParentGroupId(parentGroupId);
 		for (ZoneGroup zoneGroup: subGroups)
@@ -47,13 +47,11 @@ throw new  ZoneDaoDoesntExistException();
 		}
 		else
 		{
-			//  Saloed:
-			//throw new NameConflictException();
+			throw new NameConflictException();
 		}
 	}
 
-	public void addZone(ZoneData zone, String parentGroupId) {
-		// TODO Auto-generated method stub
+	public void addZone(ZoneData zone, String parentGroupId) throws NameConflictException {
 		boolean nameFree = true;
 		Zone zoneImpl = convertZoneDataToZone(zone);
 		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentGroupId);
@@ -68,13 +66,11 @@ throw new  ZoneDaoDoesntExistException();
 		}
 		else
 		{
-			//  Saloed:
-			//throw new NameConflictException();
+			throw new NameConflictException();
 		}
 	}
 
-	public void addZoneToZone(ZoneData zone, String parentZoneId) {
-		// TODO Auto-generated method stub
+	public void addZoneToZone(ZoneData zone, String parentZoneId) throws NameConflictException {
 		boolean nameFree = true;
 		List<Zone> zones = zoneDaoImpl.getZonesByParentZoneId(parentZoneId);
 		Zone zoneImpl = convertZoneDataToZone(zone);
@@ -89,15 +85,15 @@ throw new  ZoneDaoDoesntExistException();
 		}
 		else
 		{
-			//  Saloed:
-			//throw new NameConflictException();
+			throw new NameConflictException();
 		}
 		
 		
 	}
 
-	public void subtractZoneFromZone(ZoneData zone, String parentZoneId) {
-		// TODO Auto-generated method stub
+	public void subtractZoneFromZone(ZoneData zone, String parentZoneId) throws NameConflictException {
+		boolean nameFree = true;
+		// Exception realization needed
 		Zone zoneImpl = convertZoneDataToZone(zone);
 		zoneDaoImpl.removeZoneFromZone(zoneImpl, parentZoneId);
 	}
@@ -150,6 +146,7 @@ throw new  ZoneDaoDoesntExistException();
 				surplusList.add(tempZone);
 			}
 		}
+		// Measure select !?
 		Measure measure;
 		switch(zoneData.getMeasureName())
 		{
@@ -266,7 +263,5 @@ throw new  ZoneDaoDoesntExistException();
 	
 		myZoneManager.getRootZoneHierarchy("33");
 	
-		
-		
 	}
 }
