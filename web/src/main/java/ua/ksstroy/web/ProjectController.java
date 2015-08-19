@@ -20,7 +20,7 @@ public class ProjectController {
 	@Resource
 	ZoneManager zoneManager;
 	
-	@RequestMapping (value="/projects/{projectName}", method=RequestMethod.GET)
+	@RequestMapping (value="/{projectName}", method=RequestMethod.GET)
 public ModelAndView showZHD(@PathVariable String projectName){
 	ModelAndView project =new ModelAndView("project");
 	project.addObject("projectName",projectName);//the project name from PathVariabl
@@ -29,24 +29,24 @@ public ModelAndView showZHD(@PathVariable String projectName){
 }
 	//TODO add current project name to SessionContext and use in redirect URL
 	//e.g project name = mock; redirect to project/mock
-	@RequestMapping (value="/projects/formTest", method=RequestMethod.POST)
+	@RequestMapping (value="/formTest", method=RequestMethod.POST)
 	public String formTest(){
-		return("redirect:/projects/mock");
+		return("redirect:/mock");
 	}
 	
 /*
  * handlers for ZoneManager methods
  */
-	@RequestMapping (value="/projects/getRootZoneHierarchy", method=RequestMethod.POST)
+	@RequestMapping (value="/getRootZoneHierarchy", method=RequestMethod.POST)
 	public String getRootZoneHierarchy(@RequestParam("projectId") String projectId){
 		zoneManager.getRootZoneHierarchy(projectId);
-		return("redirect:/projects/mock");
+		return("redirect:/mock");
 	}
 	
-	@RequestMapping (value="/projects/addGroupToGroup", method=RequestMethod.POST)
+	@RequestMapping (value="/addGroupToGroup", method=RequestMethod.POST)
 	public String addGroupToGroup(@RequestParam("groupName") String groupName,@RequestParam("groupName") String parentGroupId){
 		zoneManager.addGroupToGroup(groupName, parentGroupId);
-		return("redirect:/projects/mock");
+		return("redirect:/mock");
 	}
 	
 	
@@ -54,7 +54,7 @@ public ModelAndView showZHD(@PathVariable String projectName){
 	 * create new ZoneData object based on data from the web page
 	 * and invoke according ZoneManager method
 	 */
-		@RequestMapping (value="/projects/addZone", method=RequestMethod.POST)
+		@RequestMapping (value="/addZone", method=RequestMethod.POST)
 	public String addZone(@RequestParam("id") String id,@RequestParam("name")String name,@RequestParam("parentGroupId")String parentGroupId,@RequestParam("measureName")String measureName,@RequestParam("width")String width,@RequestParam("heigh")String height){
 	
 		ZoneData zoneFromWeb = new ZoneData();
@@ -70,7 +70,7 @@ public ModelAndView showZHD(@PathVariable String projectName){
 		zoneFromWeb.setMesureName(measureName);
 		
 		zoneManager.addZone(zoneFromWeb,  parentGroupId);
-		return("redirect:/projects/mock");
+		return("redirect:/mock");
 	}
 	
 		/*
@@ -78,7 +78,7 @@ public ModelAndView showZHD(@PathVariable String projectName){
 		 *  based on data from the web page
 		 * and invoke according ZoneManager method
 		 */
-	@RequestMapping (value="/projects/addZoneToZone", method=RequestMethod.POST)
+	@RequestMapping (value="/addZoneToZone", method=RequestMethod.POST)
 	public String addZoneToZone(@RequestParam("id") String id,@RequestParam("name")String name,@RequestParam("parentZoneId")String parentZoneId,@RequestParam("measureName")String measureName,@RequestParam("width")String width,@RequestParam("heigh")String height){
 	
 		ZoneData additionalZoneFromWeb  = new ZoneData();
@@ -93,15 +93,15 @@ public ModelAndView showZHD(@PathVariable String projectName){
 		}
 		additionalZoneFromWeb .setMesureName(measureName);
 		zoneManager.addZoneToZone(additionalZoneFromWeb, parentZoneId);
-		return("redirect:/projects/mock");
+		return("redirect:/mock");
 	}
 	
-	@RequestMapping (value="/projects/subtractZoneFromZone", method=RequestMethod.POST)
+	@RequestMapping (value="/subtractZoneFromZone", method=RequestMethod.POST)
 	public String subtractZoneFromZone(@RequestParam("zone") String zoneId, @RequestParam("zone") String parentZoneId){
 		//TODO select ZoneData by zoneId parameter
 		ZoneData zone = new ZoneData();
 		zoneManager.subtractZoneFromZone( zone,  parentZoneId);
-		return("redirect:/projects/mock");
+		return("redirect:/mock");
 	}
 	
 	

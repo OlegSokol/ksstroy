@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.work;
 
-import java.util.List;
+//import java.util.List;
 
 public interface WorkDao {
 
