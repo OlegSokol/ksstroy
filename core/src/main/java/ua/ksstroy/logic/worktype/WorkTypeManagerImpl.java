@@ -1,7 +1,7 @@
 package ua.ksstroy.logic.worktype;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -26,19 +26,22 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 	}
 
 	@Override
-	public List<WorkType> getParentWorkTypes() {
+	public Set<WorkType> getParentWorkTypes() {
 		// TODO Auto-generated method stub
 		
-		List<WorkType> list = new ArrayList<>();
+		Set<WorkType> list = new HashSet<>();
 		list = workTypeDao.getParentWorkTypes();
 		
 		return list;
 	}
 
 	@Override
-	public List<WorkTypeData> getChildWorkTypes(Integer workTypeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<WorkType> getChildWorkTypes(Integer workTypeId) {
+
+		Set<WorkType> list = new HashSet<>();
+		list = workTypeDao.getChildWorkTypes(workTypeId);
+		
+		return list;
 	}
 
 	@Override

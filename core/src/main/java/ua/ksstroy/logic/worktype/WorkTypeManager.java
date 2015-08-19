@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.worktype;
 
-import java.util.List;
+import java.util.Set;
 
 public interface WorkTypeManager {
 	
@@ -8,9 +8,9 @@ public interface WorkTypeManager {
 	
 	public void addChildWorkType(WorkTypeData workTypeData, Integer parentWorkTypeId);
 	
-	public List<WorkType> getParentWorkTypes();
+	public Set<WorkType> getParentWorkTypes();
 	
-	public List<WorkTypeData> getChildWorkTypes(Integer workTypeId);
+	public Set<WorkType> getChildWorkTypes(Integer workTypeId);
 	
 	public void deleteWorkType(Integer workTypeId);
 	
