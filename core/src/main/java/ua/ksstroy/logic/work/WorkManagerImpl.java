@@ -2,14 +2,24 @@ package ua.ksstroy.logic.work;
 
 import java.util.List;
 
-public class WorkManagerImpl implements WorkManager{
+import ua.ksstroy.logic.zone.ZoneGroup;
 
-	WorkDaoImpl workDaoImpl = new WorkDaoImpl();
+public class WorkManagerImpl implements WorkManager{
+	
+	// Mock - Test
+	
+
+	WorkDao workDaoImpl = new WorkDaoImpl();
 	
 	@Override
 	public WorkHierarchyData getRootWorkHierarchy(String projectId) {
-		// TODO Auto-generated method stub
+		WorkHierarchyData workHiDa= convertWorkGroupToWorkHierarchyData(workDaoImpl.getRootWorkHierarchy(projectId));
 		return workDaoImpl.getRootWorkHierarchy(projectId);
+	}
+
+	private WorkHierarchyData convertWorkGroupToWorkHierarchyData(WorkHierarchyData rootWorkHierarchy) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -20,7 +30,9 @@ public class WorkManagerImpl implements WorkManager{
 
 	@Override
 	public void addWork(WorkData work, String parentGroupId) {
-		WorkImpl workImpl= new WorkImpl();
+		boolean nameCheck = true;
+		
+		//WorkImpl workImpl= new WorkImpl();
 		
 	}
 

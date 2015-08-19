@@ -10,7 +10,7 @@ public interface ZoneManager {
 
 	void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException;
 
-	void addZone(ZoneData zone, String parentGroupId);
+	void addZone(ZoneData zone, String parentGroupId) throws NameConflictException;
 
 	void addZoneToZone(ZoneData zone, String parentZoneId);
 

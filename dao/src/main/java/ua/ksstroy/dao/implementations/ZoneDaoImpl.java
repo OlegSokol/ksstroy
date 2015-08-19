@@ -24,7 +24,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	private Session session = HibernateUtil.getSessionFactory().openSession();
 
 	@Override
-	public List<Zone> getAllZones() {
+	public List<Zone> getAllZones() { // no work
 		session.beginTransaction();
 
 		List<Zone> zones = new ArrayList<Zone>();
@@ -71,7 +71,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		ZoneImpl zone = new ZoneImpl();
 
-		zone.setId(zonesModel.getId().toString());
+		zone.setId(zonesModel.getId());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setName(zonesModel.getName());
 		zone.setHeight(zonesModel.getHeight());
@@ -97,7 +97,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		ZoneImpl zone = new ZoneImpl();
 
-		zone.setId(zonesModel.getId().toString());
+		zone.setId(zonesModel.getId());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setName(zonesModel.getName());
 		zone.setHeight(zonesModel.getHeight());
@@ -129,7 +129,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		ZoneImpl zone = new ZoneImpl();
 
-		zone.setId(zonesAdditModel.getId().toString());
+		zone.setId(zonesAdditModel.getId());
 		zone.setHeight(zonesAdditModel.getHeight());
 		zone.setName(zonesAdditModel.getName());
 		zone.setHeight(zonesAdditModel.getHeight());
@@ -144,7 +144,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		ZoneImpl zone = new ZoneImpl();
 
-		zone.setId(zonesSurplusModel.getId().toString());
+		zone.setId(zonesSurplusModel.getId());
 		zone.setHeight(zonesSurplusModel.getHeight());
 		zone.setName(zonesSurplusModel.getName());
 		zone.setHeight(zonesSurplusModel.getHeight());
@@ -175,7 +175,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public ZoneGroup getRootZoneGroup() {
+	public ZoneGroup getRootZoneGroup() { // no work
 		session.beginTransaction();
 
 		ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
@@ -231,7 +231,9 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void storeZone(Zone zone, String parentGroupId) {
+	public void storeZone(Zone zone, String parentGroupId) { // no understand
+																// parametr Zone
+																// zone. No work
 
 		String query = "UPDATE `ksstroy`.`zones` SET `group_for_zones_id`='"
 				+ parentGroupId + "' WHERE `name`='"
@@ -252,7 +254,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		ZonesModel model = new ZonesModel();
 
-		model.setId(Integer.parseInt(zone.getId()));
+		model.setId(zone.getId());
 		model.setName(zone.getName());
 		model.setHeight(zone.getHeight());
 		model.setWidth(zone.getWidth());
@@ -262,7 +264,12 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void storeZoneToZone(Zone zone, String parentZoneId) {
+	public void storeZoneToZone(Zone zone, String parentZoneId) { // no
+																	// understand
+																	// parametr
+																	// Zone
+																	// zone. No
+																	// work
 
 		String queryAddditZones = "UPDATE `ksstroy`.`adddit_zones` SET `zones_additionals`='"
 				+ parentZoneId
@@ -293,7 +300,13 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void removeZoneFromZone(Zone zone, String parentZoneId) {
+	public void removeZoneFromZone(Zone zone, String parentZoneId) { // no
+																		// understand
+																		// parametr
+																		// Zone
+																		// zone.
+																		// No
+																		// work
 
 		String queryAddditZones = "DELETE FROM `ksstroy`.`adddit_zones` WHERE `name`='"
 				+ zone.getName().toString()
@@ -325,7 +338,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		SurplusZonesModel zonesSurplusModel = new SurplusZonesModel();
 
-		zonesSurplusModel.setId(Integer.parseInt(zone.getId()));
+		zonesSurplusModel.setId(zone.getId());
 		zonesSurplusModel.setName(zone.getName());
 		zonesSurplusModel.setHeight(zone.getHeight());
 		zonesSurplusModel.setWidth(zone.getWidth());
@@ -338,7 +351,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		AdditionalZonesModel additionalZonesModel = new AdditionalZonesModel();
 
-		additionalZonesModel.setId(Integer.parseInt(zone.getId()));
+		additionalZonesModel.setId(zone.getId());
 		additionalZonesModel.setName(zone.getName());
 		additionalZonesModel.setHeight(zone.getHeight());
 		additionalZonesModel.setWidth(zone.getWidth());
