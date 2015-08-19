@@ -54,7 +54,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		return zone;
 	}
 
-	@Override
+	@Override   // Saloed: mb also getGroupById(String groupId) needed ?!?!
 	public Zone getZoneById(String zoneId) {
 		session.beginTransaction();
 
@@ -107,7 +107,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		return zone;
 	}
 
-	@Override
+	@Override   // Saloed:  Divide this Method  :   getAddZonesByParentZoneId  and  getSurplZonesByParentZoneId
 	public List<Zone> getZonesByParentZoneId(String zoneId) {
 
 		List<Zone> zones = new ArrayList<Zone>();
@@ -198,7 +198,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		return groupImpl;
 	}
 
-	@Override
+	@Override  // Saloed: UseleSS MEthod  !?!?
 	public void addRootGroup(String groupName) {
 
 		session.beginTransaction();
@@ -263,7 +263,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		return model;
 	}
 
-	@Override
+	@Override  // Saloed: for comfort mb : storeAddZoneToZone
 	public void storeZoneToZone(Zone zone, String parentZoneId) { // no
 																	// understand
 																	// parametr
@@ -299,7 +299,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	}
 
-	@Override
+	@Override  // Saloed: for comfort mb : storeSurplZoneToZone
 	public void removeZoneFromZone(Zone zone, String parentZoneId) { // no
 																		// understand
 																		// parametr
