@@ -39,34 +39,23 @@ CREATE TABLE `zones` (
   `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
   `group_for_zones_id` BIGINT(20) NULL DEFAULT NULL
 );
-INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Door', '2', '0.8', 'm2', '1');
-INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window', '2', '0.8', 'm2', '1');
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window1', '2', '0.8', 'm2', '1');
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window2', '2', '0.8', 'm2', '1');
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window3', '2', '0.8', 'm2', '1');
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window4', '2', '0.8', 'm2', '1');
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window5', '2', '0.8', 'm2', '1');
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`, `group_for_zones_id`) VALUES ('Window6', '2', '0.8', 'm2', '1');
 
 
-DROP TABLE IF EXISTS `adddit_zones`;
-CREATE TABLE `adddit_zones` (
-  `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `width` double NULL DEFAULT NULL,
-  `height` double NULL DEFAULT NULL,
-  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
-  `zones_additionals` BIGINT(20) NULL DEFAULT NULL
+/* test table communication addit and surplus zones */
+DROP TABLE IF EXISTS `zones_surplus_addit_id`;
+CREATE TABLE `zones_surplus_addit_id` (
+  `zone_id` INT(10),
+  `surplus_id` INT(10),
+  `addit_id` INT(10)
 );
-INSERT INTO `adddit_zones` (`name`, `width`, `height`, `mesure_name`, `zones_additionals`) VALUES ('Door', '2', '0.8', 'm2', '1');
-INSERT INTO `adddit_zones` (`name`, `width`, `height`, `mesure_name`, `zones_additionals`) VALUES ('Window', '2', '0.8', 'm2', '1');
-
-
-DROP TABLE IF EXISTS `surplus_zones`;
-CREATE TABLE `surplus_zones` (
-   `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `width` double NULL DEFAULT NULL,
-  `height` double NULL DEFAULT NULL,
-  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
-  `zones_surpluses` BIGINT(20) NULL DEFAULT NULL
-);
-INSERT INTO `surplus_zones` (`name`, `width`, `height`, `mesure_name`, `zones_surpluses`) VALUES ('Door', '2', '0.8', 'm2', '1');
-INSERT INTO `surplus_zones` (`name`, `width`, `height`, `mesure_name`, `zones_surpluses`) VALUES ('Window', '2', '0.8', 'm2', '1');
+INSERT INTO `zones_surplus_addit_id` (`zone_id`, `surplus_id`, `addit_id`) VALUES (1, 2, 3);
+INSERT INTO `zones_surplus_addit_id` (`zone_id`, `surplus_id`, `addit_id`) VALUES (4, 5, 6);
 
 
 DROP TABLE IF EXISTS `groups`;
