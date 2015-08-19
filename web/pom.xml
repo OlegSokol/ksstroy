@@ -27,8 +27,11 @@
 			<scope>compile</scope>
 		</dependency>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		</dependencies>
 =======
+=======
+>>>>>>> Stashed changes
 		<dependency>
 			<groupId>ua.ksstroy</groupId>
 			<artifactId>web</artifactId>

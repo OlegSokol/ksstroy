@@ -44,5 +44,8 @@
         <mapping  class="ua.ksstroy.hibermodel.UserModel"></mapping>
     </session-factory>
     <!-- Drop and re-create the database schema on startup -->
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </hibernate-configuration>
