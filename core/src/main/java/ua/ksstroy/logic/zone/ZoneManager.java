@@ -12,8 +12,8 @@ public interface ZoneManager {
 
 	void addZone(ZoneData zone, String parentGroupId) throws NameConflictException;
 
-	void addZoneToZone(ZoneData zone, String parentZoneId);
+	void addZoneToZone(ZoneData zone, String parentZoneId) throws NameConflictException;
 
-	void subtractZoneFromZone(ZoneData zone, String parentZoneId);
+	void subtractZoneFromZone(ZoneData zone, String parentZoneId) throws NameConflictException;
 
 }
