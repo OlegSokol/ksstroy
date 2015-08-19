@@ -11,7 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
-import ua.ksstroy.logic.zone.exceptions.NameConflictException;
 
 @Component(value="ZoneManagerImpl")
 public class ZoneManagerImpl implements ZoneManager {

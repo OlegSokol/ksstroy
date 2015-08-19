@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.worktype;
 
-import java.util.List;
+import java.util.Set;
 
 public interface WorkTypeDao {
 
@@ -8,12 +8,12 @@ public interface WorkTypeDao {
 	
 	public void updateWorkType(WorkType workType);
 	
-	public WorkType getWorkTypeById(String workTypeId);
+	public WorkType getWorkTypeById(Integer workTypeId);
 	
-	public List<WorkType> getWorkTypeHierarchy();
+	public Set<WorkType> getWorkTypeHierarchy();
 	
-	public List<WorkType> getParentWorkTypes();
+	public Set<WorkType> getParentWorkTypes();
 	
-	public List<WorkType> getChildWorkTypes(String workTypeId);
+	public Set<WorkType> getChildWorkTypes(Integer workTypeId);
 	
 }

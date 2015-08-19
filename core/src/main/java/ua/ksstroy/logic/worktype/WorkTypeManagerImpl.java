@@ -1,11 +1,17 @@
 package ua.ksstroy.logic.worktype;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class WorkTypeManagerImpl implements WorkTypeManager {
+	
+	@Resource
+	WorkTypeDao workTypeDao;
 
 	@Override
 	public void addWorkType(WorkTypeData workTypeData) {
@@ -20,15 +26,22 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 	}
 
 	@Override
-	public List<WorkTypeData> getParentWorkTypes() {
+	public Set<WorkType> getParentWorkTypes() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Set<WorkType> list = new HashSet<>();
+		list = workTypeDao.getParentWorkTypes();
+		
+		return list;
 	}
 
 	@Override
-	public List<WorkTypeData> getChildWorkTypes(Integer workTypeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<WorkType> getChildWorkTypes(Integer workTypeId) {
+
+		Set<WorkType> list = new HashSet<>();
+		list = workTypeDao.getChildWorkTypes(workTypeId);
+		
+		return list;
 	}
 
 	@Override

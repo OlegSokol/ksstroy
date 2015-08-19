@@ -65,4 +65,31 @@ CREATE TABLE `groups` (
     `parent_id` BIGINT(20) NULL DEFAULT NULL
 );
 INSERT INTO `groups` (`name`, `parent_id`) VALUES ('Kitchen', '1');
+<<<<<<< HEAD
 INSERT INTO `groups` (`name`, `parent_id`) VALUES ('Kitchen2', '1');
+=======
+INSERT INTO `groups` (`name`, `parent_id`) VALUES ('Kitchen2', '1');
+
+CREATE TABLE IF NOT EXISTS worktypes (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    parent_id INT(10) UNSIGNED,
+    name VARCHAR(50) NOT NULL,
+	description VARCHAR(400),
+	measure_name VARCHAR(50),
+	unit_price DOUBLE,
+	FOREIGN KEY (parent_id) REFERENCES worktypes(id)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS materials (
+    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS worktype_material_rel (
+    worktype_id INT(10) UNSIGNED,
+    material_id INT(10) UNSIGNED,
+    FOREIGN KEY (worktype_id) REFERENCES worktypes(id),
+    FOREIGN KEY (material_id) REFERENCES materials(id),
+	PRIMARY KEY (worktype_id,material_id)
+) engine=InnoDB;
+>>>>>>> 6e46120e55687269163abde8f971d82be843aa23

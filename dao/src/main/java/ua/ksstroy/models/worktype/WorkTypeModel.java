@@ -1,22 +1,34 @@
 package ua.ksstroy.models.worktype;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.material.MaterialModel;
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "worktypes", catalog = "ksstroy")
 public class WorkTypeModel implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -940277992431249690L;
+
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id; 
+	private Integer id;
+	
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "parent_id")
+	private WorkTypeModel parentWorkType;
+	
+	@OneToMany(mappedBy = "parentWorkType")
+	private Set<WorkTypeModel> childWorkTypes = new HashSet<WorkTypeModel>();
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -31,8 +43,8 @@ public class WorkTypeModel implements Serializable {
 	private Double unitPrice;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinTable(name = "worktype_material_rel", joinColumns = @JoinColumn(name = "worktype_id"), inverseJoinColumns = @JoinColumn(name = "material"))
-	private List<MaterialModel> materials;
+	@JoinTable(name = "worktype_material_rel", joinColumns = @JoinColumn(name = "worktype_id"), inverseJoinColumns = @JoinColumn(name = "material_id"))
+	private Set<MaterialModel> materials;
 	
 	public Integer getId() {
 		return id;
@@ -40,6 +52,22 @@ public class WorkTypeModel implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public WorkTypeModel getParentWorkType() {
+		return parentWorkType;
+	}
+
+	public void setParentWorkType(WorkTypeModel parentWorkType) {
+		this.parentWorkType = parentWorkType;
+	}
+
+	public Set<WorkTypeModel> getChildWorkTypes() {
+		return childWorkTypes;
+	}
+
+	public void setChildWorkTypes(Set<WorkTypeModel> childWorkTypes) {
+		this.childWorkTypes = childWorkTypes;
 	}
 
 	public String getName() {
@@ -57,11 +85,13 @@ public class WorkTypeModel implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	@Enumerated(EnumType.STRING)
 	public Measure getMeasure() {
 		return measure;
 	}
-
+	
+	@Enumerated(EnumType.STRING)
 	public void setMeasure(Measure measure) {
 		this.measure = measure;
 	}
@@ -74,12 +104,12 @@ public class WorkTypeModel implements Serializable {
 		this.unitPrice = unitPrice;
 	}
 
-	public List<MaterialModel> getMaterials() {
+	public Set<MaterialModel> getMaterials() {
 		return materials;
 	}
 
-	public void setMaterials(List<MaterialModel> materials) {
+	public void setMaterials(Set<MaterialModel> materials) {
 		this.materials = materials;
-	}	
+	}
 
 }

@@ -1,12 +1,16 @@
 package ua.ksstroy.dao.implementations;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
+import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeDao;
+import ua.ksstroy.models.material.MaterialModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
@@ -26,12 +30,16 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 
 	@Override
 	public void updateWorkType(WorkType workType) {
-		// TODO Auto-generated method stub
+		
+		WorkTypeModel model = convertWorkTypeToModel(workType);
+		session.beginTransaction();
+		session.update(model);
+		session.getTransaction().commit();
 
 	}
 
 	@Override
-	public WorkType getWorkTypeById(String workTypeId) {
+	public WorkType getWorkTypeById(Integer workTypeId) {
 
 		session.beginTransaction();
 		WorkTypeModel model = (WorkTypeModel) session.get(WorkTypeModel.class,
@@ -41,21 +49,54 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 	}
 
 	@Override
-	public List<WorkType> getWorkTypeHierarchy() {
+	public Set<WorkType> getWorkTypeHierarchy() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<WorkType> getParentWorkTypes() {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<WorkType> getParentWorkTypes() {
+
+		Set<WorkType> workTypeSet = new HashSet<>();
+		
+		session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<WorkTypeModel> workTypeModelList = session.createCriteria(WorkTypeModel.class).list();
+		
+		session.getTransaction().commit();
+
+		for (WorkTypeModel workTypeModel : workTypeModelList) {
+			
+			if(workTypeModel.getChildWorkTypes() == null);{
+				
+				workTypeSet.add(convertModelToWorkType(workTypeModel));
+				
+			}
+			
+		}
+
+		return workTypeSet;
 	}
 
 	@Override
-	public List<WorkType> getChildWorkTypes(String workTypeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<WorkType> getChildWorkTypes(Integer workTypeId) {
+		
+		Set<WorkType> workTypeSet = new HashSet<>();
+		
+		session.beginTransaction();
+		WorkTypeModel model = (WorkTypeModel) session.get(WorkTypeModel.class, workTypeId);
+		session.getTransaction().commit();
+		
+		Set<WorkTypeModel> workTypeModelList = model.getChildWorkTypes();
+		
+
+		for (WorkTypeModel workTypeModel : workTypeModelList) {
+			
+			workTypeSet.add(convertModelToWorkType(workTypeModel));
+		}
+		
+		return workTypeSet;
 	}
 
 	private WorkType convertModelToWorkType(WorkTypeModel model) {
@@ -66,10 +107,18 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		workType.setDescription(model.getDescription());
 		workType.setMeasure(model.getMeasure());
 		workType.setUnitPrice(model.getUnitPrice());
-		// workType.setMaterials(model.getMaterials());
+		
+		Set<Material> materialsSet = new HashSet<>();
+		Set<MaterialModel> materialsModelSet = model.getMaterials();
+		for (MaterialModel materialModel : materialsModelSet) {
+			materialsSet.add(convertModelToMaterial(materialModel));
+		}
+		
+		workType.setMaterials(materialsSet);;
 
 		return workType;
 	}
+
 
 	private WorkTypeModel convertWorkTypeToModel(WorkType workType) {
 
@@ -80,8 +129,36 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		model.setDescription(workType.getDescription());
 		model.setMeasure(workType.getMeasure());
 		model.setUnitPrice(workType.getUnitPrice());
+		
+		Set<MaterialModel> materialsModelSet = new HashSet<>();
+		Set<Material> materialsSet = workType.getMaterials();
+		
+		for (Material material : materialsSet) {
+			
+			materialsModelSet.add(convertMaterialToModel(material));
+		}
+		
+		model.setMaterials(materialsModelSet);
 
 		return model;
 	}
 
+	private MaterialModel convertMaterialToModel(Material material) {
+
+		MaterialModel materialModel = new MaterialModel();
+		
+		materialModel.setId(material.getId());
+		materialModel.setName(material.getName());
+		return materialModel;
+	}
+
+	private Material convertModelToMaterial(MaterialModel materialModel) {
+		
+		Material material = new Material();
+		
+		material.setId(materialModel.getId());
+		material.setName(materialModel.getName());
+		
+		return material;
+	}
 }
