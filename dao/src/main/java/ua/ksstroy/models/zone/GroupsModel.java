@@ -29,7 +29,7 @@ public class GroupsModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private String id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -59,11 +59,11 @@ public class GroupsModel implements Serializable {
 	@OneToMany(mappedBy = "rootgroup")
 	private List<GroupsModel> subgroups = new ArrayList<>();
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

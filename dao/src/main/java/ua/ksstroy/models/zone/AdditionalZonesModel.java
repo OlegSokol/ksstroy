@@ -21,7 +21,7 @@ public class AdditionalZonesModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private String id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -39,11 +39,11 @@ public class AdditionalZonesModel implements Serializable {
 	@JoinColumn(name = "zones_additionals")
 	private ZonesModel zonesAdditionals;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
