@@ -24,23 +24,10 @@
 		<dependency>
 			<groupId>ua.ksstroy</groupId>
 			<artifactId>dao</artifactId>
+			<version>1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		</dependencies>
-=======
-=======
->>>>>>> Stashed changes
-		<dependency>
-			<groupId>ua.ksstroy</groupId>
-			<artifactId>web</artifactId>
-			<version>1-SNAPSHOT</version>
-			<type>war</type>
-		</dependency>
-	</dependencies>
-
->>>>>>> Stashed changes
 
 	<build>
 

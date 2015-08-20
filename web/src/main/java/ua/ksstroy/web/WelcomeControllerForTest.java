@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ua.ksstroy.logic.project.ProjectManager;
 
 
 
@@ -19,8 +18,7 @@ import ua.ksstroy.logic.project.ProjectManager;
 @Controller
 public class WelcomeControllerForTest {
 	
-	@Resource
-	private ProjectManager projectService;
+	
 
 
 	private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);

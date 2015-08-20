@@ -1,6 +1,5 @@
 package ua.ksstroy.web;
 
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -16,108 +15,116 @@ import ua.ksstroy.mocks.ZoneManager;
 
 @Controller
 public class ProjectController {
-	
+
 	@Resource
 	ZoneManager zoneManager;
-	
-	@RequestMapping (value="/{projectName}", method=RequestMethod.GET)
-public ModelAndView showZHD(@PathVariable String projectName){
-	ModelAndView project =new ModelAndView("project");
-	project.addObject("projectName",projectName);//the project name from PathVariabl
-	project.addObject("zhd",zoneManager.getRootZoneHierarchy("33"));
-	return project;
-}
-	//TODO add current project name to SessionContext and use in redirect URL
-	//e.g project name = mock; redirect to project/mock
-	@RequestMapping (value="/formTest", method=RequestMethod.POST)
-	public String formTest(){
-		return("redirect:/mock");
+
+	@RequestMapping(value = "/projects/{projectName}", method = RequestMethod.GET)
+	public ModelAndView showZHD(@PathVariable String projectName) {
+		ModelAndView project = new ModelAndView("project");
+		project.addObject("projectName", projectName);// the project name from
+														// PathVariabl
+		project.addObject("zhd",
+				ZoneHierarchyMockFactory.createZoneHierarchyDataWith2Groups());
+		return project;
+
 	}
+
+	// TODO add current project name to SessionContext and use in redirect URL
+	// e.g project name = mock; redirect to project/mock
+
+
 	
-/*
- * handlers for ZoneManager methods
- */
-	@RequestMapping (value="/getRootZoneHierarchy", method=RequestMethod.POST)
-	public String getRootZoneHierarchy(@RequestParam("projectId") String projectId){
+	@RequestMapping(value = "/projects/getRootZoneHierarchy", method = RequestMethod.POST)
+	public String getRootZoneHierarchy(
+			@RequestParam("projectId") String projectId) {
 		zoneManager.getRootZoneHierarchy(projectId);
-		return("redirect:/mock");
+		return ("redirect:/projects/mock");
 	}
-	
-	@RequestMapping (value="/addGroupToGroup", method=RequestMethod.POST)
-	public String addGroupToGroup(@RequestParam("groupName") String groupName,@RequestParam("groupName") String parentGroupId){
+
+	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
+	public String addGroupToGroup(@RequestParam("groupName") String groupName,
+			@RequestParam("parentGroupId") String parentGroupId) {
 		zoneManager.addGroupToGroup(groupName, parentGroupId);
-		return("redirect:/mock");
+		return ("redirect:/projects/mock");
 	}
-	
-	
+
 	/*
-	 * create new ZoneData object based on data from the web page
-	 * and invoke according ZoneManager method
+	 * create new ZoneData object based on data from the web page and invoke
+	 * according ZoneManager method
 	 */
-		@RequestMapping (value="/addZone", method=RequestMethod.POST)
-	public String addZone(@RequestParam("id") String id,@RequestParam("name")String name,@RequestParam("parentGroupId")String parentGroupId,@RequestParam("measureName")String measureName,@RequestParam("width")String width,@RequestParam("heigh")String height){
-	
+	@RequestMapping(value = "/projects/addZone", method = RequestMethod.POST)
+	public String addZone(
+			@RequestParam("name") String name,
+			@RequestParam("parentGroupId") String parentGroupId,
+			@RequestParam("measureName") String measureName,
+			@RequestParam("width") String width,
+			@RequestParam("heigh") String height) {
+
 		ZoneData zoneFromWeb = new ZoneData();
-		zoneFromWeb.setId(id);
 		zoneFromWeb.setName(name);
-		try{
-		zoneFromWeb.setHeight( new Double(height).doubleValue());
-		zoneFromWeb.setWidth( new Double(width).doubleValue());}
-		catch(NumberFormatException exception){
-			//TODO: logging an exception
+		try {
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
 		zoneFromWeb.setMesureName(measureName);
-		
-		zoneManager.addZone(zoneFromWeb,  parentGroupId);
-		return("redirect:/mock");
+
+		zoneManager.addZone(zoneFromWeb, parentGroupId);
+		return ("redirect:/projects/mock");
 	}
-	
-		/*
-		 * create new ZoneData object representing additionalZone in some Zone,
-		 *  based on data from the web page
-		 * and invoke according ZoneManager method
-		 */
-	@RequestMapping (value="/addZoneToZone", method=RequestMethod.POST)
-	public String addZoneToZone(@RequestParam("id") String id,@RequestParam("name")String name,@RequestParam("parentZoneId")String parentZoneId,@RequestParam("measureName")String measureName,@RequestParam("width")String width,@RequestParam("heigh")String height){
-	
-		ZoneData additionalZoneFromWeb  = new ZoneData();
-		additionalZoneFromWeb .setId(id);
-		additionalZoneFromWeb .setName(name);
-		try{
-		additionalZoneFromWeb .setHeight( new Double(height).doubleValue());
-		additionalZoneFromWeb .setWidth( new Double(width).doubleValue());}
-		catch(NumberFormatException exception){
-			//TODO: logging an exception
+
+	/*
+	 * create new ZoneData object representing additionalZone in some Zone,
+	 * based on data from the web page and invoke according ZoneManager method
+	 */
+	@RequestMapping(value = "/projects/addZoneToZone", method = RequestMethod.POST)
+	public String addZoneToZone(
+			@RequestParam("name") String name,
+			@RequestParam("parentZoneId") String parentZoneId,
+			@RequestParam("measureName") String measureName,
+			@RequestParam("width") String width,
+			@RequestParam("heigh") String height) {
+
+		ZoneData additionalZoneFromWeb = new ZoneData();
+		additionalZoneFromWeb.setName(name);
+		try {
+			additionalZoneFromWeb.setHeight(new Double(height).doubleValue());
+			additionalZoneFromWeb.setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		additionalZoneFromWeb .setMesureName(measureName);
+		additionalZoneFromWeb.setMesureName(measureName);
 		zoneManager.addZoneToZone(additionalZoneFromWeb, parentZoneId);
-		return("redirect:/mock");
+		return ("redirect:/projects/mock");
 	}
-	
-	@RequestMapping (value="/subtractZoneFromZone", method=RequestMethod.POST)
-	public String subtractZoneFromZone(@RequestParam("zone") String zoneId, @RequestParam("zone") String parentZoneId){
-		//TODO select ZoneData by zoneId parameter
-		ZoneData zone = new ZoneData();
-		zoneManager.subtractZoneFromZone( zone,  parentZoneId);
-		return("redirect:/mock");
+
+	/*
+	 * create new ZoneData object representing surplusZone in some Zone,
+	 * based on data from the web page and invoke according ZoneManager method
+	 */
+	@RequestMapping(value = "/projects/subtractZoneFromZone", method = RequestMethod.POST)
+	public String subtractZoneFromZone(
+			@RequestParam("name") String name,
+			@RequestParam("parentZoneId") String parentZoneId,
+			@RequestParam("measureName") String measureName,
+			@RequestParam("width") String width,
+			@RequestParam("heigh") String height) {
+		ZoneData surplusZoneFromWeb = new ZoneData();
+		surplusZoneFromWeb .setName(name);
+		try {
+			surplusZoneFromWeb .setHeight(new Double(height).doubleValue());
+			surplusZoneFromWeb .setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			// TODO: logging an exception
+			System.out.println("empty string from web!!!");
+		}
+		surplusZoneFromWeb .setMesureName(measureName);
+		zoneManager.subtractZoneFromZone(surplusZoneFromWeb, parentZoneId);
+		return ("redirect:/projects/mock");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
