@@ -21,23 +21,36 @@ public interface ZoneDao {
 
 	ZoneGroup getRootZoneGroup();
 
+	/*
+	 * actions from Zones
+	 */
+
+	void addZone(String zoneName, Double width, Double height, String measure);
+
+	void addAdditZone(String zoneName, Double width, Double height,
+			String parentZoneId, String measure);
+
+	void addSurplusZone(String zoneName, Double width, Double height,
+			String parentZoneId, String measure);
+
+	void updateZone(Zone zone, String parentGroupId);
+
+	void updateZoneToZone(Zone zone, String parentZoneId);
+
+	void removeZone(String zoneId);
+
+	/*
+	 * actions from Groups
+	 */
+
 	void addRootGroup(String groupName);
 
 	void addGroupToGroup(String groupName, String parentGroupId);
 
-	// what not update method by id and rename to "update"?
-	void storeZone(Zone zone, String parentGroupId);
+	void updateGroup(String name);
 
-	// what not update method by id and rename to "update"?
-	void storeZoneToZone(Zone zone, String parentZoneId);
+	void updateGroupToGroup(String groupName, String parentGroupId);
 
-	// what not delete method by id?
-	void removeZoneFromZone(Zone zone, String parentZoneId);
-
-	// add method updateGroup by id and by parent
-	// add method removeGroup by id
-	// add method addZone by all parameters
-	// add method addAdditZone by all parameters
-	// add methot addSurplusZone by all parameters
+	void removeGroup(String groupId);
 
 }
