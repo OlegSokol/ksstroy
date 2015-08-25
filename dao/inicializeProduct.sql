@@ -65,9 +65,6 @@ CREATE TABLE `groups` (
     `parent_id` BIGINT(20) NULL DEFAULT NULL
 );
 INSERT INTO `groups` (`name`, `parent_id`) VALUES ('Kitchen', '1');
-<<<<<<< HEAD
-INSERT INTO `groups` (`name`, `parent_id`) VALUES ('Kitchen2', '1');
-=======
 INSERT INTO `groups` (`name`, `parent_id`) VALUES ('Kitchen2', '1');
 
 CREATE TABLE IF NOT EXISTS worktypes (
@@ -92,4 +89,4 @@ CREATE TABLE IF NOT EXISTS worktype_material_rel (
     FOREIGN KEY (material_id) REFERENCES materials(id),
 	PRIMARY KEY (worktype_id,material_id)
 ) engine=InnoDB;
->>>>>>> 6e46120e55687269163abde8f971d82be843aa23
+
