@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ua.ksstroy.mocks.ZoneData;
+import ua.ksstroy.logic.zone.NameConflictException;
+import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneManager;
+
 import ua.ksstroy.mocks.ZoneHierarchyMockFactory;
-import ua.ksstroy.mocks.ZoneManager;
 
 @Controller
 public class ProjectController {
@@ -37,7 +39,7 @@ public class ProjectController {
 	
 	@RequestMapping(value = "/projects/getRootZoneHierarchy", method = RequestMethod.POST)
 	public String getRootZoneHierarchy(
-			@RequestParam("projectId") String projectId) {
+			@RequestParam("projectId") String projectId)   {
 		zoneManager.getRootZoneHierarchy(projectId);
 		return ("redirect:/projects/mock");
 	}
@@ -70,10 +72,10 @@ public class ProjectController {
 			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		zoneFromWeb.setMesureName(measureName);
+		zoneFromWeb.setMeasureName(measureName);
 
 		zoneManager.addZone(zoneFromWeb, parentGroupId);
-		return ("redirect:/projects/mock");
+		return ("redirect:/projects/mock"); 
 	}
 
 	/*
@@ -97,7 +99,7 @@ public class ProjectController {
 			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		additionalZoneFromWeb.setMesureName(measureName);
+		additionalZoneFromWeb.setMeasureName(measureName);
 		zoneManager.addZoneToZone(additionalZoneFromWeb, parentZoneId);
 		return ("redirect:/projects/mock");
 	}
@@ -122,7 +124,7 @@ public class ProjectController {
 			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		surplusZoneFromWeb .setMesureName(measureName);
+		surplusZoneFromWeb .setMeasureName(measureName);
 		zoneManager.subtractZoneFromZone(surplusZoneFromWeb, parentZoneId);
 		return ("redirect:/projects/mock");
 	}

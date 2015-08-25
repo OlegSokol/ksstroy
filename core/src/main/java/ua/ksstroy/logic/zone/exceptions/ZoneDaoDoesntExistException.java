@@ -4,7 +4,7 @@ package ua.ksstroy.logic.zone.exceptions;
 DISCLAIMER:IT COULD BE DOESNT AWFULL RIGHT
  * 
  */
-public class ZoneDaoDoesntExistException extends Exception{
+public class ZoneDaoDoesntExistException extends RuntimeException{
 	public ZoneDaoDoesntExistException() {
 	}
 

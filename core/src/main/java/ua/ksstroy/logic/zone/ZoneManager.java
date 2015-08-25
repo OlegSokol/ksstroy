@@ -6,7 +6,7 @@ public interface ZoneManager {
 	 * data-base (e.g MySQL); with already affected in runtime business logic
 	 * rules.
 	 */
-	ZoneHierarchyData getRootZoneHierarchy(String projectId) throws NameConflictException, Exception;
+	ZoneHierarchyData getRootZoneHierarchy(String projectId) throws NameConflictException;
 
 	void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException;
 

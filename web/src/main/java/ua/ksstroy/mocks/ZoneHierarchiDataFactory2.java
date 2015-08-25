@@ -2,6 +2,8 @@ package ua.ksstroy.mocks;
 
 import java.util.ArrayList;
 
+import ua.ksstroy.logic.zone.ZoneData;
+
 public class ZoneHierarchiDataFactory2 {
 	 int zoneCount=0;
 
@@ -13,7 +15,7 @@ public class ZoneHierarchiDataFactory2 {
 	zd.setHeight(1.0);
 	zd.setWidth(1.1);
 	zd.setValue(666.0);
-	zd.setMesureName("mm^2");
+	zd.setMeasureName("mm^2");
 		return zd;
 	}
 	

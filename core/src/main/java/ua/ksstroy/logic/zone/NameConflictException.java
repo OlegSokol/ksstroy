@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.zone;
 
-public class NameConflictException extends Exception {
+public class NameConflictException extends RuntimeException {
 	/**
 	 * 
 	 */

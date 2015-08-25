@@ -24,7 +24,7 @@ public class ZoneManagerImpl implements ZoneManager {
 SAMPLE OF CUSTOM EXCEPTION IMPLEMENTATION 
 DISCLAIMER:IT COULD BE DOESNT AWFULL RIGHT
 	 */
-	public ZoneHierarchyData getRootZoneHierarchy(String projectId) throws Exception {
+	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
 if(zoneDaoImpl.getRootZoneGroup()==null)
 throw new  ZoneDaoDoesntExistException();
 	
@@ -192,7 +192,7 @@ throw new  ZoneDaoDoesntExistException();
 		return convZone;
 	}
 	
-	private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup) throws Exception
+	private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup) 
 	{
 		ZoneHierarchyData zoHiDa = new ZoneHierarchyData();
 			

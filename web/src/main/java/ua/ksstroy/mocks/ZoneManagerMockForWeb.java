@@ -2,6 +2,11 @@ package ua.ksstroy.mocks;
 
 import org.springframework.stereotype.Component;
 
+import ua.ksstroy.logic.zone.NameConflictException;
+import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneHierarchyData;
+import ua.ksstroy.logic.zone.ZoneManager;
+
 @Component
 public class ZoneManagerMockForWeb implements ZoneManager {
 	

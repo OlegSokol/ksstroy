@@ -3,6 +3,9 @@ package ua.ksstroy.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneHierarchyData;
+
 public class ZoneHierarchyMockFactory {
 	private static  int zoneDataId=0;
 	private static  int zoneHierarchiDataId=0;
@@ -50,7 +53,7 @@ public class ZoneHierarchyMockFactory {
 			ZoneData zoneData = zoneDataList.get(i);
 			zoneData.setId(new Integer(zoneDataId++).toString());
 			zoneData.setName( "zone "+i);
-			zoneData.setMesureName("m^2");
+			zoneData.setMeasureName("m^2");
 			zoneData.setHeight((double) i + 2);
 			zoneData.setWidth((double) i + 1);
 			// add empty and additional zoneDataListes
@@ -60,7 +63,7 @@ public class ZoneHierarchyMockFactory {
 				ZoneData additional = new ZoneData();
 				additional.setId(new Integer(zoneDataId++).toString());
 				additional.setName("additional "+j);
-				additional.setMesureName("m^2");
+				additional.setMeasureName("m^2");
 				additional.setHeight((double) j + 2);
 				additional.setWidth((double) j + 1);
 				zoneData.getAdditional().add(additional);
@@ -69,7 +72,7 @@ public class ZoneHierarchyMockFactory {
 				ZoneData surplus = new ZoneData();
 				surplus.setId(new Integer(zoneDataId++).toString());
 				surplus.setName("surplus"+j);
-				surplus.setMesureName("m^2");
+				surplus.setMeasureName("m^2");
 				surplus.setHeight((double) j + 2);
 				surplus.setWidth((double) j + 1);
 				zoneData.getSurplus().add(surplus);
