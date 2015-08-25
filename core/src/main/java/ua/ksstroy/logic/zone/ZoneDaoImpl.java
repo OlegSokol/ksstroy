@@ -75,4 +75,61 @@ public class ZoneDaoImpl implements ZoneDao {
 		
 	}
 
+	@Override
+	public void addZone(String zoneName, Double width, Double height,
+			String measure) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addAdditZone(String zoneName, Double width, Double height,
+			String parentZoneId, String measure) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSurplusZone(String zoneName, Double width, Double height,
+			String parentZoneId, String measure) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateZone(Zone zone, String parentGroupId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateZoneToZone(Zone zone, String parentZoneId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeZone(String zoneId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateGroup(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateGroupToGroup(String groupName, String parentGroupId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeGroup(String groupId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
