@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import ua.ksstroy.models.zone.GroupsModel;
+
 @Entity
 @Table(name = "projects", catalog = "ksstroy")
 public class ProjectModel implements Serializable {
@@ -44,9 +46,9 @@ public class ProjectModel implements Serializable {
 //	@Column(name = "ID_GROUP", nullable = false)
 //	private Integer idGroup;
 //
-//	@OneToOne(fetch = FetchType.LAZY)
-//	@PrimaryKeyJoinColumn
-//	private GroupsModel groupsModel;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_GROUP")
+	private GroupsModel groupsModel;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
 	private List<UserModel> users;
@@ -83,13 +85,13 @@ public class ProjectModel implements Serializable {
 		this.users = users;
 	}
 
-//	public GroupsModel getGroupsModel() {
-//		return groupsModel;
-//	}
-//
-//	public void setGroupsModel(GroupsModel groupsModel) {
-//		this.groupsModel = groupsModel;
-//	}
+	public GroupsModel getGroupsModel() {
+		return groupsModel;
+	}
+
+	public void setGroupsModel(GroupsModel groupsModel) {
+		this.groupsModel = groupsModel;
+	}
 //
 //	public Integer getIdGroup() {
 //		return idGroup;

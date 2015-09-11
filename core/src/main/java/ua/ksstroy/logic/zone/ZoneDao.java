@@ -19,7 +19,7 @@ public interface ZoneDao {
 
 	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
 
-	ZoneGroup getRootZoneGroup();
+	ZoneGroup getRootZoneGroup(String projectId);
 
 	/*
 	 * actions from Zones
@@ -33,9 +33,9 @@ public interface ZoneDao {
 	void addSurplusZone(String zoneName, Double width, Double height,
 			String parentZoneId, String measure);
 
-	void updateZone(Zone zone, String parentGroupId);
+	void storeZone(Zone zone, String parentGroupId);
 
-	void updateZoneToZone(Zone zone, String parentZoneId);
+	void storeZoneToZone(Zone zone, String parentZoneId);
 
 	void removeZone(String zoneId);
 
@@ -52,5 +52,6 @@ public interface ZoneDao {
 	void updateGroupToGroup(String groupName, String parentGroupId);
 
 	void removeGroup(String groupId);
+
 
 }

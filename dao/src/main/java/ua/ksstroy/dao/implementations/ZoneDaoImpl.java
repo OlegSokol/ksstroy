@@ -1,10 +1,12 @@
 package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.logic.zone.Measure;
@@ -13,6 +15,7 @@ import ua.ksstroy.logic.zone.ZoneDao;
 import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.logic.zone.ZoneGroupImpl;
 import ua.ksstroy.logic.zone.ZoneImpl;
+import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.zone.AdditionalZonesModel;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.MainTest;
@@ -23,7 +26,7 @@ import ua.ksstroy.persistence.HibernateUtil;
 @Component("zoneDao")
 public class ZoneDaoImpl implements ZoneDao {
 
-	private Session session = HibernateUtil.getSessionFactory().openSession();
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 	/*
 	 * demands changes
@@ -31,6 +34,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getAllZones() {
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
 		List<Zone> zones = new ArrayList<Zone>();
@@ -63,7 +67,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public Zone getZoneById(String zoneId) {
 
-		session.beginTransaction();
+		Session session = sessionFactory.openSession(); session.beginTransaction();
 
 		ZonesModel model = (ZonesModel) session.get(ZonesModel.class, zoneId);
 
@@ -93,6 +97,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		List<Zone> zonesById = new ArrayList<>();
 
+		Session session = sessionFactory.openSession();
 		for (Object zones : ((GroupsModel) session.get(GroupsModel.class,
 				groupId)).getZones())
 			zonesById.add(convertZonesByParentGroupId((ZonesModel) zones));
@@ -119,6 +124,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		List<Zone> zones = new ArrayList<Zone>();
 
+		Session session = sessionFactory.openSession();
 		for (Object additZones : ((ZonesModel) session.get(ZonesModel.class,
 				zoneId)).getAdditionals()) {
 			zones.add(convertAdditionalZonesByParentZoneId((AdditionalZonesModel) additZones));
@@ -166,6 +172,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		List<ZoneGroup> subgroups = new ArrayList<ZoneGroup>();
 
+		Session session = sessionFactory.openSession();
 		for (Object groups : ((GroupsModel) session.get(GroupsModel.class,
 				groupId)).getSubgroups())
 			subgroups.add(convertGroupsByParentGroupId((GroupsModel) groups));
@@ -186,16 +193,42 @@ public class ZoneDaoImpl implements ZoneDao {
 	 */
 
 	@Override
-	public ZoneGroup getRootZoneGroup() {
-		session.beginTransaction();
+	public ZoneGroup getRootZoneGroup(String projectId) {
+		Session session = sessionFactory.openSession(); 
+//		session.beginTransaction();
+//
+//		ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
+//
+//		session.save(groupImpl);
+//		session.getTransaction().commit();
+//		session.close();
+//
+//		return groupImpl;
+		ProjectModel project = (ProjectModel) session.get(ProjectModel.class, Integer.parseInt(projectId));
+		GroupsModel groupsModel = project.getGroupsModel();
+		
+		ZoneGroupImpl zoneGroup = convert(groupsModel);
+		
+		return zoneGroup;
+		
+	}
 
-		ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
-
-		session.save(groupImpl);
-		session.getTransaction().commit();
-		session.close();
-
-		return groupImpl;
+	
+	private ZoneGroupImpl convert(GroupsModel groupsModel) {
+		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
+		zoneGroup.setId(groupsModel.getId());
+		zoneGroup.setName(groupsModel.getName());
+		List<ZoneGroup> zoneGroups = new ArrayList<ZoneGroup>();
+		for (GroupsModel subgroup : groupsModel.getSubgroups())
+			zoneGroups.add(convert(subgroup));
+		zoneGroup.setGroups(zoneGroups);
+		List<Zone> zones = new ArrayList<Zone>();
+		for (ZonesModel zoneModel : groupsModel.getZones()) {
+			zones.add(convertZonesByParentGroupId(zoneModel));
+		}
+		zoneGroup.setZones(zones);
+		//TODO zoneGroup.setZones(zones)
+		return zoneGroup;
 	}
 
 	private ZoneGroup convertRootZoneGroup() {
@@ -203,7 +236,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		ZonesModel zonesModel = new ZonesModel();
 		ZoneGroupImpl groupImpl = new ZoneGroupImpl();
 
-		groupImpl.setId(zonesModel.getId().toString());
+		groupImpl.setId(zonesModel.getId());
 		groupImpl.setName(zonesModel.getName());
 
 		return groupImpl;
@@ -212,6 +245,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void addRootGroup(String groupName) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -232,19 +266,17 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
 
-		String query = "UPDATE `ksstroy`.`groups` SET `parent_id`='"
-				+ parentGroupId + "' WHERE `name`='" + groupName + "';";
-
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
 			GroupsModel subGroup = new GroupsModel();
 			subGroup.setName(groupName);
+			subGroup.setRootgroup((GroupsModel) session.get(GroupsModel.class, parentGroupId));
 			session.save(subGroup);
 
-			session.createSQLQuery(query).executeUpdate();
-
 			session.flush();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -260,12 +292,13 @@ public class ZoneDaoImpl implements ZoneDao {
 	 */
 
 	@Override
-	public void updateZone(Zone zone, String parentGroupId) {
+	public void storeZone(Zone zone, String parentGroupId) {
 
 		String query = "UPDATE `ksstroy`.`zones` SET `group_for_zones_id`='"
 				+ parentGroupId + "' WHERE `name`='"
 				+ zone.getName().toString() + "';";
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -302,7 +335,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	 */
 
 	@Override
-	public void updateZoneToZone(Zone zone, String parentZoneId) {
+	public void storeZoneToZone(Zone zone, String parentZoneId) {
 
 		String queryAddditZones = "UPDATE `ksstroy`.`adddit_zones` SET `zones_additionals`='"
 				+ parentZoneId
@@ -316,6 +349,7 @@ public class ZoneDaoImpl implements ZoneDao {
 				+ zone.getName().toString()
 				+ "';";
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -365,10 +399,13 @@ public class ZoneDaoImpl implements ZoneDao {
 		return additionalZonesModel;
 	}
 
+	
+	
 	@Override
 	public void addZone(String zoneName, Double width, Double height,
 			String measure) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -393,6 +430,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	public void addAdditZone(String zoneName, Double width, Double height,
 			String parentZoneId, String measure) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -421,6 +459,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	public void addSurplusZone(String zoneName, Double width, Double height,
 			String parentZoneId, String measure) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -448,6 +487,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void removeZone(String zoneId) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -468,6 +508,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void updateGroup(String name) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -488,6 +529,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void updateGroupToGroup(String groupName, String parentGroupId) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 
@@ -511,6 +553,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void removeGroup(String groupId) {
 
+		Session session = sessionFactory.openSession(); 
 		try {
 			session.beginTransaction();
 

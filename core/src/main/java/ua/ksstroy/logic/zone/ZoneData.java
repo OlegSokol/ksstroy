@@ -1,5 +1,6 @@
 package ua.ksstroy.logic.zone;
 
+import java.util.ArrayList;
 import java.util.List;
 /*	
  The class is contain all information about particular zone in building
@@ -15,9 +16,9 @@ public class ZoneData {
 
 	private String name;
 
-	private List<ZoneData> additional; 
+	private List<ZoneData> additional = new ArrayList<>(); 
 
-	private List<ZoneData> surplus; 
+	private List<ZoneData> surplus = new ArrayList<>(); 
 
 	private Double width;
 

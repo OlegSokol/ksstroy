@@ -43,7 +43,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		return groupGroups;
 	}
 
-	public ZoneGroup getRootZoneGroup()
+	public ZoneGroup getRootZoneGroup(String projectId)
 	{
 		ZoneGroup zoneGroup  = new ZoneGroupImpl();
 		return zoneGroup;
@@ -60,15 +60,8 @@ public class ZoneDaoImpl implements ZoneDao {
 		
 	}
 
-	public void storeZone(Zone zone, String parentGroupId)
-	{
-		
-	}
 
-	public void storeZoneToZone(Zone zone, String parentZoneId)
-	{
-		
-	}
+
 
 	public void removeZoneFromZone(Zone zone, String parentZoneId)
 	{
@@ -97,13 +90,13 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void updateZone(Zone zone, String parentGroupId) {
+	public void storeZone(Zone zone, String parentGroupId) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateZoneToZone(Zone zone, String parentZoneId) {
+	public void storeZoneToZone(Zone zone, String parentZoneId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -131,5 +124,6 @@ public class ZoneDaoImpl implements ZoneDao {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

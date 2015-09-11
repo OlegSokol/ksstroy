@@ -16,8 +16,8 @@ import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
 public class ZoneManagerImpl implements ZoneManager {
 	
 	@Autowired
-	@Qualifier("MockDaoImpl")
-	ZoneDaoImpl zoneDaoImpl;	
+	@Qualifier("zoneDao")
+	ZoneDao zoneDaoImpl;	
 	//ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 	
 	/*
@@ -25,10 +25,10 @@ SAMPLE OF CUSTOM EXCEPTION IMPLEMENTATION
 DISCLAIMER:IT COULD BE DOESNT AWFULL RIGHT
 	 */
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
-if(zoneDaoImpl.getRootZoneGroup()==null)
+if(zoneDaoImpl.getRootZoneGroup(projectId)==null)
 throw new  ZoneDaoDoesntExistException();
 	
-		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup());
+		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup(projectId));
 		return zoHiDa;
 	}
 
@@ -94,14 +94,14 @@ throw new  ZoneDaoDoesntExistException();
 		boolean nameFree = true;
 		// Exception realization needed
 		Zone zoneImpl = convertZoneDataToZone(zone);
-		zoneDaoImpl.removeZoneFromZone(zoneImpl, parentZoneId);
+		zoneDaoImpl.storeZoneToZone(zoneImpl, parentZoneId);
 	}
 
 	private ZoneData convertZoneToZoneData(Zone zone){
 		ZoneData convZoneData = new ZoneData();
 		
 		List<ZoneData> additionalList = new ArrayList<ZoneData>();
-		if (!zone.getAdditional().isEmpty()){
+		if (zone.getAdditional() != null && !zone.getAdditional().isEmpty()){
 			for (Zone tempZone: zone.getAdditional()){
 				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
 				additionalList.add(tempZoneData);
@@ -198,7 +198,7 @@ throw new  ZoneDaoDoesntExistException();
 			
 		List<ZoneData> rootZoneData = new ArrayList<ZoneData>();
 		
-		if (!rootZoneGroup.getZones().isEmpty())
+		if (rootZoneGroup.getZones() != null && !rootZoneGroup.getZones().isEmpty())
 		{
 			for (Zone tempZone: rootZoneGroup.getZones())
 			{
@@ -207,7 +207,7 @@ throw new  ZoneDaoDoesntExistException();
 		}
 		
 		List<ZoneHierarchyData> tempZoHiDa = new ArrayList<ZoneHierarchyData>();
-		if(!rootZoneGroup.getGroups().isEmpty())
+		if(rootZoneGroup.getGroups() != null && !rootZoneGroup.getGroups().isEmpty())
 		{
 			for (ZoneGroup tempGroup: rootZoneGroup.getGroups())
 					{

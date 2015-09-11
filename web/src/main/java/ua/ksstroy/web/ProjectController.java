@@ -2,7 +2,10 @@ package ua.ksstroy.web;
 
 import javax.annotation.Resource;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,16 +21,16 @@ import ua.ksstroy.mocks.ZoneHierarchyMockFactory;
 @Controller
 public class ProjectController {
 
-	@Resource
+	@Resource(name="ZoneManagerImpl")
 	ZoneManager zoneManager;
 
-	@RequestMapping(value = "/projects/{projectName}", method = RequestMethod.GET)
-	public ModelAndView showZHD(@PathVariable String projectName) {
+	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
+	public ModelAndView showZHD(@PathVariable String projectId) {
 		ModelAndView project = new ModelAndView("project");
-		project.addObject("projectName", projectName);// the project name from
+		project.addObject("projectName", projectId);// the project name from
 														// PathVariabl
 		project.addObject("zhd",
-				ZoneHierarchyMockFactory.createZoneHierarchyDataWith2Groups());
+				zoneManager.getRootZoneHierarchy(projectId));
 		return project;
 
 	}
@@ -45,10 +48,10 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
-	public String addGroupToGroup(@RequestParam("groupName") String groupName,
-			@RequestParam("parentGroupId") String parentGroupId) {
+	public String addGroupToGroup(String projectId, @RequestParam("groupName") String groupName,
+			@RequestParam("parentGroupId") String parentGroupId, @RequestParam("projectId") String id) {
 		zoneManager.addGroupToGroup(groupName, parentGroupId);
-		return ("redirect:/projects/mock");
+		return "redirect:/projects/" + id;
 	}
 
 	/*

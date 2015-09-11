@@ -1,5 +1,6 @@
 package ua.ksstroy.logic.zone;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ZoneImpl implements Zone {
@@ -8,9 +9,9 @@ public class ZoneImpl implements Zone {
 
 	private String name;
 
-	private List<Zone> additional;
+	private List<Zone> additional = new ArrayList<Zone>();
 
-	private List<Zone> surplus;
+	private List<Zone> surplus = new ArrayList<Zone>();
 
 	private Double width;
 

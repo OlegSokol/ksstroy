@@ -34,8 +34,9 @@ public class GroupsModel implements Serializable {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-//	@OneToOne(fetch = FetchType.LAZY, mappedBy = "groups", cascade = CascadeType.ALL)
-//	private ProjectModel projectModel;
+	// @OneToOne(fetch = FetchType.LAZY, mappedBy = "groups", cascade =
+	// CascadeType.ALL)
+	// private ProjectModel projectModel;
 
 	/*
 	 * One to many group for zones
@@ -56,7 +57,7 @@ public class GroupsModel implements Serializable {
 	 * One to many root root group for subgroups same one entity
 	 */
 
-	@OneToMany(mappedBy = "rootgroup")
+	@OneToMany(mappedBy = "rootgroup", cascade = { CascadeType.ALL })
 	private List<GroupsModel> subgroups = new ArrayList<>();
 
 	public String getId() {
@@ -99,12 +100,12 @@ public class GroupsModel implements Serializable {
 		this.zones = zones;
 	}
 
-//	public ProjectModel getProjectModel() {
-//		return projectModel;
-//	}
-//
-//	public void setProjectModel(ProjectModel projectModel) {
-//		this.projectModel = projectModel;
-//	}
+	// public ProjectModel getProjectModel() {
+	// return projectModel;
+	// }
+	//
+	// public void setProjectModel(ProjectModel projectModel) {
+	// this.projectModel = projectModel;
+	// }
 
 }

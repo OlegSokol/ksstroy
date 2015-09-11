@@ -24,7 +24,7 @@
 		</c:if>
 	
 		<c:forEach items="${projects}" var="entry">
-	      <a href="./projects/${entry.projectName}">${entry.projectName}</a> <br>
+	      <a href="./${entry.id}">${entry.projectName}</a> <br>
 		</c:forEach>
 		
 	</div><!-- END OF WRAPER -->
