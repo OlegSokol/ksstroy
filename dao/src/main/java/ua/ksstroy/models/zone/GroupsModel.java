@@ -34,17 +34,6 @@ public class GroupsModel implements Serializable {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	// @OneToOne(fetch = FetchType.LAZY, mappedBy = "groups", cascade =
-	// CascadeType.ALL)
-	// private ProjectModel projectModel;
-
-	/*
-	 * One to many group for zones
-	 */
-
-	@OneToMany(mappedBy = "groupsModel")
-	private List<ZonesModel> zones = new ArrayList<ZonesModel>();
-
 	/*
 	 * Many to one subgroups for root group same one entity
 	 */
@@ -52,13 +41,6 @@ public class GroupsModel implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
 	private GroupsModel rootgroup;
-
-	/*
-	 * One to many root root group for subgroups same one entity
-	 */
-
-	@OneToMany(mappedBy = "rootgroup", cascade = { CascadeType.ALL })
-	private List<GroupsModel> subgroups = new ArrayList<>();
 
 	public String getId() {
 		return id;
@@ -83,29 +65,5 @@ public class GroupsModel implements Serializable {
 	public void setRootgroup(GroupsModel rootgroup) {
 		this.rootgroup = rootgroup;
 	}
-
-	public List<GroupsModel> getSubgroups() {
-		return subgroups;
-	}
-
-	public void setSubgroups(List<GroupsModel> subgroups) {
-		this.subgroups = subgroups;
-	}
-
-	public List<ZonesModel> getZones() {
-		return zones;
-	}
-
-	public void setZones(List<ZonesModel> zones) {
-		this.zones = zones;
-	}
-
-	// public ProjectModel getProjectModel() {
-	// return projectModel;
-	// }
-	//
-	// public void setProjectModel(ProjectModel projectModel) {
-	// this.projectModel = projectModel;
-	// }
 
 }

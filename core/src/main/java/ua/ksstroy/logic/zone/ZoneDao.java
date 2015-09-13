@@ -28,10 +28,10 @@ public interface ZoneDao {
 	void addZone(String zoneName, Double width, Double height, String measure);
 
 	void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId, String measure);
+			String measure, String parentZoneId);
 
 	void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, String measure);
+			String measure, String parentZoneId);
 
 	void storeZone(Zone zone, String parentGroupId);
 
@@ -52,6 +52,5 @@ public interface ZoneDao {
 	void updateGroupToGroup(String groupName, String parentGroupId);
 
 	void removeGroup(String groupId);
-
 
 }
