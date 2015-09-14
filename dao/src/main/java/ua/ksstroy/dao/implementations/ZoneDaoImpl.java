@@ -2,18 +2,18 @@ package ua.ksstroy.dao.implementations;
 
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.junit.Test;
+import org.hibernate.*;
+import org.springframework.stereotype.Component;
 
-import ua.ksstroy.logic.zone.Zone;
-import ua.ksstroy.logic.zone.ZoneDao;
-import ua.ksstroy.logic.zone.ZoneGroup;
+import ua.ksstroy.logic.project.Project;
+import ua.ksstroy.logic.zone.*;
+import ua.ksstroy.models.project.ProjectModel;
+import ua.ksstroy.models.project.UserModel;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
+@Component("ZoneDao")
 public class ZoneDaoImpl implements ZoneDao {
 
 	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -55,11 +55,6 @@ public class ZoneDaoImpl implements ZoneDao {
 		return null;
 	}
 
-	@Test
-	public void testAddZone() {
-		addZone("Room", 34.0, 14.0, "m2");
-	}
-
 	@Override
 	public void addZone(String zoneName, Double width, Double height,
 			String measure) {
@@ -82,11 +77,6 @@ public class ZoneDaoImpl implements ZoneDao {
 				session.close();
 			}
 		}
-	}
-
-	@Test
-	public void testAddAdditZone() {
-		addAdditZone("Room", 34.0, 14.0, "m2", "1");
 	}
 
 	@Override
@@ -114,11 +104,6 @@ public class ZoneDaoImpl implements ZoneDao {
 				session.close();
 			}
 		}
-	}
-
-	@Test
-	public void testAddSurplusZone() {
-		addSurplusZone("Room", 34.0, 14.0, "m2", "1");
 	}
 
 	@Override
@@ -162,13 +147,23 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void removeZone(String zoneId) {
-		// TODO Auto-generated method stub
+		try {
+			session.beginTransaction();
 
-	}
-
-	@Test
-	public void testAddRootGroup() {
-		addRootGroup("Flat");
+			Object persistentInstance = session.load(ZonesModel.class, zoneId);
+			if (persistentInstance != null) {
+				session.delete(persistentInstance);
+			}
+			session.flush();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 	}
 
 	@Override
@@ -190,11 +185,6 @@ public class ZoneDaoImpl implements ZoneDao {
 				session.close();
 			}
 		}
-	}
-
-	@Test
-	public void testAddGroupToGroup() {
-		addGroupToGroup("Flat", "1");
 	}
 
 	@Override
@@ -222,20 +212,67 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void updateGroup(String name) {
-		// TODO Auto-generated method stub
-
+		try {
+			session.beginTransaction();
+			GroupsModel group = (GroupsModel) session.get(GroupsModel.class,
+					"1");
+			if (group != null) {
+				group.setName(name);
+				session.update(group);
+			}
+			session.flush();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 	}
 
 	@Override
 	public void updateGroupToGroup(String groupName, String parentGroupId) {
-		// TODO Auto-generated method stub
-
+		try {
+			session.beginTransaction();
+			GroupsModel group = (GroupsModel) session.get(GroupsModel.class,
+					parentGroupId);
+			if (group != null) {
+				group.setName(groupName);
+				session.update(group);
+			}
+			session.flush();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 	}
 
 	@Override
 	public void removeGroup(String groupId) {
-		// TODO Auto-generated method stub
+		try {
+			session.beginTransaction();
 
+			GroupsModel group = (GroupsModel) session.load(GroupsModel.class,
+					groupId);
+			if (group != null) {
+				session.delete(group);
+			}
+			session.flush();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 	}
-
 }

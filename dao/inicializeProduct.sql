@@ -41,6 +41,7 @@ CREATE TABLE `zones` (
   `surplus_for_zones_id` BIGINT(20) NULL DEFAULT NULL,
   `addit_for_zones_id` BIGINT(20) NULL DEFAULT NULL
 );
+INSERT INTO `zones` (`name`, `width`, `height`, `mesure_name`) VALUES ('Window', '3.0', '3.1', 'm2');
 
 
 DROP TABLE IF EXISTS `groups`;
