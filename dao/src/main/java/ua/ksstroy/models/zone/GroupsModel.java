@@ -35,12 +35,26 @@ public class GroupsModel implements Serializable {
 	private String name;
 
 	/*
+	 * One to many group for zones
+	 */
+
+	@OneToMany(mappedBy = "groupsModel")
+	private List<ZonesModel> zones = new ArrayList<ZonesModel>();
+
+	/*
 	 * Many to one subgroups for root group same one entity
 	 */
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
 	private GroupsModel rootgroup;
+
+	/*
+	 * One to many root root group for subgroups same one entity
+	 */
+
+	@OneToMany(mappedBy = "rootgroup", cascade = { CascadeType.ALL })
+	private List<GroupsModel> subgroups = new ArrayList<>();
 
 	public String getId() {
 		return id;
@@ -66,4 +80,19 @@ public class GroupsModel implements Serializable {
 		this.rootgroup = rootgroup;
 	}
 
+	public List<GroupsModel> getSubgroups() {
+		return subgroups;
+	}
+
+	public void setSubgroups(List<GroupsModel> subgroups) {
+		this.subgroups = subgroups;
+	}
+
+	public List<ZonesModel> getZones() {
+		return zones;
+	}
+
+	public void setZones(List<ZonesModel> zones) {
+		this.zones = zones;
+	}
 }

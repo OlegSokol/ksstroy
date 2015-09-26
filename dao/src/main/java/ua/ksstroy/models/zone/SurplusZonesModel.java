@@ -3,10 +3,6 @@ package ua.ksstroy.models.zone;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,12 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "zones", catalog = "ksstroy")
-public class ZonesModel implements Serializable {
+@Table(name = "surplus_zones", catalog = "ksstroy")
+public class SurplusZonesModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -41,26 +36,12 @@ public class ZonesModel implements Serializable {
 	private String mesureName;
 
 	/*
-	 * One to many zone for surplusesZones
-	 */
-
-	@OneToMany(mappedBy = "zonesSurpluses")
-	private List<SurplusZonesModel> surpluses = new ArrayList<>();
-
-	/*
-	 * One to many zone for addotionalZones
-	 */
-
-	@OneToMany(mappedBy = "zonesAdditionals")
-	private List<AdditionalZonesModel> additionals = new ArrayList<>();
-
-	/*
-	 * Many to one zones for group
+	 * Many to one surpluses for zone
 	 */
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "group_for_zones_id")
-	private GroupsModel groupsModel;
+	@JoinColumn(name = "zones_surpluses")
+	private ZonesModel zonesSurpluses;
 
 	public String getId() {
 		return id;
@@ -102,28 +83,12 @@ public class ZonesModel implements Serializable {
 		this.mesureName = mesureName.toString();
 	}
 
-	public List<SurplusZonesModel> getSurpluses() {
-		return surpluses;
+	public ZonesModel getZonesSurpluses() {
+		return zonesSurpluses;
 	}
 
-	public void setSurpluses(List<SurplusZonesModel> surpluses) {
-		this.surpluses = surpluses;
-	}
-
-	public List<AdditionalZonesModel> getAdditionals() {
-		return additionals;
-	}
-
-	public void setAdditionals(List<AdditionalZonesModel> additionals) {
-		this.additionals = additionals;
-	}
-
-	public GroupsModel getGroupsModel() {
-		return groupsModel;
-	}
-
-	public void setGroupsModel(GroupsModel groupsModel) {
-		this.groupsModel = groupsModel;
+	public void setZonesSurpluses(ZonesModel zonesSurpluses) {
+		this.zonesSurpluses = zonesSurpluses;
 	}
 
 }
