@@ -25,19 +25,17 @@ public interface ZoneDao {
 	 * actions from Zones
 	 */
 
-	void addZone(String zoneName, Double width, Double height, String  measure);
+	void addZone(String zoneName, Double width, Double height, String measure);
 
-	void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId, String  measure);
+	void addAdditZone(String zoneName, Double width, Double height, String parentZoneId, String measure);
 
-	void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, String measure);
-
-	void storeZone(Zone zone, String parentGroupId);
+	void addSurplusZone(String zoneName, Double width, Double height, String parentZoneId, String measure);
 
 	void storeZoneToZone(Zone zone, String parentZoneId);
 
 	void removeZone(String zoneId);
+
+	void storeZone(Zone zone, String parentGroupId);
 
 	/*
 	 * actions from Groups
@@ -52,6 +50,5 @@ public interface ZoneDao {
 	void updateGroupToGroup(String groupName, String parentGroupId);
 
 	void removeGroup(String groupId);
-
 
 }
