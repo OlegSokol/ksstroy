@@ -70,21 +70,21 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void addZone(String zoneName, Double width, Double height,
-			Enum measure) {
+			String measure) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId,Enum measure) {
+			String parentZoneId,String  measure) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure) {
+			String parentZoneId, String  measure) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -4,9 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,11 +16,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+//TODO : add ability to sent whole zoneData object with included additional and surplus zones
+//now additional and surplus zones can being added only separately via add setAdditionalIdForZone(ZoneModel) 
+//and setSurplusIdForZone(ZoneModel)
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "zones", catalog = "ksstroy")
 public class ZonesModel implements Serializable {
 
+	//TODO: add ability to specify id explicitly  e.g( setId("10500")
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -38,29 +40,25 @@ public class ZonesModel implements Serializable {
 	private Double height;
 
 	@Column(name = "mesure_name")
-	private String mesureName;
+	private String measureName;
 
-	/*
-	 * One to many zone for surplusesZones
-	 */
-
-	@OneToMany(mappedBy = "zonesSurpluses")
-	private List<SurplusZonesModel> surpluses = new ArrayList<>();
-
-	/*
-	 * One to many zone for addotionalZones
-	 */
-
-	@OneToMany(mappedBy = "zonesAdditionals")
-	private List<AdditionalZonesModel> additionals = new ArrayList<>();
-
-	/*
-	 * Many to one zones for group
-	 */
+	/*@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "group_for_zones_id")
+	private GroupsModel groupIdForZone;*/
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "group_for_zones_id")
-	private GroupsModel groupsModel;
+	@JoinColumn(name = "surplus_for_zones_id")
+	private ZonesModel surplusIdForZone;
+
+	@OneToMany(mappedBy = "surplusIdForZone")
+	private List<ZonesModel> surplusZone = new ArrayList<>();
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "addit_for_zones_id")
+	private ZonesModel additIdForZone;
+
+	@OneToMany(mappedBy = "additIdForZone")
+	private List<ZonesModel> additionalZone = new ArrayList<>();
 
 	public String getId() {
 		return id;
@@ -95,35 +93,51 @@ public class ZonesModel implements Serializable {
 	}
 
 	public String getMesureName() {
-		return mesureName;
+		return measureName;
 	}
 
-	public void setMesureName(Enum mesureName) {
-		this.mesureName = mesureName.toString();
+	public void setMesureName(String measureName) {
+		this.measureName = measureName.toString();
 	}
 
-	public List<SurplusZonesModel> getSurpluses() {
-		return surpluses;
+	/*public GroupsModel getGroupIdForZone() {
+		return groupIdForZone;
+	}*/
+
+/*	public void setGroupIdForZone(GroupsModel groupIdForZone) {
+		this.groupIdForZone = groupIdForZone;
+	}*/
+
+	public ZonesModel getSurplusIdForZone() {
+		return surplusIdForZone;
 	}
 
-	public void setSurpluses(List<SurplusZonesModel> surpluses) {
-		this.surpluses = surpluses;
+	public void setSurplusIdForZone(ZonesModel surplusIdForZone) {
+		this.surplusIdForZone = surplusIdForZone;
 	}
 
-	public List<AdditionalZonesModel> getAdditionals() {
-		return additionals;
+	public List<ZonesModel> getSurplusZone() {
+		return surplusZone;
 	}
 
-	public void setAdditionals(List<AdditionalZonesModel> additionals) {
-		this.additionals = additionals;
+	public void setSurplusZone(List<ZonesModel> surplusZone) {
+		this.surplusZone = surplusZone;
 	}
 
-	public GroupsModel getGroupsModel() {
-		return groupsModel;
+	public ZonesModel getAdditIdForZone() {
+		return additIdForZone;
 	}
 
-	public void setGroupsModel(GroupsModel groupsModel) {
-		this.groupsModel = groupsModel;
+	public void setAdditIdForZone(ZonesModel additIdForZone) {
+		this.additIdForZone = additIdForZone;
+	}
+
+	public List<ZonesModel> getAdditionalZone() {
+		return additionalZone;
+	}
+
+	public void setAdditionalZone(List<ZonesModel> additionalZone) {
+		this.additionalZone = additionalZone;
 	}
 
 }

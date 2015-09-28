@@ -25,13 +25,13 @@ public interface ZoneDao {
 	 * actions from Zones
 	 */
 
-	void addZone(String zoneName, Double width, Double height, Enum measure);
+	void addZone(String zoneName, Double width, Double height, String  measure);
 
 	void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure);
+			String parentZoneId, String  measure);
 
 	void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure);
+			String parentZoneId, String measure);
 
 	void storeZone(Zone zone, String parentGroupId);
 

@@ -20,14 +20,14 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 		<!-- List of XML mapping files -->
-		<mapping class="ua.ksstroy.models.project.ProjectModel"></mapping>
-		<mapping class="ua.ksstroy.models.project.UserModel"></mapping>
-		<mapping class="ua.ksstroy.models.zone.GroupsModel"></mapping>
+		<!-- <mapping class="ua.ksstroy.models.project.ProjectModel"></mapping>
+		<mapping class="ua.ksstroy.models.project.UserModel"></mapping> -->
 		<mapping class="ua.ksstroy.models.zone.ZonesModel"></mapping>
-		<mapping class="ua.ksstroy.models.zone.SurplusZonesModel"></mapping>
+		<!-- <mapping class="ua.ksstroy.models.zone.SurplusZonesModel"></mapping>
+		<mapping class="ua.ksstroy.models.zone.GroupsModel"></mapping>
 		<mapping class="ua.ksstroy.models.zone.AdditionalZonesModel"></mapping>
 		<mapping class="ua.ksstroy.models.worktype.WorkTypeModel"></mapping>
-		<mapping class="ua.ksstroy.models.material.MaterialModel"></mapping>
+		<mapping class="ua.ksstroy.models.material.MaterialModel"></mapping> -->
 		
 
     
