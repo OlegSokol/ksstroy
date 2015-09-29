@@ -38,7 +38,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			zonesModel.setHeight(height);
 			zonesModel.setMesureName(measure);
 			session.save(zonesModel);
-			session.flush();//TODO check is .flush is vital here
+			session.flush();// TODO check is .flush is vital here
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -49,11 +49,34 @@ public class ZoneDaoImpl implements ZoneDao {
 			}
 		}
 	}
-	
-	
-	
-	
+
+	/*
+	 * is it partly duplicate .addZone functionality ?
+	 */
 	@Override
+	public void storeZone(Zone zone, String parentGroupId) {
+
+		String query = "UPDATE `ksstroy`.`zones` SET `parent_group_id`='" + parentGroupId + "' WHERE `name`='"
+				+ zone.getName().toString() + "';";
+
+		Session session = sessionFactory.openSession();
+		try {
+			session.beginTransaction();
+			ZonesModel zonesModel = convertStoreZone(zone);
+			session.save(zonesModel);
+			session.createSQLQuery(query).executeUpdate();
+			session.flush();
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
+
 	public List<Zone> getAllZones() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -118,12 +141,19 @@ public class ZoneDaoImpl implements ZoneDao {
 	public List<Zone> getZonesByParentGroupId(String groupId) {
 
 		List<Zone> zonesById = new ArrayList<>();
-		// TODO implement
+
+		Session session = sessionFactory.openSession();
+		// TODO implement without Query
 		/*
-		 * Session session = sessionFactory.openSession(); for (Object zones :
-		 * ((GroupsModel) session.get(GroupsModel.class, groupId)).getZones())
+		 * for (Object zones :((GroupsModel) session.get(GroupsModel.class,
+		 * groupId)).getZones())
 		 * zonesById.add(convertZonesByParentGroupId((ZonesModel) zones));
 		 */
+		List uncastedZonesModelsById = session.createQuery("from ZonesModel where parent_group_id='" + groupId + "'").list();
+		for (Object object : uncastedZonesModelsById) {
+			zonesById.add(this.convertZoneById((ZonesModel)object));
+		}
+
 		return zonesById;
 	}
 
@@ -215,19 +245,21 @@ public class ZoneDaoImpl implements ZoneDao {
 	public ZoneGroup getRootZoneGroup(String projectId) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		
+
 		// ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
-		
+
 		// session.save(groupImpl);
 		// session.getTransaction().commit();
 		// session.close();
 		//
 		// return groupImpl;
-		/*ProjectModel project = (ProjectModel) session.get(ProjectModel.class, Integer.parseInt(projectId));
-		GroupsModel groupsModel = project.getGroupsModel();
-
-		ZoneGroupImpl zoneGroup = convert(groupsModel);
-*/
+		/*
+		 * ProjectModel project = (ProjectModel) session.get(ProjectModel.class,
+		 * Integer.parseInt(projectId)); GroupsModel groupsModel =
+		 * project.getGroupsModel();
+		 * 
+		 * ZoneGroupImpl zoneGroup = convert(groupsModel);
+		 */
 		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
 		return zoneGroup;
 
@@ -308,40 +340,15 @@ public class ZoneDaoImpl implements ZoneDao {
 	 * demands changes
 	 */
 
-	@Override
-	public void storeZone(Zone zone, String parentGroupId) {
-
-		String query = "UPDATE `ksstroy`.`zones` SET `group_for_zones_id`='" + parentGroupId + "' WHERE `name`='"
-				+ zone.getName().toString() + "';";
-
-		Session session = sessionFactory.openSession();
-		try {
-			session.beginTransaction();
-
-			ZonesModel zonesModel = convertStoreZone(zone);
-
-			session.save(zonesModel);
-			session.createSQLQuery(query).executeUpdate();
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
 	public ZonesModel convertStoreZone(Zone zone) {
 
 		ZonesModel model = new ZonesModel();
 
-		/*
-		 * model.setId(zone.getId()); model.setName(zone.getName());
-		 * model.setHeight(zone.getHeight()); model.setWidth(zone.getWidth());
-		 * model.setMesureName(zone.getMeasure());
-		 */
+		model.setId(zone.getId());
+		model.setName(zone.getName());
+		model.setHeight(zone.getHeight());
+		model.setWidth(zone.getWidth());
+		model.setMesureName(zone.getMeasure().toString());
 
 		return model;
 	}
@@ -408,8 +415,6 @@ public class ZoneDaoImpl implements ZoneDao {
 	 * 
 	 * return additionalZonesModel; }
 	 */
-
-	
 
 	@Override
 	public void addAdditZone(String zoneName, Double width, Double height, String parentZoneId, String measure) {

@@ -10,21 +10,20 @@ import java.util.List;
  (e.g Zone "Kitchen" contains surplus zones: Windows, Door etc.)
 */
 
-public class ZoneData {  
-	//Saloed:make this class the implement of Zone
+public class ZoneData {
 	private String id;
 
 	private String name;
 
-	private List<ZoneData> additional = new ArrayList<>(); 
+	private List<ZoneData> additional = new ArrayList<>();
 
-	private List<ZoneData> surplus = new ArrayList<>(); 
+	private List<ZoneData> surplus = new ArrayList<>();
 
 	private Double width;
 
 	private Double height;
 
-	private Double value; 
+	private Double value;
 
 	private String measureName;
 

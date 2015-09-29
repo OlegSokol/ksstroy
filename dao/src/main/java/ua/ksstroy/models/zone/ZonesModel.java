@@ -42,9 +42,9 @@ public class ZonesModel implements Serializable {
 	@Column(name = "mesure_name")
 	private String measureName;
 
-	/*@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "group_for_zones_id")
-	private GroupsModel groupIdForZone;*/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_group_id")
+	private GroupsModel groupIdForZone;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "surplus_for_zones_id")
@@ -100,13 +100,13 @@ public class ZonesModel implements Serializable {
 		this.measureName = measureName.toString();
 	}
 
-	/*public GroupsModel getGroupIdForZone() {
+	public GroupsModel getGroupIdForZone() {
 		return groupIdForZone;
-	}*/
+	}
 
-/*	public void setGroupIdForZone(GroupsModel groupIdForZone) {
+public void setGroupIdForZone(GroupsModel groupIdForZone) {
 		this.groupIdForZone = groupIdForZone;
-	}*/
+	}
 
 	public ZonesModel getSurplusIdForZone() {
 		return surplusIdForZone;

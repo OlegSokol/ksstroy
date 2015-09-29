@@ -58,9 +58,9 @@ INSERT INTO `zones`  VALUES (6,'okno', 3.0,1.25,'m2',null,1,null);
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
     `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(50) NULL DEFAULT NULL,
-    `parent_id` BIGINT(20) NULL DEFAULT NULL
+    `name` VARCHAR(50) ,
+    `parent_id` BIGINT(20) 
 );
-INSERT INTO `groups` (name) VALUES ('Kvartira');
+INSERT INTO `groups`  VALUES (1,'Kvartira',null);
 INSERT INTO `groups` VALUES (2,'Kuhnya', 1);
-
+INSERT INTO `groups` VALUES (3,'Spalnya', 1);

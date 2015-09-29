@@ -39,13 +39,6 @@ public class ProjectModel implements Serializable {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-//	@GenericGenerator(name = "generator", strategy = "foreign", 
-//			parameters = @Parameter(name = "property", value = "groups"))
-//	@Id
-//	@GeneratedValue(generator = "generator")
-//	@Column(name = "ID_GROUP", nullable = false)
-//	private Integer idGroup;
-//
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_GROUP")
 	private GroupsModel groupsModel;
@@ -92,13 +85,5 @@ public class ProjectModel implements Serializable {
 	public void setGroupsModel(GroupsModel groupsModel) {
 		this.groupsModel = groupsModel;
 	}
-//
-//	public Integer getIdGroup() {
-//		return idGroup;
-//	}
-//
-//	public void setIdGroup(Integer idGroup) {
-//		this.idGroup = idGroup;
-//	}
 
 }

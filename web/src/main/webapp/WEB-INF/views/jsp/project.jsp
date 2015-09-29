@@ -59,7 +59,16 @@
 		<!-- END OF START_DATA-->
 
 
+<p>Test forms for invoke ZoneManager methods</p>
 
+<form action="/web/projects/addZone" method="POST">
+<input name="name" type="text" value="testAddZoneFromWebName">
+<input name="parentGroupId" type="text" value="14">
+<input name="measureName" type="text" value="m^2">
+<input name="width" type="text" value="123"> 
+<input name="heigh" type="text" value="123.0"> 
+<input type="submit" value="addZone(ZoneData zone, String parentGroupId)">
+</form>
 
 
 
@@ -73,10 +82,10 @@
 			$(document).ready(
 					function() {
 
-						/*FOR TEST PURPOSES ONLY
+						//FOR TEST PURPOSES ONLY
 							$(".expanded").toggle();
 						$(".constructor").toggle();
-						 */
+						
 
 						$("input").prop('disabled', true);
 

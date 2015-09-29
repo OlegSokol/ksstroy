@@ -68,6 +68,7 @@ public class ZonesModelTest {
 		session.delete(outputRootZonesModel);
 		session.delete(outputSurplusZonesModel);
 		session.getTransaction().commit();
+		session.close();
 
 		assertEquals(name, outputRootZonesModel.getName());
 		assertEquals(measureName, outputRootZonesModel.getMesureName());
