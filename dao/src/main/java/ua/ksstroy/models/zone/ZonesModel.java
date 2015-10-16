@@ -3,28 +3,16 @@ package ua.ksstroy.models.zone;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-//TODO : add ability to sent whole zoneData object with included additional and surplus zones
-//now additional and surplus zones can being added only separately via add setAdditionalIdForZone(ZoneModel) 
-//and setSurplusIdForZone(ZoneModel)
+import javax.persistence.*;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "zones", catalog = "ksstroy")
 public class ZonesModel implements Serializable {
 
-	//TODO: add ability to specify id explicitly  e.g( setId("10500")
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -42,23 +30,43 @@ public class ZonesModel implements Serializable {
 	@Column(name = "mesure_name")
 	private String measureName;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	/*
+	 * Many to one zones to group
+	 */
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_group_id")
 	private GroupsModel groupIdForZone;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "surplus_for_zones_id")
-	private ZonesModel surplusIdForZone;
+	/*
+	 * One to many zone for additionalZone
+	 */
 
-	@OneToMany(mappedBy = "surplusIdForZone")
-	private List<ZonesModel> surplusZone = new ArrayList<>();
+	@OneToMany(mappedBy = "additZoneToRootZone")
+	private Set<ZonesModel> additionalZone = new HashSet<>();
+
+	/*
+	 * Many to one additionalZone to RootZone
+	 */
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "addit_for_zones_id")
-	private ZonesModel additIdForZone;
+	private ZonesModel additZoneToRootZone;
 
-	@OneToMany(mappedBy = "additIdForZone")
-	private List<ZonesModel> additionalZone = new ArrayList<>();
+	/*
+	 * One to many zone for surplusZone
+	 */
+
+	@OneToMany(mappedBy = "surplusZoneToRootZone")
+	private Set<ZonesModel> surplusZone = new HashSet<>();
+
+	/*
+	 * Many to one surplusZone to RootZone
+	 */
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "surplus_for_zones_id")
+	private ZonesModel surplusZoneToRootZone;
 
 	public String getId() {
 		return id;
@@ -92,11 +100,11 @@ public class ZonesModel implements Serializable {
 		this.height = height;
 	}
 
-	public String getMesureName() {
+	public String getMeasureName() {
 		return measureName;
 	}
 
-	public void setMesureName(String measureName) {
+	public void setMeasureName(Enum mesureName) {
 		this.measureName = measureName.toString();
 	}
 
@@ -104,40 +112,40 @@ public class ZonesModel implements Serializable {
 		return groupIdForZone;
 	}
 
-public void setGroupIdForZone(GroupsModel groupIdForZone) {
+	public void setGroupIdForZone(GroupsModel groupIdForZone) {
 		this.groupIdForZone = groupIdForZone;
 	}
 
-	public ZonesModel getSurplusIdForZone() {
-		return surplusIdForZone;
-	}
-
-	public void setSurplusIdForZone(ZonesModel surplusIdForZone) {
-		this.surplusIdForZone = surplusIdForZone;
-	}
-
-	public List<ZonesModel> getSurplusZone() {
-		return surplusZone;
-	}
-
-	public void setSurplusZone(List<ZonesModel> surplusZone) {
-		this.surplusZone = surplusZone;
-	}
-
-	public ZonesModel getAdditIdForZone() {
-		return additIdForZone;
-	}
-
-	public void setAdditIdForZone(ZonesModel additIdForZone) {
-		this.additIdForZone = additIdForZone;
-	}
-
-	public List<ZonesModel> getAdditionalZone() {
+	public Set<ZonesModel> getAdditionalZone() {
 		return additionalZone;
 	}
 
-	public void setAdditionalZone(List<ZonesModel> additionalZone) {
+	public void setAdditionalZone(Set<ZonesModel> additionalZone) {
 		this.additionalZone = additionalZone;
+	}
+
+	public ZonesModel getAdditZoneToRootZone() {
+		return additZoneToRootZone;
+	}
+
+	public void setAdditZoneToRootZone(ZonesModel additZoneToRootZone) {
+		this.additZoneToRootZone = additZoneToRootZone;
+	}
+
+	public Set<ZonesModel> getSurplusZone() {
+		return surplusZone;
+	}
+
+	public void setSurplusZone(Set<ZonesModel> surplusZone) {
+		this.surplusZone = surplusZone;
+	}
+
+	public ZonesModel getSurplusZoneToRootZone() {
+		return surplusZoneToRootZone;
+	}
+
+	public void setSurplusZoneToRootZone(ZonesModel surplusZoneToRootZone) {
+		this.surplusZoneToRootZone = surplusZoneToRootZone;
 	}
 
 }

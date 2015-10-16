@@ -53,11 +53,9 @@ INSERT INTO `zones`  VALUES (5,'dver', 2.0,1.0,'m2',null,1,null);
 INSERT INTO `zones`  VALUES (6,'okno', 3.0,1.25,'m2',null,1,null);
 
 
-
-
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
-    `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `group_id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(50) ,
     `parent_id` BIGINT(20) 
 );
