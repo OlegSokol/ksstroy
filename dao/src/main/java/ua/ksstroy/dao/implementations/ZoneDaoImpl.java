@@ -2,10 +2,10 @@ package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.logic.zone.Measure;
@@ -22,11 +22,10 @@ import ua.ksstroy.persistence.HibernateUtil;
 @Component("zoneDao")
 public class ZoneDaoImpl implements ZoneDao {
 
-	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+	private Session session;
 
 	public ZoneGroup getRootZoneGroup(String projectId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		session = HibernateUtil.getSessionFactory().openSession();
 
 		ProjectModel project = (ProjectModel) session.get(ProjectModel.class,
 				Integer.parseInt(projectId));
@@ -38,19 +37,50 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	}
 
+	public static void main(String[] args) {
+		ZoneDaoImpl daoImpl = new ZoneDaoImpl();
+		daoImpl.getRootZoneGroup("33");
+	}
+
 	private ZoneGroupImpl convert(GroupsModel groupsModel) {
 		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
 		zoneGroup.setId(groupsModel.getId());
 		zoneGroup.setName(groupsModel.getName());
-		List<ZoneGroup> zoneGroups = new ArrayList<ZoneGroup>();
-		for (GroupsModel subgroup : groupsModel.getSubGroup())
-			zoneGroups.add(convert(subgroup));
-		zoneGroup.setGroups(zoneGroups);
-		List<Zone> zones = new ArrayList<Zone>();
-		for (ZonesModel zoneModel : groupsModel.getZonesGroup()) {
-			zones.add(convertZonesByParentGroupId(zoneModel));
+
+		List<ZoneGroup> subGroups = new ArrayList<>();
+		for (GroupsModel subgroup : groupsModel.getSubGroup()) {
+			subGroups.add(convert(subgroup));
 		}
-		zoneGroup.setZones(zones);
+		zoneGroup.setGroups(subGroups);
+
+		List<Zone> rootZones = new ArrayList<>();
+		List<Zone> surplusZones = new ArrayList<>();
+		List<Zone> additionalZones = new ArrayList<>();
+
+		for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
+			System.out.println("–”“Œ¬¿ﬂ «ŒÕ¿:\n" + oneRootZone.getName());
+			for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone()) {
+				additionalZones
+						.add(convertZonesByParentGroupId(oneAdditionalZone));
+				System.out.println("ƒŒœŒÀÕ»“≈À‹Õ¿ﬂ «ŒÕ¿:\n"
+						+ oneAdditionalZone.getName());
+			}
+			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) {
+				surplusZones.add(convertZonesByParentGroupId(oneSurplusZone));
+				System.out.println("»«¡€“Œ◊Õ¿ﬂ «ŒÕ¿:\n"
+						+ oneSurplusZone.getName());
+			}
+
+			Zone allZonesAndSubZones = convertZonesByParentGroupId(oneRootZone);
+			allZonesAndSubZones.setAdditional(additionalZones);
+			allZonesAndSubZones.setSurplus(surplusZones);
+
+			rootZones.add(allZonesAndSubZones);
+
+		}
+
+		zoneGroup.setZones(rootZones);
+
 		return zoneGroup;
 	}
 
@@ -71,7 +101,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void addRootGroup(String groupName) {
 
-		Session session = sessionFactory.openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 
@@ -91,8 +121,8 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void removeZone(String zoneId) {
+		session = HibernateUtil.getSessionFactory().openSession();
 
-		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
 
@@ -113,7 +143,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void updateGroup(String name) {
 
-		Session session = sessionFactory.openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 
@@ -134,7 +164,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	@Override
 	public void removeGroup(String groupId) {
 
-		Session session = sessionFactory.openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			session.beginTransaction();
 

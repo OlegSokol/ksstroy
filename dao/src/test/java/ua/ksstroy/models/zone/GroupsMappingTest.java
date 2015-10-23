@@ -19,6 +19,18 @@ public class GroupsMappingTest {
 	private GroupsMappingTest test;
 
 	@Test
+	public void rootGroupTest() {
+		session = HibernateUtil.getSessionFactory().openSession();
+		ProjectModel project = (ProjectModel) session.get(ProjectModel.class,
+				33);
+		GroupsModel groupsModel = project.getGroupsModel();
+		ZoneGroupImpl groupImpl = convertGroup(groupsModel);
+
+		assertEquals("Kvartira", groupImpl.getName());
+
+	}
+
+	@Test
 	public void subGroupTest() {
 		test = new GroupsMappingTest();
 		Set<Object> group = new HashSet<>();
@@ -41,18 +53,6 @@ public class GroupsMappingTest {
 				groupId)).getSubGroup())
 			group.add(convertGroup((GroupsModel) zone));
 		return group;
-	}
-
-	@Test
-	public void rootGroupTest() {
-		session = HibernateUtil.getSessionFactory().openSession();
-		ProjectModel project = (ProjectModel) session.get(ProjectModel.class,
-				33);
-		GroupsModel groupsModel = project.getGroupsModel();
-		ZoneGroupImpl groupImpl = convertGroup(groupsModel);
-
-		assertEquals("Kvartira", groupImpl.getName());
-
 	}
 
 	private ZoneGroupImpl convertGroup(GroupsModel groupsModel) {

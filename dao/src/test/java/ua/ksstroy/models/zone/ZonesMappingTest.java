@@ -26,8 +26,10 @@ public class ZonesMappingTest {
 		}
 
 		Set<String> mockRootZones = new HashSet<>();
-		mockRootZones.add("pol");
+		mockRootZones.add("pol1");
+		mockRootZones.add("stenaA");
 		mockRootZones.add("potolok");
+		mockRootZones.add("stenaB");
 
 		assertEquals(mockRootZones, zone);
 	}
@@ -50,7 +52,7 @@ public class ZonesMappingTest {
 		}
 
 		Set<String> mockAdditionalZones = new HashSet<>();
-		mockAdditionalZones.add("otkosi");
+		mockAdditionalZones.add("otkosi1");
 		mockAdditionalZones.add("pamyatnikLenina");
 
 		assertEquals(mockAdditionalZones, additZones);
@@ -74,8 +76,8 @@ public class ZonesMappingTest {
 		}
 
 		Set<String> mockSurplusZones = new HashSet<>();
-		mockSurplusZones.add("dver");
-		mockSurplusZones.add("okno");
+		mockSurplusZones.add("dver1");
+		mockSurplusZones.add("okno1");
 
 		assertEquals(mockSurplusZones, surplusZones);
 	}
