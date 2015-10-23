@@ -41,6 +41,7 @@ public class GroupsMappingTest {
 		Set<String> mockSubGroup = new HashSet<>();
 		mockSubGroup.add("Kuhnya");
 		mockSubGroup.add("Spalnya");
+		mockSubGroup.add("Tualet");
 
 		assertEquals(mockSubGroup, group);
 
