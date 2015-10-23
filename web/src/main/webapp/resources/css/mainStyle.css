@@ -7,6 +7,10 @@ li {
 	display: table;
 }
 
+.rectangle_btn{
+	
+}
+
 .redactor_btn {
 	padding: 3px;
 	padding-left: 5px;
@@ -233,6 +237,6 @@ li {
 font-size: 80%;
 	}
 	.constructor{
-	display:none;
+	display:inline-block;
 	}
 	

@@ -9,13 +9,14 @@
 <title>project</title>
 
 <!-- BOOTSTRAP -->
-<%-- <script
+
+<!--
+ <script
 	src="<c:url value="https://code.jquery.com/jquery-1.10.2.min.js" />"></script>
 
 <script src="<c:url value="/resources/js/bootstrap.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootswatch.js" />"></script> 
-
 
 <script
 	src="<c:url value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" />"></script>
@@ -27,14 +28,16 @@
 	href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 
 <!--END BOOTSTRAP -->
+-->
 
 <!-- CUSTOM STYLING -->
 
 <spring:url value="/resources/css/mainStyle.css" var="css" />
 <link href="${css}" rel="stylesheet" />
+<!--
 <spring:url value="/resources/js/mainScript.js" var="js" />
 <script src="${js}"></script>
---%>
+-->
 <!--END CUSTOM STYLING -->
 
 </head>

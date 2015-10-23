@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>
+<%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -64,8 +64,8 @@
 										value="${zhd.id}"></td>
 							</table>
 							<input class="accepth_changes_btn" type="image"
-								src="<c:url value="/resources/img/done_btn.png" />">
-							<input type="hidden" name="projectId" value="${projectName}">
+								src="<c:url value="/resources/img/done_btn.png" />"> <input
+								type="hidden" name="projectId" value="${projectName}">
 						</form>
 					</div>
 				</li>
@@ -171,7 +171,7 @@
 
 				<!-- OUTPUT zones<ZoneData> -->
 
-		<zone:subGroups zhd="${zhd}" />
+				<zone:subGroups zhd="${zhd}" />
 				<c:set var="zhd" value="${zhd}" scope="request" />
 				<jsp:include page="node.jsp" />
 			</c:forEach>
