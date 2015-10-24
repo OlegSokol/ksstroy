@@ -43,10 +43,57 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testAddRootGroup() {
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		String mockRootGroupName = "RootGroup";
+
+		session.beginTransaction();
+
+		GroupsModel groupsModel = new GroupsModel();
+		groupsModel.setName(mockRootGroupName);
+
+		session.save(groupsModel);
+
+		groupsModel = (GroupsModel) session.createQuery(
+				"from GroupsModel where name='" + mockRootGroupName + "'")
+				.uniqueResult();
+
+		assertEquals(mockRootGroupName, groupsModel.getName());
+
+		session.delete(groupsModel);
+		session.getTransaction().commit();
+
 	}
 
 	@Test
 	public void testRemoveZone() {
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		//String measure = Measure.EACH.toString();		
+		String name = "MockZone";
+		Double width = 13.05;
+		Double height = 15.1;
+		
+		//System.out.println(measure);
+
+		session.beginTransaction();
+		
+		ZonesModel zonesModel = new ZonesModel();
+		zonesModel.setName(name);
+		zonesModel.setWidth(width);
+		zonesModel.setHeight(height);
+		//Do working setMeasure method
+		zonesModel.setMeasureName(Measure.EACH);
+
+		session.save(zonesModel);
+
+		zonesModel = (ZonesModel) session.createQuery(
+				"from ZonesModel where name='" + name + "'")
+				.uniqueResult();
+
+		session.delete(zonesModel);
+		session.getTransaction().commit();
+	
 	}
 
 	@Test
@@ -55,6 +102,24 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testRemoveGroup() {
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		session.beginTransaction();
+
+		String mockRootGroupName = "RootGroup";
+
+		GroupsModel groupsModel = new GroupsModel();
+		groupsModel.setName(mockRootGroupName);
+
+		session.save(groupsModel);
+
+		groupsModel = (GroupsModel) session.createQuery(
+				"from GroupsModel where name='" + mockRootGroupName + "'")
+				.uniqueResult();
+
+		session.delete(groupsModel);
+		session.getTransaction().commit();
+	
 	}
 
 	@Test
@@ -67,6 +132,7 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testGetZonesByParentGroupId() {
+		//TODO finish test after ZonesModel.setMesure() will be repaired
 		/*GroupsModel groupsModelForTest = new GroupsModel();
 		ZonesModel zonesModelForTest = new ZonesModel();
 		zonesModelForTest.setName("zonesModelForTest");
