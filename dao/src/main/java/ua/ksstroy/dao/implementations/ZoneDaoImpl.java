@@ -27,8 +27,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	public ZoneGroup getRootZoneGroup(String projectId) {
 		session = HibernateUtil.getSessionFactory().openSession();
 
-		ProjectModel project = (ProjectModel) session.get(ProjectModel.class,
-				Integer.parseInt(projectId));
+		ProjectModel project = (ProjectModel) session.get(ProjectModel.class, Integer.parseInt(projectId));
 		GroupsModel groupsModel = project.getGroupsModel();
 
 		ZoneGroupImpl zoneGroup = convert(groupsModel);
@@ -37,10 +36,10 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	}
 
-	public static void main(String[] args) {
-		ZoneDaoImpl daoImpl = new ZoneDaoImpl();
-		daoImpl.getRootZoneGroup("33");
-	}
+	/*
+	 * public static void main(String[] args) { ZoneDaoImpl daoImpl = new
+	 * ZoneDaoImpl(); daoImpl.getRootZoneGroup("33"); }
+	 */
 
 	private ZoneGroupImpl convert(GroupsModel groupsModel) {
 		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
@@ -58,17 +57,14 @@ public class ZoneDaoImpl implements ZoneDao {
 		List<Zone> additionalZones = new ArrayList<>();
 
 		for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
-			System.out.println("ÐÓÒÎÂÀß ÇÎÍÀ:\n" + oneRootZone.getName());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:\n" + oneRootZone.getName());
 			for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone()) {
-				additionalZones
-						.add(convertZonesByParentGroupId(oneAdditionalZone));
-				System.out.println("ÄÎÏÎËÍÈÒÅËÜÍÀß ÇÎÍÀ:\n"
-						+ oneAdditionalZone.getName());
+				additionalZones.add(convertZonesByParentGroupId(oneAdditionalZone));
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:\n" + oneAdditionalZone.getName());
 			}
 			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) {
 				surplusZones.add(convertZonesByParentGroupId(oneSurplusZone));
-				System.out.println("ÈÇÁÛÒÎ×ÍÀß ÇÎÍÀ:\n"
-						+ oneSurplusZone.getName());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:\n" + oneSurplusZone.getName());
 			}
 
 			Zone allZonesAndSubZones = convertZonesByParentGroupId(oneRootZone);
@@ -126,8 +122,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		try {
 			session.beginTransaction();
 
-			ZonesModel zone = (ZonesModel) session
-					.get(ZonesModel.class, zoneId);
+			ZonesModel zone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			session.delete(zone);
 			session.flush();
 		} catch (HibernateException e) {
@@ -168,8 +163,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		try {
 			session.beginTransaction();
 
-			GroupsModel group = (GroupsModel) session.get(GroupsModel.class,
-					groupId);
+			GroupsModel group = (GroupsModel) session.get(GroupsModel.class, groupId);
 			session.delete(group);
 			session.flush();
 		} catch (HibernateException e) {
@@ -196,8 +190,27 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getZonesByParentGroupId(String groupId) {
-		// TODO Auto-generated method stub
-		return null;
+		session = HibernateUtil.getSessionFactory().openSession();
+		List<Zone> zonesByParentGroupId = new ArrayList<>();
+		try {
+			session.beginTransaction();
+			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, groupId);
+			List<ZonesModel> zonesModelsByparentGroupId = new ArrayList<>(parentGroup.getZonesGroup());
+
+			for (ZonesModel zonesModel : zonesModelsByparentGroupId) {
+				zonesByParentGroupId.add(convertZonesByParentGroupId(zonesModel));
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
+		return zonesByParentGroupId;
 	}
 
 	@Override
@@ -213,22 +226,19 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void addZone(String zoneName, Double width, Double height,
-			String measure) {
+	public void addZone(String zoneName, Double width, Double height, String measure) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId, String measure) {
+	public void addAdditZone(String zoneName, Double width, Double height, String parentZoneId, String measure) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, String measure) {
+	public void addSurplusZone(String zoneName, Double width, Double height, String parentZoneId, String measure) {
 		// TODO Auto-generated method stub
 
 	}
