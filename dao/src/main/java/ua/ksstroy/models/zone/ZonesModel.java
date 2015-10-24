@@ -104,7 +104,7 @@ public class ZonesModel implements Serializable {
 		return measureName;
 	}
 
-	public void setMeasureName(Enum mesureName) {
+	public void setMeasureName(Enum measureName) {
 		this.measureName = measureName.toString();
 	}
 

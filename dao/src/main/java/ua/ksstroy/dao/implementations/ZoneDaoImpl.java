@@ -36,11 +36,6 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	}
 
-	/*
-	 * public static void main(String[] args) { ZoneDaoImpl daoImpl = new
-	 * ZoneDaoImpl(); daoImpl.getRootZoneGroup("33"); }
-	 */
-
 	private ZoneGroupImpl convert(GroupsModel groupsModel) {
 		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
 		zoneGroup.setId(groupsModel.getId());
@@ -103,8 +98,9 @@ public class ZoneDaoImpl implements ZoneDao {
 
 			GroupsModel rootGroup = new GroupsModel();
 			rootGroup.setName(groupName);
-
-			session.flush();
+			
+			session.save(rootGroup);
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -124,7 +120,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 			ZonesModel zone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			session.delete(zone);
-			session.flush();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -144,7 +140,9 @@ public class ZoneDaoImpl implements ZoneDao {
 
 			GroupsModel group = new GroupsModel();
 			group.setName(name);
-			session.flush();
+			
+			session.update(group);
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
