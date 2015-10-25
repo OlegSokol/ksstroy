@@ -21,26 +21,15 @@ public class GroupsModel implements Serializable {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	/*
-	 * One to many group for zones
-	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="parent_group_id")
+		private Set<ZonesModel> zonesGroup = new HashSet<>();
 
-	@OneToMany(mappedBy = "groupIdForZone")
-	private Set<ZonesModel> zonesGroup = new HashSet<>();
 
-	/*
-	 * One to group for subGroup
-	 */
-
-	//TROOP
 	@OneToMany(mappedBy = "subGroups")
 	private Set<GroupsModel> subGroup = new HashSet<>();
 
-	/*
-	 * Many to one subgroup to rootGroup
-	 */
-
-	//SOLDIER
+	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
 	private GroupsModel subGroups;

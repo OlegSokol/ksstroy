@@ -30,39 +30,26 @@ public class ZonesModel implements Serializable {
 	@Column(name = "mesure_name")
 	private String measureName;
 
-	/*
-	 * Many to one zones to group
-	 */
+	
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_group_id")
 	private GroupsModel groupIdForZone;
 
-	/*
-	 * One to many zone for additionalZone
-	 */
 
 	@OneToMany(mappedBy = "additZoneToRootZone")
 	private Set<ZonesModel> additionalZone = new HashSet<>();
 
-	/*
-	 * Many to one additionalZone to RootZone
-	 */
-
+	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "addit_for_zones_id")
 	private ZonesModel additZoneToRootZone;
 
-	/*
-	 * One to many zone for surplusZone
-	 */
 
 	@OneToMany(mappedBy = "surplusZoneToRootZone")
 	private Set<ZonesModel> surplusZone = new HashSet<>();
 
-	/*
-	 * Many to one surplusZone to RootZone
-	 */
+
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "surplus_for_zones_id")

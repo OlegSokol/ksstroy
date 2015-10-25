@@ -74,7 +74,7 @@ public class GlobalModelsTest {
 	}
 
 	@Test
-	public void testZone() {
+	public void testZoneAndGroupAssociation() {
 
 		GroupsModel group = new GroupsModel();
 		group.setName(groupName);
@@ -89,9 +89,8 @@ public class GlobalModelsTest {
 		Set<ZonesModel> setZone = new HashSet<>();
 		setZone.add(zone);
 
-		zone.setGroupIdForZone(group);
-
-		session.save(zone);
+		group.setZonesGroup(setZone);
+		session.save(group);
 
 		zone = (ZonesModel) session.createQuery("from ZonesModel where name='" + name + "'").uniqueResult();
 
@@ -100,7 +99,7 @@ public class GlobalModelsTest {
 		assertEquals(height, zone.getHeight());
 		assertEquals(measure, zone.getMeasureName());
 
-		session.delete(zone);
+		session.delete(group);
 		session.getTransaction().commit();
 	}
 
