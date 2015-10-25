@@ -22,17 +22,28 @@ public class GroupsModel implements Serializable {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="parent_group_id")
-		private Set<ZonesModel> zonesGroup = new HashSet<>();
-
+	@JoinColumn(name = "parent_group_id")
+	private Set<ZonesModel> zonesGroup = new HashSet<>();
 
 	@OneToMany(mappedBy = "subGroups")
 	private Set<GroupsModel> subGroup = new HashSet<>();
 
-	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
 	private GroupsModel subGroups;
+
+	public GroupsModel() {
+
+	}
+
+	public GroupsModel(String name) {
+		this.name = name;
+	}
+
+	public GroupsModel(String name, GroupsModel subGroups) {
+		this.name = name;
+		this.subGroups = subGroups;
+	}
 
 	public String getId() {
 		return id;

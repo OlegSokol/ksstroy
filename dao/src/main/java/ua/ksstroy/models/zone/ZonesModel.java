@@ -54,6 +54,25 @@ public class ZonesModel implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "surplus_for_zones_id")
 	private ZonesModel surplusZoneToRootZone;
+	
+	public ZonesModel() {
+		
+	}
+
+	public ZonesModel(String name, Double width, Double height, String measureName, GroupsModel groupIdForZone) {
+		this.name = name;
+		this.width = width;
+		this.height = height;
+		this.measureName = measureName;
+		this.groupIdForZone = groupIdForZone;
+	}
+
+	public ZonesModel(String name, Double width, Double height, String measureName) {
+		this.name = name;
+		this.width = width;
+		this.height = height;
+		this.measureName = measureName;
+	}
 
 	public String getId() {
 		return id;

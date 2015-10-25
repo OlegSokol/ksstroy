@@ -11,16 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ua.ksstroy.logic.zone.Measure;
-import ua.ksstroy.logic.zone.Zone;
-import ua.ksstroy.logic.zone.ZoneGroupImpl;
-import ua.ksstroy.logic.zone.ZoneImpl;
+import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
 public class GlobalModelsTest {
 
 	private Session session;
 
-	String groupName = "VeryVeryRootGroup";
+	String groupName = "BigKvartira";
 
 	@Before
 	public void setUp() {
@@ -30,23 +28,27 @@ public class GlobalModelsTest {
 
 	@After
 	public void tearDown() throws Exception {
+		session.getTransaction().commit();
 		session.close();
 	}
 
 	@Test
 	public void testGroup() {
 
-		GroupsModel rootGroup = new GroupsModel();
-		rootGroup.setName(groupName);
+		String nameProject = "BuildProject";
+		String description = "VeryCool";
 
-		session.save(rootGroup);
+		GroupsModel group = new GroupsModel(groupName);
 
-		rootGroup = (GroupsModel) session.createQuery("from GroupsModel where name='" + groupName + "'").uniqueResult();
+		ProjectModel project = new ProjectModel(nameProject, description, group);
 
-		assertEquals(groupName, rootGroup.getName());
+		session.save(project);
 
-		session.delete(rootGroup);
-		session.getTransaction().commit();
+		group = (GroupsModel) session.createQuery("from GroupsModel where name='" + groupName + "'").uniqueResult();
+
+		assertEquals(groupName, group.getName());
+
+		session.delete(project);
 	}
 
 	@Test
@@ -54,13 +56,9 @@ public class GlobalModelsTest {
 
 		String subGroupName = "VeryVerySubGroup";
 
-		GroupsModel rootGroup = new GroupsModel();
-		rootGroup.setName(groupName);
+		GroupsModel subGroup = new GroupsModel(subGroupName);
 
-		GroupsModel subGroup = new GroupsModel();
-		subGroup.setName(subGroupName);
-
-		rootGroup.setSubGroups(subGroup);
+		GroupsModel rootGroup = new GroupsModel(groupName, subGroup);
 
 		session.save(rootGroup);
 
@@ -70,7 +68,6 @@ public class GlobalModelsTest {
 		assertEquals(subGroupName, subGroup.getName());
 
 		session.delete(rootGroup);
-		session.getTransaction().commit();
 	}
 
 	@Test
@@ -84,7 +81,7 @@ public class GlobalModelsTest {
 		Double height = 2.0;
 		String measure = Measure.EACH.toString();
 
-		ZonesModel zone = createZone(name, width, height);
+		ZonesModel zone = new ZonesModel(name, width, height, measure);
 
 		Set<ZonesModel> setZone = new HashSet<>();
 		setZone.add(zone);
@@ -100,7 +97,6 @@ public class GlobalModelsTest {
 		assertEquals(measure, zone.getMeasureName());
 
 		session.delete(group);
-		session.getTransaction().commit();
 	}
 
 	@Test
@@ -115,9 +111,9 @@ public class GlobalModelsTest {
 		Double height = 2.0;
 		String measure = Measure.EACH.toString();
 
-		ZonesModel zone = createZone(nameZone, width, height);
+		ZonesModel zone = new ZonesModel(nameZone, width, height, measure);
 
-		ZonesModel additionalZone = createZone(nameAdditZone, width, height);
+		ZonesModel additionalZone = new ZonesModel(nameAdditZone, width, height, measure);
 
 		zone.setAdditZoneToRootZone(additionalZone);
 
@@ -132,7 +128,6 @@ public class GlobalModelsTest {
 		assertEquals(measure, additionalZone.getMeasureName());
 
 		session.delete(zone);
-		session.getTransaction().commit();
 	}
 
 	@Test
@@ -147,9 +142,9 @@ public class GlobalModelsTest {
 		Double height = 2.0;
 		String measure = Measure.EACH.toString();
 
-		ZonesModel zone = createZone(nameZone, width, height);
+		ZonesModel zone = new ZonesModel(nameZone, width, height, measure);
 
-		ZonesModel surplusZone = createZone(nameSurplusZone, width, height);
+		ZonesModel surplusZone = new ZonesModel(nameSurplusZone, width, height, measure);
 
 		zone.setAdditZoneToRootZone(surplusZone);
 
@@ -164,16 +159,6 @@ public class GlobalModelsTest {
 		assertEquals(measure, surplusZone.getMeasureName());
 
 		session.delete(zone);
-		session.getTransaction().commit();
-	}
-
-	private ZonesModel createZone(String nameSurplusZone, Double width, Double height) {
-		ZonesModel surplusZone = new ZonesModel();
-		surplusZone.setName(nameSurplusZone);
-		surplusZone.setWidth(width);
-		surplusZone.setHeight(height);
-		surplusZone.setMeasureName(Measure.EACH);
-		return surplusZone;
 	}
 
 }
