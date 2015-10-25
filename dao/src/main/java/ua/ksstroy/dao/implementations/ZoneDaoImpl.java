@@ -87,15 +87,15 @@ public class ZoneDaoImpl implements ZoneDao {
 		
 		return zone;
 	}
-	public Zone convertZoneToZoneModel(Zone zone) {
-		Zone zonesModel = new ZoneImpl();
+	public ZonesModel convertZoneToZoneModel(Zone zone) {
+		ZonesModel zonesModel = new ZonesModel();
 
 		zonesModel.setId(zone.getId());
 		zonesModel.setHeight(zone.getHeight());
 		zonesModel.setName(zone.getName());
 		zonesModel.setHeight(zone.getHeight());
 		zonesModel.setWidth(zone.getWidth());
-		zonesModel.setMeasure(zone.getMeasure());
+		zonesModel.setMeasureName(zone.getMeasure());
 
 		return zonesModel;
 	}
@@ -142,28 +142,6 @@ public class ZoneDaoImpl implements ZoneDao {
 		}
 	}
 
-	@Override
-	public void updateGroup(String name) {
-
-		session = HibernateUtil.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
-
-			GroupsModel group = new GroupsModel();
-			group.setName(name);
-			
-			session.update(group);
-			session.getTransaction().commit();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-
-	}
 
 	@Override
 	public void removeGroup(String groupId) {
@@ -222,11 +200,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		return zonesByParentGroupId;
 	}
 
-	@Override
-	public List<Zone> getZonesByParentZoneId(String groupId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<ZoneGroup> getGroupsByParentGroupId(String groupId) {
@@ -283,8 +257,9 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void updateGroupToGroup(String groupName, String parentGroupId) {
+	public List<Zone> getZonesByParentZoneId(String groupId) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
+
 }

@@ -45,10 +45,6 @@ public interface ZoneDao {
 
 	void addGroupToGroup(String groupName, String parentGroupId);
 
-	void updateGroup(String name);
-
-	void updateGroupToGroup(String groupName, String parentGroupId);
-
 	void removeGroup(String groupId);
 
 }

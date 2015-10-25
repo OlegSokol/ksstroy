@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 @Component(value="MockDaoImpl")
-public class ZoneDaoImpl implements ZoneDao {
+public class MockZoneDaoImpl implements ZoneDao {
 	//Saloed: Mock - Test zonedaoImpl
 	public List<Zone> getAllZones()
 	{
@@ -103,18 +103,6 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void removeZone(String zoneId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateGroup(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateGroupToGroup(String groupName, String parentGroupId) {
 		// TODO Auto-generated method stub
 		
 	}
