@@ -32,6 +32,7 @@ public class GroupsModel implements Serializable {
 	 * One to group for subGroup
 	 */
 
+	//TROOP
 	@OneToMany(mappedBy = "subGroups")
 	private Set<GroupsModel> subGroup = new HashSet<>();
 
@@ -39,6 +40,7 @@ public class GroupsModel implements Serializable {
 	 * Many to one subgroup to rootGroup
 	 */
 
+	//SOLDIER
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
 	private GroupsModel subGroups;
