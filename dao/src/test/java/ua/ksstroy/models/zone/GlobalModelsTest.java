@@ -21,7 +21,6 @@ public class GlobalModelsTest {
 	private Session session;
 
 	String groupName = "VeryVeryRootGroup";
-	String subGroupName = "VeryVerySubGroup";
 
 	@Before
 	public void setUp() {
@@ -52,6 +51,8 @@ public class GlobalModelsTest {
 
 	@Test
 	public void testSubGroup() {
+
+		String subGroupName = "VeryVerySubGroup";
 
 		GroupsModel rootGroup = new GroupsModel();
 		rootGroup.setName(groupName);
