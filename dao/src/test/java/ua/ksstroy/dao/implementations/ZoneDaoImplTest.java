@@ -19,10 +19,13 @@ import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
 public class ZoneDaoImplTest {
-	 private Session session;
+	private Session session;
+	String mockGroupName = "mockGroupsFromTestZoneDaoImpl";
+	String mockZoneName = "mockZoneFromTestZoneDaoImpl";
+	double mockZoneWidth = 13.0;
+	double mockZoneHeight = 12.0;
+	Measure mockZoneMeasureName = Measure.KG;
 	
-	
-
 	@Before
 	public void setUp() throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -34,6 +37,22 @@ public class ZoneDaoImplTest {
 	}
 
 	@Test
+	public void convertZonesModelToZone(){
+		ZonesModel mockZonesModel = new ZonesModel();
+		mockZonesModel.setId("100500");
+		mockZonesModel.setName(mockZoneName);
+		mockZonesModel.setHeight(mockZoneHeight);
+		mockZonesModel.setWidth(mockZoneWidth);
+		mockZonesModel.setMeasureName(mockZoneMeasureName);
+		
+	ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+	Zone convertedFromModelZone=zoneDaoImpl.convertZonesModelToZone(mockZonesModel);
+	
+	assertEquals(mockZonesModel.getId(), convertedFromModelZone.getId());
+	assertEquals(mockZonesModel.getMeasureName(), convertedFromModelZone.getMeasure().toString());
+	
+	}
+	@Test
 	public void testGetRootZoneGroup() {
 	}
 
@@ -43,7 +62,7 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testAddRootGroup() {
-		session = HibernateUtil.getSessionFactory().openSession();
+		/*session = HibernateUtil.getSessionFactory().openSession();
 
 		String mockRootGroupName = "RootGroup";
 
@@ -54,46 +73,43 @@ public class ZoneDaoImplTest {
 
 		session.save(groupsModel);
 
-		groupsModel = (GroupsModel) session.createQuery(
-				"from GroupsModel where name='" + mockRootGroupName + "'")
+		groupsModel = (GroupsModel) session.createQuery("from GroupsModel where name='" + mockRootGroupName + "'")
 				.uniqueResult();
 
 		assertEquals(mockRootGroupName, groupsModel.getName());
 
 		session.delete(groupsModel);
-		session.getTransaction().commit();
+		session.getTransaction().commit();*/
 
 	}
 
 	@Test
 	public void testRemoveZone() {
-		session = HibernateUtil.getSessionFactory().openSession();
+	/*	session = HibernateUtil.getSessionFactory().openSession();
 
-		//String measure = Measure.EACH.toString();		
+		// String measure = Measure.EACH.toString();
 		String name = "MockZone";
 		Double width = 13.05;
 		Double height = 15.1;
-		
-		//System.out.println(measure);
+
+		// System.out.println(measure);
 
 		session.beginTransaction();
-		
+
 		ZonesModel zonesModel = new ZonesModel();
 		zonesModel.setName(name);
 		zonesModel.setWidth(width);
 		zonesModel.setHeight(height);
-		//Do working setMeasure method
+		// Do working setMeasure method
 		zonesModel.setMeasureName(Measure.EACH);
 
 		session.save(zonesModel);
 
-		zonesModel = (ZonesModel) session.createQuery(
-				"from ZonesModel where name='" + name + "'")
-				.uniqueResult();
+		zonesModel = (ZonesModel) session.createQuery("from ZonesModel where name='" + name + "'").uniqueResult();
 
 		session.delete(zonesModel);
-		session.getTransaction().commit();
-	
+		session.getTransaction().commit();*/
+
 	}
 
 	@Test
@@ -102,7 +118,7 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testRemoveGroup() {
-		session = HibernateUtil.getSessionFactory().openSession();
+	/*	session = HibernateUtil.getSessionFactory().openSession();
 
 		session.beginTransaction();
 
@@ -113,13 +129,12 @@ public class ZoneDaoImplTest {
 
 		session.save(groupsModel);
 
-		groupsModel = (GroupsModel) session.createQuery(
-				"from GroupsModel where name='" + mockRootGroupName + "'")
+		groupsModel = (GroupsModel) session.createQuery("from GroupsModel where name='" + mockRootGroupName + "'")
 				.uniqueResult();
 
 		session.delete(groupsModel);
-		session.getTransaction().commit();
-	
+		session.getTransaction().commit();*/
+
 	}
 
 	@Test
@@ -132,31 +147,46 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testGetZonesByParentGroupId() {
-		//TODO finish test after ZonesModel.setMesure() will be repaired
-		/*GroupsModel groupsModelForTest = new GroupsModel();
+		
+
+		GroupsModel groupsModelForTest = new GroupsModel();
+		groupsModelForTest.setName(mockGroupName);
+
 		ZonesModel zonesModelForTest = new ZonesModel();
-		zonesModelForTest.setName("zonesModelForTest");
-		zonesModelForTest.setHeight(12.0);
-		zonesModelForTest.setWidth(13.0);
-		zonesModelForTest.setMeasureName(Measure.KG);
-		groupsModelForTest.setName("testGetZonesByParentGroupId");
+		zonesModelForTest.setName(mockZoneName);
+		zonesModelForTest.setHeight(mockZoneHeight);
+		zonesModelForTest.setWidth(mockZoneWidth);
+		zonesModelForTest.setMeasureName(mockZoneMeasureName);
+
 		Set<ZonesModel> zonesModelSet = new HashSet<>();
 		zonesModelSet.add(zonesModelForTest);
 		groupsModelForTest.setZonesGroup(zonesModelSet);
+
 		session.beginTransaction();
 		session.save(groupsModelForTest);
-		session.save(zonesModelForTest);
-		GroupsModel testedGroupByName=(GroupsModel)session.createQuery("from GroupsModel where name='testGetZonesByParentGroupId'").uniqueResult();
-			System.out.println(testedGroupByName.getId());
-			session.getTransaction().commit();
-			ZoneDaoImpl zoneDaoImpl=new ZoneDaoImpl();
-		List<Zone> zonesByParentGroupId=	zoneDaoImpl.getZonesByParentGroupId(testedGroupByName.getId());
-		for (Zone zone : zonesByParentGroupId) {
-			System.out.println(zone.getName());
-		}
-		*/
-		//session.getTransaction().rollback();
-	
+		/*
+		 * id of GroupsModel is changing dynamically, so GroupModel could been
+		 * retrieved only by unique name via HQL query
+		 */
+		GroupsModel testedGroupByName = (GroupsModel) session
+				.createQuery("from GroupsModel where name='"+mockGroupName+"'").uniqueResult();
+		session.getTransaction().commit();
+		
+		/*
+		 * finally get id of the mock GroupsModel and find all Zones to compare
+		 * it with ZonesModel  we stored to DB
+		 */
+		ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+		
+		List<Zone> zonesByParentGroupId = zoneDaoImpl.getZonesByParentGroupId(testedGroupByName.getId());
+		session.beginTransaction();
+		session.delete(zonesModelForTest);
+		session.delete(groupsModelForTest);
+		session.getTransaction().commit();
+
+		assertNotNull(zonesByParentGroupId.get(0));
+		assertEquals(zonesByParentGroupId.get(0).getName(), zoneDaoImpl.convertZonesModelToZone(zonesModelForTest).getName());
+		
 	}
 
 	@Test
@@ -185,6 +215,9 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testStoreZone() {
+		
+		
+		
 	}
 
 	@Test

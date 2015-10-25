@@ -30,20 +30,20 @@ public class ZoneDaoImpl implements ZoneDao {
 		ProjectModel project = (ProjectModel) session.get(ProjectModel.class, Integer.parseInt(projectId));
 		GroupsModel groupsModel = project.getGroupsModel();
 
-		ZoneGroupImpl zoneGroup = convert(groupsModel);
+		ZoneGroupImpl zoneGroup = convertGroupsModelToZoneGroup(groupsModel);
 
 		return zoneGroup;
 
 	}
 
-	private ZoneGroupImpl convert(GroupsModel groupsModel) {
+	public ZoneGroupImpl convertGroupsModelToZoneGroup(GroupsModel groupsModel) {
 		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
 		zoneGroup.setId(groupsModel.getId());
 		zoneGroup.setName(groupsModel.getName());
 
 		List<ZoneGroup> subGroups = new ArrayList<>();
 		for (GroupsModel subgroup : groupsModel.getSubGroup()) {
-			subGroups.add(convert(subgroup));
+			subGroups.add(convertGroupsModelToZoneGroup(subgroup));
 		}
 		zoneGroup.setGroups(subGroups);
 
@@ -54,15 +54,15 @@ public class ZoneDaoImpl implements ZoneDao {
 		for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
 			System.out.println("������� ����:\n" + oneRootZone.getName());
 			for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone()) {
-				additionalZones.add(convertZonesByParentGroupId(oneAdditionalZone));
+				additionalZones.add(convertZonesModelToZone(oneAdditionalZone));
 				System.out.println("�������������� ����:\n" + oneAdditionalZone.getName());
 			}
 			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) {
-				surplusZones.add(convertZonesByParentGroupId(oneSurplusZone));
+				surplusZones.add(convertZonesModelToZone(oneSurplusZone));
 				System.out.println("���������� ����:\n" + oneSurplusZone.getName());
 			}
 
-			Zone allZonesAndSubZones = convertZonesByParentGroupId(oneRootZone);
+			Zone allZonesAndSubZones = convertZonesModelToZone(oneRootZone);
 			allZonesAndSubZones.setAdditional(additionalZones);
 			allZonesAndSubZones.setSurplus(surplusZones);
 
@@ -75,18 +75,29 @@ public class ZoneDaoImpl implements ZoneDao {
 		return zoneGroup;
 	}
 
-	private Zone convertZonesByParentGroupId(ZonesModel zonesModel) {
-
-		ZoneImpl zone = new ZoneImpl();
+	public Zone convertZonesModelToZone(ZonesModel zonesModel) {
+		Zone zone = new ZoneImpl();
 
 		zone.setId(zonesModel.getId());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setName(zonesModel.getName());
 		zone.setHeight(zonesModel.getHeight());
 		zone.setWidth(zonesModel.getWidth());
-		zone.setMeasure(Measure.M2);
-
+		zone.setMeasure(Measure.valueOf( zonesModel.getMeasureName()));
+		
 		return zone;
+	}
+	public Zone convertZoneToZoneModel(Zone zone) {
+		Zone zonesModel = new ZoneImpl();
+
+		zonesModel.setId(zone.getId());
+		zonesModel.setHeight(zone.getHeight());
+		zonesModel.setName(zone.getName());
+		zonesModel.setHeight(zone.getHeight());
+		zonesModel.setWidth(zone.getWidth());
+		zonesModel.setMeasure(zone.getMeasure());
+
+		return zonesModel;
 	}
 
 	@Override
@@ -196,7 +207,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			List<ZonesModel> zonesModelsByparentGroupId = new ArrayList<>(parentGroup.getZonesGroup());
 
 			for (ZonesModel zonesModel : zonesModelsByparentGroupId) {
-				zonesByParentGroupId.add(convertZonesByParentGroupId(zonesModel));
+				zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
 			}
 
 		} catch (HibernateException e) {
@@ -249,8 +260,20 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void storeZone(Zone zone, String parentGroupId) {
-		// TODO Auto-generated method stub
-
+		session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			session.beginTransaction();
+			ZonesModel zoneModelPreparedForSave = new ZonesModel();
+			//TODO CONVERT ZONE TO ZONE MODEL
+			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
+			parentGroup.getZonesGroup().add(zoneModelPreparedForSave);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}}
 	}
 
 	@Override

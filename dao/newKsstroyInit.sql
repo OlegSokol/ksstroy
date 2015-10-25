@@ -42,18 +42,18 @@ CREATE TABLE `zones` (
 );
 
 
-INSERT INTO `zones`  VALUES (1,'pol1', 10.0,10.0,'m2',1,null,null);
-INSERT INTO `zones`  VALUES (2,'stenaA', 6.0,3.0,'m2',1,null,null);
-INSERT INTO `zones`  VALUES (3,'potolok', 10.0,10.0,'m2',1,null,null);
-INSERT INTO `zones`  VALUES (4,'stenaB', 7.0,3.5,'m2',1,null,null);
-INSERT INTO `zones`  VALUES (5,'otkosi1', 5.0,5.0,'m2',null,null,1);
-INSERT INTO `zones`  VALUES (6,'otkosi2', 3.0,2.0,'m2',null,null,2);
-INSERT INTO `zones`  VALUES (7,'pamyatnikLenina', 2.0,2.0,'m2',null,null,1);
-INSERT INTO `zones`  VALUES (8,'pamyatnikDartVeyderu', 10.0,4.0,'m2',null,null,2);
-INSERT INTO `zones`  VALUES (9,'dver1', 2.0,1.0,'m2',null,1,null);
-INSERT INTO `zones`  VALUES (10,'dver2', 3.0,2.0,'m2',null,2,null);
-INSERT INTO `zones`  VALUES (11,'okno1', 3.0,1.25,'m2',null,1,null);
-INSERT INTO `zones`  VALUES (12,'okno2', 2.0,1.35,'m2',null,2,null);
+INSERT INTO `zones`  VALUES (1,'pol1', 10.0,10.0,'M2',1,null,null);
+INSERT INTO `zones`  VALUES (2,'stenaA', 6.0,3.0,'M2',1,null,null);
+INSERT INTO `zones`  VALUES (3,'potolok', 10.0,10.0,'M2',1,null,null);
+INSERT INTO `zones`  VALUES (4,'stenaB', 7.0,3.5,'M2',1,null,null);
+INSERT INTO `zones`  VALUES (5,'otkosi1', 5.0,5.0,'M2',null,null,1);
+INSERT INTO `zones`  VALUES (6,'otkosi2', 3.0,2.0,'M2',null,null,2);
+INSERT INTO `zones`  VALUES (7,'pamyatnikLenina', 2.0,2.0,'M2',null,null,1);
+INSERT INTO `zones`  VALUES (8,'pamyatnikDartVeyderu', 10.0,4.0,'M2',null,null,2);
+INSERT INTO `zones`  VALUES (9,'dver1', 2.0,1.0,'M2',null,1,null);
+INSERT INTO `zones`  VALUES (10,'dver2', 3.0,2.0,'M2',null,2,null);
+INSERT INTO `zones`  VALUES (11,'okno1', 3.0,1.25,'M2',null,1,null);
+INSERT INTO `zones`  VALUES (12,'okno2', 2.0,1.35,'M2',null,2,null);
 
 
 DROP TABLE IF EXISTS `groups`;

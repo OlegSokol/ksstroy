@@ -19,11 +19,7 @@ public class ZoneManagerImpl implements ZoneManager {
 	@Qualifier("zoneDao")
 	ZoneDao zoneDaoImpl;	
 	//ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
-	
-	/*
-SAMPLE OF CUSTOM EXCEPTION IMPLEMENTATION 
-DISCLAIMER:IT COULD BE DOESNT AWFULL RIGHT
-	 */
+
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
 if(zoneDaoImpl.getRootZoneGroup(projectId)==null)
 throw new  ZoneDaoDoesntExistException();
