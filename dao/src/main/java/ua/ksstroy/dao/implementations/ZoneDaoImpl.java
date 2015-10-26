@@ -267,6 +267,8 @@ public class ZoneDaoImpl implements ZoneDao {
 
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
 			parentGroup.getZonesGroup().add(zoneModelPreparedForSave);
+			session.saveOrUpdate(parentGroup);
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();

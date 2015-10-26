@@ -1,7 +1,6 @@
 package ua.ksstroy.dao.implementations;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +13,7 @@ import org.junit.Test;
 
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneDao;
 import ua.ksstroy.logic.zone.ZoneImpl;
 import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.models.zone.GroupsModel;
@@ -30,7 +30,7 @@ public class ZoneDaoImplTest {
 	double mockZoneHeight = 12.0;
 	Measure mockZoneMeasureName = Measure.KG;
 	
-	Zone mockZoneImpl=new ZoneImpl();
+	Zone mockZoneImpl;
 	String mockZoneImplName = "mockZoneImplName";
 	Double mockZoneImplWidth = 13.05;
 	Double mockZoneImplheight = 15.1;
@@ -41,6 +41,11 @@ public class ZoneDaoImplTest {
 	public void setUp() throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
+		mockZoneImpl = new ZoneImpl();
+		mockZoneImpl.setName(mockZoneImplName);
+		mockZoneImpl.setHeight(mockZoneImplheight);
+		mockZoneImpl.setWidth(mockZoneWidth);
+		mockZoneImpl.setMeasure(mockZoneImplMeasureName);
 	}
 
 	@After
@@ -206,7 +211,32 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testStoreZone() {
-
+		ZoneDao	 zoneDao = new ZoneDaoImpl();
+		Zone mockZoneImpl= new ZoneImpl();
+		mockZoneImpl = new ZoneImpl();
+		mockZoneImpl.setName(mockZoneImplName);
+		mockZoneImpl.setHeight(mockZoneImplheight);
+		mockZoneImpl.setWidth(mockZoneWidth);
+		mockZoneImpl.setMeasure(mockZoneImplMeasureName);
+		zoneDao.storeZone(mockZoneImpl, "1");
+		
+		 GroupsModel parentGroupModel=(GroupsModel)session.get(GroupsModel.class, "1");
+		assertNotNull(parentGroupModel);
+	Set<ZonesModel>	zonesModels=parentGroupModel.getZonesGroup();
+	ZonesModel insertedMockZoneModelFromDB =new ZonesModel();
+	boolean nameMatch=false;
+		for (ZonesModel zonesModel : zonesModels) {
+						System.out.println(zonesModel.getName());
+		if (zonesModel.getName().equals(mockZoneImpl.getName())){
+			nameMatch=true;
+			insertedMockZoneModelFromDB=zonesModel;
+		}
+		}
+		assertTrue(nameMatch);
+		//TODO refactoring WHY I CANT JUST DELETE ZONE cascade blah-blah -blah exception
+		parentGroupModel.getZonesGroup().remove(insertedMockZoneModelFromDB);
+		session.saveOrUpdate(parentGroupModel);
+		session.delete(insertedMockZoneModelFromDB);
 	}
 
 	@Test
