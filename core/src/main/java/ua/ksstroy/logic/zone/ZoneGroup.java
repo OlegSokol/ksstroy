@@ -14,11 +14,19 @@ import java.util.List;
 public interface ZoneGroup {
 
 	public String getName();
-	
+
+	public void setName(String name);
+
 	public String getId();
+
+	public void setId(String id);
 
 	public List<ZoneGroup> getGroups();
 
+	public void setGroups(List<ZoneGroup> group);
+
 	public List<Zone> getZones();
+
+	public void setZones(List<Zone> zone);
 
 }

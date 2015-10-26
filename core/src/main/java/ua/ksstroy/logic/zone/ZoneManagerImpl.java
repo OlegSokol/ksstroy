@@ -3,8 +3,6 @@ package ua.ksstroy.logic.zone;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,7 +11,7 @@ import org.springframework.stereotype.Component;
 import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
 
 @Component(value = "ZoneManagerImpl")
-public class ZoneManagerImpl implements zoneManager {
+public class ZoneManagerImpl implements ZoneManager {
 
 	@Autowired
 	@Qualifier("zoneDao")
