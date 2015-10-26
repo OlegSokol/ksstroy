@@ -53,15 +53,11 @@ public class ZoneDaoImpl implements ZoneDao {
 		List<Zone> additionalZones = new ArrayList<>();
 
 		for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
-			System.out.println("������� ����:\n" + oneRootZone.getName());
 			for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone()) {
 				additionalZones.add(convertZonesModelToZone(oneAdditionalZone));
-				System.out.println(
-						"�������������� ����:\n" + oneAdditionalZone.getName());
 			}
 			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) {
 				surplusZones.add(convertZonesModelToZone(oneSurplusZone));
-				System.out.println("���������� ����:\n" + oneSurplusZone.getName());
 			}
 
 			Zone allZonesAndSubZones = convertZonesModelToZone(oneRootZone);
@@ -291,7 +287,9 @@ public class ZoneDaoImpl implements ZoneDao {
 			subGroupSet.add(subGroupToRootGroup);
 
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
-			parentGroup.setSubGroups(subGroupSet);
+			parentGroup.getSubGroups().add(subGroupToRootGroup);
+			session.saveOrUpdate(parentGroup);
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();

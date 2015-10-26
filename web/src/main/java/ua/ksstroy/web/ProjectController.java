@@ -15,39 +15,28 @@ import ua.ksstroy.logic.zone.ZoneManager;
 @Controller
 public class ProjectController {
 
-	@Resource(name="ZoneManagerImpl")
+	@Resource(name = "ZoneManagerImpl")
 	ZoneManager zoneManager;
-	
+
 	ModelAndView project;
 
 	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
 	public ModelAndView showZHD(@PathVariable String projectId) {
 		project = new ModelAndView("project");
 		project.addObject("projectName", projectId);// the project name from
-														// PathVariabl
-		project.addObject("zhd",
-				zoneManager.getRootZoneHierarchy(projectId));
+													// PathVariabl
+		project.addObject("zhd", zoneManager.getRootZoneHierarchy(projectId));
 		return project;
 
 	}
 
-	// TODO add current project name to SessionContext and use in redirect URL
-	// e.g project name = mock; redirect to project/mock
-
-
-	
-	@RequestMapping(value = "/projects/getRootZoneHierarchy", method = RequestMethod.POST)
-	public String getRootZoneHierarchy(
-			@RequestParam("projectId") String projectId)   {
-		zoneManager.getRootZoneHierarchy(projectId);
-		return ("redirect:/projects/mock");
-	}
-
 	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
-	public String addGroupToGroup(String projectId, @RequestParam("groupName") String groupName,
-			@RequestParam("parentGroupId") String parentGroupId, @RequestParam("projectId") String id) {
+	public ModelAndView addGroupToGroup(@RequestParam("groupName") String groupName,
+			@RequestParam("parentGroupId") String parentGroupId) {
+
 		zoneManager.addGroupToGroup(groupName, parentGroupId);
-		return "redirect:/projects/" + id;
+
+		return project;
 	}
 
 	/*
@@ -55,11 +44,8 @@ public class ProjectController {
 	 * according ZoneManager method
 	 */
 	@RequestMapping(value = "/projects/addZone", method = RequestMethod.POST)
-	public ModelAndView addZone(
-			@RequestParam("name") String name,
-			@RequestParam("parentGroupId") String parentGroupId,
-			@RequestParam("measureName") String measureName,
-			@RequestParam("width") String width,
+	public ModelAndView addZone(@RequestParam("name") String name, @RequestParam("parentGroupId") String parentGroupId,
+			@RequestParam("measureName") String measureName, @RequestParam("width") String width,
 			@RequestParam("heigh") String height) {
 
 		ZoneData zoneFromWeb = new ZoneData();
@@ -74,7 +60,7 @@ public class ProjectController {
 		zoneFromWeb.setMeasureName(measureName);
 
 		zoneManager.addZone(zoneFromWeb, parentGroupId);
-		return project; 
+		return project;
 	}
 
 	/*
@@ -82,11 +68,8 @@ public class ProjectController {
 	 * based on data from the web page and invoke according ZoneManager method
 	 */
 	@RequestMapping(value = "/projects/addZoneToZone", method = RequestMethod.POST)
-	public String addZoneToZone(
-			@RequestParam("name") String name,
-			@RequestParam("parentZoneId") String parentZoneId,
-			@RequestParam("measureName") String measureName,
-			@RequestParam("width") String width,
+	public String addZoneToZone(@RequestParam("name") String name, @RequestParam("parentZoneId") String parentZoneId,
+			@RequestParam("measureName") String measureName, @RequestParam("width") String width,
 			@RequestParam("heigh") String height) {
 
 		ZoneData additionalZoneFromWeb = new ZoneData();
@@ -104,26 +87,23 @@ public class ProjectController {
 	}
 
 	/*
-	 * create new ZoneData object representing surplusZone in some Zone,
-	 * based on data from the web page and invoke according ZoneManager method
+	 * create new ZoneData object representing surplusZone in some Zone, based
+	 * on data from the web page and invoke according ZoneManager method
 	 */
 	@RequestMapping(value = "/projects/subtractZoneFromZone", method = RequestMethod.POST)
-	public String subtractZoneFromZone(
-			@RequestParam("name") String name,
-			@RequestParam("parentZoneId") String parentZoneId,
-			@RequestParam("measureName") String measureName,
-			@RequestParam("width") String width,
-			@RequestParam("heigh") String height) {
+	public String subtractZoneFromZone(@RequestParam("name") String name,
+			@RequestParam("parentZoneId") String parentZoneId, @RequestParam("measureName") String measureName,
+			@RequestParam("width") String width, @RequestParam("heigh") String height) {
 		ZoneData surplusZoneFromWeb = new ZoneData();
-		surplusZoneFromWeb .setName(name);
+		surplusZoneFromWeb.setName(name);
 		try {
-			surplusZoneFromWeb .setHeight(new Double(height).doubleValue());
-			surplusZoneFromWeb .setWidth(new Double(width).doubleValue());
+			surplusZoneFromWeb.setHeight(new Double(height).doubleValue());
+			surplusZoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
 			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		surplusZoneFromWeb .setMeasureName(measureName);
+		surplusZoneFromWeb.setMeasureName(measureName);
 		zoneManager.subtractZoneFromZone(surplusZoneFromWeb, parentZoneId);
 		return ("redirect:/projects/mock");
 	}
