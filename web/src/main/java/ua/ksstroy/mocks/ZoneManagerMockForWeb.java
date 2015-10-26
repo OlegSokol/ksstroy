@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 import ua.ksstroy.logic.zone.NameConflictException;
 import ua.ksstroy.logic.zone.ZoneData;
 import ua.ksstroy.logic.zone.ZoneHierarchyData;
-import ua.ksstroy.logic.zone.ZoneManager;
+import ua.ksstroy.logic.zone.zoneManager;
 
 @Component
-public class ZoneManagerMockForWeb implements ZoneManager {
+public class ZoneManagerMockForWeb implements zoneManager {
 	
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
 		System.out.println(".getRootZoneHierarchy(String projectId) have been invoced from WEB" );

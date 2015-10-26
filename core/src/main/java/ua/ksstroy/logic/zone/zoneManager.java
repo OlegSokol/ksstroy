@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.zone;
 
-public interface ZoneManager {
+public interface zoneManager {
 	/*
 	 * An objects that is used by the web tier to view and manage data from a
 	 * data-base (e.g MySQL); with already affected in runtime business logic

@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneImpl;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
@@ -25,6 +26,16 @@ public class ZoneDaoImplTest {
 	double mockZoneWidth = 13.0;
 	double mockZoneHeight = 12.0;
 	Measure mockZoneMeasureName = Measure.KG;
+	
+	
+	Zone mockZoneImpl=new ZoneImpl();
+	String mockZoneImplName = "mockZoneImplName";
+	Double mockZoneImplWidth = 13.05;
+	Double mockZoneImplheight = 15.1;
+	String mockZoneImplParentGroupId = "375";//Big enough randomNumber
+	Measure mockZoneImplMeasureName=Measure.GR;
+	
+
 	
 	@Before
 	public void setUp() throws Exception {
@@ -52,6 +63,11 @@ public class ZoneDaoImplTest {
 	assertEquals(mockZonesModel.getMeasureName(), convertedFromModelZone.getMeasure().toString());
 	
 	}
+	@Test
+	public void testConvertZoneToZoneData() {
+	}
+	
+	
 	@Test
 	public void testGetRootZoneGroup() {
 	}

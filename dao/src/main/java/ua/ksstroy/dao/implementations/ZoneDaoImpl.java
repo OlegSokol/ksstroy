@@ -238,6 +238,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		try {
 			session.beginTransaction();
 			ZonesModel zoneModelPreparedForSave = new ZonesModel();
+			zoneModelPreparedForSave=this.convertZoneToZoneModel(zone);
 			//TODO CONVERT ZONE TO ZONE MODEL
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
 			parentGroup.getZonesGroup().add(zoneModelPreparedForSave);

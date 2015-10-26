@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ua.ksstroy.logic.zone.NameConflictException;
 import ua.ksstroy.logic.zone.ZoneData;
-import ua.ksstroy.logic.zone.ZoneManager;
+import ua.ksstroy.logic.zone.zoneManager;
 
 import ua.ksstroy.mocks.ZoneHierarchyMockFactory;
 
@@ -22,7 +22,7 @@ import ua.ksstroy.mocks.ZoneHierarchyMockFactory;
 public class ProjectController {
 
 	@Resource(name="ZoneManagerImpl")
-	ZoneManager zoneManager;
+	zoneManager zoneManager;
 
 	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
 	public ModelAndView showZHD(@PathVariable String projectId) {
