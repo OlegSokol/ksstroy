@@ -17,10 +17,12 @@ public class ProjectController {
 
 	@Resource(name="ZoneManagerImpl")
 	ZoneManager zoneManager;
+	
+	ModelAndView project;
 
 	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
 	public ModelAndView showZHD(@PathVariable String projectId) {
-		ModelAndView project = new ModelAndView("project");
+		project = new ModelAndView("project");
 		project.addObject("projectName", projectId);// the project name from
 														// PathVariabl
 		project.addObject("zhd",
@@ -53,7 +55,7 @@ public class ProjectController {
 	 * according ZoneManager method
 	 */
 	@RequestMapping(value = "/projects/addZone", method = RequestMethod.POST)
-	public String addZone(
+	public ModelAndView addZone(
 			@RequestParam("name") String name,
 			@RequestParam("parentGroupId") String parentGroupId,
 			@RequestParam("measureName") String measureName,
@@ -72,7 +74,7 @@ public class ProjectController {
 		zoneFromWeb.setMeasureName(measureName);
 
 		zoneManager.addZone(zoneFromWeb, parentGroupId);
-		return ("redirect:/projects/mock"); 
+		return project; 
 	}
 
 	/*

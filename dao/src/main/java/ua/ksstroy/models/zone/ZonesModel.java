@@ -6,7 +6,18 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import ua.ksstroy.logic.zone.Measure;
 
 @SuppressWarnings("serial")
 @Entity
@@ -27,52 +38,38 @@ public class ZonesModel implements Serializable {
 	@Column(name = "height")
 	private Double height;
 
-	//TODO  explore how to map Enum and change this to Enum
+	// TODO explore how to map Enum and change this to Enum
 	@Column(name = "mesure_name")
 	private String measureName;
-
-	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_group_id")
 	private GroupsModel groupIdForZone;
 
-
-	@OneToMany(mappedBy = "additZoneToRootZone")
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "addit_for_zones_id")
 	private Set<ZonesModel> additionalZone = new HashSet<>();
 
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "addit_for_zones_id")
 	private ZonesModel additZoneToRootZone;
 
-
-	@OneToMany(mappedBy = "surplusZoneToRootZone")
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "surplus_for_zones_id")
 	private Set<ZonesModel> surplusZone = new HashSet<>();
 
-
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "surplus_for_zones_id")
 	private ZonesModel surplusZoneToRootZone;
-	
+
 	public ZonesModel() {
-		
+
 	}
 
-	public ZonesModel(String name, Double width, Double height, String measureName, GroupsModel groupIdForZone) {
+	public ZonesModel(String name, Double width, Double height) {
 		this.name = name;
 		this.width = width;
 		this.height = height;
-		this.measureName = measureName;
-		this.groupIdForZone = groupIdForZone;
-	}
-
-	public ZonesModel(String name, Double width, Double height, String measureName) {
-		this.name = name;
-		this.width = width;
-		this.height = height;
-		this.measureName = measureName;
 	}
 
 	public String getId() {
@@ -108,20 +105,12 @@ public class ZonesModel implements Serializable {
 	}
 
 	public String getMeasureName() {
-		//TODO  explore how to map Enum and change this 
+		// TODO explore how to map Enum and change this
 		return measureName;
 	}
 
-	public void setMeasureName(Enum measureName) {
+	public void setMeasureName(Measure measureName) {
 		this.measureName = measureName.toString();
-	}
-
-	public GroupsModel getGroupIdForZone() {
-		return groupIdForZone;
-	}
-
-	public void setGroupIdForZone(GroupsModel groupIdForZone) {
-		this.groupIdForZone = groupIdForZone;
 	}
 
 	public Set<ZonesModel> getAdditionalZone() {
@@ -132,28 +121,12 @@ public class ZonesModel implements Serializable {
 		this.additionalZone = additionalZone;
 	}
 
-	public ZonesModel getAdditZoneToRootZone() {
-		return additZoneToRootZone;
-	}
-
-	public void setAdditZoneToRootZone(ZonesModel additZoneToRootZone) {
-		this.additZoneToRootZone = additZoneToRootZone;
-	}
-
 	public Set<ZonesModel> getSurplusZone() {
 		return surplusZone;
 	}
 
 	public void setSurplusZone(Set<ZonesModel> surplusZone) {
 		this.surplusZone = surplusZone;
-	}
-
-	public ZonesModel getSurplusZoneToRootZone() {
-		return surplusZoneToRootZone;
-	}
-
-	public void setSurplusZoneToRootZone(ZonesModel surplusZoneToRootZone) {
-		this.surplusZoneToRootZone = surplusZoneToRootZone;
 	}
 
 }

@@ -58,7 +58,10 @@ public class GlobalModelsTest {
 
 		GroupsModel subGroup = new GroupsModel(subGroupName);
 
-		GroupsModel rootGroup = new GroupsModel(groupName, subGroup);
+		Set<GroupsModel> setSubGroup = new HashSet<>();
+		setSubGroup.add(subGroup);
+
+		GroupsModel rootGroup = new GroupsModel(groupName, setSubGroup);
 
 		session.save(rootGroup);
 
@@ -71,30 +74,29 @@ public class GlobalModelsTest {
 	}
 
 	@Test
-	public void testZoneAndGroupAssociation() {
+	public void testZoneAndGroup() {
 
 		GroupsModel group = new GroupsModel();
 		group.setName(groupName);
 
-		String name = "VeryRootZone";
+		String nameZone = "VeryRootZone";
 		Double width = 1.0;
 		Double height = 2.0;
-		String measure = Measure.EACH.toString();
+		Measure measure = Measure.EACH;
 
-		ZonesModel zone = new ZonesModel(name, width, height, measure);
+		ZonesModel zone = new ZonesModel(nameZone, width, height);
+		zone.setMeasureName(measure);
 
-		Set<ZonesModel> setZone = new HashSet<>();
-		setZone.add(zone);
+		Set<ZonesModel> zonesSet = new HashSet<>();
+		zonesSet.add(zone);
 
-		group.setZonesGroup(setZone);
+		group.setZonesGroup(zonesSet);
 		session.save(group);
 
-		zone = (ZonesModel) session.createQuery("from ZonesModel where name='" + name + "'").uniqueResult();
+		ZonesModel zoneDB = (ZonesModel) session.createQuery("from ZonesModel where name='" + nameZone + "'")
+				.uniqueResult();
 
-		assertEquals(name, zone.getName());
-		assertEquals(width, zone.getWidth());
-		assertEquals(height, zone.getHeight());
-		assertEquals(measure, zone.getMeasureName());
+		assertEquals(nameZone, zoneDB.getName());
 
 		session.delete(group);
 	}
@@ -102,30 +104,35 @@ public class GlobalModelsTest {
 	@Test
 	public void testAdditZone() {
 
-		GroupsModel group = new GroupsModel();
-		group.setName(groupName);
-
 		String nameZone = "VeryRootZone";
-		String nameAdditZone = "VeryAdditZone";
+		String nameAdditionalZone = "VeryAdditionalZone";
 		Double width = 1.0;
 		Double height = 2.0;
-		String measure = Measure.EACH.toString();
+		Measure measure = Measure.M2;
 
-		ZonesModel zone = new ZonesModel(nameZone, width, height, measure);
+		ZonesModel zone = new ZonesModel();
+		zone.setName(nameZone);
+		zone.setHeight(height);
+		zone.setWidth(width);
+		zone.setMeasureName(measure);
 
-		ZonesModel additionalZone = new ZonesModel(nameAdditZone, width, height, measure);
+		ZonesModel additionalZone = new ZonesModel();
+		additionalZone.setName(nameAdditionalZone);
+		additionalZone.setHeight(height);
+		additionalZone.setWidth(width);
+		additionalZone.setMeasureName(measure);
 
-		zone.setAdditZoneToRootZone(additionalZone);
+		Set<ZonesModel> setAdditionalZoneModel = new HashSet<>();
+		setAdditionalZoneModel.add(additionalZone);
+
+		zone.setAdditionalZone(setAdditionalZoneModel);
 
 		session.save(zone);
 
-		additionalZone = (ZonesModel) session.createQuery("from ZonesModel where name='" + nameAdditZone + "'")
-				.uniqueResult();
+		ZonesModel additionalZoneDB = (ZonesModel) session
+				.createQuery("from ZonesModel where name='" + nameAdditionalZone + "'").uniqueResult();
 
-		assertEquals(nameAdditZone, additionalZone.getName());
-		assertEquals(width, additionalZone.getWidth());
-		assertEquals(height, additionalZone.getHeight());
-		assertEquals(measure, additionalZone.getMeasureName());
+		assertEquals(nameAdditionalZone, additionalZoneDB.getName());
 
 		session.delete(zone);
 	}
@@ -133,30 +140,35 @@ public class GlobalModelsTest {
 	@Test
 	public void testSurplusZone() {
 
-		GroupsModel group = new GroupsModel();
-		group.setName(groupName);
-
 		String nameZone = "VeryRootZone";
 		String nameSurplusZone = "VerySurplusZone";
 		Double width = 1.0;
 		Double height = 2.0;
-		String measure = Measure.EACH.toString();
+		Measure measure = Measure.M2;
 
-		ZonesModel zone = new ZonesModel(nameZone, width, height, measure);
+		ZonesModel zone = new ZonesModel();
+		zone.setName(nameZone);
+		zone.setHeight(height);
+		zone.setWidth(width);
+		zone.setMeasureName(measure);
 
-		ZonesModel surplusZone = new ZonesModel(nameSurplusZone, width, height, measure);
+		ZonesModel surplusZone = new ZonesModel();
+		surplusZone.setName(nameSurplusZone);
+		surplusZone.setHeight(height);
+		surplusZone.setWidth(width);
+		surplusZone.setMeasureName(measure);
 
-		zone.setAdditZoneToRootZone(surplusZone);
+		Set<ZonesModel> setZoneModel = new HashSet<>();
+		setZoneModel.add(surplusZone);
+
+		zone.setSurplusZone(setZoneModel);
 
 		session.save(zone);
 
-		surplusZone = (ZonesModel) session.createQuery("from ZonesModel where name='" + nameSurplusZone + "'")
-				.uniqueResult();
+		ZonesModel surplusZoneDB = (ZonesModel) session
+				.createQuery("from ZonesModel where name='" + nameSurplusZone + "'").uniqueResult();
 
-		assertEquals(nameSurplusZone, surplusZone.getName());
-		assertEquals(width, surplusZone.getWidth());
-		assertEquals(height, surplusZone.getHeight());
-		assertEquals(measure, surplusZone.getMeasureName());
+		assertEquals(nameSurplusZone, surplusZoneDB.getName());
 
 		session.delete(zone);
 	}

@@ -65,12 +65,12 @@
 <p>Test forms for invoke ZoneManager methods</p>
 
 <form action="/web/projects/addZone" method="POST">
-<input name="name" type="text" value="testAddZoneFromWebName">
-<input name="parentGroupId" type="text" value="14">
-<input name="measureName" type="text" value="m^2">
+<input name="name" type="text" value="CreatedNewZone">
+<input name="parentGroupId" type="text" value="4">
+<input name="measureName" type="text" value="M2">
 <input name="width" type="text" value="123"> 
 <input name="heigh" type="text" value="123.0"> 
-<input type="submit" value="addZone(ZoneData zone, String parentGroupId)">
+<input type="submit" value="Add Zone">
 </form>
 
 

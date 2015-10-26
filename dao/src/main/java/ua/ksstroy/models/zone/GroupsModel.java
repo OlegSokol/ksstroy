@@ -25,12 +25,13 @@ public class GroupsModel implements Serializable {
 	@JoinColumn(name = "parent_group_id")
 	private Set<ZonesModel> zonesGroup = new HashSet<>();
 
-	@OneToMany(mappedBy = "subGroups")
-	private Set<GroupsModel> subGroup = new HashSet<>();
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
-	private GroupsModel subGroups;
+	private Set<GroupsModel> subGroups = new HashSet<>();
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_id")
+	private GroupsModel subGroupsToRootGroup;
 
 	public GroupsModel() {
 
@@ -40,7 +41,7 @@ public class GroupsModel implements Serializable {
 		this.name = name;
 	}
 
-	public GroupsModel(String name, GroupsModel subGroups) {
+	public GroupsModel(String name, Set<GroupsModel> subGroups) {
 		this.name = name;
 		this.subGroups = subGroups;
 	}
@@ -69,19 +70,11 @@ public class GroupsModel implements Serializable {
 		this.zonesGroup = zonesGroup;
 	}
 
-	public Set<GroupsModel> getSubGroup() {
-		return subGroup;
-	}
-
-	public void setSubGroup(Set<GroupsModel> subGroup) {
-		this.subGroup = subGroup;
-	}
-
-	public GroupsModel getSubGroups() {
+	public Set<GroupsModel> getSubGroups() {
 		return subGroups;
 	}
 
-	public void setSubGroups(GroupsModel subGroups) {
+	public void setSubGroups(Set<GroupsModel> subGroups) {
 		this.subGroups = subGroups;
 	}
 

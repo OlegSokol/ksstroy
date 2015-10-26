@@ -1,6 +1,7 @@
 package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -42,7 +43,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		zoneGroup.setName(groupsModel.getName());
 
 		List<ZoneGroup> subGroups = new ArrayList<>();
-		for (GroupsModel subgroup : groupsModel.getSubGroup()) {
+		for (GroupsModel subgroup : groupsModel.getSubGroups()) {
 			subGroups.add(convertGroupsModelToZoneGroup(subgroup));
 		}
 		zoneGroup.setGroups(subGroups);
@@ -109,8 +110,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		try {
 			session.beginTransaction();
 
-			GroupsModel rootGroup = new GroupsModel();
-			rootGroup.setName(groupName);
+			GroupsModel rootGroup = new GroupsModel(groupName);
 
 			session.save(rootGroup);
 			session.getTransaction().commit();
@@ -208,7 +208,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		try {
 			session.beginTransaction();
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, groupId);
-			List<GroupsModel> groupsModelsByparentGroupId = new ArrayList<>(parentGroup.getSubGroup());
+			List<GroupsModel> groupsModelsByparentGroupId = new ArrayList<>(parentGroup.getSubGroups());
 
 			for (GroupsModel groupsModel : groupsModelsByparentGroupId) {
 				groupsByParentGroupId.add(convertGroupsModelToGroup(groupsModel));
@@ -285,11 +285,13 @@ public class ZoneDaoImpl implements ZoneDao {
 		try {
 			session.beginTransaction();
 
-			GroupsModel subGroupSaveToRootGroup = new GroupsModel();
-			subGroupSaveToRootGroup.setName(groupName);
+			GroupsModel subGroupToRootGroup = new GroupsModel(groupName);
+
+			Set<GroupsModel> subGroupSet = new HashSet<>();
+			subGroupSet.add(subGroupToRootGroup);
 
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
-			parentGroup.setSubGroups(subGroupSaveToRootGroup);
+			parentGroup.setSubGroups(subGroupSet);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
