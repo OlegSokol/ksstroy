@@ -63,7 +63,7 @@ public class ZoneManagerTest {
 		mockZoneData.setHeight(mockZoneDataheight);
 		String parentGroupId = "1";
 		zoneManager = new ZoneManagerImpl();
-	//	zoneManager.addZone(mockZoneData, parentGroupId); 
+		//TODO  refactored  zoneManager.addZone(mockZoneData, parentGroupId); 
 		
 		
 		ZoneDaoImpl zoneDaoImpl = new ua.ksstroy.dao.implementations.ZoneDaoImpl();

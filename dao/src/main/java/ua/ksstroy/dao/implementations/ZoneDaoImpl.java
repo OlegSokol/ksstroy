@@ -22,7 +22,7 @@ import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
-@Component("zoneDao")
+@Component(value = "zoneDao")
 public class ZoneDaoImpl implements ZoneDao {
 
 	private Session session;
@@ -34,9 +34,6 @@ public class ZoneDaoImpl implements ZoneDao {
 		GroupsModel groupsModel = project.getGroupsModel();
 
 		ZoneGroupImpl zoneGroup = convertGroupsModelToZoneGroup(groupsModel);
-
-		Project projectName = new Project();
-		projectName.setProjectName(project.getProjectName());
 
 		return zoneGroup;
 
