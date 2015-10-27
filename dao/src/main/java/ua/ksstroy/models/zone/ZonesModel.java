@@ -38,7 +38,6 @@ public class ZonesModel implements Serializable {
 	@Column(name = "height")
 	private Double height;
 
-	// TODO explore how to map Enum and change this to Enum
 	@Column(name = "mesure_name")
 	private String measureName;
 
@@ -66,10 +65,11 @@ public class ZonesModel implements Serializable {
 
 	}
 
-	public ZonesModel(String name, Double width, Double height) {
+	public ZonesModel(String name, Double width, Double height, Measure measureName) {
 		this.name = name;
 		this.width = width;
 		this.height = height;
+		this.measureName = measureName.toString();
 	}
 
 	public String getId() {
@@ -105,7 +105,6 @@ public class ZonesModel implements Serializable {
 	}
 
 	public String getMeasureName() {
-		// TODO explore how to map Enum and change this
 		return measureName;
 	}
 

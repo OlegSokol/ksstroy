@@ -34,7 +34,7 @@ public class ZoneDaoImpl implements ZoneDao {
 		GroupsModel groupsModel = project.getGroupsModel();
 
 		ZoneGroupImpl zoneGroup = convertGroupsModelToZoneGroup(groupsModel);
-		
+
 		Project projectName = new Project();
 		projectName.setProjectName(project.getProjectName());
 
@@ -93,7 +93,6 @@ public class ZoneDaoImpl implements ZoneDao {
 		ZonesModel zonesModel = new ZonesModel();
 
 		zonesModel.setId(zone.getId());
-		zonesModel.setHeight(zone.getHeight());
 		zonesModel.setName(zone.getName());
 		zonesModel.setHeight(zone.getHeight());
 		zonesModel.setWidth(zone.getWidth());

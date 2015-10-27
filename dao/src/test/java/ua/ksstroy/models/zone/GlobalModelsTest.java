@@ -18,8 +18,6 @@ public class GlobalModelsTest {
 
 	private Session session;
 
-	String groupName = "BigKvartira";
-
 	@Before
 	public void setUp() {
 		session = HibernateUtil.getSessionFactory().openSession();
@@ -34,105 +32,61 @@ public class GlobalModelsTest {
 
 	@Test
 	public void testGroup() {
-
-		String nameProject = "BuildProject";
-		String description = "VeryCool";
-
-		GroupsModel group = new GroupsModel(groupName);
-
-		ProjectModel project = new ProjectModel(nameProject, description, group);
+		GroupsModel group = new GroupsModel("BigKvartira");
+		ProjectModel project = new ProjectModel("BuildProject", "VeryCool", group);
 
 		session.save(project);
 
-		group = (GroupsModel) session.createQuery("from GroupsModel where name='" + groupName + "'").uniqueResult();
-
-		assertEquals(groupName, group.getName());
+		group = (GroupsModel) session.createQuery("from GroupsModel where name='BigKvartira'").uniqueResult();
+		assertEquals("BigKvartira", group.getName());
 
 		session.delete(project);
 	}
 
 	@Test
 	public void testSubGroup() {
-
-		String subGroupName = "VeryVerySubGroup";
-
-		GroupsModel subGroup = new GroupsModel(subGroupName);
-
+		GroupsModel subGroup = new GroupsModel("VeryVerySubGroup");
 		Set<GroupsModel> setSubGroup = new HashSet<>();
 		setSubGroup.add(subGroup);
-
-		GroupsModel rootGroup = new GroupsModel(groupName, setSubGroup);
+		GroupsModel rootGroup = new GroupsModel("BigKvartira", setSubGroup);
 
 		session.save(rootGroup);
 
-		subGroup = (GroupsModel) session.createQuery("from GroupsModel where name='" + subGroupName + "'")
-				.uniqueResult();
-
-		assertEquals(subGroupName, subGroup.getName());
+		subGroup = (GroupsModel) session.createQuery("from GroupsModel where name = 'VeryVerySubGroup'").uniqueResult();
+		assertEquals("VeryVerySubGroup", subGroup.getName());
 
 		session.delete(rootGroup);
 	}
 
 	@Test
 	public void testZoneAndGroup() {
-
-		GroupsModel group = new GroupsModel();
-		group.setName(groupName);
-
-		String nameZone = "VeryRootZone";
-		Double width = 1.0;
-		Double height = 2.0;
-		Measure measure = Measure.EACH;
-
-		ZonesModel zone = new ZonesModel(nameZone, width, height);
-		zone.setMeasureName(measure);
-
+		GroupsModel group = new GroupsModel("BigKvartira");
+		ZonesModel zone = new ZonesModel("VeryRootZone", 1.0, 2.0, Measure.M2);
 		Set<ZonesModel> zonesSet = new HashSet<>();
 		zonesSet.add(zone);
-
 		group.setZonesGroup(zonesSet);
+
 		session.save(group);
 
-		ZonesModel zoneDB = (ZonesModel) session.createQuery("from ZonesModel where name='" + nameZone + "'")
-				.uniqueResult();
-
-		assertEquals(nameZone, zoneDB.getName());
+		zone = (ZonesModel) session.createQuery("from ZonesModel where name='VeryRootZone'").uniqueResult();
+		assertEquals("VeryRootZone", zone.getName());
 
 		session.delete(group);
 	}
 
 	@Test
 	public void testAdditZone() {
-
-		String nameZone = "VeryRootZone";
-		String nameAdditionalZone = "VeryAdditionalZone";
-		Double width = 1.0;
-		Double height = 2.0;
-		Measure measure = Measure.M2;
-
-		ZonesModel zone = new ZonesModel();
-		zone.setName(nameZone);
-		zone.setHeight(height);
-		zone.setWidth(width);
-		zone.setMeasureName(measure);
-
-		ZonesModel additionalZone = new ZonesModel();
-		additionalZone.setName(nameAdditionalZone);
-		additionalZone.setHeight(height);
-		additionalZone.setWidth(width);
-		additionalZone.setMeasureName(measure);
-
+		ZonesModel zone = new ZonesModel("VeryRootZone", 1.0, 2.0, Measure.M2);
+		ZonesModel additionalZone = new ZonesModel("VeryAdditionalZone", 1.0, 2.0, Measure.M2);
 		Set<ZonesModel> setAdditionalZoneModel = new HashSet<>();
 		setAdditionalZoneModel.add(additionalZone);
-
 		zone.setAdditionalZone(setAdditionalZoneModel);
 
 		session.save(zone);
 
 		ZonesModel additionalZoneDB = (ZonesModel) session
-				.createQuery("from ZonesModel where name='" + nameAdditionalZone + "'").uniqueResult();
-
-		assertEquals(nameAdditionalZone, additionalZoneDB.getName());
+				.createQuery("from ZonesModel where name = 'VeryAdditionalZone'").uniqueResult();
+		assertEquals("VeryAdditionalZone", additionalZoneDB.getName());
 
 		session.delete(zone);
 	}
@@ -140,35 +94,17 @@ public class GlobalModelsTest {
 	@Test
 	public void testSurplusZone() {
 
-		String nameZone = "VeryRootZone";
-		String nameSurplusZone = "VerySurplusZone";
-		Double width = 1.0;
-		Double height = 2.0;
-		Measure measure = Measure.M2;
-
-		ZonesModel zone = new ZonesModel();
-		zone.setName(nameZone);
-		zone.setHeight(height);
-		zone.setWidth(width);
-		zone.setMeasureName(measure);
-
-		ZonesModel surplusZone = new ZonesModel();
-		surplusZone.setName(nameSurplusZone);
-		surplusZone.setHeight(height);
-		surplusZone.setWidth(width);
-		surplusZone.setMeasureName(measure);
-
+		ZonesModel zone = new ZonesModel("VeryRootZone", 1.0, 2.0, Measure.M2);
+		ZonesModel surplusZone = new ZonesModel("VerySurplusZone", 1.0, 2.0, Measure.M2);
 		Set<ZonesModel> setZoneModel = new HashSet<>();
 		setZoneModel.add(surplusZone);
-
 		zone.setSurplusZone(setZoneModel);
 
 		session.save(zone);
 
-		ZonesModel surplusZoneDB = (ZonesModel) session
-				.createQuery("from ZonesModel where name='" + nameSurplusZone + "'").uniqueResult();
-
-		assertEquals(nameSurplusZone, surplusZoneDB.getName());
+		ZonesModel surplusZoneDB = (ZonesModel) session.createQuery("from ZonesModel where name='VerySurplusZone'")
+				.uniqueResult();
+		assertEquals("VerySurplusZone", surplusZoneDB.getName());
 
 		session.delete(zone);
 	}

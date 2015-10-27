@@ -24,6 +24,9 @@ public class ZoneDaoImplTest {
 
 	private Session session;
 
+	// remove fields and create local variable or direct parameters to
+	// constructor
+
 	String mockGroupName = "mockGroupsFromTestZoneDaoImpl";
 	String mockZoneName = "mockZoneFromTestZoneDaoImpl";
 	double mockZoneWidth = 13.0;
@@ -31,7 +34,7 @@ public class ZoneDaoImplTest {
 	Measure mockZoneMeasureName = Measure.KG;
 
 	Zone mockZoneImpl = new ZoneImpl();
-	
+
 	String mockZoneImplName = "mockZoneImplName";
 	Double mockZoneImplWidth = 13.05;
 	Double mockZoneImplheight = 15.1;
@@ -57,8 +60,8 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void convertZonesModelToZone() {
-		ZonesModel mockZonesModel = new ZonesModel(mockZoneName, mockZoneImplWidth, mockZoneImplheight);
-		mockZonesModel.setMeasureName(mockZoneMeasureName);
+		ZonesModel mockZonesModel = new ZonesModel(mockZoneName, mockZoneImplWidth, mockZoneImplheight,
+				mockZoneMeasureName);
 
 		ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 		Zone convertedFromModelZone = zoneDaoImpl.convertZonesModelToZone(mockZonesModel);
@@ -117,6 +120,9 @@ public class ZoneDaoImplTest {
 	public void testGetZoneById() {
 	}
 
+	// TODO elimination of the conflict while running tests
+	// testGetZonesByParentGroupId and testGetGroupsByParentGroupId
+
 	// @Test
 	// public void testGetZonesByParentGroupId() {
 	//
@@ -167,20 +173,17 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testGetGroupsByParentGroupId() {
-		String mockRootGroup = "RootGroupMock";
-		String mockSubGroup = "SubGroupMock";
+		GroupsModel subGroup = new GroupsModel("SubGroupMock");
 
-		GroupsModel subGroup = new GroupsModel(mockSubGroup);
-		
 		Set<GroupsModel> subGroupsModelSet = new HashSet<>();
 		subGroupsModelSet.add(subGroup);
-		
-		GroupsModel rootGroup = new GroupsModel(mockRootGroup, subGroupsModelSet);
+
+		GroupsModel rootGroup = new GroupsModel("RootGroupMock", subGroupsModelSet);
 
 		session.save(rootGroup);
 
-		GroupsModel rootGroupsId = (GroupsModel) session
-				.createQuery("from GroupsModel where name='" + mockRootGroup + "'").uniqueResult();
+		GroupsModel rootGroupsId = (GroupsModel) session.createQuery("from GroupsModel where name='RootGroupMock'")
+				.uniqueResult();
 		session.getTransaction().commit();
 
 		ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
@@ -211,29 +214,30 @@ public class ZoneDaoImplTest {
 
 	@Test
 	public void testStoreZone() {
-		ZoneDao	 zoneDao = new ZoneDaoImpl();
-		Zone mockZoneImpl= new ZoneImpl();
+		ZoneDao zoneDao = new ZoneDaoImpl();
+		Zone mockZoneImpl = new ZoneImpl();
 		mockZoneImpl = new ZoneImpl();
 		mockZoneImpl.setName(mockZoneImplName);
 		mockZoneImpl.setHeight(mockZoneImplheight);
 		mockZoneImpl.setWidth(mockZoneWidth);
 		mockZoneImpl.setMeasure(mockZoneImplMeasureName);
 		zoneDao.storeZone(mockZoneImpl, "1");
-		
-		 GroupsModel parentGroupModel=(GroupsModel)session.get(GroupsModel.class, "1");
+
+		GroupsModel parentGroupModel = (GroupsModel) session.get(GroupsModel.class, "1");
 		assertNotNull(parentGroupModel);
-	Set<ZonesModel>	zonesModels=parentGroupModel.getZonesGroup();
-	ZonesModel insertedMockZoneModelFromDB =new ZonesModel();
-	boolean nameMatch=false;
+		Set<ZonesModel> zonesModels = parentGroupModel.getZonesGroup();
+		ZonesModel insertedMockZoneModelFromDB = new ZonesModel();
+		boolean nameMatch = false;
 		for (ZonesModel zonesModel : zonesModels) {
-						System.out.println(zonesModel.getName());
-		if (zonesModel.getName().equals(mockZoneImpl.getName())){
-			nameMatch=true;
-			insertedMockZoneModelFromDB=zonesModel;
-		}
+			System.out.println(zonesModel.getName());
+			if (zonesModel.getName().equals(mockZoneImpl.getName())) {
+				nameMatch = true;
+				insertedMockZoneModelFromDB = zonesModel;
+			}
 		}
 		assertTrue(nameMatch);
-		//TODO refactoring WHY I CANT JUST DELETE ZONE cascade blah-blah -blah exception
+		// TODO refactoring WHY I CANT JUST DELETE ZONE cascade blah-blah -blah
+		// exception
 		parentGroupModel.getZonesGroup().remove(insertedMockZoneModelFromDB);
 		session.saveOrUpdate(parentGroupModel);
 		session.delete(insertedMockZoneModelFromDB);
