@@ -9,6 +9,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
+import ua.ksstroy.logic.project.Project;
+import ua.ksstroy.logic.project.ProjectDao;
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneDao;
@@ -32,6 +34,9 @@ public class ZoneDaoImpl implements ZoneDao {
 		GroupsModel groupsModel = project.getGroupsModel();
 
 		ZoneGroupImpl zoneGroup = convertGroupsModelToZoneGroup(groupsModel);
+		
+		Project projectName = new Project();
+		projectName.setProjectName(project.getProjectName());
 
 		return zoneGroup;
 
@@ -59,7 +64,6 @@ public class ZoneDaoImpl implements ZoneDao {
 			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) {
 				surplusZones.add(convertZonesModelToZone(oneSurplusZone));
 			}
-
 			Zone allZonesAndSubZones = convertZonesModelToZone(oneRootZone);
 			allZonesAndSubZones.setAdditional(additionalZones);
 			allZonesAndSubZones.setSurplus(surplusZones);
@@ -67,7 +71,6 @@ public class ZoneDaoImpl implements ZoneDao {
 			rootZones.add(allZonesAndSubZones);
 
 		}
-
 		zoneGroup.setZones(rootZones);
 
 		return zoneGroup;

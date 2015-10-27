@@ -26,9 +26,9 @@
 	rel="stylesheet">
 <link media="screen"
 	href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+-->
 
 <!--END BOOTSTRAP -->
--->
 
 <!-- CUSTOM STYLING -->
 
@@ -74,9 +74,11 @@
 				value="Add Zone">
 		</form>
 
+		<br>
+
 		<form action="/web/projects/addGroupToGroup" method="POST">
-			<input name="groupName" type="text" value="CreatedSubGroup"> <input
-				name="parentGroupId" type="text" value="1"> <input
+			<input name="groupName" type="text" value="CreatedSubGroup">
+			<input name="parentGroupId" type="text" value="1"> <input
 				type="submit" value="Add SubGroup">
 		</form>
 
