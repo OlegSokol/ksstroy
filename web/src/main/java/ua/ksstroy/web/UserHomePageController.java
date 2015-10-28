@@ -1,7 +1,5 @@
 package ua.ksstroy.web;
 
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -11,13 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ua.ksstroy.logic.project.ProjectManager;
-import ua.ksstroy.mocks.Project;
-
 
 @Controller
 public class UserHomePageController {
-
-
 	
 private static final int DEFAULT_USER_ID = 1; //TODO should be logged user in future
 	

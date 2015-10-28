@@ -8,22 +8,24 @@ import java.util.List;
  */
 
 public interface ZoneDao {
+	
+	ZoneGroup getRootZoneGroup(String projectId);
 
-	List<Zone> getAllZones();
+	ZoneGroup getGroupById(String groupId);
 
 	Zone getZoneById(String zoneId);
 
+	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
+
+	List<Zone> getAllZones();
+
 	List<Zone> getZonesByParentGroupId(String groupId);
 
-	List<Zone> getAllZonesByParentZoneId(String zoneId);
+	List<Zone> getZonesByParentZoneId(String zoneId);
 
 	List<Zone> getAdditionalZonesByParentZoneId(String zoneId);
 
 	List<Zone> getSurplusZonesByParentZoneId(String zoneId);
-
-	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
-
-	ZoneGroup getRootZoneGroup(String projectId);
 
 	/*
 	 * actions from Zones
@@ -35,6 +37,8 @@ public interface ZoneDao {
 
 	void storeSurplusToZone(Zone zone, String parentZoneId);
 
+	void updateZone(String zoneId, Zone newZone);
+
 	void removeZone(String zoneId);
 
 	/*
@@ -44,6 +48,8 @@ public interface ZoneDao {
 	void addRootGroup(String groupName);
 
 	void addGroupToGroup(String groupName, String parentGroupId);
+
+	void updateGroup(String groupId, ZoneGroup newGroup);
 
 	void removeGroup(String groupId);
 

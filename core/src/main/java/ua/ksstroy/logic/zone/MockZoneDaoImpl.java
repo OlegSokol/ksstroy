@@ -28,7 +28,7 @@ public class MockZoneDaoImpl implements ZoneDao {
 		return groupZones;
 	}
 
-	public List<Zone> getAllZonesByParentZoneId(String groupId) {
+	public List<Zone> getZonesByParentZoneId(String zoneId) {
 		List<Zone> zoneZones = new ArrayList<Zone>();
 		return zoneZones;
 	}
@@ -97,6 +97,18 @@ public class MockZoneDaoImpl implements ZoneDao {
 	public List<Zone> getSurplusZonesByParentZoneId(String zoneId) {
 		List<Zone> zoneZones = new ArrayList<Zone>();
 		return zoneZones;
+	}
+
+	@Override
+	public void updateZone(String zoneId, Zone newZone) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateGroup(String groupId, ZoneGroup newGroup) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

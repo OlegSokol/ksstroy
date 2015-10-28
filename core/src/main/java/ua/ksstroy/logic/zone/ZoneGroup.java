@@ -8,7 +8,6 @@ import java.util.List;
  * a building.
  * (e.g ZoneGroup "Hotel Plazma" contains ZoneGroups:"Restaurant", 
  * "Hall", "Rooms" etc  .) Structurally is a binary three. 
- * 
  */
 
 public interface ZoneGroup {

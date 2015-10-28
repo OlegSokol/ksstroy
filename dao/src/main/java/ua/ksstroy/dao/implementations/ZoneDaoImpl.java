@@ -218,7 +218,7 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public List<Zone> getAllZonesByParentZoneId(String zoneId) {
+	public List<Zone> getZonesByParentZoneId(String zoneId) {
 		session = HibernateUtil.getSessionFactory().openSession();
 		List<Zone> zonesByParentGroupId = new ArrayList<>();
 		try {
@@ -391,5 +391,23 @@ public class ZoneDaoImpl implements ZoneDao {
 				session.close();
 			}
 		}
+	}
+
+	@Override
+	public ZoneGroup getGroupById(String groupId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateZone(String zoneId, Zone newZone) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateGroup(String groupId, ZoneGroup newGroup) {
+		// TODO Auto-generated method stub
+
 	}
 }
