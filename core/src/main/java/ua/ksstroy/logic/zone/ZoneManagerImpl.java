@@ -18,10 +18,10 @@ public class ZoneManagerImpl implements ZoneManager {
 	ZoneDao zoneDaoImpl;
 
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
-		if (zoneDaoImpl.getRootZoneGroup(projectId) == null)
+		if (zoneDaoImpl.getAllHierarhy(projectId) == null)
 			throw new ZoneDaoDoesntExistException();
 
-		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup(projectId));
+		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getAllHierarhy(projectId));
 		return zoHiDa;
 	}
 
@@ -179,6 +179,48 @@ public class ZoneManagerImpl implements ZoneManager {
 		zoHiDa.setName(rootZoneGroup.getName());
 
 		return zoHiDa;
+	}
+
+	@Override
+	public void updateZone(String zoneId, ZoneData newZone) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateAdditionalZone(String zoneId, ZoneData newZone, String parentGroupId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateSurplusZone(String zoneId, ZoneData newZone, String parentGroupId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeZone(String zoneId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateGroup(String groupId, String newGroup) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateSubGroup(String groupId, String newGroup, String parentGroupId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeGroup(String groupId) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

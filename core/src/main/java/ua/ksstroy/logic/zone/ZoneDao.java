@@ -8,12 +8,8 @@ import java.util.List;
  */
 
 public interface ZoneDao {
-	
-	ZoneGroup getRootZoneGroup(String projectId);
 
-	ZoneGroup getGroupById(String groupId);
-
-	Zone getZoneById(String zoneId);
+	ZoneGroup getAllHierarhy(String projectId);
 
 	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
 
@@ -39,6 +35,10 @@ public interface ZoneDao {
 
 	void updateZone(String zoneId, Zone newZone);
 
+	void updateAdditionalZone(String zoneId, Zone newZone, String parentZoneId);
+
+	void updateSurplusZone(String zoneId, Zone newZone, String parentZoneId);
+
 	void removeZone(String zoneId);
 
 	/*
@@ -49,7 +49,9 @@ public interface ZoneDao {
 
 	void addGroupToGroup(String groupName, String parentGroupId);
 
-	void updateGroup(String groupId, ZoneGroup newGroup);
+	void updateGroup(String groupId, String newGroup);
+
+	void updateSubGroup(String groupId, String newGroup, String parentGroupId);
 
 	void removeGroup(String groupId);
 

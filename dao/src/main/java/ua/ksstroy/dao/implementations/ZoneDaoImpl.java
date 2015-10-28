@@ -25,7 +25,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	private Session session;
 
-	public ZoneGroup getRootZoneGroup(String projectId) {
+	public ZoneGroup getAllHierarhy(String projectId) {
 		session = HibernateUtil.getSessionFactory().openSession();
 
 		ProjectModel project = (ProjectModel) session.get(ProjectModel.class, Integer.parseInt(projectId));
@@ -159,12 +159,6 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getAllZones() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Zone getZoneById(String zoneId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -394,19 +388,30 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public ZoneGroup getGroupById(String groupId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void updateZone(String zoneId, Zone newZone) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void updateGroup(String groupId, ZoneGroup newGroup) {
+	public void updateGroup(String groupId, String newGroup) {
+
+	}
+
+	@Override
+	public void updateAdditionalZone(String zoneId, Zone newZone, String parentZoneId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateSubGroup(String groupId, String newGroup, String parentGroupId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateSurplusZone(String zoneId, Zone newZone, String parentZoneId) {
 		// TODO Auto-generated method stub
 
 	}

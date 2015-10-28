@@ -30,6 +30,16 @@ public class ProjectController {
 
 	}
 
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/addRootGroupToProject", method = RequestMethod.POST)
+	public ModelAndView addRootGroupToProject(@RequestParam("groupName") String groupName,
+			@RequestParam("projectId") String projectId) {
+
+		zoneManager.addRootGroupToProject(groupName, projectId);
+
+		return project;
+	}
+
 	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
 	public ModelAndView addGroupToGroup(@RequestParam("groupName") String groupName,
 			@RequestParam("parentGroupId") String parentGroupId) {
@@ -96,6 +106,106 @@ public class ProjectController {
 		zoneFromWeb.setMeasureName(measureName);
 
 		zoneManager.addSurplusToZone(zoneFromWeb, parentZoneId);
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/updateZone", method = RequestMethod.POST)
+	public ModelAndView updateZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
+			@RequestParam("width") String width, @RequestParam("heigh") String height,
+			@RequestParam("measureName") String measureName) {
+
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
+		try {
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			// TODO: logging an exception
+			System.out.println("empty string from web!!!");
+		}
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.updateZone(zoneId, zoneFromWeb);
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/updateAdditionalZone", method = RequestMethod.POST)
+	public ModelAndView updateAdditionalZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
+			@RequestParam("width") String width, @RequestParam("heigh") String height,
+			@RequestParam("measureName") String measureName, @RequestParam("parentZoneId") String parentZoneId) {
+
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
+		try {
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			// TODO: logging an exception
+			System.out.println("empty string from web!!!");
+		}
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.updateAdditionalZone(zoneId, zoneFromWeb, parentZoneId);
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/updateSurplusZone", method = RequestMethod.POST)
+	public ModelAndView updateSurplusZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
+			@RequestParam("width") String width, @RequestParam("heigh") String height,
+			@RequestParam("measureName") String measureName, @RequestParam("parentZoneId") String parentZoneId) {
+
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
+		try {
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			// TODO: logging an exception
+			System.out.println("empty string from web!!!");
+		}
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.updateSurplusZone(zoneId, zoneFromWeb, parentZoneId);
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/removeZone", method = RequestMethod.POST)
+	public ModelAndView removeZone(@RequestParam("zoneId") String zoneId) {
+
+		zoneManager.removeZone(zoneId);
+
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/updateGroup", method = RequestMethod.POST)
+	public ModelAndView updateGroup(@RequestParam("groupId") String groupId, @RequestParam("name") String newGroup) {
+
+		zoneManager.updateGroup(groupId, newGroup);
+
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/updateSubGroup", method = RequestMethod.POST)
+	public ModelAndView updateSubGroup(@RequestParam("groupId") String groupId, @RequestParam("name") String newGroup,
+			@RequestParam("parentGroupId") String parentGroupId) {
+
+		zoneManager.updateSubGroup(groupId, newGroup, parentGroupId);
+
+		return project;
+	}
+
+	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/removeGroup", method = RequestMethod.POST)
+	public ModelAndView removeGroup(@RequestParam("groupId") String groupId) {
+
+		zoneManager.removeGroup(groupId);
+
 		return project;
 	}
 

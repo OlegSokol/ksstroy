@@ -38,7 +38,7 @@ public class MockZoneDaoImpl implements ZoneDao {
 		return groupGroups;
 	}
 
-	public ZoneGroup getRootZoneGroup(String projectId) {
+	public ZoneGroup getAllHierarhy(String projectId) {
 		ZoneGroup zoneGroup = new ZoneGroupImpl();
 		return zoneGroup;
 	}
@@ -106,7 +106,25 @@ public class MockZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void updateGroup(String groupId, ZoneGroup newGroup) {
+	public void updateGroup(String groupId, String newGroup) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateAdditionalZone(String zoneId, Zone newZone, String parentZoneId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateSurplusZone(String zoneId, Zone newZone, String parentZoneId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateSubGroup(String groupId, String newGroup, String parentGroupId) {
 		// TODO Auto-generated method stub
 
 	}
