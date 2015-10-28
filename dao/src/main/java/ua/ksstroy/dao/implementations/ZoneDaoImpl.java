@@ -146,7 +146,7 @@ public class ZoneDaoImpl implements ZoneDao {
 
 			GroupsModel group = (GroupsModel) session.get(GroupsModel.class, groupId);
 			session.delete(group);
-			session.flush();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();

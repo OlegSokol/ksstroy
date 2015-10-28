@@ -98,6 +98,15 @@
 				value="Add Surplus Zone">
 		</form>
 
+		<form action="/web/projects/removeZone" method="POST">
+			<input name="zoneId" type="text" value="7"> <input
+				type="submit" value="Delete Zone">
+		</form>
+
+		<form action="/web/projects/removeGroup" method="POST">
+			<input name="groupId" type="text" value="5"> <input
+				type="submit" value="Delete Group">
+		</form>
 
 		<jsp:include page="node.jsp" />
 

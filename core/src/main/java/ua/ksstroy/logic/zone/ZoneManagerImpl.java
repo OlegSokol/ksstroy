@@ -73,7 +73,7 @@ public class ZoneManagerImpl implements ZoneManager {
 		}
 
 		if (nameFree) {
-			zoneDaoImpl.storeZone(zoneImpl, parentZoneId);
+			zoneDaoImpl.storeSurplusToZone(zoneImpl, parentZoneId);
 		} else {
 			throw new NameConflictException();
 		}
@@ -90,7 +90,7 @@ public class ZoneManagerImpl implements ZoneManager {
 		}
 
 		if (nameFree) {
-			zoneDaoImpl.storeZone(zoneImpl, parentZoneId);
+			zoneDaoImpl.storeAdditionalToZone(zoneImpl, parentZoneId);
 		} else {
 			throw new NameConflictException();
 		}
@@ -201,8 +201,7 @@ public class ZoneManagerImpl implements ZoneManager {
 
 	@Override
 	public void removeZone(String zoneId) {
-		// TODO Auto-generated method stub
-
+		zoneDaoImpl.removeZone(zoneId);
 	}
 
 	@Override
@@ -219,8 +218,7 @@ public class ZoneManagerImpl implements ZoneManager {
 
 	@Override
 	public void removeGroup(String groupId) {
-		// TODO Auto-generated method stub
-
+		zoneDaoImpl.removeGroup(groupId);
 	}
 
 }
