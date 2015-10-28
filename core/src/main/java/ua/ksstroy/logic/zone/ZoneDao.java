@@ -15,7 +15,11 @@ public interface ZoneDao {
 
 	List<Zone> getZonesByParentGroupId(String groupId);
 
-	List<Zone> getZonesByParentZoneId(String groupId);
+	List<Zone> getAllZonesByParentZoneId(String zoneId);
+
+	List<Zone> getAdditionalZonesByParentZoneId(String zoneId);
+
+	List<Zone> getSurplusZonesByParentZoneId(String zoneId);
 
 	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
 
@@ -25,17 +29,13 @@ public interface ZoneDao {
 	 * actions from Zones
 	 */
 
-	void addZone(String zoneName, Double width, Double height, String measure);
+	void storeZone(Zone zone, String parentGroupId);
 
-	void addAdditZone(String zoneName, Double width, Double height, String parentZoneId, String measure);
+	void storeAdditionalToZone(Zone zone, String parentZoneId);
 
-	void addSurplusZone(String zoneName, Double width, Double height, String parentZoneId, String measure);
-
-	void storeZoneToZone(Zone zone, String parentZoneId);
+	void storeSurplusToZone(Zone zone, String parentZoneId);
 
 	void removeZone(String zoneId);
-
-	void storeZone(Zone zone, String parentGroupId);
 
 	/*
 	 * actions from Groups

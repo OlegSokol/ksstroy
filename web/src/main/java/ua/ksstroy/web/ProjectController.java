@@ -39,14 +39,10 @@ public class ProjectController {
 		return project;
 	}
 
-	/*
-	 * create new ZoneData object based on data from the web page and invoke
-	 * according ZoneManager method
-	 */
 	@RequestMapping(value = "/projects/addZone", method = RequestMethod.POST)
-	public ModelAndView addZone(@RequestParam("name") String name, @RequestParam("parentGroupId") String parentGroupId,
-			@RequestParam("measureName") String measureName, @RequestParam("width") String width,
-			@RequestParam("heigh") String height) {
+	public ModelAndView addZone(@RequestParam("name") String name, @RequestParam("width") String width,
+			@RequestParam("heigh") String height, @RequestParam("measureName") String measureName,
+			@RequestParam("parentGroupId") String parentGroupId) {
 
 		ZoneData zoneFromWeb = new ZoneData();
 		zoneFromWeb.setName(name);
@@ -63,49 +59,44 @@ public class ProjectController {
 		return project;
 	}
 
-	/*
-	 * create new ZoneData object representing additionalZone in some Zone,
-	 * based on data from the web page and invoke according ZoneManager method
-	 */
-	@RequestMapping(value = "/projects/addZoneToZone", method = RequestMethod.POST)
-	public String addZoneToZone(@RequestParam("name") String name, @RequestParam("parentZoneId") String parentZoneId,
-			@RequestParam("measureName") String measureName, @RequestParam("width") String width,
-			@RequestParam("heigh") String height) {
+	@RequestMapping(value = "/projects/addAdditionalZone", method = RequestMethod.POST)
+	public ModelAndView addAdditionalZone(@RequestParam("name") String name, @RequestParam("width") String width,
+			@RequestParam("heigh") String height, @RequestParam("measureName") String measureName,
+			@RequestParam("parentZoneId") String parentZoneId) {
 
-		ZoneData additionalZoneFromWeb = new ZoneData();
-		additionalZoneFromWeb.setName(name);
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
 		try {
-			additionalZoneFromWeb.setHeight(new Double(height).doubleValue());
-			additionalZoneFromWeb.setWidth(new Double(width).doubleValue());
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
 			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		additionalZoneFromWeb.setMeasureName(measureName);
-		zoneManager.addZoneToZone(additionalZoneFromWeb, parentZoneId);
-		return ("redirect:/projects/mock");
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.addAdditionalToZone(zoneFromWeb, parentZoneId);
+		return project;
 	}
 
-	/*
-	 * create new ZoneData object representing surplusZone in some Zone, based
-	 * on data from the web page and invoke according ZoneManager method
-	 */
-	@RequestMapping(value = "/projects/subtractZoneFromZone", method = RequestMethod.POST)
-	public String subtractZoneFromZone(@RequestParam("name") String name,
-			@RequestParam("parentZoneId") String parentZoneId, @RequestParam("measureName") String measureName,
-			@RequestParam("width") String width, @RequestParam("heigh") String height) {
-		ZoneData surplusZoneFromWeb = new ZoneData();
-		surplusZoneFromWeb.setName(name);
+	@RequestMapping(value = "/projects/addSurplusZone", method = RequestMethod.POST)
+	public ModelAndView addSurplusZone(@RequestParam("name") String name, @RequestParam("width") String width,
+			@RequestParam("heigh") String height, @RequestParam("measureName") String measureName,
+			@RequestParam("parentZoneId") String parentZoneId) {
+
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
 		try {
-			surplusZoneFromWeb.setHeight(new Double(height).doubleValue());
-			surplusZoneFromWeb.setWidth(new Double(width).doubleValue());
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
 			// TODO: logging an exception
 			System.out.println("empty string from web!!!");
 		}
-		surplusZoneFromWeb.setMeasureName(measureName);
-		zoneManager.subtractZoneFromZone(surplusZoneFromWeb, parentZoneId);
-		return ("redirect:/projects/mock");
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.addSurplusToZone(zoneFromWeb, parentZoneId);
+		return project;
 	}
 
 }

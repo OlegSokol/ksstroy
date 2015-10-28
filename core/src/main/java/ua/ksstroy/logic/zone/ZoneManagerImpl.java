@@ -16,7 +16,6 @@ public class ZoneManagerImpl implements ZoneManager {
 	@Autowired
 	@Qualifier("zoneDao")
 	ZoneDao zoneDaoImpl;
-	// ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 
 	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
 		if (zoneDaoImpl.getRootZoneGroup(projectId) == null)
@@ -24,6 +23,12 @@ public class ZoneManagerImpl implements ZoneManager {
 
 		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getRootZoneGroup(projectId));
 		return zoHiDa;
+	}
+
+	@Override
+	public void addRootGroupToProject(String groupName, String projectId) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException {
@@ -57,33 +62,43 @@ public class ZoneManagerImpl implements ZoneManager {
 		}
 	}
 
-	public void addZoneToZone(ZoneData zone, String parentZoneId) throws NameConflictException {
+	@Override
+	public void addSurplusToZone(ZoneData surplusZone, String parentZoneId) throws NameConflictException {
 		boolean nameFree = true;
-		List<Zone> zones = zoneDaoImpl.getZonesByParentZoneId(parentZoneId);
-		Zone zoneImpl = convertZoneDataToZone(zone);
-		for (Zone tempZone : zones) {
-			if (zone.getName().equals(tempZone.getName()))
+		Zone zoneImpl = convertZoneDataToZone(surplusZone);
+		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentZoneId);
+		for (Zone tempZone : subZones) {
+			if (surplusZone.getName().equals(tempZone.getName()))
 				nameFree = false;
 		}
 
 		if (nameFree) {
-			zoneDaoImpl.storeZoneToZone(zoneImpl, parentZoneId);
+			zoneDaoImpl.storeZone(zoneImpl, parentZoneId);
 		} else {
 			throw new NameConflictException();
 		}
-
 	}
 
-	public void subtractZoneFromZone(ZoneData zone, String parentZoneId) throws NameConflictException {
+	@Override
+	public void addAdditionalToZone(ZoneData additionalZone, String parentZoneId) throws NameConflictException {
 		boolean nameFree = true;
-		// Exception realization needed
-		Zone zoneImpl = convertZoneDataToZone(zone);
-		zoneDaoImpl.storeZoneToZone(zoneImpl, parentZoneId);
+		Zone zoneImpl = convertZoneDataToZone(additionalZone);
+		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentZoneId);
+		for (Zone tempZone : subZones) {
+			if (additionalZone.getName().equals(tempZone.getName()))
+				nameFree = false;
+		}
+
+		if (nameFree) {
+			zoneDaoImpl.storeZone(zoneImpl, parentZoneId);
+		} else {
+			throw new NameConflictException();
+		}
 	}
 
 	public ZoneData convertZoneToZoneData(Zone zone) {
 		ZoneData convZoneData = new ZoneData();
-		//TODO how to test private methods ?
+		// TODO how to test private methods ?
 
 		List<ZoneData> additionalList = new ArrayList<ZoneData>();
 		if (zone.getAdditional() != null && !zone.getAdditional().isEmpty()) {
@@ -166,40 +181,4 @@ public class ZoneManagerImpl implements ZoneManager {
 		return zoHiDa;
 	}
 
-	// Useless Method yet
-	private ZoneGroup convertZoneHierarchyDataToZoneGroup(ZoneHierarchyData rootZoneHierarchyData) {
-		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
-
-		List<Zone> rootZone = new ArrayList<Zone>();
-		if (!rootZoneHierarchyData.getZones().isEmpty()) {
-			for (ZoneData tempZoneData : rootZoneHierarchyData.getZones()) {
-				rootZone.add(convertZoneDataToZone(tempZoneData));
-			}
-		}
-
-		List<ZoneGroup> tempGroupList = new ArrayList<ZoneGroup>();
-		if (!rootZoneHierarchyData.getGroups().isEmpty()) {
-			for (ZoneHierarchyData tempHiGroup : rootZoneHierarchyData.getGroups()) {
-				tempGroupList.add(convertZoneHierarchyDataToZoneGroup(tempHiGroup));
-			}
-		}
-
-		zoneGroup.setZones(rootZone);
-		zoneGroup.setGroups(tempGroupList);
-		zoneGroup.setId(rootZoneHierarchyData.getId());
-		zoneGroup.setName(rootZoneHierarchyData.getName());
-
-		return zoneGroup;
-	}
-
-	/*
-	 * for test purposes ONLY!!
-	 */
-	public static void main(String[] args) throws Exception {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-beans_FOR_TESTING.xml");
-		ZoneManagerImpl myZoneManager = (ZoneManagerImpl) context.getBean("ZoneManagerImpl");
-
-		myZoneManager.getRootZoneHierarchy("33");
-
-	}
 }

@@ -65,6 +65,12 @@
 
 		<p>Test forms for invoke ZoneManager methods</p>
 
+		<form action="/web/projects/addGroupToGroup" method="POST">
+			<input name="groupName" type="text" value="CreatedSubGroup">
+			<input name="parentGroupId" type="text" value="1"> <input
+				type="submit" value="Add SubGroup">
+		</form>
+
 		<form action="/web/projects/addZone" method="POST">
 			<input name="name" type="text" value="CreatedNewZone"> <input
 				name="parentGroupId" type="text" value="4"> <input
@@ -74,13 +80,24 @@
 				value="Add Zone">
 		</form>
 
-		<br>
-
-		<form action="/web/projects/addGroupToGroup" method="POST">
-			<input name="groupName" type="text" value="CreatedSubGroup">
-			<input name="parentGroupId" type="text" value="1"> <input
-				type="submit" value="Add SubGroup">
+		<form action="/web/projects/addAdditionalZone" method="POST">
+			<input name="name" type="text" value="CreatedNewAdditionalZone">
+			<input name="parentZoneId" type="text" value="4"> <input
+				name="measureName" type="text" value="M2"> <input
+				name="width" type="text" value="3.0"> <input name="heigh"
+				type="text" value="4.0"> <input type="submit"
+				value="Add Additional Zone">
 		</form>
+
+		<form action="/web/projects/addSurplusZone" method="POST">
+			<input name="name" type="text" value="CreatedNewSurplusZone">
+			<input name="parentZoneId" type="text" value="4"> <input
+				name="measureName" type="text" value="M2"> <input
+				name="width" type="text" value="4.0"> <input name="heigh"
+				type="text" value="2.5"> <input type="submit"
+				value="Add Surplus Zone">
+		</form>
+
 
 		<jsp:include page="node.jsp" />
 

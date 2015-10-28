@@ -11,8 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<div id="zoneHierarchiDataTree">
 		<ul>
 			<c:forEach var="zhd" items="${zhd.groups}">
@@ -122,11 +120,7 @@
 					</div>
 				</li>
 
-
 				<!--END  Zones<ZoneData> constructor -->
-
-
-
 
 				<li class="expanded">
 					<div class="zoneGroups_ExpandedView">
@@ -159,16 +153,6 @@
 				<!--END expanded zoneGroup -->
 				<!--END OUTPUT ZHD groups<ZoneHierarchiData> -->
 
-
-
-
-
-
-
-
-
-
-
 				<!-- OUTPUT zones<ZoneData> -->
 
 				<zone:subGroups zhd="${zhd}" />
@@ -178,5 +162,4 @@
 		</ul>
 	</div>
 </body>
-
 </html>
