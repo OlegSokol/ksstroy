@@ -178,7 +178,6 @@
 											".expanded", ".constructor")
 											.toggle();
 								});
-
 					});
 		</script>
 	</div>

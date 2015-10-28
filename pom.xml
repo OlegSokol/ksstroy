@@ -50,20 +50,20 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
- <plugins>
-        <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-        <update>true</update>
-            <url>http://localhost:8080/manager/text</url>
-<username>admin</username>
-<password>admin</password>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<update>true</update>
+					<url>http://localhost:8080/manager/text</url>
+					<username>admin</username>
+					<password>admin</password>
 
-        </configuration>
-        </plugin>
-    </plugins>
+				</configuration>
+			</plugin>
+		</plugins>
 
 	</build>
 
@@ -77,12 +77,12 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-bom</artifactId>
-			<version>4.0.1.RELEASE</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-bom</artifactId>
+				<version>4.0.1.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -92,12 +92,12 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-			<!-- Spring 3 dependencies -->
+		<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 		</dependency>
-		
+
 		<!-- Spring MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -132,19 +132,26 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 		</dependency>
-		<!--Logging and jstl dependencies  -->
-  	<dependency>
-  		<groupId>org.apache.logging.log4j</groupId>
-  		<artifactId>log4j-to-slf4j</artifactId>
-  		<version>2.3</version>
-</dependency>
-  <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-  	</dependency>
-		
-		
+		<!--Logging and jstl dependencies -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-to-slf4j</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 </project>
