@@ -26,9 +26,8 @@ public class ZoneManagerImpl implements ZoneManager {
 	}
 
 	@Override
-	public void addRootGroupToProject(String groupName, String projectId) {
-		// TODO Auto-generated method stub
-
+	public void addRootGroupToProject(String groupName, Integer projectId) {
+		zoneDaoImpl.addRootGroup(groupName, projectId);
 	}
 
 	public void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException {
@@ -182,38 +181,19 @@ public class ZoneManagerImpl implements ZoneManager {
 	}
 
 	@Override
+	public void updateGroup(String groupId, String newGroup) {
+		zoneDaoImpl.updateGroup(groupId, newGroup);
+	}
+
+	@Override
 	public void updateZone(String zoneId, ZoneData newZone) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateAdditionalZone(String zoneId, ZoneData newZone, String parentGroupId) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateSurplusZone(String zoneId, ZoneData newZone, String parentGroupId) {
-		// TODO Auto-generated method stub
-
+		Zone zoneImpl = convertZoneDataToZone(newZone);
+		zoneDaoImpl.updateZone(zoneId, zoneImpl);
 	}
 
 	@Override
 	public void removeZone(String zoneId) {
 		zoneDaoImpl.removeZone(zoneId);
-	}
-
-	@Override
-	public void updateGroup(String groupId, String newGroup) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateSubGroup(String groupId, String newGroup, String parentGroupId) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

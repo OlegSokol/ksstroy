@@ -65,10 +65,27 @@
 
 		<p>Test forms for invoke ZoneManager methods</p>
 
+		<form action="/web/projects/addRootGroupToProject" method="POST">
+			<input name="groupName" type="text" value="CreatedRootGroupByProject">
+			<input name="projectId" type="text" value="33"> <input
+				type="submit" value="Add Group">
+		</form>
+
 		<form action="/web/projects/addGroupToGroup" method="POST">
 			<input name="groupName" type="text" value="CreatedSubGroup">
 			<input name="parentGroupId" type="text" value="1"> <input
 				type="submit" value="Add SubGroup">
+		</form>
+
+		<form action="/web/projects/updateGroup" method="POST">
+			<input name="groupName" type="text" value="UpdateGroup"> <input
+				name="groupId" type="text" value="1"> <input type="submit"
+				value="Update Group">
+		</form>
+
+		<form action="/web/projects/removeGroup" method="POST">
+			<input name="groupId" type="text" value="5"> <input
+				type="submit" value="Delete Group">
 		</form>
 
 		<form action="/web/projects/addZone" method="POST">
@@ -98,14 +115,18 @@
 				value="Add Surplus Zone">
 		</form>
 
+		<form action="/web/projects/updateZone" method="POST">
+			<input name="name" type="text" value="UpdatedZone"> <input
+				name="zoneId" type="text" value="5"> <input
+				name="measureName" type="text" value="M2"> <input
+				name="width" type="text" value="123"> <input name="heigh"
+				type="text" value="123.0"> <input type="submit"
+				value="Update Zone">
+		</form>
+
 		<form action="/web/projects/removeZone" method="POST">
 			<input name="zoneId" type="text" value="7"> <input
 				type="submit" value="Delete Zone">
-		</form>
-
-		<form action="/web/projects/removeGroup" method="POST">
-			<input name="groupId" type="text" value="5"> <input
-				type="submit" value="Delete Group">
 		</form>
 
 		<jsp:include page="node.jsp" />

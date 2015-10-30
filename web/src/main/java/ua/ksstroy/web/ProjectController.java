@@ -34,7 +34,7 @@ public class ProjectController {
 	// TODO requires the implementation of
 	@RequestMapping(value = "/projects/addRootGroupToProject", method = RequestMethod.POST)
 	public String addRootGroupToProject(@RequestParam("groupName") String groupName,
-			@RequestParam("projectId") String projectId, HttpServletRequest request) {
+			@RequestParam("projectId") Integer projectId, HttpServletRequest request) {
 
 		zoneManager.addRootGroupToProject(groupName, projectId);
 		String referer = request.getHeader("Referer");
@@ -113,7 +113,34 @@ public class ProjectController {
 		return "redirect:" + referer;
 	}
 
-	// TODO requires the implementation of
+	@RequestMapping(value = "/projects/removeZone", method = RequestMethod.POST)
+	public String removeZone(@RequestParam("zoneId") String zoneId, HttpServletRequest request) {
+
+		zoneManager.removeZone(zoneId);
+
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
+	@RequestMapping(value = "/projects/removeGroup", method = RequestMethod.POST)
+	public String removeGroup(@RequestParam("groupId") String groupId, HttpServletRequest request) {
+
+		zoneManager.removeGroup(groupId);
+
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
+	@RequestMapping(value = "/projects/updateGroup", method = RequestMethod.POST)
+	public String updateGroup(@RequestParam("groupId") String groupId, @RequestParam("groupName") String newGroup,
+			HttpServletRequest request) {
+
+		zoneManager.updateGroup(groupId, newGroup);
+
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
 	@RequestMapping(value = "/projects/updateZone", method = RequestMethod.POST)
 	public String updateZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
 			@RequestParam("width") String width, @RequestParam("heigh") String height,
@@ -131,94 +158,6 @@ public class ProjectController {
 		zoneFromWeb.setMeasureName(measureName);
 
 		zoneManager.updateZone(zoneId, zoneFromWeb);
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// TODO requires the implementation of
-	@RequestMapping(value = "/projects/updateAdditionalZone", method = RequestMethod.POST)
-	public String updateAdditionalZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
-			@RequestParam("width") String width, @RequestParam("heigh") String height,
-			@RequestParam("measureName") String measureName, @RequestParam("parentZoneId") String parentZoneId,
-			HttpServletRequest request) {
-
-		ZoneData zoneFromWeb = new ZoneData();
-		zoneFromWeb.setName(name);
-		try {
-			zoneFromWeb.setHeight(new Double(height).doubleValue());
-			zoneFromWeb.setWidth(new Double(width).doubleValue());
-		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
-		}
-		zoneFromWeb.setMeasureName(measureName);
-
-		zoneManager.updateAdditionalZone(zoneId, zoneFromWeb, parentZoneId);
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// TODO requires the implementation of
-	@RequestMapping(value = "/projects/updateSurplusZone", method = RequestMethod.POST)
-	public String updateSurplusZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
-			@RequestParam("width") String width, @RequestParam("heigh") String height,
-			@RequestParam("measureName") String measureName, @RequestParam("parentZoneId") String parentZoneId,
-			HttpServletRequest request) {
-
-		ZoneData zoneFromWeb = new ZoneData();
-		zoneFromWeb.setName(name);
-		try {
-			zoneFromWeb.setHeight(new Double(height).doubleValue());
-			zoneFromWeb.setWidth(new Double(width).doubleValue());
-		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
-		}
-		zoneFromWeb.setMeasureName(measureName);
-
-		zoneManager.updateSurplusZone(zoneId, zoneFromWeb, parentZoneId);
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// TODO requires the implementation of
-	@RequestMapping(value = "/projects/removeZone", method = RequestMethod.POST)
-	public String removeZone(@RequestParam("zoneId") String zoneId, HttpServletRequest request) {
-
-		zoneManager.removeZone(zoneId);
-
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// TODO requires the implementation of
-	@RequestMapping(value = "/projects/updateGroup", method = RequestMethod.POST)
-	public String updateGroup(@RequestParam("groupId") String groupId, @RequestParam("name") String newGroup,
-			HttpServletRequest request) {
-
-		zoneManager.updateGroup(groupId, newGroup);
-
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// TODO requires the implementation of
-	@RequestMapping(value = "/projects/updateSubGroup", method = RequestMethod.POST)
-	public String updateSubGroup(@RequestParam("groupId") String groupId, @RequestParam("name") String newGroup,
-			@RequestParam("parentGroupId") String parentGroupId, HttpServletRequest request) {
-
-		zoneManager.updateSubGroup(groupId, newGroup, parentGroupId);
-
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
-	}
-
-	// TODO requires the implementation of
-	@RequestMapping(value = "/projects/removeGroup", method = RequestMethod.POST)
-	public String removeGroup(@RequestParam("groupId") String groupId, HttpServletRequest request) {
-
-		zoneManager.removeGroup(groupId);
-
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
 	}

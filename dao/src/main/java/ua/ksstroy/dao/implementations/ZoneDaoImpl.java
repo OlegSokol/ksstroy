@@ -97,15 +97,16 @@ public class ZoneDaoImpl implements ZoneDao {
 	}
 
 	@Override
-	public void addRootGroup(String groupName) {
-
-		session = HibernateUtil.getSessionFactory().openSession();
+	public void addRootGroup(String groupName, Integer projectId) {
 		try {
-			session.beginTransaction();
+			getSession();
 
+			ProjectModel projectModel = (ProjectModel) session.get(ProjectModel.class, projectId);
 			GroupsModel rootGroup = new GroupsModel(groupName);
+			projectModel.setGroupsModel(rootGroup);
 
 			session.save(rootGroup);
+			session.saveOrUpdate(projectModel);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -117,12 +118,15 @@ public class ZoneDaoImpl implements ZoneDao {
 		}
 	}
 
+	private void getSession() {
+		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+	}
+
 	@Override
 	public void removeZone(String zoneId) {
-		session = HibernateUtil.getSessionFactory().openSession();
-
 		try {
-			session.beginTransaction();
+			getSession();
 
 			ZonesModel zone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			session.delete(zone);
@@ -139,10 +143,8 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void removeGroup(String groupId) {
-
-		session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			session.beginTransaction();
+			getSession();
 
 			GroupsModel group = (GroupsModel) session.get(GroupsModel.class, groupId);
 			session.delete(group);
@@ -165,10 +167,10 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<ZoneGroup> getGroupsByParentGroupId(String groupId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		List<ZoneGroup> groupsByParentGroupId = new ArrayList<>();
 		try {
-			session.beginTransaction();
+			getSession();
+
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, groupId);
 			List<GroupsModel> groupsModelsByparentGroupId = new ArrayList<>(parentGroup.getSubGroups());
 
@@ -188,17 +190,15 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getZonesByParentGroupId(String groupId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		List<Zone> zonesByParentGroupId = new ArrayList<>();
 		try {
-			session.beginTransaction();
+			getSession();
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, groupId);
 			List<ZonesModel> zonesModelsByparentGroupId = new ArrayList<>(parentGroup.getZonesGroup());
 
 			for (ZonesModel zonesModel : zonesModelsByparentGroupId) {
 				zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
 			}
-
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -213,10 +213,9 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getZonesByParentZoneId(String zoneId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		List<Zone> zonesByParentGroupId = new ArrayList<>();
 		try {
-			session.beginTransaction();
+			getSession();
 			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			List<ZonesModel> additionalZonesModelByParentZoneId = new ArrayList<>(parentZone.getAdditionalZone());
 			List<ZonesModel> surplusZonesModelByParentZoneId = new ArrayList<>(parentZone.getSurplusZone());
@@ -241,10 +240,9 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getAdditionalZonesByParentZoneId(String zoneId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		List<Zone> additionalZone = new ArrayList<>();
 		try {
-			session.beginTransaction();
+			getSession();
 			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			List<ZonesModel> additionalZonesModel = new ArrayList<>(parentZone.getAdditionalZone());
 
@@ -264,10 +262,9 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public List<Zone> getSurplusZonesByParentZoneId(String zoneId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		List<Zone> surplusZone = new ArrayList<>();
 		try {
-			session.beginTransaction();
+			getSession();
 			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			List<ZonesModel> surplusZonesModel = new ArrayList<>(parentZone.getSurplusZone());
 
@@ -295,16 +292,15 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void storeZone(Zone zone, String parentGroupId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			session.beginTransaction();
+			getSession();
 			ZonesModel zoneModelPreparedForSave = new ZonesModel();
 			zoneModelPreparedForSave = this.convertZoneToZoneModel(zone);
-			// TODO CONVERT ZONE TO ZONE MODEL
 
 			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
 			parentGroup.getZonesGroup().add(zoneModelPreparedForSave);
 			session.saveOrUpdate(parentGroup);
+
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -318,15 +314,14 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void storeAdditionalToZone(Zone zone, String parentZoneId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			session.beginTransaction();
+			getSession();
 			ZonesModel zoneModelPreparedForSave = new ZonesModel();
 			zoneModelPreparedForSave = this.convertZoneToZoneModel(zone);
-			// TODO CONVERT ZONE TO ZONE MODEL
 
 			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, parentZoneId);
 			parentZone.getAdditionalZone().add(zoneModelPreparedForSave);
+
 			session.saveOrUpdate(parentZone);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
@@ -341,15 +336,14 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void storeSurplusToZone(Zone zone, String parentZoneId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			session.beginTransaction();
+			getSession();
 			ZonesModel zoneModelPreparedForSave = new ZonesModel();
 			zoneModelPreparedForSave = this.convertZoneToZoneModel(zone);
-			// TODO CONVERT ZONE TO ZONE MODEL
 
 			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, parentZoneId);
 			parentZone.getSurplusZone().add(zoneModelPreparedForSave);
+
 			session.saveOrUpdate(parentZone);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
@@ -364,12 +358,9 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void addGroupToGroup(String groupName, String parentGroupId) {
-		session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			session.beginTransaction();
-
+			getSession();
 			GroupsModel subGroupToRootGroup = new GroupsModel(groupName);
-
 			Set<GroupsModel> subGroupSet = new HashSet<>();
 			subGroupSet.add(subGroupToRootGroup);
 
@@ -389,30 +380,46 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void updateZone(String zoneId, Zone newZone) {
-		// TODO Auto-generated method stub
+		try {
+			getSession();
+
+			ZonesModel zone = (ZonesModel) session.get(ZonesModel.class, zoneId);
+			zone.setName(newZone.getName());
+			zone.setHeight(newZone.getHeight());
+			zone.setWidth(newZone.getWidth());
+			zone.setMeasureName(newZone.getMeasure());
+
+			session.saveOrUpdate(zone);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 
 	}
 
 	@Override
 	public void updateGroup(String groupId, String newGroup) {
+		try {
+			getSession();
 
+			GroupsModel group = (GroupsModel) session.get(GroupsModel.class, groupId);
+			group.setName(newGroup);
+
+			session.saveOrUpdate(group);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
 	}
 
-	@Override
-	public void updateAdditionalZone(String zoneId, Zone newZone, String parentZoneId) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateSubGroup(String groupId, String newGroup, String parentGroupId) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void updateSurplusZone(String zoneId, Zone newZone, String parentZoneId) {
-		// TODO Auto-generated method stub
-
-	}
 }

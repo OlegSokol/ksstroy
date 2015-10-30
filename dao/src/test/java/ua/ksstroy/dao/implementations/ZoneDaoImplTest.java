@@ -82,21 +82,22 @@ public class ZoneDaoImplTest {
 	public void testMain() {
 	}
 
-	@Test
-	public void testAddRootGroup() {
-		ZoneDaoImpl daoImpl = new ZoneDaoImpl();
-
-		String mockRootGroupName = "RootGroup";
-
-		daoImpl.addRootGroup(mockRootGroupName);
-
-		GroupsModel groupsModel = (GroupsModel) session
-				.createQuery("from GroupsModel where name='" + mockRootGroupName + "'").uniqueResult();
-
-		assertEquals(mockRootGroupName, groupsModel.getName());
-
-		session.delete(groupsModel);
-	}
+	// @Test
+	// public void testAddRootGroup() {
+	// ZoneDaoImpl daoImpl = new ZoneDaoImpl();
+	//
+	// String mockRootGroupName = "RootGroup";
+	//
+	// daoImpl.addRootGroup(mockRootGroupName);
+	//
+	// GroupsModel groupsModel = (GroupsModel) session
+	// .createQuery("from GroupsModel where name='" + mockRootGroupName +
+	// "'").uniqueResult();
+	//
+	// assertEquals(mockRootGroupName, groupsModel.getName());
+	//
+	// session.delete(groupsModel);
+	// }
 
 	@Test
 	public void testRemoveZone() {

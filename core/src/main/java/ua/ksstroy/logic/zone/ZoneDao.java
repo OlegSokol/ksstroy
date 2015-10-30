@@ -35,23 +35,17 @@ public interface ZoneDao {
 
 	void updateZone(String zoneId, Zone newZone);
 
-	void updateAdditionalZone(String zoneId, Zone newZone, String parentZoneId);
-
-	void updateSurplusZone(String zoneId, Zone newZone, String parentZoneId);
-
 	void removeZone(String zoneId);
 
 	/*
 	 * actions from Groups
 	 */
 
-	void addRootGroup(String groupName);
+	void addRootGroup(String groupName, Integer projectId);
 
 	void addGroupToGroup(String groupName, String parentGroupId);
 
 	void updateGroup(String groupId, String newGroup);
-
-	void updateSubGroup(String groupId, String newGroup, String parentGroupId);
 
 	void removeGroup(String groupId);
 
