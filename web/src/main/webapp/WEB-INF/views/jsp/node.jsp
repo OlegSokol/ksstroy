@@ -13,7 +13,38 @@
 <body>
 	<div id="zoneHierarchiDataTree">
 		<ul>
-			<c:forEach var="zhd" items="${zhd.groups}">
+		<!--ROOT GROOP  -->
+		<li>
+		<div class="zoneGroups_basicView">
+						<svg class="clickableIcon" xmlns="http://www.w3.org/2000/svg"
+							fill="#5E5C5B" height="20px" viewBox="0 0 20 20" width="20px">
+						<path d="M7 10l5 5 5-5z" /> <path d="M0 0h24v24H0z" fill="none" />
+						</svg>
+						
+						${zhd.name}
+
+						<div class="add_delete_wrapper hide">
+							<svg class="delete_btn" xmlns="http://www.w3.org/2000/svg"
+								fill="#5E5C5B" height="20px" viewBox="0 0 24 24" width="20px">
+							<path class="delete_kostul"
+								d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+							<path d="M0 0h24v24H0z" fill="none" /> </svg>
+							<div class="add_btn">
+								<svg class="add_kostul" xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+									id="Layer_1" x="0px" y="0px" width="20px" height="20px"
+									viewBox="0 0 36 36" enable-background="new 0 0 36 36"
+									xml:space="preserve"> <path fill="#5E5C5B"
+									d="M28.5,4.5h-21c-1.665,0-3,1.35-3,3v21c0,1.65,1.335,3,3,3h21c1.65,0,3-1.35,3-3v-21  C31.5,5.85,30.15,4.5,28.5,4.5z M25.5,19.5h-6v6h-3v-6h-6v-3h6v-6h3v6h6V19.5z"></path>
+								<path fill="none" d="M0,0h36v36H0V0z"></path> </svg>
+							</div>
+						</div>
+
+					</div>
+		
+		</li>
+<!-- END ROOT GROOP  -->
+		<c:forEach var="zhd" items="${zhd.groups}">
 				<!-- OUTPUT ZHD groups<ZoneHierarchiData> -->
 
 				<li>

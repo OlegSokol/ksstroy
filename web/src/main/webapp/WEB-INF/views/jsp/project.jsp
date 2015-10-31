@@ -8,37 +8,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>project</title>
 
-<!-- BOOTSTRAP -->
-
-<!--
  <script
 	src="<c:url value="https://code.jquery.com/jquery-1.10.2.min.js" />"></script>
-
-<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<script src="<c:url value="/resources/js/bootswatch.js" />"></script> 
 
 <script
 	src="<c:url value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" />"></script>
 
 
-<link href="<c:url value="/resources/css/bootswatch.min.css" />"
-	rel="stylesheet">
-<link media="screen"
-	href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
--->
-
-<!--END BOOTSTRAP -->
-
-<!-- CUSTOM STYLING -->
-
 <spring:url value="/resources/css/mainStyle.css" var="css" />
 <link href="${css}" rel="stylesheet" />
-<!--
-<spring:url value="/resources/js/mainScript.js" var="js" />
+
+<%-- <spring:url value="/resources/js/mainScript.js" var="js" />
 <script src="${js}"></script>
--->
-<!--END CUSTOM STYLING -->
+  --%>
+
 
 </head>
 <body>
@@ -46,9 +29,9 @@
 
 		<div id="customer_start_data">
 			<div class="info_block">
-				<div class="panel panel-default">
-					<div class="panel-heading">Customer</div>
-					<div class="panel-body">Customer FIO</div>
+				<div >
+					<div >Customer</div>
+					<div >Customer FIO</div>
 				</div>
 				<!-- END OF INFO BLOCK -->
 			</div>
@@ -131,15 +114,15 @@
 
 		<jsp:include page="node.jsp" />
 
-		<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 			$(document).ready(
 					function() {
 
 						//FOR TEST PURPOSES ONLY
-						$(".expanded").toggle();
+					/* 	$(".expanded").toggle();
 						$(".constructor").toggle();
 
-						$("input").prop('disabled', true);
+						$("input").prop('disabled', true); */
 
 						//show expande icon if zoneGroup contain zones
 						//and hide subGroups
@@ -200,7 +183,7 @@
 											.toggle();
 								});
 					});
-		</script>
+		</script> -->
 	</div>
 	<!-- END OF WRAPER -->
 </body>
