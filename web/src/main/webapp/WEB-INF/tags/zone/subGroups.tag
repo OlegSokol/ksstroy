@@ -109,13 +109,13 @@
 		</div>
 
 		<div class="controller">
-			<div class="controller_name">UPDATE</div>
+			<div class="controller_name">UPDATE ZONE</div>
 			<form action="http://localhost:8080/web/projects/updateZone"
 				method="post">
 				<table>
 					<tbody>
 						<tr>
-							<td>name</td>
+							<td>id</td>
 							<td><input type="text" name="zoneId" value="4"></td>
 						</tr>
 						<tr>
@@ -169,13 +169,13 @@
 						</div>
 					</div>
 					<div class="controller">
-						<div class="controller_name">UPDATE</div>
+						<div class="controller_name">UPDATE ADDITIONAL</div>
 						<form action="http://localhost:8080/web/projects/updateZone"
 							method="post">
 							<table>
 								<tbody>
 									<tr>
-										<td>name</td>
+										<td>id</td>
 										<td><input type="text" name="zoneId" value="5"></td>
 									</tr>
 									<tr>
@@ -230,13 +230,13 @@
 						</div>
 					</div>
 					<div class="controller">
-						<div class="controller_name">UPDATE</div>
+						<div class="controller_name">UPDATE SURPLUS</div>
 						<form action="http://localhost:8080/web/projects/updateZone"
 							method="post">
 							<table>
 								<tbody>
 									<tr>
-										<td>name</td>
+										<td>id</td>
 										<td><input type="text" name="zoneId" value="6"></td>
 									</tr>
 									<tr>

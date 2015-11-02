@@ -44,7 +44,7 @@
 
 		<p>Test forms for invoke ZoneManager methods</p>
 
-		<form action="/web/projects/addRootGroupToProject" method="POST">
+		<!-- <form action="/web/projects/addRootGroupToProject" method="POST">
 			<input name="groupName" type="text" value="CreatedRootGroupByProject">
 			<input name="projectId" type="text" value="33"> <input
 				type="submit" value="Add Group">
@@ -106,7 +106,7 @@
 		<form action="/web/projects/removeZone" method="POST">
 			<input name="zoneId" type="text" value="7"> <input
 				type="submit" value="Delete Zone">
-		</form>
+		</form> -->
 
 		<jsp:include page="node.jsp" />
 
