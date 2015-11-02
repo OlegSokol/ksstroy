@@ -97,7 +97,7 @@ body {
     background-color: #ffffff;
     border-color: #eeeeee;
 	 display: inline-block; 
-	/* display:none;   */ 
+display:none; 
   
 	
     padding: 5px;

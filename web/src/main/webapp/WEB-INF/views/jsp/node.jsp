@@ -17,7 +17,7 @@
 <body>
 	<div id="wraper">
 		<div id="zoneHierarchiDataTree">
-			<div class="item">
+		<%-- 	<div class="item">
 				<img class="clickableIcon" src="${arrow_drop_down}"
 					alt="Arrow">
 					${zhd.name}
@@ -129,7 +129,7 @@
                 <input type="image" name="image" src="${done_btn}">
               </label>
             </form>
-          </div>
+          </div> --%>
           
 			<c:forEach var="zhd" items="${zhd.groups}">
 				<zone:subGroups zhd="${zhd}" />
@@ -137,7 +137,7 @@
 				<jsp:include page="node.jsp" />
 			</c:forEach>
 
-			<!--END ZONE_HIERACHI_DATA  -->
+			<!--END ZONE_HIERACHI_DATA  --> 
 		</div>
 		<!--END WRAPER  -->
 	</div>

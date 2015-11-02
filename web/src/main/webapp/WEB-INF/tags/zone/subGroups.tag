@@ -166,17 +166,128 @@
 
 
 			<c:forEach var="additional" items="${zones.additional}">
-
+				<li>
+					<div class="item">
+						<img class="clickableIcon" src="${arrow_drop_down}" alt="Arrow">
+						+${additional.name}
+						<div class="add_delete_wrapper">
+							<div class="delete_btn">
+								<img src="${delete_btn}" alt="Delete">
+							</div>
+							<div class="add_btn">
+								<img src="${add_btn}" alt="Add">
+							</div>
+						</div>
+					</div>
+					<div class="controller">
+						<div class="controller_name">UPDATE</div>
+						<form action="http://localhost:8080/web/projects/addZone"
+							method="post">
+							<table>
+								<tbody>
+									<tr>
+										<td>name</td>
+										<td><input type="text" name="name"
+											placeholder="TODO//validate"></td>
+									</tr>
+									<tr>
+										<td>parent zoneId</td>
+										<td><input type="text" name="parentGroupId" value="0">
+										</td>
+									</tr>
+									<tr>
+										<td>measureName</td>
+										<td><input type="text" name="measureName"
+											placeholder="TODO//autocomplete"></td>
+									</tr>
+									<tr>
+										<td>width</td>
+										<td><input type="text" name="width"
+											placeholder="TODO//append measure"></td>
+									</tr>
+									<tr>
+										<td>height</td>
+										<td><input type="text" name="heigh"
+											placeholder="TODO//append measure"></td>
+									</tr>
+									<!-- value calculation only for usability! server side should calculate it itself -->
+									<tr>
+										<td>value</td>
+										<td><input type="text" placeholder="TODO//=height*weight">
+										</td>
+									</tr>
+									<!-- value calculation only for usability! server side should calculate it itself -->
+								</tbody>
+							</table>
+							<input class="accepth_changes_btn" type="image" src="${done_btn}">
+						</form>
+					</div>
+				</li>
 
 
 			</c:forEach>
 
 
 			<c:forEach var="surplus" items="${zones.surplus}">
+				<li>
+					<div class="item">
+						<img class="clickableIcon" src="${arrow_drop_down}" alt="Arrow">
+						-${surplus.name}
+						<div class="add_delete_wrapper">
+							<div class="delete_btn">
+								<img src="${delete_btn}" alt="Delete">
+							</div>
+							<div class="add_btn">
+								<img src="${add_btn}" alt="Add">
+							</div>
+						</div>
+					</div>
+					<div class="controller">
+						<div class="controller_name">UPDATE</div>
+						<form action="http://localhost:8080/web/projects/addZone"
+							method="post">
+							<table>
+								<tbody>
+									<tr>
+										<td>name</td>
+										<td><input type="text" name="name"
+											placeholder="TODO//validate"></td>
+									</tr>
+									<tr>
+										<td>parent zoneId</td>
+										<td><input type="text" name="parentGroupId" value="0">
+										</td>
+									</tr>
+									<tr>
+										<td>measureName</td>
+										<td><input type="text" name="measureName"
+											placeholder="TODO//autocomplete"></td>
+									</tr>
+									<tr>
+										<td>width</td>
+										<td><input type="text" name="width"
+											placeholder="TODO//append measure"></td>
+									</tr>
+									<tr>
+										<td>height</td>
+										<td><input type="text" name="heigh"
+											placeholder="TODO//append measure"></td>
+									</tr>
+									<!-- value calculation only for usability! server side should calculate it itself -->
+									<tr>
+										<td>value</td>
+										<td><input type="text" placeholder="TODO//=height*weight">
+										</td>
+									</tr>
+									<!-- value calculation only for usability! server side should calculate it itself -->
+								</tbody>
+							</table>
+							<input class="accepth_changes_btn" type="image" src="${done_btn}">
+						</form>
+					</div>
+				</li>
 
-	
 			</c:forEach>
 		</ul>
 	</c:forEach>
 </ul>
-<!--END OUTPUT Surplus -->
