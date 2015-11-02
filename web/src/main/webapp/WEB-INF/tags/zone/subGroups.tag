@@ -5,6 +5,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <spring:url value="/resources/img/arrow_drop_down.png"
 	var="arrow_drop_down" />
 <spring:url value="/resources/img/add_btn.png" var="add_btn" />
@@ -30,7 +31,7 @@
 
 		<div class="controller">
 			<div class="controller_name">ADD ADDITIONAL</div>
-			<form action="http://localhost:8080/web/projects/addZone"
+			<form action="http://localhost:8080/web/projects/addAdditionalZone"
 				method="post">
 				<table>
 					<tbody>
@@ -74,7 +75,7 @@
 
 		<div class="controller">
 			<div class="controller_name">ADD SURPLUS</div>
-			<form action="http://localhost:8080/web/projects/addZone"
+			<form action="http://localhost:8080/web/projects/addSurplusZone"
 				method="post">
 				<table>
 					<tbody>
@@ -118,7 +119,7 @@
 
 		<div class="controller">
 			<div class="controller_name">UPDATE</div>
-			<form action="http://localhost:8080/web/projects/addZone"
+			<form action="http://localhost:8080/web/projects/updateZone"
 				method="post">
 				<table>
 					<tbody>
@@ -160,10 +161,7 @@
 			</form>
 		</div>
 
-
 		<ul class="subZones">
-
-
 
 			<c:forEach var="additional" items="${zones.additional}">
 				<li>
@@ -181,7 +179,7 @@
 					</div>
 					<div class="controller">
 						<div class="controller_name">UPDATE</div>
-						<form action="http://localhost:8080/web/projects/addZone"
+						<form action="http://localhost:8080/web/projects/updaeZone"
 							method="post">
 							<table>
 								<tbody>
@@ -224,9 +222,7 @@
 					</div>
 				</li>
 
-
 			</c:forEach>
-
 
 			<c:forEach var="surplus" items="${zones.surplus}">
 				<li>
@@ -244,7 +240,7 @@
 					</div>
 					<div class="controller">
 						<div class="controller_name">UPDATE</div>
-						<form action="http://localhost:8080/web/projects/addZone"
+						<form action="http://localhost:8080/web/projects/updateZone"
 							method="post">
 							<table>
 								<tbody>
@@ -286,7 +282,6 @@
 						</form>
 					</div>
 				</li>
-
 			</c:forEach>
 		</ul>
 	</c:forEach>
