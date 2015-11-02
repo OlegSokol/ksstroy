@@ -24,7 +24,6 @@
 </head>
 <body>
 	<div id="wraper">
-
 		<div id="customer_start_data">
 			<div class="info_block">
 				<div>
@@ -42,7 +41,6 @@
 		<div class="redactor_btn">redactor mode</div>
 		<br>
 		<!-- END OF START_DATA-->
-
 
 		<p>Test forms for invoke ZoneManager methods</p>
 

@@ -41,11 +41,11 @@
 							<tr>
 								<td>name</td>
 								<td><input type="text" name="groupName"
-									placeholder="TODO//validate"></td>
+									value="AddedGroupToGroup"></td>
 							</tr>
 							<tr>
 								<td>parent groupId</td>
-								<td><input type="text" name="parentGroupId" value="0">
+								<td><input type="text" name="parentGroupId" value="4">
 								</td>
 							</tr>
 						</tbody>
@@ -62,28 +62,24 @@
 						<tbody>
 							<tr>
 								<td>name</td>
-								<td><input type="text" name="name"
-									placeholder="TODO//validate"></td>
-							</tr>
-							<tr>
-								<td>parent groupId</td>
-								<td><input type="text" name="parentGroupId" value="0">
-								</td>
-							</tr>
-							<tr>
-								<td>measureName</td>
-								<td><input type="text" name="measureName"
-									placeholder="TODO//autocomplete"></td>
+								<td><input type="text" name="name" value="New Zone"></td>
 							</tr>
 							<tr>
 								<td>width</td>
-								<td><input type="text" name="width"
-									placeholder="TODO//append measure"></td>
+								<td><input type="text" name="width" value="23.0"></td>
 							</tr>
 							<tr>
 								<td>height</td>
-								<td><input type="text" name="heigh"
-									placeholder="TODO//append measure"></td>
+								<td><input type="text" name="heigh" value="40.0"></td>
+							</tr>
+							<tr>
+								<td>measureName</td>
+								<td><input type="text" name="measureName" value="M2"></td>
+							</tr>
+							<tr>
+								<td>parent groupId</td>
+								<td><input type="text" name="parentGroupId" value="4">
+								</td>
 							</tr>
 							<!-- value calculation only for usability! server side should calculate it itself -->
 							<tr>
@@ -106,17 +102,18 @@
 						<tbody>
 							<tr>
 								<td>id</td>
-								<td><input type="text" name="id" value="0"></td>
+								<td><input type="text" name="groupId" value="4"></td>
 							</tr>
 							<tr>
 								<td>name</td>
-								<td><input type="text" value="kyxnyaGroup"></td>
+								<td><input type="text" name="groupName"
+									value="UpdatedGroup"></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td>group</td>
 								<td><input type="text" value="TODO//parent group">
 								</td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 					<label class="accepth_changes_btn"> <input type="image"

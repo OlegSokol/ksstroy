@@ -1,4 +1,3 @@
-
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true"%>
 <%@ attribute name="zhd" required="true"
 	type="ua.ksstroy.logic.zone.ZoneHierarchyData"%>
@@ -38,27 +37,24 @@
 						<tr>
 							<td>name</td>
 							<td><input type="text" name="name"
-								placeholder="TODO//validate"></td>
-						</tr>
-						<tr>
-							<td>parent zoneId</td>
-							<td><input type="text" name="parentGroupId" value="0">
-							</td>
-						</tr>
-						<tr>
-							<td>measureName</td>
-							<td><input type="text" name="measureName"
-								placeholder="TODO//autocomplete"></td>
+								value="NewAdditional"></td>
 						</tr>
 						<tr>
 							<td>width</td>
-							<td><input type="text" name="width"
-								placeholder="TODO//append measure"></td>
+							<td><input type="text" name="width" value="4.0"></td>
 						</tr>
 						<tr>
 							<td>height</td>
-							<td><input type="text" name="heigh"
-								placeholder="TODO//append measure"></td>
+							<td><input type="text" name="heigh" value="3.0"></td>
+						</tr>
+						<tr>
+							<td>measureName</td>
+							<td><input type="text" name="measureName" value="M2"></td>
+						</tr>
+						<tr>
+							<td>parent zoneId</td>
+							<td><input type="text" name="parentZoneId" value="2">
+							</td>
 						</tr>
 						<!-- value calculation only for usability! server side should calculate it itself -->
 						<tr>
@@ -81,28 +77,24 @@
 					<tbody>
 						<tr>
 							<td>name</td>
-							<td><input type="text" name="name"
-								placeholder="TODO//validate"></td>
-						</tr>
-						<tr>
-							<td>parent zoneId</td>
-							<td><input type="text" name="parentGroupId" value="0">
-							</td>
-						</tr>
-						<tr>
-							<td>measureName</td>
-							<td><input type="text" name="measureName"
-								placeholder="TODO//autocomplete"></td>
+							<td><input type="text" name="name" value="NewSurplus"></td>
 						</tr>
 						<tr>
 							<td>width</td>
-							<td><input type="text" name="width"
-								placeholder="TODO//append measure"></td>
+							<td><input type="text" name="width" value="3.0"></td>
 						</tr>
 						<tr>
 							<td>height</td>
-							<td><input type="text" name="heigh"
-								placeholder="TODO//append measure"></td>
+							<td><input type="text" name="heigh" value="8.0"></td>
+						</tr>
+						<tr>
+							<td>measureName</td>
+							<td><input type="text" name="measureName" value="M2"></td>
+						</tr>
+						<tr>
+							<td>parent zoneId</td>
+							<td><input type="text" name="parentZoneId" value="3">
+							</td>
 						</tr>
 						<!-- value calculation only for usability! server side should calculate it itself -->
 						<tr>
@@ -125,35 +117,31 @@
 					<tbody>
 						<tr>
 							<td>name</td>
-							<td><input type="text" name="name"
-								placeholder="TODO//validate"></td>
-						</tr>
-						<tr>
-							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="0">
-							</td>
-						</tr>
-						<tr>
-							<td>measureName</td>
-							<td><input type="text" name="measureName"
-								placeholder="TODO//autocomplete"></td>
+							<td><input type="text" name="name" value="UpdatedZone"></td>
 						</tr>
 						<tr>
 							<td>width</td>
-							<td><input type="text" name="width"
-								placeholder="TODO//append measure"></td>
+							<td><input type="text" name="width" value="300.0"></td>
 						</tr>
 						<tr>
 							<td>height</td>
-							<td><input type="text" name="heigh"
-								placeholder="TODO//append measure"></td>
+							<td><input type="text" name="heigh" value="300.0"></td>
 						</tr>
-						<!-- value calculation only for usability! server side should calculate it itself -->
 						<tr>
+							<td>measureName</td>
+							<td><input type="text" name="measureName" value="M2"></td>
+						</tr>
+						<!--<tr>
+							<td>parent groupId</td>
+							<td><input type="text" name="parentGroupId" value="0">
+							</td>
+						</tr> -->
+						<!-- value calculation only for usability! server side should calculate it itself -->
+						<!-- <tr>
 							<td>value</td>
 							<td><input type="text" placeholder="TODO//=height*weight">
 							</td>
-						</tr>
+						</tr> -->
 						<!-- value calculation only for usability! server side should calculate it itself -->
 					</tbody>
 				</table>
@@ -185,35 +173,31 @@
 								<tbody>
 									<tr>
 										<td>name</td>
-										<td><input type="text" name="name"
-											placeholder="TODO//validate"></td>
-									</tr>
-									<tr>
-										<td>parent zoneId</td>
-										<td><input type="text" name="parentGroupId" value="0">
-										</td>
-									</tr>
-									<tr>
-										<td>measureName</td>
-										<td><input type="text" name="measureName"
-											placeholder="TODO//autocomplete"></td>
+										<td><input type="text" name="name" value="UpdatedZone"></td>
 									</tr>
 									<tr>
 										<td>width</td>
-										<td><input type="text" name="width"
-											placeholder="TODO//append measure"></td>
+										<td><input type="text" name="width" value="300.0"></td>
 									</tr>
 									<tr>
 										<td>height</td>
-										<td><input type="text" name="heigh"
-											placeholder="TODO//append measure"></td>
+										<td><input type="text" name="heigh" value="300.0"></td>
 									</tr>
-									<!-- value calculation only for usability! server side should calculate it itself -->
 									<tr>
-										<td>value</td>
-										<td><input type="text" placeholder="TODO//=height*weight">
-										</td>
+										<td>measureName</td>
+										<td><input type="text" name="measureName" value="M2"></td>
 									</tr>
+									<!--<tr>
+							<td>parent groupId</td>
+							<td><input type="text" name="parentGroupId" value="0">
+							</td>
+						</tr> -->
+									<!-- value calculation only for usability! server side should calculate it itself -->
+									<!-- <tr>
+							<td>value</td>
+							<td><input type="text" placeholder="TODO//=height*weight">
+							</td>
+						</tr> -->
 									<!-- value calculation only for usability! server side should calculate it itself -->
 								</tbody>
 							</table>
@@ -246,35 +230,31 @@
 								<tbody>
 									<tr>
 										<td>name</td>
-										<td><input type="text" name="name"
-											placeholder="TODO//validate"></td>
-									</tr>
-									<tr>
-										<td>parent zoneId</td>
-										<td><input type="text" name="parentGroupId" value="0">
-										</td>
-									</tr>
-									<tr>
-										<td>measureName</td>
-										<td><input type="text" name="measureName"
-											placeholder="TODO//autocomplete"></td>
+										<td><input type="text" name="name" value="UpdatedZone"></td>
 									</tr>
 									<tr>
 										<td>width</td>
-										<td><input type="text" name="width"
-											placeholder="TODO//append measure"></td>
+										<td><input type="text" name="width" value="300.0"></td>
 									</tr>
 									<tr>
 										<td>height</td>
-										<td><input type="text" name="heigh"
-											placeholder="TODO//append measure"></td>
+										<td><input type="text" name="heigh" value="300.0"></td>
 									</tr>
-									<!-- value calculation only for usability! server side should calculate it itself -->
 									<tr>
-										<td>value</td>
-										<td><input type="text" placeholder="TODO//=height*weight">
-										</td>
+										<td>measureName</td>
+										<td><input type="text" name="measureName" value="M2"></td>
 									</tr>
+									<!--<tr>
+							<td>parent groupId</td>
+							<td><input type="text" name="parentGroupId" value="0">
+							</td>
+						</tr> -->
+									<!-- value calculation only for usability! server side should calculate it itself -->
+									<!-- <tr>
+							<td>value</td>
+							<td><input type="text" placeholder="TODO//=height*weight">
+							</td>
+						</tr> -->
 									<!-- value calculation only for usability! server side should calculate it itself -->
 								</tbody>
 							</table>
