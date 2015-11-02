@@ -11,7 +11,7 @@
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn" />
 <spring:url value="/resources/img/done_btn.png" var="done_btn" />
 
-<ul class="subGroups">
+<ul class="zones">
 
 	<c:forEach var="zones" items="${zhd.zones}">
 
@@ -20,7 +20,11 @@
 			${zones.name}
 			<div class="add_delete_wrapper">
 				<div class="delete_btn">
-					<img src="${delete_btn}" alt="Delete">
+					<form action="http://localhost:8080/web/projects/removeZone"
+						method="post">
+						<input type="image" src="${delete_btn}" name="zoneId"
+							value="${zones.id}" alt="Delete">
+					</form>
 				</div>
 				<div class="add_btn">
 					<img src="${add_btn}" alt="Add">
@@ -52,8 +56,8 @@
 						</tr>
 						<tr>
 							<td>parent zoneId</td>
-							<td><input type="text" name="parentZoneId" value="2">
-							</td>
+							<td><input type="text" name="parentZoneId"
+								value="${zones.id}"></td>
 						</tr>
 						<!-- value calculation only for usability! server side should calculate it itself -->
 						<tr>
@@ -92,8 +96,8 @@
 						</tr>
 						<tr>
 							<td>parent zoneId</td>
-							<td><input type="text" name="parentZoneId" value="3">
-							</td>
+							<td><input type="text" name="parentZoneId"
+								value="${zones.id}"></td>
 						</tr>
 						<!-- value calculation only for usability! server side should calculate it itself -->
 						<tr>
@@ -116,23 +120,24 @@
 					<tbody>
 						<tr>
 							<td>id</td>
-							<td><input type="text" name="zoneId" value="4"></td>
+							<td><input type="text" name="zoneId" value="${zones.id}"></td>
 						</tr>
 						<tr>
 							<td>name</td>
-							<td><input type="text" name="name" value="UpdatedZone"></td>
+							<td><input type="text" name="name" value="${zones.name}"></td>
 						</tr>
 						<tr>
 							<td>width</td>
-							<td><input type="text" name="width" value="300.0"></td>
+							<td><input type="text" name="width" value="${zones.width}"></td>
 						</tr>
 						<tr>
 							<td>height</td>
-							<td><input type="text" name="heigh" value="300.0"></td>
+							<td><input type="text" name="heigh" value="${zones.height}"></td>
 						</tr>
 						<tr>
 							<td>measureName</td>
-							<td><input type="text" name="measureName" value="M2"></td>
+							<td><input type="text" name="measureName"
+								value="${zones.measureName}"></td>
 						</tr>
 						<!--<tr>
 							<td>parent groupId</td>
@@ -161,7 +166,11 @@
 						+${additional.name}
 						<div class="add_delete_wrapper">
 							<div class="delete_btn">
-								<img src="${delete_btn}" alt="Delete">
+								<form action="http://localhost:8080/web/projects/removeZone"
+									method="post">
+									<input type="image" src="${delete_btn}" name="zoneId"
+										value="${additional.id}" alt="Delete">
+								</form>
 							</div>
 							<div class="add_btn">
 								<img src="${add_btn}" alt="Add">
@@ -176,23 +185,28 @@
 								<tbody>
 									<tr>
 										<td>id</td>
-										<td><input type="text" name="zoneId" value="5"></td>
+										<td><input type="text" name="zoneId"
+											value="${additional.id}"></td>
 									</tr>
 									<tr>
 										<td>name</td>
-										<td><input type="text" name="name" value="UpdatedZone"></td>
+										<td><input type="text" name="name"
+											value="${additional.name}"></td>
 									</tr>
 									<tr>
 										<td>width</td>
-										<td><input type="text" name="width" value="300.0"></td>
+										<td><input type="text" name="width"
+											value="${additional.width}"></td>
 									</tr>
 									<tr>
 										<td>height</td>
-										<td><input type="text" name="heigh" value="300.0"></td>
+										<td><input type="text" name="heigh"
+											value="${additional.height}"></td>
 									</tr>
 									<tr>
 										<td>measureName</td>
-										<td><input type="text" name="measureName" value="M2"></td>
+										<td><input type="text" name="measureName"
+											value="${additional.measureName}"></td>
 									</tr>
 									<!--<tr>
 							<td>parent groupId</td>
@@ -222,13 +236,18 @@
 						-${surplus.name}
 						<div class="add_delete_wrapper">
 							<div class="delete_btn">
-								<img src="${delete_btn}" alt="Delete">
+								<form action="http://localhost:8080/web/projects/removeZone"
+									method="post">
+									<input type="image" src="${delete_btn}" name="zoneId"
+										value="${surplus.id}" alt="Delete">
+								</form>
 							</div>
 							<div class="add_btn">
 								<img src="${add_btn}" alt="Add">
 							</div>
 						</div>
 					</div>
+
 					<div class="controller">
 						<div class="controller_name">UPDATE SURPLUS</div>
 						<form action="http://localhost:8080/web/projects/updateZone"
@@ -237,23 +256,28 @@
 								<tbody>
 									<tr>
 										<td>id</td>
-										<td><input type="text" name="zoneId" value="6"></td>
+										<td><input type="text" name="zoneId"
+											value="${surplus.id}"></td>
 									</tr>
 									<tr>
 										<td>name</td>
-										<td><input type="text" name="name" value="UpdatedZone"></td>
+										<td><input type="text" name="name"
+											value="${surplus.name}"></td>
 									</tr>
 									<tr>
 										<td>width</td>
-										<td><input type="text" name="width" value="300.0"></td>
+										<td><input type="text" name="width"
+											value="${surplus.width}"></td>
 									</tr>
 									<tr>
 										<td>height</td>
-										<td><input type="text" name="heigh" value="300.0"></td>
+										<td><input type="text" name="heigh"
+											value="${surplus.height}"></td>
 									</tr>
 									<tr>
 										<td>measureName</td>
-										<td><input type="text" name="measureName" value="M2"></td>
+										<td><input type="text" name="measureName"
+											value="${surplus.measureName}"></td>
 									</tr>
 									<!--<tr>
 							<td>parent groupId</td>
