@@ -36,8 +36,7 @@
 					<tbody>
 						<tr>
 							<td>name</td>
-							<td><input type="text" name="name"
-								value="NewAdditional"></td>
+							<td><input type="text" name="name" value="NewAdditional"></td>
 						</tr>
 						<tr>
 							<td>width</td>
@@ -117,6 +116,10 @@
 					<tbody>
 						<tr>
 							<td>name</td>
+							<td><input type="text" name="zoneId" value="4"></td>
+						</tr>
+						<tr>
+							<td>name</td>
 							<td><input type="text" name="name" value="UpdatedZone"></td>
 						</tr>
 						<tr>
@@ -167,10 +170,14 @@
 					</div>
 					<div class="controller">
 						<div class="controller_name">UPDATE</div>
-						<form action="http://localhost:8080/web/projects/updaeZone"
+						<form action="http://localhost:8080/web/projects/updateZone"
 							method="post">
 							<table>
 								<tbody>
+									<tr>
+										<td>name</td>
+										<td><input type="text" name="zoneId" value="5"></td>
+									</tr>
 									<tr>
 										<td>name</td>
 										<td><input type="text" name="name" value="UpdatedZone"></td>
@@ -228,6 +235,10 @@
 							method="post">
 							<table>
 								<tbody>
+									<tr>
+										<td>name</td>
+										<td><input type="text" name="zoneId" value="6"></td>
+									</tr>
 									<tr>
 										<td>name</td>
 										<td><input type="text" name="name" value="UpdatedZone"></td>
