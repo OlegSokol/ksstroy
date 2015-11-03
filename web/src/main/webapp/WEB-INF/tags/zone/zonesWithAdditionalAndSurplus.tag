@@ -139,18 +139,17 @@
 							<td><input type="text" name="measureName"
 								value="${zones.measureName}"></td>
 						</tr>
-						<!--<tr>
+						<tr>
 							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="0">
+							<td><input type="text" name="parentGroupId" value="${zhd.id}">
 							</td>
-						</tr> -->
-						<!-- value calculation only for usability! server side should calculate it itself -->
-						<!-- <tr>
+						</tr>
+						<tr>
 							<td>value</td>
-							<td><input type="text" placeholder="TODO//=height*weight">
-							</td>
-						</tr> -->
-						<!-- value calculation only for usability! server side should calculate it itself -->
+							<td><input type="text" name="value"
+								value="${zones.value}"></td>
+						</tr>
+
 					</tbody>
 				</table>
 				<input class="accepth_changes_btn" type="image" src="${done_btn}">
@@ -208,18 +207,16 @@
 										<td><input type="text" name="measureName"
 											value="${additional.measureName}"></td>
 									</tr>
-									<!--<tr>
+									<tr>
 							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="0">
+							<td><input type="text" name="parentGroupId" value="${zhd.id}">
 							</td>
-						</tr> -->
-									<!-- value calculation only for usability! server side should calculate it itself -->
-									<!-- <tr>
+							</tr>
+									<tr>
 							<td>value</td>
-							<td><input type="text" placeholder="TODO//=height*weight">
+							<td><input type="text" value="${additional.value}">
 							</td>
-						</tr> -->
-									<!-- value calculation only for usability! server side should calculate it itself -->
+						</tr> 
 								</tbody>
 							</table>
 							<input class="accepth_changes_btn" type="image" src="${done_btn}">
@@ -279,18 +276,16 @@
 										<td><input type="text" name="measureName"
 											value="${surplus.measureName}"></td>
 									</tr>
-									<!--<tr>
+								<tr>
 							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="0">
+							<td><input type="text" name="parentGroupId" value="${zhd.id}">
 							</td>
-						</tr> -->
-									<!-- value calculation only for usability! server side should calculate it itself -->
-									<!-- <tr>
+						</tr>
+									<tr>
 							<td>value</td>
-							<td><input type="text" placeholder="TODO//=height*weight">
+							<td><input type="text" value="${surplus.value}">
 							</td>
-						</tr> -->
-									<!-- value calculation only for usability! server side should calculate it itself -->
+						</tr>
 								</tbody>
 							</table>
 							<input class="accepth_changes_btn" type="image" src="${done_btn}">
