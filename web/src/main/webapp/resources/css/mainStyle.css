@@ -95,8 +95,8 @@ body {
 	color: #666666;
 	background-color: #ffffff;
 	border-color: #eeeeee;
+	display: none; 
 	display: inline-block;
-/* 	display: none; */
 	padding: 5px;
 	font-weight: normal;
 	cursor: pointer;

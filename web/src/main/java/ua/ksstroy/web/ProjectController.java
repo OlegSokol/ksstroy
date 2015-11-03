@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneHierarchyData;
 import ua.ksstroy.logic.zone.ZoneManager;
 
 @Controller
@@ -25,8 +26,8 @@ public class ProjectController {
 	public ModelAndView showZHD(@PathVariable String projectId) {
 		project = new ModelAndView("project");
 		project.addObject("projectName", projectId);// the project name from
-													// PathVariabl
-		project.addObject("zhd", zoneManager.getRootZoneHierarchy(projectId));
+		ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId); // PathVariabl
+		project.addObject("zhd", zhd);
 		return project;
 
 	}
