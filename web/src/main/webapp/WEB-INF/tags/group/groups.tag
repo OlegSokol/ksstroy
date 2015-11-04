@@ -11,7 +11,6 @@
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn" />
 <spring:url value="/resources/img/done_btn.png" var="done_btn" />
 
-
 <div class="item">
 	<img class="clickableIcon" src="${arrow_drop_down}" alt="Arrow">
 	${zhd.name}
@@ -60,9 +59,14 @@
 						placeholder="TODO//validate"></td>
 				</tr>
 				<tr>
-					<td>parent groupId</td>
-					<td><input type="text" name="parentGroupId" value="${zhd.id}">
-					</td>
+					<td>width</td>
+					<td><input type="text" name="width"
+						placeholder="TODO//append width"></td>
+				</tr>
+				<tr>
+					<td>height</td>
+					<td><input type="text" name="heigh"
+						placeholder="TODO//append heigh"></td>
 				</tr>
 				<tr>
 					<td>measureName</td>
@@ -70,14 +74,9 @@
 						placeholder="TODO//autocomplete"></td>
 				</tr>
 				<tr>
-					<td>width</td>
-					<td><input type="text" name="width"
-						placeholder="TODO//append measure"></td>
-				</tr>
-				<tr>
-					<td>height</td>
-					<td><input type="text" name="heigh"
-						placeholder="TODO//append measure"></td>
+					<td>parent groupId</td>
+					<td><input type="text" name="parentGroupId" value="${zhd.id}">
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -96,10 +95,6 @@
 				<tr>
 					<td>name</td>
 					<td><input type="text" value="${zhd.name}"></td>
-				</tr>
-				<tr>
-					<td>group</td>
-					<td><input type="text" value="TODO//parent group"></td>
 				</tr>
 			</tbody>
 		</table>

@@ -10,10 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<spring:url value="/resources/img/arrow_drop_down.png" var="arrow_drop_down" />
-<spring:url value="/resources/img/add_btn.png" var="add_btn" />
-<spring:url value="/resources/img/delete_btn.png" var="delete_btn" />
-<spring:url value="/resources/img/done_btn.png" var="done_btn" />
+
 </head>
 <body>
 	<div id="wraper">
