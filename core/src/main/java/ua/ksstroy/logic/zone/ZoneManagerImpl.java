@@ -97,7 +97,7 @@ public class ZoneManagerImpl implements ZoneManager {
 
 	public ZoneData convertZoneToZoneData(Zone zone) {
 		ZoneData convZoneData = new ZoneData();
-		// TODO how to test private methods ?
+		// TODO curiosity: how to test private methods via JUnit ?
 
 		List<ZoneData> additionalList = new ArrayList<ZoneData>();
 		if (zone.getAdditional() != null && !zone.getAdditional().isEmpty()) {
@@ -122,6 +122,7 @@ public class ZoneManagerImpl implements ZoneManager {
 		convZoneData.setMeasureName(zone.getMeasure().toString());
 		convZoneData.setAdditional(additionalList);
 		convZoneData.setSurplus(surplusList);
+		convZoneData.setValue(zone.getValue());
 		return convZoneData;
 	}
 

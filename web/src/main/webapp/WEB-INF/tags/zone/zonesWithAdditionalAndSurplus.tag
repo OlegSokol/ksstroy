@@ -59,14 +59,7 @@
 							<td><input type="text" name="parentZoneId"
 								value="${zones.id}"></td>
 						</tr>
-						<!-- value calculation only for usability! server side should calculate it itself -->
-						<tr>
-							<td>value</td>
-							<td><input type="text" placeholder="TODO//=height*weight">
-							</td>
-						</tr>
-						<!-- value calculation only for usability! server side should calculate it itself -->
-					</tbody>
+										</tbody>
 				</table>
 				<input class="accepth_changes_btn" type="image" src="${done_btn}">
 			</form>
@@ -99,13 +92,7 @@
 							<td><input type="text" name="parentZoneId"
 								value="${zones.id}"></td>
 						</tr>
-						<!-- value calculation only for usability! server side should calculate it itself -->
-						<tr>
-							<td>value</td>
-							<td><input type="text" placeholder="TODO//=height*weight">
-							</td>
-						</tr>
-						<!-- value calculation only for usability! server side should calculate it itself -->
+					
 					</tbody>
 				</table>
 				<input class="accepth_changes_btn" type="image" src="${done_btn}">

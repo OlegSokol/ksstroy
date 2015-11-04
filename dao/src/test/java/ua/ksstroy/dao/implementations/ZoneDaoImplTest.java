@@ -122,51 +122,51 @@ public class ZoneDaoImplTest {
 	}
 
 	// TODO elimination of the conflict while running tests
-	// testGetZonesByParentGroupId and testGetGroupsByParentGroupId
+	 //testGetZonesByParentGroupId and testGetGroupsByParentGroupId
 
-	// @Test
-	// public void testGetZonesByParentGroupId() {
-	//
-	// GroupsModel groupsModelForTest = new GroupsModel();
-	// groupsModelForTest.setName(mockGroupName);
-	//
-	// ZonesModel zonesModelForTest = new ZonesModel();
-	// zonesModelForTest.setName(mockZoneName);
-	// zonesModelForTest.setHeight(mockZoneHeight);
-	// zonesModelForTest.setWidth(mockZoneWidth);
-	// zonesModelForTest.setMeasureName(mockZoneMeasureName);
-	//
-	// Set<ZonesModel> zonesModelSet = new HashSet<>();
-	// zonesModelSet.add(zonesModelForTest);
-	// groupsModelForTest.setZonesGroup(zonesModelSet);
-	//
-	// session.save(groupsModelForTest);
-	//
-	// /*
-	// * id of GroupsModel is changing dynamically, so GroupModel could been
-	// * retrieved only by unique name via HQL query
-	// */
-	// GroupsModel testedGroupByName = (GroupsModel) session
-	// .createQuery("from GroupsModel where name='" + mockGroupName +
-	// "'").uniqueResult();
-	// session.getTransaction().commit();
-	//
-	// /*
-	// * finally get id of the mock GroupsModel and find all Zones to compare
-	// * it with ZonesModel we stored to DB
-	// */
-	// ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
-	//
-	// List<Zone> zonesByParentGroupId =
-	// zoneDaoImpl.getZonesByParentGroupId(testedGroupByName.getId());
-	// session.beginTransaction();
-	// session.delete(groupsModelForTest);
-	//
-	// assertNotNull(zonesByParentGroupId.get(0));
-	// assertEquals(zonesByParentGroupId.get(0).getName(),
-	// zonesByParentGroupId.get(0).getName());
-	//
-	// }
+	/* @Test
+	 public void testGetZonesByParentGroupId() {
+	
+	 GroupsModel groupsModelForTest = new GroupsModel();
+	 groupsModelForTest.setName(mockGroupName);
+	
+	 ZonesModel zonesModelForTest = new ZonesModel();
+	 zonesModelForTest.setName(mockZoneName);
+	 zonesModelForTest.setHeight(mockZoneHeight);
+	 zonesModelForTest.setWidth(mockZoneWidth);
+	 zonesModelForTest.setMeasureName(mockZoneMeasureName);
+	
+	 Set<ZonesModel> zonesModelSet = new HashSet<>();
+	 zonesModelSet.add(zonesModelForTest);
+	 groupsModelForTest.setZonesGroup(zonesModelSet);
+	
+	 session.save(groupsModelForTest);
+	
+	 
+	 * id of GroupsModel is changing dynamically, so GroupModel could been
+	 * retrieved only by unique name via HQL query
+	 
+	 GroupsModel testedGroupByName = (GroupsModel) session
+	 .createQuery("from GroupsModel where name='" + mockGroupName +
+	 "'").uniqueResult();
+	 session.getTransaction().commit();
+	
+	 
+	 * finally get id of the mock GroupsModel and find all Zones to compare
+	 * it with ZonesModel we stored to DB
+	 
+	 ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+	
+	 List<Zone> zonesByParentGroupId =
+	 zoneDaoImpl.getZonesByParentGroupId(testedGroupByName.getId());
+	 session.beginTransaction();
+	 session.delete(groupsModelForTest);
+	
+	 assertNotNull(zonesByParentGroupId.get(0));
+	 assertEquals(zonesByParentGroupId.get(0).getName(),
+	 zonesByParentGroupId.get(0).getName());
+	
+	 }*/
 
 	@Test
 	public void testGetZonesByParentZoneId() {
@@ -237,7 +237,7 @@ public class ZoneDaoImplTest {
 			}
 		}
 		assertTrue(nameMatch);
-		// TODO refactoring WHY I CANT JUST DELETE ZONE cascade blah-blah -blah
+		// TODO curiosity: WHY I CANT JUST DELETE ZONE cascade blah-blah -blah
 		// exception
 		parentGroupModel.getZonesGroup().remove(insertedMockZoneModelFromDB);
 		session.saveOrUpdate(parentGroupModel);

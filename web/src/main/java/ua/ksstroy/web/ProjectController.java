@@ -3,6 +3,8 @@ package ua.ksstroy.web;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,20 +21,19 @@ public class ProjectController {
 
 	@Resource(name = "ZoneManagerImpl")
 	ZoneManager zoneManager;
-
 	ModelAndView project;
+	private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
 
 	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
 	public ModelAndView showZHD(@PathVariable String projectId) {
 		project = new ModelAndView("project");
-		project.addObject("projectName", projectId);// the project name from
-		ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId); // PathVariabl
+		project.addObject("projectName", projectId);
+		ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId);
 		project.addObject("zhd", zhd);
 		return project;
 
 	}
 
-	// TODO requires the implementation of
 	@RequestMapping(value = "/projects/addRootGroupToProject", method = RequestMethod.POST)
 	public String addRootGroupToProject(@RequestParam("groupName") String groupName,
 			@RequestParam("projectId") Integer projectId, HttpServletRequest request) {
@@ -62,8 +63,9 @@ public class ProjectController {
 			zoneFromWeb.setHeight(new Double(height).doubleValue());
 			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			// TODO curiosity:CANT GET THIS MESSAGE EXPLICITLY!!
+			// which message level to use in this and similar cases ?
+			logger.debug("empty string from web!!!");
 		}
 		zoneFromWeb.setMeasureName(measureName);
 
@@ -83,8 +85,7 @@ public class ProjectController {
 			zoneFromWeb.setHeight(new Double(height).doubleValue());
 			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			logger.debug("empty string from web!!!");
 		}
 		zoneFromWeb.setMeasureName(measureName);
 
@@ -104,8 +105,7 @@ public class ProjectController {
 			zoneFromWeb.setHeight(new Double(height).doubleValue());
 			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			logger.debug("empty string from web!!!");
 		}
 		zoneFromWeb.setMeasureName(measureName);
 
@@ -153,8 +153,7 @@ public class ProjectController {
 			zoneFromWeb.setHeight(new Double(height).doubleValue());
 			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			logger.debug("empty string from web!!!");
 		}
 		zoneFromWeb.setMeasureName(measureName);
 

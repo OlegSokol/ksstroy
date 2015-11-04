@@ -76,21 +76,19 @@ public class ZoneImpl implements Zone {
 	}
 
 	public Double getValue() {
-		
+		// TODO curiosity: is it a good design ?
 		Double value = 0.0;
 		Double addValue = 0.0;
-		for( Zone addZone : getAdditional())
-		{
-			addValue+=addZone.getValue();
+		for (Zone addZone : getAdditional()) {
+			addValue += addZone.getValue();
 		}
 		Double surValue = 0.0;
-		for( Zone surZone : getSurplus())
-		{
-			surValue+=surZone.getValue();
+		for (Zone surZone : getSurplus()) {
+			surValue += surZone.getValue();
 		}
 		value = getHeight() * getWidth() + addValue - surValue;
 		return value;
-		
+
 	}
 
 	public Measure getMeasure() {
