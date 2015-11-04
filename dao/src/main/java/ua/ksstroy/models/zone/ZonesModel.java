@@ -3,9 +3,7 @@ package ua.ksstroy.models.zone;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import ua.ksstroy.logic.zone.Measure;
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "zones", catalog = "ksstroy")
 public class ZonesModel implements Serializable {
@@ -38,29 +39,38 @@ public class ZonesModel implements Serializable {
 	private Double height;
 
 	@Column(name = "mesure_name")
-	private String mesureName;
+	private String measureName;
 
-	/*
-	 * One to many zone for surplusesZones
-	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_group_id")
+	private GroupsModel groupIdForZone;
 
-	@OneToMany(mappedBy = "zonesSurpluses")
-	private List<SurplusZonesModel> surpluses = new ArrayList<>();
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "addit_for_zones_id")
+	private Set<ZonesModel> additionalZone = new HashSet<>();
 
-	/*
-	 * One to many zone for addotionalZones
-	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "addit_for_zones_id")
+	private ZonesModel additZoneToRootZone;
 
-	@OneToMany(mappedBy = "zonesAdditionals")
-	private List<AdditionalZonesModel> additionals = new ArrayList<>();
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "surplus_for_zones_id")
+	private Set<ZonesModel> surplusZone = new HashSet<>();
 
-	/*
-	 * Many to one zones for group
-	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "surplus_for_zones_id")
+	private ZonesModel surplusZoneToRootZone;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "group_for_zones_id")
-	private GroupsModel groupsModel;
+	public ZonesModel() {
+
+	}
+
+	public ZonesModel(String name, Double width, Double height, Measure measureName) {
+		this.name = name;
+		this.width = width;
+		this.height = height;
+		this.measureName = measureName.toString();
+	}
 
 	public String getId() {
 		return id;
@@ -94,36 +104,28 @@ public class ZonesModel implements Serializable {
 		this.height = height;
 	}
 
-	public String getMesureName() {
-		return mesureName;
+	public String getMeasureName() {
+		return measureName;
 	}
 
-	public void setMesureName(Enum mesureName) {
-		this.mesureName = mesureName.toString();
+	public void setMeasureName(Measure measureName) {
+		this.measureName = measureName.toString();
 	}
 
-	public List<SurplusZonesModel> getSurpluses() {
-		return surpluses;
+	public Set<ZonesModel> getAdditionalZone() {
+		return additionalZone;
 	}
 
-	public void setSurpluses(List<SurplusZonesModel> surpluses) {
-		this.surpluses = surpluses;
+	public void setAdditionalZone(Set<ZonesModel> additionalZone) {
+		this.additionalZone = additionalZone;
 	}
 
-	public List<AdditionalZonesModel> getAdditionals() {
-		return additionals;
+	public Set<ZonesModel> getSurplusZone() {
+		return surplusZone;
 	}
 
-	public void setAdditionals(List<AdditionalZonesModel> additionals) {
-		this.additionals = additionals;
-	}
-
-	public GroupsModel getGroupsModel() {
-		return groupsModel;
-	}
-
-	public void setGroupsModel(GroupsModel groupsModel) {
-		this.groupsModel = groupsModel;
+	public void setSurplusZone(Set<ZonesModel> surplusZone) {
+		this.surplusZone = surplusZone;
 	}
 
 }

@@ -9,33 +9,31 @@ import java.util.List;
 
 public interface ZoneDao {
 
-	List<Zone> getAllZones();
-
-	Zone getZoneById(String zoneId);
-
-	List<Zone> getZonesByParentGroupId(String groupId);
-
-	List<Zone> getZonesByParentZoneId(String groupId);
+	ZoneGroup getAllHierarhy(String projectId);
 
 	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
 
-	ZoneGroup getRootZoneGroup(String projectId);
+	List<Zone> getAllZones();
+
+	List<Zone> getZonesByParentGroupId(String groupId);
+
+	List<Zone> getZonesByParentZoneId(String zoneId);
+
+	List<Zone> getAdditionalZonesByParentZoneId(String zoneId);
+
+	List<Zone> getSurplusZonesByParentZoneId(String zoneId);
 
 	/*
 	 * actions from Zones
 	 */
 
-	void addZone(String zoneName, Double width, Double height, Enum measure);
-
-	void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure);
-
-	void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure);
-
 	void storeZone(Zone zone, String parentGroupId);
 
-	void storeZoneToZone(Zone zone, String parentZoneId);
+	void storeAdditionalToZone(Zone zone, String parentZoneId);
+
+	void storeSurplusToZone(Zone zone, String parentZoneId);
+
+	void updateZone(String zoneId, Zone newZone);
 
 	void removeZone(String zoneId);
 
@@ -43,15 +41,12 @@ public interface ZoneDao {
 	 * actions from Groups
 	 */
 
-	void addRootGroup(String groupName);
+	void addRootGroup(String groupName, Integer projectId);
 
 	void addGroupToGroup(String groupName, String parentGroupId);
 
-	void updateGroup(String name);
-
-	void updateGroupToGroup(String groupName, String parentGroupId);
+	void updateGroup(String groupId, String newGroup);
 
 	void removeGroup(String groupId);
-
 
 }

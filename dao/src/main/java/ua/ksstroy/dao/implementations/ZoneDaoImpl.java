@@ -1,12 +1,12 @@
 package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Component;
 
 import ua.ksstroy.logic.zone.Measure;
@@ -16,265 +16,97 @@ import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.logic.zone.ZoneGroupImpl;
 import ua.ksstroy.logic.zone.ZoneImpl;
 import ua.ksstroy.models.project.ProjectModel;
-import ua.ksstroy.models.zone.AdditionalZonesModel;
 import ua.ksstroy.models.zone.GroupsModel;
-import ua.ksstroy.models.zone.SurplusZonesModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
-@Component("zoneDao")
+@Component(value = "zoneDao")
 public class ZoneDaoImpl implements ZoneDao {
 
-	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+	private Session session;
 
-	/*
-	 * demands changes
-	 */
+	public ZoneGroup getAllHierarhy(String projectId) {
+		session = HibernateUtil.getSessionFactory().openSession();
 
-	@Override
-	public List<Zone> getAllZones() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-
-		List<Zone> zones = new ArrayList<Zone>();
-
-		zones.add(convertAllZones());
-
-		session.save(zones);
-		session.getTransaction().commit();
-		session.close();
-
-		return zones;
-	}
-
-	private Zone convertAllZones() {
-
-		ZonesModel zonesModel = new ZonesModel();
-
-		ZoneImpl zone = new ZoneImpl();
-
-		zone.setId(zonesModel.getId().toString());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setName(zonesModel.getName());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setWidth(zonesModel.getWidth());
-		zone.setMeasure(Measure.M2);
-
-		return zone;
-	}
-
-	@Override
-	public Zone getZoneById(String zoneId) {
-
-		Session session = sessionFactory.openSession(); session.beginTransaction();
-
-		ZonesModel model = (ZonesModel) session.get(ZonesModel.class, zoneId);
-
-		session.save(model);
-		session.getTransaction().commit();
-		session.close();
-
-		return convertZoneById(model);
-	}
-
-	private Zone convertZoneById(ZonesModel zonesModel) {
-
-		ZoneImpl zone = new ZoneImpl();
-
-		zone.setId(zonesModel.getId());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setName(zonesModel.getName());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setWidth(zonesModel.getWidth());
-		zone.setMeasure(Measure.M2);
-
-		return zone;
-	}
-
-	@Override
-	public List<Zone> getZonesByParentGroupId(String groupId) {
-
-		List<Zone> zonesById = new ArrayList<>();
-
-		Session session = sessionFactory.openSession();
-		for (Object zones : ((GroupsModel) session.get(GroupsModel.class,
-				groupId)).getZones())
-			zonesById.add(convertZonesByParentGroupId((ZonesModel) zones));
-
-		return zonesById;
-	}
-
-	private Zone convertZonesByParentGroupId(ZonesModel zonesModel) {
-
-		ZoneImpl zone = new ZoneImpl();
-
-		zone.setId(zonesModel.getId());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setName(zonesModel.getName());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setWidth(zonesModel.getWidth());
-		zone.setMeasure(Measure.M2);
-
-		return zone;
-	}
-
-	@Override
-	public List<Zone> getZonesByParentZoneId(String zoneId) {
-
-		List<Zone> zones = new ArrayList<Zone>();
-
-		Session session = sessionFactory.openSession();
-		for (Object additZones : ((ZonesModel) session.get(ZonesModel.class,
-				zoneId)).getAdditionals()) {
-			zones.add(convertAdditionalZonesByParentZoneId((AdditionalZonesModel) additZones));
-		}
-		for (Object surplusZones : ((ZonesModel) session.get(ZonesModel.class,
-				zoneId)).getSurpluses()) {
-			zones.add(convertSurplusZonesByParentZoneId((SurplusZonesModel) surplusZones));
-		}
-
-		return zones;
-	}
-
-	private Zone convertAdditionalZonesByParentZoneId(
-			AdditionalZonesModel zonesAdditModel) {
-
-		ZoneImpl zone = new ZoneImpl();
-
-		zone.setId(zonesAdditModel.getId());
-		zone.setHeight(zonesAdditModel.getHeight());
-		zone.setName(zonesAdditModel.getName());
-		zone.setHeight(zonesAdditModel.getHeight());
-		zone.setWidth(zonesAdditModel.getWidth());
-		zone.setMeasure(Measure.M2);
-
-		return zone;
-	}
-
-	private Zone convertSurplusZonesByParentZoneId(
-			SurplusZonesModel zonesSurplusModel) {
-
-		ZoneImpl zone = new ZoneImpl();
-
-		zone.setId(zonesSurplusModel.getId());
-		zone.setHeight(zonesSurplusModel.getHeight());
-		zone.setName(zonesSurplusModel.getName());
-		zone.setHeight(zonesSurplusModel.getHeight());
-		zone.setWidth(zonesSurplusModel.getWidth());
-		zone.setMeasure(Measure.M2);
-
-		return zone;
-	}
-
-	@Override
-	public List<ZoneGroup> getGroupsByParentGroupId(String groupId) {
-
-		List<ZoneGroup> subgroups = new ArrayList<ZoneGroup>();
-
-		Session session = sessionFactory.openSession();
-		for (Object groups : ((GroupsModel) session.get(GroupsModel.class,
-				groupId)).getSubgroups())
-			subgroups.add(convertGroupsByParentGroupId((GroupsModel) groups));
-
-		return subgroups;
-	}
-
-	private ZoneGroup convertGroupsByParentGroupId(
-			GroupsModel zonesAdditionalModel) {
-		ZoneGroupImpl subgroups = new ZoneGroupImpl();
-		subgroups.setId(zonesAdditionalModel.getId().toString());
-		subgroups.setName(zonesAdditionalModel.getName());
-		return subgroups;
-	}
-
-	/*
-	 * demands changes
-	 */
-
-	@Override
-	public ZoneGroup getRootZoneGroup(String projectId) {
-		Session session = sessionFactory.openSession(); 
-		session.beginTransaction();
-//
-//		ZoneGroupImpl groupImpl = (ZoneGroupImpl) convertRootZoneGroup();
-//
-//		session.save(groupImpl);
-//		session.getTransaction().commit();
-//		session.close();
-//
-//		return groupImpl;
 		ProjectModel project = (ProjectModel) session.get(ProjectModel.class, Integer.parseInt(projectId));
 		GroupsModel groupsModel = project.getGroupsModel();
-		
-		ZoneGroupImpl zoneGroup = convert(groupsModel);
-		
+
+		ZoneGroupImpl zoneGroup = convertGroupsModelToZoneGroup(groupsModel);
+
 		return zoneGroup;
-		
+
 	}
 
-	
-	private ZoneGroupImpl convert(GroupsModel groupsModel) {
+	public ZoneGroupImpl convertGroupsModelToZoneGroup(GroupsModel groupsModel) {
 		ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
 		zoneGroup.setId(groupsModel.getId());
 		zoneGroup.setName(groupsModel.getName());
-		List<ZoneGroup> zoneGroups = new ArrayList<ZoneGroup>();
-		for (GroupsModel subgroup : groupsModel.getSubgroups())
-			zoneGroups.add(convert(subgroup));
-		zoneGroup.setGroups(zoneGroups);
-		List<Zone> zones = new ArrayList<Zone>();
-		for (ZonesModel zoneModel : groupsModel.getZones()) {
-			zones.add(convertZonesByParentGroupId(zoneModel));
+
+		List<ZoneGroup> subGroups = new ArrayList<>();
+		for (GroupsModel subgroup : groupsModel.getSubGroups()) {
+			subGroups.add(convertGroupsModelToZoneGroup(subgroup));
 		}
-		zoneGroup.setZones(zones);
-		//TODO zoneGroup.setZones(zones)
+		zoneGroup.setGroups(subGroups);
+
+		List<Zone> rootZones = new ArrayList<>();
+		List<Zone> surplusZones = new ArrayList<>();
+		List<Zone> additionalZones = new ArrayList<>();
+
+		for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
+			for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone()) {
+				additionalZones.add(convertZonesModelToZone(oneAdditionalZone));
+			}
+			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) {
+				surplusZones.add(convertZonesModelToZone(oneSurplusZone));
+			}
+			Zone allZonesAndSubZones = convertZonesModelToZone(oneRootZone);
+			allZonesAndSubZones.setAdditional(additionalZones);
+			allZonesAndSubZones.setSurplus(surplusZones);
+
+			rootZones.add(allZonesAndSubZones);
+
+		}
+		zoneGroup.setZones(rootZones);
+
 		return zoneGroup;
 	}
 
-	private ZoneGroup convertRootZoneGroup() {
+	public Zone convertZonesModelToZone(ZonesModel zonesModel) {
+		Zone zone = new ZoneImpl();
 
+		zone.setId(zonesModel.getId());
+		zone.setHeight(zonesModel.getHeight());
+		zone.setName(zonesModel.getName());
+		zone.setHeight(zonesModel.getHeight());
+		zone.setWidth(zonesModel.getWidth());
+		zone.setMeasure(Measure.valueOf(zonesModel.getMeasureName()));
+
+		return zone;
+	}
+
+	public ZonesModel convertZoneToZoneModel(Zone zone) {
 		ZonesModel zonesModel = new ZonesModel();
-		ZoneGroupImpl groupImpl = new ZoneGroupImpl();
 
-		groupImpl.setId(zonesModel.getId());
-		groupImpl.setName(zonesModel.getName());
+		zonesModel.setId(zone.getId());
+		zonesModel.setName(zone.getName());
+		zonesModel.setHeight(zone.getHeight());
+		zonesModel.setWidth(zone.getWidth());
+		zonesModel.setMeasureName(zone.getMeasure());
 
-		return groupImpl;
+		return zonesModel;
 	}
 
 	@Override
-	public void addRootGroup(String groupName) {
-
-		Session session = sessionFactory.openSession(); 
+	public void addRootGroup(String groupName, Integer projectId) {
 		try {
-			session.beginTransaction();
+			getSession();
 
-			GroupsModel rootGroup = new GroupsModel();
-			rootGroup.setName(groupName);
+			ProjectModel projectModel = (ProjectModel) session.get(ProjectModel.class, projectId);
+			GroupsModel rootGroup = new GroupsModel(groupName);
+			projectModel.setGroupsModel(rootGroup);
 
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
-	@Override
-	public void addGroupToGroup(String groupName, String parentGroupId) {
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			GroupsModel subGroup = new GroupsModel();
-			subGroup.setName(groupName);
-			subGroup.setRootgroup((GroupsModel) session.get(GroupsModel.class, parentGroupId));
-			session.save(subGroup);
-
-			session.flush();
+			session.save(rootGroup);
+			session.saveOrUpdate(projectModel);
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -286,259 +118,19 @@ public class ZoneDaoImpl implements ZoneDao {
 		}
 	}
 
-	/*
-	 * demands changes
-	 */
-
-	@Override
-	public void storeZone(Zone zone, String parentGroupId) {
-
-		String query = "UPDATE `ksstroy`.`zones` SET `group_for_zones_id`='"
-				+ parentGroupId + "' WHERE `name`='"
-				+ zone.getName().toString() + "';";
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			ZonesModel zonesModel = convertStoreZone(zone);
-
-			session.save(zonesModel);
-			session.createSQLQuery(query).executeUpdate();
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
-	public ZonesModel convertStoreZone(Zone zone) {
-
-		ZonesModel model = new ZonesModel();
-
-		model.setId(zone.getId());
-		model.setName(zone.getName());
-		model.setHeight(zone.getHeight());
-		model.setWidth(zone.getWidth());
-		model.setMesureName(zone.getMeasure());
-
-		return model;
-	}
-
-	/*
-	 * demands changes
-	 */
-
-	@Override
-	public void storeZoneToZone(Zone zone, String parentZoneId) {
-
-		String queryAddditZones = "UPDATE `ksstroy`.`adddit_zones` SET `zones_additionals`='"
-				+ parentZoneId
-				+ "' WHERE `name`='"
-				+ zone.getName().toString()
-				+ "';";
-
-		String querySurplusZones = "UPDATE `ksstroy`.`surplus_zones` SET `zones_surpluses`='"
-				+ parentZoneId
-				+ "' WHERE `name`='"
-				+ zone.getName().toString()
-				+ "';";
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			SurplusZonesModel surplusZonesModel = convertSurplusZonesByParentZoneId(zone);
-			AdditionalZonesModel additionalZonesModel = convertAdditionalZonesByParentZoneId(zone);
-
-			session.save(surplusZonesModel);
-			session.save(additionalZonesModel);
-
-			session.createSQLQuery(queryAddditZones).executeUpdate();
-			session.createSQLQuery(querySurplusZones).executeUpdate();
-
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
-	private SurplusZonesModel convertSurplusZonesByParentZoneId(Zone zone) {
-
-		SurplusZonesModel zonesSurplusModel = new SurplusZonesModel();
-
-		zonesSurplusModel.setId(zone.getId());
-		zonesSurplusModel.setName(zone.getName());
-		zonesSurplusModel.setHeight(zone.getHeight());
-		zonesSurplusModel.setWidth(zone.getWidth());
-		zonesSurplusModel.setMesureName(zone.getMeasure());
-
-		return zonesSurplusModel;
-	}
-
-	private AdditionalZonesModel convertAdditionalZonesByParentZoneId(Zone zone) {
-
-		AdditionalZonesModel additionalZonesModel = new AdditionalZonesModel();
-
-		additionalZonesModel.setId(zone.getId());
-		additionalZonesModel.setName(zone.getName());
-		additionalZonesModel.setHeight(zone.getHeight());
-		additionalZonesModel.setWidth(zone.getWidth());
-		additionalZonesModel.setMesureName(zone.getMeasure());
-
-		return additionalZonesModel;
-	}
-
-	
-	
-	@Override
-	public void addZone(String zoneName, Double width, Double height,
-			Enum measure) {
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			ZonesModel zonesModel = new ZonesModel();
-			zonesModel.setName(zoneName);
-			zonesModel.setWidth(width);
-			zonesModel.setHeight(height);
-			zonesModel.setMesureName(measure);
-
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
-	@Override
-	public void addAdditZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure) {
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			AdditionalZonesModel additZonesModel = new AdditionalZonesModel();
-			additZonesModel.setName(zoneName);
-			additZonesModel.setWidth(width);
-			additZonesModel.setHeight(height);
-			additZonesModel.setMesureName(measure);
-			/*
-			 * different types of models in here
-			 */
-			// additZonesModel.setZonesAdditionals(parentZoneId);
-
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
-	@Override
-	public void addSurplusZone(String zoneName, Double width, Double height,
-			String parentZoneId, Enum measure) {
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			SurplusZonesModel surplusZonesModel = new SurplusZonesModel();
-			surplusZonesModel.setName(zoneName);
-			surplusZonesModel.setWidth(width);
-			surplusZonesModel.setHeight(height);
-			surplusZonesModel.setMesureName(measure);
-			/*
-			 * different types of models in here
-			 */
-			// additZonesModel.setZonesAdditionals(parentZoneId);
-
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
+	private void getSession() {
+		session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
 	}
 
 	@Override
 	public void removeZone(String zoneId) {
-
-		Session session = sessionFactory.openSession(); 
 		try {
-			session.beginTransaction();
+			getSession();
 
-			ZonesModel zone = (ZonesModel) session
-					.get(ZonesModel.class, zoneId);
+			ZonesModel zone = (ZonesModel) session.get(ZonesModel.class, zoneId);
 			session.delete(zone);
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-	}
-
-	@Override
-	public void updateGroup(String name) {
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			GroupsModel group = new GroupsModel();
-			group.setName(name);
-			session.flush();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		} finally {
-			if (session != null && session.isOpen()) {
-				session.close();
-			}
-		}
-
-	}
-
-	@Override
-	public void updateGroupToGroup(String groupName, String parentGroupId) {
-
-		Session session = sessionFactory.openSession(); 
-		try {
-			session.beginTransaction();
-
-			GroupsModel group = new GroupsModel();
-			group.setName(groupName);
-			/*
-			 * different types of models in here
-			 */
-			// group.setRootgroup(parentGroupId);
-			session.flush();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -551,15 +143,12 @@ public class ZoneDaoImpl implements ZoneDao {
 
 	@Override
 	public void removeGroup(String groupId) {
-
-		Session session = sessionFactory.openSession(); 
 		try {
-			session.beginTransaction();
+			getSession();
 
-			GroupsModel group = (GroupsModel) session.get(GroupsModel.class,
-					groupId);
+			GroupsModel group = (GroupsModel) session.get(GroupsModel.class, groupId);
 			session.delete(group);
-			session.flush();
+			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -569,4 +158,268 @@ public class ZoneDaoImpl implements ZoneDao {
 			}
 		}
 	}
+
+	@Override
+	public List<Zone> getAllZones() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ZoneGroup> getGroupsByParentGroupId(String groupId) {
+		List<ZoneGroup> groupsByParentGroupId = new ArrayList<>();
+		try {
+			getSession();
+
+			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, groupId);
+			List<GroupsModel> groupsModelsByparentGroupId = new ArrayList<>(parentGroup.getSubGroups());
+
+			for (GroupsModel groupsModel : groupsModelsByparentGroupId) {
+				groupsByParentGroupId.add(convertGroupsModelToGroup(groupsModel));
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return groupsByParentGroupId;
+	}
+
+	@Override
+	public List<Zone> getZonesByParentGroupId(String groupId) {
+		List<Zone> zonesByParentGroupId = new ArrayList<>();
+		try {
+			getSession();
+			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, groupId);
+			List<ZonesModel> zonesModelsByparentGroupId = new ArrayList<>(parentGroup.getZonesGroup());
+
+			for (ZonesModel zonesModel : zonesModelsByparentGroupId) {
+				zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
+		return zonesByParentGroupId;
+	}
+
+	@Override
+	public List<Zone> getZonesByParentZoneId(String zoneId) {
+		List<Zone> zonesByParentGroupId = new ArrayList<>();
+		try {
+			getSession();
+			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, zoneId);
+			List<ZonesModel> additionalZonesModelByParentZoneId = new ArrayList<>(parentZone.getAdditionalZone());
+			List<ZonesModel> surplusZonesModelByParentZoneId = new ArrayList<>(parentZone.getSurplusZone());
+
+			for (ZonesModel zonesModel : additionalZonesModelByParentZoneId) {
+				zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
+			}
+
+			for (ZonesModel zonesModel : surplusZonesModelByParentZoneId) {
+				zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return zonesByParentGroupId;
+	}
+
+	@Override
+	public List<Zone> getAdditionalZonesByParentZoneId(String zoneId) {
+		List<Zone> additionalZone = new ArrayList<>();
+		try {
+			getSession();
+			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, zoneId);
+			List<ZonesModel> additionalZonesModel = new ArrayList<>(parentZone.getAdditionalZone());
+
+			for (ZonesModel zonesModel : additionalZonesModel) {
+				additionalZone.add(convertZonesModelToZone(zonesModel));
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return additionalZone;
+	}
+
+	@Override
+	public List<Zone> getSurplusZonesByParentZoneId(String zoneId) {
+		List<Zone> surplusZone = new ArrayList<>();
+		try {
+			getSession();
+			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, zoneId);
+			List<ZonesModel> surplusZonesModel = new ArrayList<>(parentZone.getSurplusZone());
+
+			for (ZonesModel zonesModel : surplusZonesModel) {
+				surplusZone.add(convertZonesModelToZone(zonesModel));
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+		return surplusZone;
+	}
+
+	public ZoneGroup convertGroupsModelToGroup(GroupsModel group) {
+		ZoneGroup zoneGroup = new ZoneGroupImpl();
+		zoneGroup.setId(group.getId());
+		zoneGroup.setName(group.getName());
+
+		return zoneGroup;
+	}
+
+	@Override
+	public void storeZone(Zone zone, String parentGroupId) {
+		try {
+			getSession();
+			ZonesModel zoneModelPreparedForSave = new ZonesModel();
+			zoneModelPreparedForSave = this.convertZoneToZoneModel(zone);
+
+			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
+			parentGroup.getZonesGroup().add(zoneModelPreparedForSave);
+			session.saveOrUpdate(parentGroup);
+
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void storeAdditionalToZone(Zone zone, String parentZoneId) {
+		try {
+			getSession();
+			ZonesModel zoneModelPreparedForSave = new ZonesModel();
+			zoneModelPreparedForSave = this.convertZoneToZoneModel(zone);
+
+			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, parentZoneId);
+			parentZone.getAdditionalZone().add(zoneModelPreparedForSave);
+
+			session.saveOrUpdate(parentZone);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void storeSurplusToZone(Zone zone, String parentZoneId) {
+		try {
+			getSession();
+			ZonesModel zoneModelPreparedForSave = new ZonesModel();
+			zoneModelPreparedForSave = this.convertZoneToZoneModel(zone);
+
+			ZonesModel parentZone = (ZonesModel) session.get(ZonesModel.class, parentZoneId);
+			parentZone.getSurplusZone().add(zoneModelPreparedForSave);
+
+			session.saveOrUpdate(parentZone);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void addGroupToGroup(String groupName, String parentGroupId) {
+		try {
+			getSession();
+			GroupsModel subGroupToRootGroup = new GroupsModel(groupName);
+			Set<GroupsModel> subGroupSet = new HashSet<>();
+			subGroupSet.add(subGroupToRootGroup);
+
+			GroupsModel parentGroup = (GroupsModel) session.get(GroupsModel.class, parentGroupId);
+			parentGroup.getSubGroups().add(subGroupToRootGroup);
+			session.saveOrUpdate(parentGroup);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
+
+	@Override
+	public void updateZone(String zoneId, Zone newZone) {
+		try {
+			getSession();
+
+			ZonesModel zone = (ZonesModel) session.get(ZonesModel.class, zoneId);
+			zone.setName(newZone.getName());
+			zone.setHeight(newZone.getHeight());
+			zone.setWidth(newZone.getWidth());
+			zone.setMeasureName(newZone.getMeasure());
+
+			session.saveOrUpdate(zone);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
+	}
+
+	@Override
+	public void updateGroup(String groupId, String newGroup) {
+		try {
+			getSession();
+
+			GroupsModel group = (GroupsModel) session.get(GroupsModel.class, groupId);
+			group.setName(newGroup);
+
+			session.saveOrUpdate(group);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
+
 }

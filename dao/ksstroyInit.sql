@@ -1,10 +1,9 @@
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
-  `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `PROJECT_NAME` VARCHAR(64) NOT NULL,
   `DESCRIPTION` VARCHAR(512), 
-  `ID_GROUP` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`ID`, `ID_GROUP`) 
+  `ID_GROUP` INT(10) UNSIGNED
 );  
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (33, 'Cool Project', 'Very cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (34, 'Another Cool Project', 'Super cool', '1');
@@ -33,46 +32,41 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 DROP TABLE IF EXISTS `zones`;
 CREATE TABLE `zones` (
   `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `width` double NULL DEFAULT NULL,
-  `height` double NULL DEFAULT NULL,
-  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
-  `group_for_zones_id` BIGINT(20) NULL DEFAULT NULL
+  `name` VARCHAR(50) not NULL ,
+  `width` double unsigned not NULL,
+  `height` double unsigned not NULL ,
+  `mesure_name` VARCHAR(50) not NULL ,
+  `parent_group_id` INT(10) UNSIGNED ,
+  `surplus_for_zones_id` INT(10) UNSIGNED ,#have value only if the zone is surplus
+  `addit_for_zones_id` INT(10) UNSIGNED #have value only if the zone is additional
 );
-INSERT INTO `zones`  VALUES (1,'Steni', 3.0,5.0,'m2',1);
 
 
-DROP TABLE IF EXISTS `adddit_zones`;
-CREATE TABLE `adddit_zones` (
-  `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `width` double NULL DEFAULT NULL,
-  `height` double NULL DEFAULT NULL,
-  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
-  `zones_additionals` BIGINT(20) NULL DEFAULT NULL
-);
-INSERT INTO `adddit_zones`  VALUES (1,'otkosi', 3.0,5.0,'m2',1);
-
-
-
-DROP TABLE IF EXISTS `surplus_zones`;
-CREATE TABLE `surplus_zones` (
-   `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` VARCHAR(50) NULL DEFAULT NULL,
-  `width` double NULL DEFAULT NULL,
-  `height` double NULL DEFAULT NULL,
-  `mesure_name` VARCHAR(50) NULL DEFAULT NULL,
-  `zones_surpluses` BIGINT(20) NULL DEFAULT NULL
-);
-INSERT INTO `surplus_zones`  VALUES (1,'Window', 3.0,5.0,'m2',1);
+INSERT INTO `zones`  VALUES (1,'pol1', 10.0,10.0,'M2',4,null,null);
+INSERT INTO `zones`  VALUES (2,'stenaA', 6.0,3.0,'M2',5,null,null);
+INSERT INTO `zones`  VALUES (3,'potolok', 10.0,10.0,'M2',5,null,null);
+INSERT INTO `zones`  VALUES (4,'stenaB', 7.0,3.5,'M2',6,null,null);
+INSERT INTO `zones`  VALUES (5,'otkosi1', 5.0,5.0,'M2',null,null,1);
+INSERT INTO `zones`  VALUES (6,'otkosi2', 3.0,2.0,'M2',null,null,2);
+INSERT INTO `zones`  VALUES (7,'pamyatnikLenina', 2.0,2.0,'M2',null,null,3);
+INSERT INTO `zones`  VALUES (8,'pamyatnikDartVeyderu', 10.0,4.0,'M2',null,null,4);
+INSERT INTO `zones`  VALUES (9,'dver1', 2.0,1.0,'M2',null,1,null);
+INSERT INTO `zones`  VALUES (10,'dver2', 3.0,2.0,'M2',null,2,null);
+INSERT INTO `zones`  VALUES (11,'okno1', 3.0,1.25,'M2',null,3,null);
+INSERT INTO `zones`  VALUES (12,'okno2', 2.0,1.35,'M2',null,4,null);
 
 
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
-    `id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(50) NULL DEFAULT NULL,
-    `parent_id` BIGINT(20) NULL DEFAULT NULL
+    `group_id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50) ,
+    `parent_id` BIGINT(20) 
 );
-INSERT INTO `groups` (name) VALUES ('Kvartira');
-INSERT INTO `groups` VALUES (2,'Kuhnya', 1);
-
+INSERT INTO `groups`  VALUES (1,'Kvartira',null);
+INSERT INTO `groups`  VALUES (2,'Penthaus',null);
+INSERT INTO `groups`  VALUES (3,'Dacha',null);
+INSERT INTO `groups` VALUES (4,'Kuhnya', 1);
+INSERT INTO `groups` VALUES (5,'Spalnya', 1);
+INSERT INTO `groups` VALUES (6,'Tualet', 1);
+INSERT INTO `groups` VALUES (7,'Vannaya', 2);
+INSERT INTO `groups` VALUES (8,'Prihozhaya', 2);

@@ -1,70 +1,61 @@
 package ua.ksstroy.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ua.ksstroy.logic.zone.NameConflictException;
 import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneHierarchyData;
 import ua.ksstroy.logic.zone.ZoneManager;
-
-import ua.ksstroy.mocks.ZoneHierarchyMockFactory;
 
 @Controller
 public class ProjectController {
 
-	@Resource(name="ZoneManagerImpl")
+	@Resource(name = "ZoneManagerImpl")
 	ZoneManager zoneManager;
+	ModelAndView project;
+	private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
 
 	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
 	public ModelAndView showZHD(@PathVariable String projectId) {
-		ModelAndView project = new ModelAndView("project");
-		project.addObject("projectName", projectId);// the project name from
-														// PathVariabl
-		project.addObject("zhd",
-				zoneManager.getRootZoneHierarchy(projectId));
+		project = new ModelAndView("project");
+		project.addObject("projectName", projectId);
+		ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId);
+		project.addObject("zhd", zhd);
 		return project;
 
 	}
 
-	// TODO add current project name to SessionContext and use in redirect URL
-	// e.g project name = mock; redirect to project/mock
+	@RequestMapping(value = "/projects/addRootGroupToProject", method = RequestMethod.POST)
+	public String addRootGroupToProject(@RequestParam("groupName") String groupName,
+			@RequestParam("projectId") Integer projectId, HttpServletRequest request) {
 
-
-	
-	@RequestMapping(value = "/projects/getRootZoneHierarchy", method = RequestMethod.POST)
-	public String getRootZoneHierarchy(
-			@RequestParam("projectId") String projectId)   {
-		zoneManager.getRootZoneHierarchy(projectId);
-		return ("redirect:/projects/mock");
+		zoneManager.addRootGroupToProject(groupName, projectId);
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 
 	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
-	public String addGroupToGroup(String projectId, @RequestParam("groupName") String groupName,
-			@RequestParam("parentGroupId") String parentGroupId, @RequestParam("projectId") String id) {
+	public String addGroupToGroup(@RequestParam("groupName") String groupName,
+			@RequestParam("parentGroupId") String parentGroupId, HttpServletRequest request) {
+
 		zoneManager.addGroupToGroup(groupName, parentGroupId);
-		return "redirect:/projects/" + id;
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 
-	/*
-	 * create new ZoneData object based on data from the web page and invoke
-	 * according ZoneManager method
-	 */
 	@RequestMapping(value = "/projects/addZone", method = RequestMethod.POST)
-	public String addZone(
-			@RequestParam("name") String name,
-			@RequestParam("parentGroupId") String parentGroupId,
-			@RequestParam("measureName") String measureName,
-			@RequestParam("width") String width,
-			@RequestParam("heigh") String height) {
+	public String addZone(@RequestParam("name") String name, @RequestParam("width") String width,
+			@RequestParam("heigh") String height, @RequestParam("measureName") String measureName,
+			@RequestParam("parentGroupId") String parentGroupId, HttpServletRequest request) {
 
 		ZoneData zoneFromWeb = new ZoneData();
 		zoneFromWeb.setName(name);
@@ -72,64 +63,103 @@ public class ProjectController {
 			zoneFromWeb.setHeight(new Double(height).doubleValue());
 			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			// TODO curiosity:CANT GET THIS MESSAGE EXPLICITLY!!
+			// which message level to use in this and similar cases ?
+			logger.debug("empty string from web!!!");
 		}
 		zoneFromWeb.setMeasureName(measureName);
 
 		zoneManager.addZone(zoneFromWeb, parentGroupId);
-		return ("redirect:/projects/mock"); 
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 
-	/*
-	 * create new ZoneData object representing additionalZone in some Zone,
-	 * based on data from the web page and invoke according ZoneManager method
-	 */
-	@RequestMapping(value = "/projects/addZoneToZone", method = RequestMethod.POST)
-	public String addZoneToZone(
-			@RequestParam("name") String name,
-			@RequestParam("parentZoneId") String parentZoneId,
-			@RequestParam("measureName") String measureName,
-			@RequestParam("width") String width,
-			@RequestParam("heigh") String height) {
+	@RequestMapping(value = "/projects/addAdditionalZone", method = RequestMethod.POST)
+	public String addAdditionalZone(@RequestParam("name") String name, @RequestParam("width") String width,
+			@RequestParam("heigh") String height, @RequestParam("measureName") String measureName,
+			@RequestParam("parentZoneId") String parentZoneId, HttpServletRequest request) {
 
-		ZoneData additionalZoneFromWeb = new ZoneData();
-		additionalZoneFromWeb.setName(name);
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
 		try {
-			additionalZoneFromWeb.setHeight(new Double(height).doubleValue());
-			additionalZoneFromWeb.setWidth(new Double(width).doubleValue());
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			logger.debug("empty string from web!!!");
 		}
-		additionalZoneFromWeb.setMeasureName(measureName);
-		zoneManager.addZoneToZone(additionalZoneFromWeb, parentZoneId);
-		return ("redirect:/projects/mock");
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.addAdditionalToZone(zoneFromWeb, parentZoneId);
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 
-	/*
-	 * create new ZoneData object representing surplusZone in some Zone,
-	 * based on data from the web page and invoke according ZoneManager method
-	 */
-	@RequestMapping(value = "/projects/subtractZoneFromZone", method = RequestMethod.POST)
-	public String subtractZoneFromZone(
-			@RequestParam("name") String name,
-			@RequestParam("parentZoneId") String parentZoneId,
-			@RequestParam("measureName") String measureName,
-			@RequestParam("width") String width,
-			@RequestParam("heigh") String height) {
-		ZoneData surplusZoneFromWeb = new ZoneData();
-		surplusZoneFromWeb .setName(name);
+	@RequestMapping(value = "/projects/addSurplusZone", method = RequestMethod.POST)
+	public String addSurplusZone(@RequestParam("name") String name, @RequestParam("width") String width,
+			@RequestParam("heigh") String height, @RequestParam("measureName") String measureName,
+			@RequestParam("parentZoneId") String parentZoneId, HttpServletRequest request) {
+
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
 		try {
-			surplusZoneFromWeb .setHeight(new Double(height).doubleValue());
-			surplusZoneFromWeb .setWidth(new Double(width).doubleValue());
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
 		} catch (NumberFormatException exception) {
-			// TODO: logging an exception
-			System.out.println("empty string from web!!!");
+			logger.debug("empty string from web!!!");
 		}
-		surplusZoneFromWeb .setMeasureName(measureName);
-		zoneManager.subtractZoneFromZone(surplusZoneFromWeb, parentZoneId);
-		return ("redirect:/projects/mock");
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.addSurplusToZone(zoneFromWeb, parentZoneId);
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
+	@RequestMapping(value = "/projects/removeZone", method = RequestMethod.POST)
+	public String removeZone(@RequestParam("zoneId") String zoneId, HttpServletRequest request) {
+
+		zoneManager.removeZone(zoneId);
+
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
+	@RequestMapping(value = "/projects/removeGroup", method = RequestMethod.POST)
+	public String removeGroup(@RequestParam("groupId") String groupId, HttpServletRequest request) {
+
+		zoneManager.removeGroup(groupId);
+
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
+	@RequestMapping(value = "/projects/updateGroup", method = RequestMethod.POST)
+	public String updateGroup(@RequestParam("groupId") String groupId, @RequestParam("groupName") String newGroup,
+			HttpServletRequest request) {
+
+		zoneManager.updateGroup(groupId, newGroup);
+
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
+	}
+
+	@RequestMapping(value = "/projects/updateZone", method = RequestMethod.POST)
+	public String updateZone(@RequestParam("zoneId") String zoneId, @RequestParam("name") String name,
+			@RequestParam("width") String width, @RequestParam("heigh") String height,
+			@RequestParam("measureName") String measureName, HttpServletRequest request) {
+
+		ZoneData zoneFromWeb = new ZoneData();
+		zoneFromWeb.setName(name);
+		try {
+			zoneFromWeb.setHeight(new Double(height).doubleValue());
+			zoneFromWeb.setWidth(new Double(width).doubleValue());
+		} catch (NumberFormatException exception) {
+			logger.debug("empty string from web!!!");
+		}
+		zoneFromWeb.setMeasureName(measureName);
+
+		zoneManager.updateZone(zoneId, zoneFromWeb);
+		String referer = request.getHeader("Referer");
+		return "redirect:" + referer;
 	}
 
 }
