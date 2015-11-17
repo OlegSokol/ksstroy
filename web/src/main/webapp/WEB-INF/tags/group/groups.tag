@@ -31,17 +31,13 @@
 	<div class="controller_name">ADD GROUP</div>
 	<form action="http://localhost:8080/web/projects/addGroupToGroup"
 		method="post">
+		<input type="hidden" name="parentGroupId" value="${zhd.id}">
 		<table>
 			<tbody>
 				<tr>
 					<td>name</td>
 					<td><input type="text" name="groupName"
 						placeholder="TODO//validate"></td>
-				</tr>
-				<tr>
-					<td>parent groupId</td>
-					<td><input type="text" name="parentGroupId" value="${zhd.id}">
-					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -51,6 +47,7 @@
 <div class="controller">
 	<div class="controller_name">ADD ZONE</div>
 	<form action="http://localhost:8080/web/projects/addZone" method="post">
+	<input type="hidden" name="parentGroupId" value="${zhd.id}" >
 		<table>
 			<tbody>
 				<tr>
@@ -73,28 +70,22 @@
 					<td><input type="text" name="measureName"
 						placeholder="TODO//autocomplete"></td>
 				</tr>
-				<tr>
-					<td>parent groupId</td>
-					<td><input type="text" name="parentGroupId" value="${zhd.id}">
-					</td>
-				</tr>
+				
 			</tbody>
 		</table>
 		<input class="accepth_changes_btn" type="image" src="${done_btn}">
 	</form>
 </div>
 <div class="controller">
-	<div class="controller_name">UPDATE</div>
-	<form action="">
+	<div class="controller_name">UPDATE GROUP</div>
+	<form action="http://localhost:8080/web/projects/updateGroup">
+	<input type="hidden" name="id" value="${zhd.id}">
 		<table>
 			<tbody>
-				<tr>
-					<td>id</td>
-					<td><input type="text" name="id" value="${zhd.id}"></td>
-				</tr>
+				
 				<tr>
 					<td>name</td>
-					<td><input type="text" value="${zhd.name}"></td>
+					<td><input type="text" name="groupName" value="${zhd.name}"></td>
 				</tr>
 			</tbody>
 		</table>

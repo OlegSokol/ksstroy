@@ -36,6 +36,7 @@
 			<div class="controller_name">ADD ADDITIONAL</div>
 			<form action="http://localhost:8080/web/projects/addAdditionalZone"
 				method="post">
+				<input type="hidden" name="parentZoneId" value="${zones.id}">
 				<table>
 					<tbody>
 						<tr>
@@ -54,12 +55,8 @@
 							<td>measureName</td>
 							<td><input type="text" name="measureName" value="M2"></td>
 						</tr>
-						<tr>
-							<td>parent zoneId</td>
-							<td><input type="text" name="parentZoneId"
-								value="${zones.id}"></td>
-						</tr>
-										</tbody>
+
+					</tbody>
 				</table>
 				<input class="accepth_changes_btn" type="image" src="${done_btn}">
 			</form>
@@ -69,6 +66,7 @@
 			<div class="controller_name">ADD SURPLUS</div>
 			<form action="http://localhost:8080/web/projects/addSurplusZone"
 				method="post">
+				<input type="hidden" name="parentZoneId" value="${zones.id}">
 				<table>
 					<tbody>
 						<tr>
@@ -87,12 +85,6 @@
 							<td>measureName</td>
 							<td><input type="text" name="measureName" value="M2"></td>
 						</tr>
-						<tr>
-							<td>parent zoneId</td>
-							<td><input type="text" name="parentZoneId"
-								value="${zones.id}"></td>
-						</tr>
-					
 					</tbody>
 				</table>
 				<input class="accepth_changes_btn" type="image" src="${done_btn}">
@@ -103,12 +95,10 @@
 			<div class="controller_name">UPDATE ZONE</div>
 			<form action="http://localhost:8080/web/projects/updateZone"
 				method="post">
+				<input type="hidden" name="parentGroupId" value="${zones.value}">
+				<input type="hidden" name="zoneId" value="${zones.id}">
 				<table>
 					<tbody>
-						<tr>
-							<td>id</td>
-							<td><input type="text" name="zoneId" value="${zones.id}"></td>
-						</tr>
 						<tr>
 							<td>name</td>
 							<td><input type="text" name="name" value="${zones.name}"></td>
@@ -127,14 +117,8 @@
 								value="${zones.measureName}"></td>
 						</tr>
 						<tr>
-							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="${zhd.id}">
-							</td>
-						</tr>
-						<tr>
 							<td>value</td>
-							<td><input type="text" name="value"
-								value="${zones.value}"></td>
+							<td><input type="text" name="value" value="${zones.value}"></td>
 						</tr>
 
 					</tbody>
@@ -167,13 +151,10 @@
 						<div class="controller_name">UPDATE ADDITIONAL</div>
 						<form action="http://localhost:8080/web/projects/updateZone"
 							method="post">
+							<input type="hidden" name="zoneId" value="${additional.id}">
+							<input type="hidden" name="parentGroupId" value="${zhd.id}">
 							<table>
 								<tbody>
-									<tr>
-										<td>id</td>
-										<td><input type="text" name="zoneId"
-											value="${additional.id}"></td>
-									</tr>
 									<tr>
 										<td>name</td>
 										<td><input type="text" name="name"
@@ -195,15 +176,10 @@
 											value="${additional.measureName}"></td>
 									</tr>
 									<tr>
-							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="${zhd.id}">
-							</td>
-							</tr>
-									<tr>
-							<td>value</td>
-							<td><input type="text" value="${additional.value}">
-							</td>
-						</tr> 
+										<td>value</td>
+										<td><input type="text" value="${additional.value}">
+										</td>
+									</tr>
 								</tbody>
 							</table>
 							<input class="accepth_changes_btn" type="image" src="${done_btn}">
@@ -236,13 +212,10 @@
 						<div class="controller_name">UPDATE SURPLUS</div>
 						<form action="http://localhost:8080/web/projects/updateZone"
 							method="post">
+							<input type="hidden" name="parentGroupId" value="${zhd.id}">
+							<input type="hidden" name="zoneId" value="${surplus.id}">
 							<table>
 								<tbody>
-									<tr>
-										<td>id</td>
-										<td><input type="text" name="zoneId"
-											value="${surplus.id}"></td>
-									</tr>
 									<tr>
 										<td>name</td>
 										<td><input type="text" name="name"
@@ -263,16 +236,11 @@
 										<td><input type="text" name="measureName"
 											value="${surplus.measureName}"></td>
 									</tr>
-								<tr>
-							<td>parent groupId</td>
-							<td><input type="text" name="parentGroupId" value="${zhd.id}">
-							</td>
-						</tr>
 									<tr>
-							<td>value</td>
-							<td><input type="text" value="${surplus.value}">
-							</td>
-						</tr>
+										<td>value</td>
+										<td><input type="text" value="${surplus.value}">
+										</td>
+									</tr>
 								</tbody>
 							</table>
 							<input class="accepth_changes_btn" type="image" src="${done_btn}">
