@@ -18,6 +18,7 @@
 				method="post">
 				<input type="hidden" name="parentGroupId" value="${zones.value}">
 				<input type="hidden" name="zoneId" value="${zones.id}">
+				<input type="hidden" name="projectId" value="${projectId}">
 				<table>
 					<tbody>
 						<tr>

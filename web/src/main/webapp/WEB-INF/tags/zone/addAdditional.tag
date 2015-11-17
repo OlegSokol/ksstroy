@@ -19,6 +19,7 @@
 			<form action="http://localhost:8080/web/projects/addAdditionalZone"
 				method="post">
 				<input type="hidden" name="parentZoneId" value="${zones.id}">
+				<input type="hidden" name="projectId" value="${projectId}">
 				<table>
 					<tbody>
 						<tr>

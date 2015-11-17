@@ -15,6 +15,7 @@
 	<div class="controller_name">ADD ZONE</div>
 	<form action="http://localhost:8080/web/projects/addZone" method="post">
 	<input type="hidden" name="parentGroupId" value="${zhd.id}" >
+	<input type="hidden" name="projectId" value="${projectId}">
 		<table>
 			<tbody>
 				<tr>

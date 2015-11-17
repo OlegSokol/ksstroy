@@ -16,6 +16,8 @@
 	<form action="http://localhost:8080/web/projects/addGroupToGroup"
 		method="post">
 		<input type="hidden" name="parentGroupId" value="${zhd.id}">
+		<input type="hidden" name="projectId" value="${projectId}">
+		
 		<table>
 			<tbody>
 				<tr>

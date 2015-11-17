@@ -22,6 +22,7 @@
 							<div class="delete_btn">
 								<form action="http://localhost:8080/web/projects/removeZone"
 									method="post">
+									<input type="hidden" name="projectId" value="${projectId}">
 									<input type="image" src="${delete_btn}" name="zoneId"
 										value="${additional.id}" alt="Delete">
 								</form>
