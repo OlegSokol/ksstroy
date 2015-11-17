@@ -17,20 +17,5 @@ public class WelcomeControllerForTest {
 		return "index";
 	}
 
-//	@RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
-//	public ModelAndView hello(@PathVariable("name") String name) {
-//
-//		logger.debug("hello() is executed - $name {}", name);
-//
-//		ModelAndView model = new ModelAndView();
-//		model.setViewName("index");
-//		
-//		model.addObject("title", helloWorldService.getTitle(name));
-//		model.addObject("msg", helloWorldService.getDesc());
-//
-//		return model;
-//
-//	}
-	
 
 }

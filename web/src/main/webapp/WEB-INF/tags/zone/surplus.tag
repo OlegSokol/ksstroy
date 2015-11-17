@@ -31,43 +31,6 @@
 						</div>
 					</div>
 
-					<div class="controller">
-						<div class="controller_name">UPDATE SURPLUS</div>
-						<form action="http://localhost:8080/web/projects/updateZone"
-							method="post">
-							<input type="hidden" name="parentGroupId" value="${zhd.id}">
-							<input type="hidden" name="zoneId" value="${surplus.id}">
-							<table>
-								<tbody>
-									<tr>
-										<td>name</td>
-										<td><input type="text" name="name"
-											value="${surplus.name}"></td>
-									</tr>
-									<tr>
-										<td>width</td>
-										<td><input type="text" name="width"
-											value="${surplus.width}"></td>
-									</tr>
-									<tr>
-										<td>height</td>
-										<td><input type="text" name="heigh"
-											value="${surplus.height}"></td>
-									</tr>
-									<tr>
-										<td>measureName</td>
-										<td><input type="text" name="measureName"
-											value="${surplus.measureName}"></td>
-									</tr>
-									<tr>
-										<td>value</td>
-										<td><input type="text" value="${surplus.value}">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<input class="accepth_changes_btn" type="image" src="${done_btn}">
-						</form>
-					</div>
+					<zone:updateZone zones="${surplus}"/>
 				</li>
 			</c:forEach>

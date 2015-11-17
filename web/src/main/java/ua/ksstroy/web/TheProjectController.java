@@ -17,21 +17,20 @@ import ua.ksstroy.logic.zone.ZoneHierarchyData;
 import ua.ksstroy.logic.zone.ZoneManager;
 
 @Controller
-public class ProjectController {
+public class TheProjectController {
 
 	@Resource(name = "ZoneManagerImpl")
 	ZoneManager zoneManager;
 	ModelAndView project;
 	private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
-
+	
 	@RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
 	public ModelAndView showZHD(@PathVariable String projectId) {
-		project = new ModelAndView("project");
-		project.addObject("projectName", projectId);
+		project = new ModelAndView("the_project");
+		project.addObject("projectId", projectId);
 		ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId);
 		project.addObject("zhd", zhd);
 		return project;
-
 	}
 
 	@RequestMapping(value = "/projects/addRootGroupToProject", method = RequestMethod.POST)
