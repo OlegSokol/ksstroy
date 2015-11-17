@@ -3,10 +3,11 @@ package ua.ksstroy.models.zone;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+
 
 @SuppressWarnings("serial")
 @Entity
@@ -23,11 +24,13 @@ public class GroupsModel implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "parent_group_id")
-	private Set<ZonesModel> zonesGroup = new HashSet<>();
+	@OrderBy
+	private Set<ZonesModel> zonesGroup = new LinkedHashSet<>();
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
-	private Set<GroupsModel> subGroups = new HashSet<>();
+	@OrderBy
+	private Set<GroupsModel> subGroups = new LinkedHashSet<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id")

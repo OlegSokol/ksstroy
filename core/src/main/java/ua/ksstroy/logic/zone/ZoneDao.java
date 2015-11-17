@@ -13,8 +13,6 @@ public interface ZoneDao {
 
 	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
 
-	List<Zone> getAllZones();
-
 	List<Zone> getZonesByParentGroupId(String groupId);
 
 	List<Zone> getZonesByParentZoneId(String zoneId);

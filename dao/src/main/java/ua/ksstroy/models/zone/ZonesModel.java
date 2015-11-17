@@ -3,7 +3,7 @@ package ua.ksstroy.models.zone;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -47,7 +47,7 @@ public class ZonesModel implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "addit_for_zones_id")
-	private Set<ZonesModel> additionalZone = new HashSet<>();
+	private Set<ZonesModel> additionalZone = new LinkedHashSet<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "addit_for_zones_id")
@@ -55,7 +55,7 @@ public class ZonesModel implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "surplus_for_zones_id")
-	private Set<ZonesModel> surplusZone = new HashSet<>();
+	private Set<ZonesModel> surplusZone = new LinkedHashSet<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "surplus_for_zones_id")
