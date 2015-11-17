@@ -10,10 +10,14 @@
 		<div id="zoneHierarchiDataTree">
 	
             <group:groups zhd="${zhd}" />
+            <group:addGroup zhd ="${zhd}"/>
+            <group:addZone zhd ="${zhd}"/>
+            <group:updateGroup zhd ="${zhd}"/>
+            
           
 			<c:forEach var="currentZhd" items="${zhd.groups}">
 				<zone:node zhd="${currentZhd}" />
-				<zone:zonesWithAdditionalAndSurplus zhd="${currentZhd}" />
+				<zone:zone zhd="${currentZhd}" />
 			</c:forEach>
 
 		</div>

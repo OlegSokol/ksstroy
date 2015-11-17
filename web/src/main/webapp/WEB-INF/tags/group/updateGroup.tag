@@ -11,21 +11,21 @@
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn" />
 <spring:url value="/resources/img/done_btn.png" var="done_btn" />
 
-<div class="item">
-	<img class="clickableIcon" src="${arrow_drop_down}" alt="Arrow">
-	${zhd.name}
-	<div class="add_delete_wrapper">
-		<div class="delete_btn">
-			<form action="http://localhost:8080/web/projects/removeGroup"
-				method="post">
-				<input type="image" src="${delete_btn}" name="groupId"
-					value="${zhd.id}" alt="Delete">
-			</form>
-		</div>
-		<div class="add_btn">
-			<img src="${add_btn}" alt="Add">
-		</div>
-	</div>
+<div class="controller">
+	<div class="controller_name">UPDATE GROUP</div>
+	<form action="http://localhost:8080/web/projects/updateGroup">
+	<input type="hidden" name="id" value="${zhd.id}">
+		<table>
+			<tbody>
+				
+				<tr>
+					<td>name</td>
+					<td><input type="text" name="groupName" value="${zhd.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<label class="accepth_changes_btn"> <input type="image"
+			name="image" src="${done_btn}">
+		</label>
+	</form>
 </div>
-
-
