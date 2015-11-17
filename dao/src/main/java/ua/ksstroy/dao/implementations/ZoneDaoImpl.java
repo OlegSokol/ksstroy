@@ -77,7 +77,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			public List<ZoneGroup> process(SessionWrapper session) {
 				final List<ZoneGroup> groupsByParentGroupId = new ArrayList<>();
 				GroupsModel parentGroup = session.get(GroupsModel.class, groupId);
-				for (GroupsModel groupsModel : new ArrayList<>(parentGroup.getSubGroups())) 
+				for (GroupsModel groupsModel : parentGroup.getSubGroups()) 
 					groupsByParentGroupId.add(convertGroupsModelToGroup(groupsModel));
 				return groupsByParentGroupId;
 			}
@@ -92,7 +92,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			public List<Zone> process(SessionWrapper session) {
 				final List<Zone> zonesByParentGroupId = new ArrayList<>();
 				GroupsModel parentGroup = session.get(GroupsModel.class, groupId);
-				for (ZonesModel zonesModel : new ArrayList<>(parentGroup.getZonesGroup())) 
+				for (ZonesModel zonesModel : parentGroup.getZonesGroup()) 
 					zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
 				return zonesByParentGroupId;
 			}
@@ -106,9 +106,9 @@ public class ZoneDaoImpl implements ZoneDao {
 			public List<Zone> process(SessionWrapper session) {
 				final List<Zone> zonesByParentGroupId = new ArrayList<>();
 				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-				for (ZonesModel zonesModel : new ArrayList<>(parentZone.getAdditionalZone())) 
+				for (ZonesModel zonesModel : parentZone.getAdditionalZone()) 
 					zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
-				for (ZonesModel zonesModel : new ArrayList<>(parentZone.getSurplusZone())) 
+				for (ZonesModel zonesModel : parentZone.getSurplusZone()) 
 					zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
 				return zonesByParentGroupId;
 			}
@@ -122,7 +122,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			public List<Zone> process(SessionWrapper session) {
 				final List<Zone> additionalZone = new ArrayList<>();
 				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-				for (ZonesModel zonesModel : new ArrayList<>(parentZone.getAdditionalZone()))
+				for (ZonesModel zonesModel : parentZone.getAdditionalZone())
 					additionalZone.add(convertZonesModelToZone(zonesModel));
 				return additionalZone;
 			}
@@ -137,7 +137,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			public List<Zone> process(SessionWrapper session) {
 				final List<Zone> surplusZone = new ArrayList<>();
 				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-				for (ZonesModel zonesModel : new ArrayList<>(parentZone.getSurplusZone())) 
+				for (ZonesModel zonesModel : parentZone.getSurplusZone()) 
 					surplusZone.add(convertZonesModelToZone(zonesModel));
 				return surplusZone;
 			}
