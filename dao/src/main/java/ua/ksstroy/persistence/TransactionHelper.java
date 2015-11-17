@@ -1,9 +1,8 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.persistence;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import ua.ksstroy.persistence.HibernateUtil;
 
 public class TransactionHelper {
 

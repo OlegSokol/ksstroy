@@ -1,6 +1,4 @@
-package ua.ksstroy.dao.implementations;
-
-
+package ua.ksstroy.persistence;
 
 public interface DoInTransaction{
 	void process(SessionWrapper session);

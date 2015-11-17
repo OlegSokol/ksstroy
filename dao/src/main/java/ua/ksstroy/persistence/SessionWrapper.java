@@ -1,4 +1,4 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.persistence;
 
 import org.hibernate.Session;
 

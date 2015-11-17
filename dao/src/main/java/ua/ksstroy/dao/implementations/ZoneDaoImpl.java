@@ -15,6 +15,10 @@ import ua.ksstroy.logic.zone.ZoneImpl;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
+import ua.ksstroy.persistence.DoInTransaction;
+import ua.ksstroy.persistence.GetInTransaction;
+import ua.ksstroy.persistence.SessionWrapper;
+import ua.ksstroy.persistence.TransactionHelper;
 
 @Component(value = "zoneDao")
 public class ZoneDaoImpl implements ZoneDao {
