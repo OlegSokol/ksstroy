@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ua.ksstroy.dao.implementations.ZoneDaoImpl.ZonesModelToZoneConverter;
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneDao;
@@ -64,7 +65,7 @@ public class ZoneDaoImplTest {
 				mockZoneMeasureName);
 
 		ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
-		Zone convertedFromModelZone = zoneDaoImpl.convertZonesModelToZone(mockZonesModel);
+		Zone convertedFromModelZone = zoneDaoImpl.new ZonesModelToZoneConverter().convert(mockZonesModel);
 
 		assertEquals(mockZonesModel.getId(), convertedFromModelZone.getId());
 		assertEquals(mockZonesModel.getMeasureName(), convertedFromModelZone.getMeasure().toString());

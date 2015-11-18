@@ -1,6 +1,7 @@
 package ua.ksstroy.dao.implementations;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -78,7 +79,7 @@ public class ZoneDaoImpl implements ZoneDao {
 				final List<ZoneGroup> groupsByParentGroupId = new ArrayList<>();
 				GroupsModel parentGroup = session.get(GroupsModel.class, groupId);
 				for (GroupsModel groupsModel : parentGroup.getSubGroups()) 
-					groupsByParentGroupId.add(convertGroupsModelToGroup(groupsModel));
+					groupsByParentGroupId.add(new GroupsModelToGroupConverter().convert(groupsModel));
 				return groupsByParentGroupId;
 			}
 		});
@@ -90,16 +91,14 @@ public class ZoneDaoImpl implements ZoneDao {
 		return helper.simpleAction(new GetInTransaction<List<Zone>>() {
 			@Override
 			public List<Zone> process(SessionWrapper session) {
-				final List<Zone> zonesByParentGroupId = new ArrayList<>();
-				GroupsModel parentGroup = session.get(GroupsModel.class, groupId);
-				for (ZonesModel zonesModel : parentGroup.getZonesGroup()) 
-					zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
-				return zonesByParentGroupId;
+				return convertMany(session.get(GroupsModel.class, groupId).getZonesGroup(), 
+						new ZonesModelToZoneConverter());
 			}
 		});
 	}
 
-	@Override
+	//TODO remove this method if it's not needed
+	@Override 
 	public List<Zone> getZonesByParentZoneId(final String zoneId) {
 		return helper.simpleAction(new GetInTransaction<List<Zone>>() {
 			@Override
@@ -107,9 +106,9 @@ public class ZoneDaoImpl implements ZoneDao {
 				final List<Zone> zonesByParentGroupId = new ArrayList<>();
 				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
 				for (ZonesModel zonesModel : parentZone.getAdditionalZone()) 
-					zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
+					zonesByParentGroupId.add(new ZonesModelToZoneConverter().convert(zonesModel));
 				for (ZonesModel zonesModel : parentZone.getSurplusZone()) 
-					zonesByParentGroupId.add(convertZonesModelToZone(zonesModel));
+					zonesByParentGroupId.add(new ZonesModelToZoneConverter().convert(zonesModel));
 				return zonesByParentGroupId;
 			}
 		});
@@ -120,11 +119,8 @@ public class ZoneDaoImpl implements ZoneDao {
 		return helper.simpleAction(new GetInTransaction<List<Zone>>() {
 			@Override
 			public List<Zone> process(SessionWrapper session) {
-				final List<Zone> additionalZone = new ArrayList<>();
-				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-				for (ZonesModel zonesModel : parentZone.getAdditionalZone())
-					additionalZone.add(convertZonesModelToZone(zonesModel));
-				return additionalZone;
+				return convertMany(session.get(ZonesModel.class, zoneId).getAdditionalZone(), 
+						new ZonesModelToZoneConverter());
 			}
 		});
 
@@ -135,11 +131,8 @@ public class ZoneDaoImpl implements ZoneDao {
 		return helper.simpleAction(new GetInTransaction<List<Zone>>() {
 			@Override
 			public List<Zone> process(SessionWrapper session) {
-				final List<Zone> surplusZone = new ArrayList<>();
-				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-				for (ZonesModel zonesModel : parentZone.getSurplusZone()) 
-					surplusZone.add(convertZonesModelToZone(zonesModel));
-				return surplusZone;
+				return convertMany(session.get(ZonesModel.class, zoneId).getSurplusZone(), 
+						new ZonesModelToZoneConverter()); 
 			}
 		});
 
@@ -151,7 +144,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			@Override
 			public void process(SessionWrapper session) {
 				ZonesModel zoneModelPreparedForSave = new ZonesModel();
-				zoneModelPreparedForSave = convertZoneToZoneModel(zone);
+				zoneModelPreparedForSave = new ZoneToZoneModelConverter().convert(zone);
 
 				GroupsModel parentGroup = session.get(GroupsModel.class, parentGroupId);
 				parentGroup.getZonesGroup().add(zoneModelPreparedForSave);
@@ -167,7 +160,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			@Override
 			public void process(SessionWrapper session) {
 				ZonesModel zoneModelPreparedForSave = new ZonesModel();
-				zoneModelPreparedForSave = convertZoneToZoneModel(zone);
+				zoneModelPreparedForSave = new ZoneToZoneModelConverter().convert(zone);
 
 				ZonesModel parentZone = session.get(ZonesModel.class, parentZoneId);
 				parentZone.getAdditionalZone().add(zoneModelPreparedForSave);
@@ -185,7 +178,7 @@ public class ZoneDaoImpl implements ZoneDao {
 			@Override
 			public void process(SessionWrapper session) {
 				ZonesModel zoneModelPreparedForSave = new ZonesModel();
-				zoneModelPreparedForSave = convertZoneToZoneModel(zone);
+				zoneModelPreparedForSave = new ZoneToZoneModelConverter().convert(zone);
 
 				ZonesModel parentZone = session.get(ZonesModel.class, parentZoneId);
 				parentZone.getSurplusZone().add(zoneModelPreparedForSave);
@@ -241,37 +234,54 @@ public class ZoneDaoImpl implements ZoneDao {
 		});
 	}
 
-	protected Zone convertZonesModelToZone(ZonesModel zonesModel) {
-		Zone zone = new ZoneImpl();
-
-		zone.setId(zonesModel.getId());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setName(zonesModel.getName());
-		zone.setHeight(zonesModel.getHeight());
-		zone.setWidth(zonesModel.getWidth());
-		zone.setMeasure(Measure.valueOf(zonesModel.getMeasureName()));
-
-		return zone;
-	}
-
-	private ZonesModel convertZoneToZoneModel(Zone zone) {
-		ZonesModel zonesModel = new ZonesModel();
-
-		zonesModel.setId(zone.getId());
-		zonesModel.setName(zone.getName());
-		zonesModel.setHeight(zone.getHeight());
-		zonesModel.setWidth(zone.getWidth());
-		zonesModel.setMeasureName(zone.getMeasure());
-
-		return zonesModel;
+	private <S, T> List<T> convertMany(Collection<S> sourceCollection, Converter<S, T> converter){
+		final List<T> targetCollection = new ArrayList<>();
+		for (S source : sourceCollection) 
+			targetCollection.add(converter.convert(source));
+		return targetCollection;
 	}
 	
-	private ZoneGroup convertGroupsModelToGroup(GroupsModel group) {
-		ZoneGroup zoneGroup = new ZoneGroupImpl();
-		zoneGroup.setId(group.getId());
-		zoneGroup.setName(group.getName());
-
-		return zoneGroup;
+	private interface Converter<T, R>{
+		R convert(T t);
+	}
+	
+	protected class ZonesModelToZoneConverter implements Converter<ZonesModel, Zone>{
+		public Zone convert(ZonesModel zonesModel) {
+			Zone zone = new ZoneImpl();
+	
+			zone.setId(zonesModel.getId());
+			zone.setHeight(zonesModel.getHeight());
+			zone.setName(zonesModel.getName());
+			zone.setHeight(zonesModel.getHeight());
+			zone.setWidth(zonesModel.getWidth());
+			zone.setMeasure(Measure.valueOf(zonesModel.getMeasureName()));
+	
+			return zone;
+		}
+	}
+	
+	private class ZoneToZoneModelConverter implements Converter<Zone, ZonesModel> {
+		public ZonesModel convert(Zone zone) {
+			ZonesModel zonesModel = new ZonesModel();
+	
+			zonesModel.setId(zone.getId());
+			zonesModel.setName(zone.getName());
+			zonesModel.setHeight(zone.getHeight());
+			zonesModel.setWidth(zone.getWidth());
+			zonesModel.setMeasureName(zone.getMeasure());
+	
+			return zonesModel;
+		}
+	}
+	
+	private class GroupsModelToGroupConverter implements Converter<GroupsModel, ZoneGroup> { 
+		public ZoneGroup convert(GroupsModel group) {
+			ZoneGroup zoneGroup = new ZoneGroupImpl();
+			zoneGroup.setId(group.getId());
+			zoneGroup.setName(group.getName());
+	
+			return zoneGroup;
+		}
 	}
 
 	private ZoneGroupImpl convertGroupsModelToZoneGroup(GroupsModel groupsModel) {
@@ -291,12 +301,12 @@ public class ZoneDaoImpl implements ZoneDao {
 
 		for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
 			for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone()) 
-				additionalZones.add(convertZonesModelToZone(oneAdditionalZone));
+				additionalZones.add(new ZonesModelToZoneConverter().convert(oneAdditionalZone));
 		
 			for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone()) 
-				surplusZones.add(convertZonesModelToZone(oneSurplusZone));
+				surplusZones.add(new ZonesModelToZoneConverter().convert(oneSurplusZone));
 			
-			Zone allZonesAndSubZones = convertZonesModelToZone(oneRootZone);
+			Zone allZonesAndSubZones = new ZonesModelToZoneConverter().convert(oneRootZone);
 			allZonesAndSubZones.setAdditional(additionalZones);
 			allZonesAndSubZones.setSurplus(surplusZones);
 
