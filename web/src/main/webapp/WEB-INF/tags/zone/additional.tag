@@ -20,11 +20,12 @@
 						+${additional.name}
 						<div class="add_delete_wrapper">
 							<div class="delete_btn">
-								<form action="http://localhost:8080/web/projects/removeZone"
+								<form action="${pageContext.request.contextPath}/projects/removeZone"
 									method="post">
 									<input type="hidden" name="projectId" value="${projectId}">
-									<input type="image" src="${delete_btn}" name="zoneId"
-										value="${additional.id}" alt="Delete">
+									<input type="hidden" name="zoneId" value="${additional.id}"> 
+						<input
+							type="image" src="${delete_btn}" alt="Delete">
 								</form>
 							</div>
 							<div class="add_btn">

@@ -22,11 +22,13 @@
 			${zones.name}
 			<div class="add_delete_wrapper">
 				<div class="delete_btn">
-					<form action="${pageContext.request.contextPath}/projects/removeZone"
+					<form
+						action="${pageContext.request.contextPath}/projects/removeZone"
 						method="post">
 						<input type="hidden" name="projectId" value="${projectId}">
-						<input type="image" src="${delete_btn}" name="zoneId"
-							value="${zones.id}" alt="Delete">
+						<input type="hidden" name="zoneId" value="${zones.id}"> 
+						<input
+							type="image" src="${delete_btn}" alt="Delete">
 					</form>
 				</div>
 				<div class="add_btn">

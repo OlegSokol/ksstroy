@@ -16,7 +16,7 @@
 	
 	<div class="controller">
 			<div class="controller_name">ADD ADDITIONAL</div>
-			<form action="http://localhost:8080/web/projects/addAdditionalZone"
+			<form action="${pageContext.request.contextPath}/projects/addAdditionalZone"
 				method="post">
 				<input type="hidden" name="parentZoneId" value="${zones.id}">
 				<input type="hidden" name="projectId" value="${projectId}">

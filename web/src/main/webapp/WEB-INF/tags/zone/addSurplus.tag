@@ -15,7 +15,7 @@
 	
 	<div class="controller">
 			<div class="controller_name">ADD SURPLUS</div>
-			<form action="http://localhost:8080/web/projects/addSurplusZone"
+			<form action="${pageContext.request.contextPath}/projects/addSurplusZone"
 				method="post">
 				<input type="hidden" name="parentZoneId" value="${zones.id}">
 				<input type="hidden" name="projectId" value="${projectId}">

@@ -13,7 +13,7 @@
 
 <div class="controller">
 	<div class="controller_name">UPDATE GROUP</div>
-	<form action="http://localhost:8080/web/projects/updateGroup">
+	<form action="${pageContext.request.contextPath}/projects/updateGroup">
 	<input type="hidden" name="id" value="${zhd.id}">
 	<input type="hidden" name="projectId" value="${projectId}">
 		<table>

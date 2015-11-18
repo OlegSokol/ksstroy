@@ -14,7 +14,7 @@
 	
 	<div class="controller">
 			<div class="controller_name">UPDATE ZONE</div>
-			<form action="http://localhost:8080/web/projects/updateZone"
+			<form action="${pageContext.request.contextPath}/projects/updateZone"
 				method="post">
 				<input type="hidden" name="parentGroupId" value="${zones.value}">
 				<input type="hidden" name="zoneId" value="${zones.id}">

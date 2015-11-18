@@ -13,7 +13,7 @@
 
 <div class="controller">
 	<div class="controller_name">ADD GROUP</div>
-	<form action="http://localhost:8080/web/projects/addGroupToGroup"
+	<form action="${pageContext.request.contextPath}/projects/addGroupToGroup"
 		method="post">
 		<input type="hidden" name="parentGroupId" value="${zhd.id}">
 		<input type="hidden" name="projectId" value="${projectId}">

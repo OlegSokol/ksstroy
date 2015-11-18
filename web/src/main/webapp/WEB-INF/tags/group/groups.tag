@@ -16,11 +16,11 @@
 	${zhd.name}
 	<div class="add_delete_wrapper">
 		<div class="delete_btn">
-			<form action="http://localhost:8080/web/projects/removeGroup"
+			<form action="${pageContext.request.contextPath}/projects/removeGroup"
 				method="post">
 				<input type="hidden" name="projectId" value="${projectId}">
-				<input type="image" src="${delete_btn}" name="groupId"
-					value="${zhd.id}" alt="Delete">
+				<input type="hidden"  name="groupId" value="${zhd.id}">
+				<input type="image" src="${delete_btn}"  alt="Delete">
 			</form>
 		</div>
 		<div class="add_btn">

@@ -1,3 +1,6 @@
+Create schema if not exists ksstroy;
+use ksstroy;
+
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
