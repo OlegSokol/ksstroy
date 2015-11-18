@@ -119,7 +119,7 @@ public class TheProjectController {
 	}
 
 	@RequestMapping(value = "/projects/updateGroup", method = RequestMethod.POST)
-	public String updateGroup(@RequestParam("groupId") String groupId,
+	public String updateGroup(@RequestParam("id") String groupId,
 			@RequestParam("groupName") String newGroup,
 			@RequestParam("projectId") String projectId,HttpServletRequest request) {
 

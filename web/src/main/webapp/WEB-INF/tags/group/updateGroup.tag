@@ -12,23 +12,22 @@
 <spring:url value="/resources/img/done_btn.png" var="done_btn" />
 
 <c:if test="${rootGroupId ne zhd.id}">
-<div class="controller">
-	<div class="controller_name">UPDATE GROUP</div>
-	<form action="${pageContext.request.contextPath}/projects/updateGroup">
-	<input type="hidden" name="id" value="${zhd.id}">
-	<input type="hidden" name="projectId" value="${projectId}">
-		<table>
-			<tbody>
-				
-				<tr>
-					<td>name</td>
-					<td><input type="text" name="groupName" value="${zhd.name}"></td>
-				</tr>
-			</tbody>
-		</table>
-		<label class="accepth_changes_btn"> <input type="image"
-			name="image" src="${done_btn}">
-		</label>
-	</form>
-</div>
+	<div class="controller">
+		<div class="controller_name">UPDATE GROUP</div>
+		<form action="${pageContext.request.contextPath}/projects/updateGroup" method="post">
+			<input type="hidden" name="id" value="${zhd.id}"> <input
+				type="hidden" name="projectId" value="${projectId}">
+			<table>
+				<tbody>
+
+					<tr>
+						<td>name</td>
+						<td><input type="text" name="groupName" value="${zhd.name}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<input class="accepth_changes_btn" type="image"
+				src="${done_btn}">
+		</form>
+	</div>
 </c:if>
