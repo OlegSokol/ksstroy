@@ -11,6 +11,7 @@
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn" />
 <spring:url value="/resources/img/done_btn.png" var="done_btn" />
 
+<c:if test="${rootGroupId ne zhd.id}">
 <div class="item">
 	<img class="clickableIcon" src="${arrow_drop_down}" alt="Arrow">
 	${zhd.name}
@@ -28,5 +29,8 @@
 		</div>
 	</div>
 </div>
+</c:if>
+
+		
 
 

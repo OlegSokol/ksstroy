@@ -29,6 +29,7 @@ public class TheProjectController {
 		project = new ModelAndView("the_project");
 		project.addObject("projectId", projectId);
 		ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId);
+		project.addObject("rootGroupId", zhd.getId());
 		project.addObject("zhd", zhd);
 		return project;
 	}

@@ -11,6 +11,7 @@
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn" />
 <spring:url value="/resources/img/done_btn.png" var="done_btn" />
 
+<c:if test="${rootGroupId ne zhd.id}">
 <div class="controller">
 	<div class="controller_name">UPDATE GROUP</div>
 	<form action="${pageContext.request.contextPath}/projects/updateGroup">
@@ -30,3 +31,4 @@
 		</label>
 	</form>
 </div>
+</c:if>
