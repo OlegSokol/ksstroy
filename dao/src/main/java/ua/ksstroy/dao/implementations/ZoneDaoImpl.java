@@ -103,12 +103,9 @@ public class ZoneDaoImpl implements ZoneDao {
 		return helper.simpleAction(new GetInTransaction<List<Zone>>() {
 			@Override
 			public List<Zone> process(SessionWrapper session) {
-				final List<Zone> zonesByParentGroupId = new ArrayList<>();
 				ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-				for (ZonesModel zonesModel : parentZone.getAdditionalZone()) 
-					zonesByParentGroupId.add(new ZonesModelToZoneConverter().convert(zonesModel));
-				for (ZonesModel zonesModel : parentZone.getSurplusZone()) 
-					zonesByParentGroupId.add(new ZonesModelToZoneConverter().convert(zonesModel));
+				List<Zone> zonesByParentGroupId = convertMany(parentZone.getAdditionalZone(), new ZonesModelToZoneConverter()); 
+				zonesByParentGroupId.addAll(convertMany(parentZone.getSurplusZone(), new ZonesModelToZoneConverter())); 
 				return zonesByParentGroupId;
 			}
 		});
