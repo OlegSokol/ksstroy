@@ -38,8 +38,8 @@ public class TheProjectController {
 			@RequestParam("projectId") Integer projectId, HttpServletRequest request) {
 //TODO: add projectId parameter and redirect according to it
 		zoneManager.addRootGroupToProject(groupName, projectId);
-		String referer = request.getHeader("Referer");
-		return "redirect:" + referer;
+		
+		return "redirect:" + projectId;
 	}
 
 	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
