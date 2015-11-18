@@ -9,7 +9,7 @@
 	<artifactId>core</artifactId>
 	<version>1-SNAPSHOT</version>
 
-	<build>
+<!-- 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -40,6 +40,6 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+	 -->
 	
 </project>

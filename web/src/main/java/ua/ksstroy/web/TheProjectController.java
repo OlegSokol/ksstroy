@@ -33,15 +33,6 @@ public class TheProjectController {
 		return project;
 	}
 
-	@RequestMapping(value = "/projects/addRootGroupToProject", method = RequestMethod.POST)
-	public String addRootGroupToProject(@RequestParam("groupName") String groupName,
-			@RequestParam("projectId") Integer projectId, HttpServletRequest request) {
-//TODO: add projectId parameter and redirect according to it
-		zoneManager.addRootGroupToProject(groupName, projectId);
-		
-		return "redirect:" + projectId;
-	}
-
 	@RequestMapping(value = "/projects/addGroupToGroup", method = RequestMethod.POST)
 	public String addGroupToGroup(@RequestParam("groupName") String groupName,
 			@RequestParam("parentGroupId") String parentGroupId,

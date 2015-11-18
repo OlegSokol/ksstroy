@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WelcomeControllerForTest {
 
 	private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
-
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String testRootPage() {

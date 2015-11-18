@@ -8,9 +8,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div>
-	<group:addRootGroup zhd="${zhd}"/>
-</div>
 
 	<div id="wraper">
 		<div id="zoneHierarchiDataTree">
