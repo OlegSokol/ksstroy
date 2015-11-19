@@ -1,10 +1,10 @@
 package ua.ksstroy.dao.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.convert.Converter;
-import ua.ksstroy.convert.GroupsModelToGroupConverter;
-import ua.ksstroy.convert.ZoneToZoneModelConverter;
-import ua.ksstroy.convert.ZonesModelToZoneConverter;
+import ua.ksstroy.converter.Converter;
+import ua.ksstroy.converter.GroupsModelToGroupConverter;
+import ua.ksstroy.converter.ZoneToZoneModelConverter;
+import ua.ksstroy.converter.ZonesModelToZoneConverter;
 import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneDao;
 import ua.ksstroy.logic.zone.ZoneGroup;
