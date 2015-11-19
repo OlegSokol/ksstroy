@@ -1,18 +1,17 @@
 package ua.ksstroy.models.zone;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.persistence.HibernateUtil;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class GlobalModelsTest {
 

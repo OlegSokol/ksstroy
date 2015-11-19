@@ -46,3 +46,10 @@ Temporary Items
 .classpath
 .project
 .settings/
+
+# Intellij
+*.iml
+.idea/
+
+# Deployed folder
+target/*

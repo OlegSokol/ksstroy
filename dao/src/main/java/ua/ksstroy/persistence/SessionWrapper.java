@@ -3,7 +3,7 @@ package ua.ksstroy.persistence;
 import org.hibernate.Session;
 
 public class SessionWrapper {
-	
+
 	private Session session;
 	
 	public SessionWrapper(Session session) {

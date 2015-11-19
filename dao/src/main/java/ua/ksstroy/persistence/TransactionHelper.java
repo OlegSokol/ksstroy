@@ -33,7 +33,6 @@ public class TransactionHelper {
 				return action.process(new SessionWrapper(session));
 			}
 		});
-
 	}
 
 	private <V> V action(TransactionAction<V> action) {
@@ -50,5 +49,4 @@ public class TransactionHelper {
 			}
 		}
 	}
-
 }

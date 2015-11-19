@@ -1,132 +1,122 @@
 package ua.ksstroy.dao.implementations;
 
-import static org.junit.Assert.*;
+import org.hibernate.Session;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import ua.ksstroy.convert.ZonesModelToZoneConverter;
+import ua.ksstroy.logic.zone.*;
+import ua.ksstroy.models.zone.GroupsModel;
+import ua.ksstroy.models.zone.ZonesModel;
+import ua.ksstroy.persistence.HibernateUtil;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Session;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import ua.ksstroy.dao.implementations.ZoneDaoImpl.ZonesModelToZoneConverter;
-import ua.ksstroy.logic.zone.Measure;
-import ua.ksstroy.logic.zone.Zone;
-import ua.ksstroy.logic.zone.ZoneDao;
-import ua.ksstroy.logic.zone.ZoneImpl;
-import ua.ksstroy.logic.zone.ZoneGroup;
-import ua.ksstroy.models.zone.GroupsModel;
-import ua.ksstroy.models.zone.ZonesModel;
-import ua.ksstroy.persistence.HibernateUtil;
+import static org.junit.Assert.*;
 
 public class ZoneDaoImplTest {
 
-	private Session session;
+    String mockGroupName = "mockGroupsFromTestZoneDaoImpl";
 
-	// remove fields and create local variable or direct parameters to
-	// constructor
+    // remove fields and create local variable or direct parameters to
+    // constructor
+    String mockZoneName = "mockZoneFromTestZoneDaoImpl";
+    double mockZoneWidth = 13.0;
+    double mockZoneHeight = 12.0;
+    Measure mockZoneMeasureName = Measure.KG;
+    Zone mockZoneImpl = new ZoneImpl();
+    String mockZoneImplName = "mockZoneImplName";
+    Double mockZoneImplWidth = 13.05;
+    Double mockZoneImplheight = 15.1;
+    String mockZoneImplParentGroupId = "375";// Big enough randomNumber
+    Measure mockZoneImplMeasureName = Measure.GR;
+    private Session session;
 
-	String mockGroupName = "mockGroupsFromTestZoneDaoImpl";
-	String mockZoneName = "mockZoneFromTestZoneDaoImpl";
-	double mockZoneWidth = 13.0;
-	double mockZoneHeight = 12.0;
-	Measure mockZoneMeasureName = Measure.KG;
+    @Before
+    public void setUp() throws Exception {
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        mockZoneImpl = new ZoneImpl();
+        mockZoneImpl.setName(mockZoneImplName);
+        mockZoneImpl.setHeight(mockZoneImplheight);
+        mockZoneImpl.setWidth(mockZoneWidth);
+        mockZoneImpl.setMeasure(mockZoneImplMeasureName);
+    }
 
-	Zone mockZoneImpl = new ZoneImpl();
+    @After
+    public void tearDown() throws Exception {
+        session.getTransaction().commit();
+        session.close();
+    }
 
-	String mockZoneImplName = "mockZoneImplName";
-	Double mockZoneImplWidth = 13.05;
-	Double mockZoneImplheight = 15.1;
-	String mockZoneImplParentGroupId = "375";// Big enough randomNumber
-	Measure mockZoneImplMeasureName = Measure.GR;
+    @Test
+    public void convertZonesModelToZone() {
+        ZonesModel mockZonesModel = new ZonesModel(mockZoneName, mockZoneImplWidth, mockZoneImplheight,
+                mockZoneMeasureName);
+        Zone convertedFromModelZone = new ZonesModelToZoneConverter().convert(mockZonesModel);
 
-	@Before
-	public void setUp() throws Exception {
-		session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-		mockZoneImpl = new ZoneImpl();
-		mockZoneImpl.setName(mockZoneImplName);
-		mockZoneImpl.setHeight(mockZoneImplheight);
-		mockZoneImpl.setWidth(mockZoneWidth);
-		mockZoneImpl.setMeasure(mockZoneImplMeasureName);
-	}
+        assertEquals(mockZonesModel.getId(), convertedFromModelZone.getId());
+        assertEquals(mockZonesModel.getMeasureName(), convertedFromModelZone.getMeasure().toString());
+    }
 
-	@After
-	public void tearDown() throws Exception {
-		session.getTransaction().commit();
-		session.close();
-	}
+    @Test
+    public void testConvertZoneToZoneData() {
+    }
 
-	@Test
-	public void convertZonesModelToZone() {
-		ZonesModel mockZonesModel = new ZonesModel(mockZoneName, mockZoneImplWidth, mockZoneImplheight,
-				mockZoneMeasureName);
+    @Test
+    public void testGetRootZoneGroup() {
+    }
 
-		ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
-		Zone convertedFromModelZone = zoneDaoImpl.new ZonesModelToZoneConverter().convert(mockZonesModel);
+    @Test
+    public void testMain() {
+    }
 
-		assertEquals(mockZonesModel.getId(), convertedFromModelZone.getId());
-		assertEquals(mockZonesModel.getMeasureName(), convertedFromModelZone.getMeasure().toString());
-	}
+    // @Test
+    // public void testAddRootGroup() {
+    // ZoneDaoImpl daoImpl = new ZoneDaoImpl();
+    //
+    // String mockRootGroupName = "RootGroup";
+    //
+    // daoImpl.addRootGroup(mockRootGroupName);
+    //
+    // GroupsModel groupsModel = (GroupsModel) session
+    // .createQuery("from GroupsModel where name='" + mockRootGroupName +
+    // "'").uniqueResult();
+    //
+    // assertEquals(mockRootGroupName, groupsModel.getName());
+    //
+    // session.delete(groupsModel);
+    // }
 
-	@Test
-	public void testConvertZoneToZoneData() {
-	}
+    @Test
+    public void testRemoveZone() {
 
-	@Test
-	public void testGetRootZoneGroup() {
-	}
+    }
 
-	@Test
-	public void testMain() {
-	}
+    @Test
+    public void testUpdateGroup() {
+    }
 
-	// @Test
-	// public void testAddRootGroup() {
-	// ZoneDaoImpl daoImpl = new ZoneDaoImpl();
-	//
-	// String mockRootGroupName = "RootGroup";
-	//
-	// daoImpl.addRootGroup(mockRootGroupName);
-	//
-	// GroupsModel groupsModel = (GroupsModel) session
-	// .createQuery("from GroupsModel where name='" + mockRootGroupName +
-	// "'").uniqueResult();
-	//
-	// assertEquals(mockRootGroupName, groupsModel.getName());
-	//
-	// session.delete(groupsModel);
-	// }
+    @Test
+    public void testRemoveGroup() {
 
-	@Test
-	public void testRemoveZone() {
+    }
 
-	}
+    @Test
+    public void testGetAllZones() {
+    }
 
-	@Test
-	public void testUpdateGroup() {
-	}
+    @Test
+    public void testGetZoneById() {
+    }
 
-	@Test
-	public void testRemoveGroup() {
-
-	}
-
-	@Test
-	public void testGetAllZones() {
-	}
-
-	@Test
-	public void testGetZoneById() {
-	}
-
-	// TODO elimination of the conflict while running tests
-	 //testGetZonesByParentGroupId and testGetGroupsByParentGroupId
+    // TODO elimination of the conflict while running tests
+    //testGetZonesByParentGroupId and testGetGroupsByParentGroupId
 
 	/* @Test
-	 public void testGetZonesByParentGroupId() {
+     public void testGetZonesByParentGroupId() {
 	
 	 GroupsModel groupsModelForTest = new GroupsModel();
 	 groupsModelForTest.setName(mockGroupName);
@@ -169,88 +159,85 @@ public class ZoneDaoImplTest {
 	
 	 }*/
 
-	@Test
-	public void testGetZonesByParentZoneId() {
-	}
+    @Test
+    public void testGetZonesByParentZoneId() {
+    }
 
-	@Test
-	public void testGetGroupsByParentGroupId() {
-		GroupsModel subGroup = new GroupsModel("SubGroupMock");
+    @Test
+    public void testGetGroupsByParentGroupId() {
+        GroupsModel subGroup = new GroupsModel("SubGroupMock");
 
-		Set<GroupsModel> subGroupsModelSet = new HashSet<>();
-		subGroupsModelSet.add(subGroup);
+        Set<GroupsModel> subGroupsModelSet = new HashSet<>();
+        subGroupsModelSet.add(subGroup);
 
-		GroupsModel rootGroup = new GroupsModel("RootGroupMock", subGroupsModelSet);
+        GroupsModel rootGroup = new GroupsModel("RootGroupMock", subGroupsModelSet);
 
-		session.save(rootGroup);
+        session.save(rootGroup);
 
-		GroupsModel rootGroupsId = (GroupsModel) session.createQuery("from GroupsModel where name='RootGroupMock'")
-				.uniqueResult();
-		session.getTransaction().commit();
+        GroupsModel rootGroupsId = (GroupsModel) session.createQuery("from GroupsModel where name='RootGroupMock'")
+                .uniqueResult();
+        session.getTransaction().commit();
 
-		ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+        ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
 
-		List<ZoneGroup> groupsByParentGroupId = zoneDaoImpl.getGroupsByParentGroupId(rootGroupsId.getId());
-		session.beginTransaction();
-		session.delete(rootGroup);
+        List<ZoneGroup> groupsByParentGroupId = zoneDaoImpl.getGroupsByParentGroupId(rootGroupsId.getId());
+        session.beginTransaction();
+        session.delete(rootGroup);
 
-		assertNotNull(groupsByParentGroupId.get(0));
-		assertEquals(groupsByParentGroupId.get(0).getName(), groupsByParentGroupId.get(0).getName());
-	}
+        assertNotNull(groupsByParentGroupId.get(0));
+        assertEquals(groupsByParentGroupId.get(0).getName(), groupsByParentGroupId.get(0).getName());
+    }
 
-	@Test
-	public void testAddZone() {
-	}
+    @Test
+    public void testAddZone() {
+    }
 
-	@Test
-	public void testAddAdditZone() {
-	}
+    @Test
+    public void testAddAdditZone() {
+    }
 
-	@Test
-	public void testAddSurplusZone() {
-	}
+    @Test
+    public void testAddSurplusZone() {
+    }
 
-	@Test
-	public void testStoreZoneToZone() {
-	}
+    @Test
+    public void testStoreZoneToZone() {
+    }
 
-	@Test
-	public void testStoreZone() {
-		ZoneDao zoneDao = new ZoneDaoImpl();
-		Zone mockZoneImpl = new ZoneImpl();
-		mockZoneImpl = new ZoneImpl();
-		mockZoneImpl.setName(mockZoneImplName);
-		mockZoneImpl.setHeight(mockZoneImplheight);
-		mockZoneImpl.setWidth(mockZoneWidth);
-		mockZoneImpl.setMeasure(mockZoneImplMeasureName);
-		zoneDao.storeZone(mockZoneImpl, "1");
+    @Test
+    public void testStoreZone() {
+        ZoneDao zoneDao = new ZoneDaoImpl();
+        Zone mockZoneImpl = new ZoneImpl();
+        mockZoneImpl.setName(mockZoneImplName);
+        mockZoneImpl.setHeight(mockZoneImplheight);
+        mockZoneImpl.setWidth(mockZoneWidth);
+        mockZoneImpl.setMeasure(mockZoneImplMeasureName);
+        zoneDao.storeZone(mockZoneImpl, "1");
 
-		GroupsModel parentGroupModel = (GroupsModel) session.get(GroupsModel.class, "1");
-		assertNotNull(parentGroupModel);
-		Set<ZonesModel> zonesModels = parentGroupModel.getZonesGroup();
-		ZonesModel insertedMockZoneModelFromDB = new ZonesModel();
-		boolean nameMatch = false;
-		for (ZonesModel zonesModel : zonesModels) {
-			System.out.println(zonesModel.getName());
-			if (zonesModel.getName().equals(mockZoneImpl.getName())) {
-				nameMatch = true;
-				insertedMockZoneModelFromDB = zonesModel;
-			}
-		}
-		assertTrue(nameMatch);
-		// TODO curiosity: WHY I CANT JUST DELETE ZONE cascade blah-blah -blah
-		// exception
-		parentGroupModel.getZonesGroup().remove(insertedMockZoneModelFromDB);
-		session.saveOrUpdate(parentGroupModel);
-		session.delete(insertedMockZoneModelFromDB);
-	}
+        GroupsModel parentGroupModel = (GroupsModel) session.get(GroupsModel.class, "1");
+        assertNotNull(parentGroupModel);
+        Set<ZonesModel> zonesModels = parentGroupModel.getZonesGroup();
+        ZonesModel insertedMockZoneModelFromDB = new ZonesModel();
+        boolean nameMatch = false;
+        for (ZonesModel zonesModel : zonesModels) {
+            System.out.println(zonesModel.getName());
+            if (zonesModel.getName().equals(mockZoneImpl.getName())) {
+                nameMatch = true;
+                insertedMockZoneModelFromDB = zonesModel;
+            }
+        }
+        assertTrue(nameMatch);
+        parentGroupModel.getZonesGroup().remove(insertedMockZoneModelFromDB);
+        session.saveOrUpdate(parentGroupModel);
+        session.delete(insertedMockZoneModelFromDB);
+    }
 
-	@Test
-	public void testAddGroupToGroup() {
-	}
+    @Test
+    public void testAddGroupToGroup() {
+    }
 
-	@Test
-	public void testUpdateGroupToGroup() {
-	}
+    @Test
+    public void testUpdateGroupToGroup() {
+    }
 
 }
