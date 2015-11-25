@@ -98,20 +98,16 @@ public class ZoneManagerImpl implements ZoneManager {
         ZoneData convertZoneData = new ZoneData();
 
         List<ZoneData> additionalList = new ArrayList<>();
-        if (zone.getAdditional() != null && !zone.getAdditional().isEmpty()) {
-            for (Zone tempZone : zone.getAdditional()) {
-                ZoneData tempZoneData = convertZoneToZoneData(tempZone);
-                additionalList.add(tempZoneData);
-            }
+        for (Zone tempZone : zone.getAdditional()) {
+            ZoneData tempZoneData = convertZoneToZoneData(tempZone);
+            additionalList.add(tempZoneData);
         }
 
         List<ZoneData> surplusList = new ArrayList<>();
-        if (!zone.getSurplus().isEmpty()) {
             for (Zone tempZone : zone.getSurplus()) {
                 ZoneData tempZoneData = convertZoneToZoneData(tempZone);
                 surplusList.add(tempZoneData);
             }
-        }
 
         convertZoneToZoneData(zone, convertZoneData, additionalList, surplusList);
 
@@ -133,19 +129,15 @@ public class ZoneManagerImpl implements ZoneManager {
         ZoneImpl convertZone = new ZoneImpl();
 
         List<Zone> additionalList = new ArrayList<>();
-        if (!zoneData.getAdditional().isEmpty()) {
-            for (ZoneData tempZoneData : zoneData.getAdditional()) {
-                Zone tempZone = convertZoneDataToZone(tempZoneData);
-                additionalList.add(tempZone);
-            }
+        for (ZoneData tempZoneData : zoneData.getAdditional()) {
+            Zone tempZone = convertZoneDataToZone(tempZoneData);
+            additionalList.add(tempZone);
         }
 
         List<Zone> surplusList = new ArrayList<>();
-        if (!zoneData.getSurplus().isEmpty()) {
-            for (ZoneData tempZoneData : zoneData.getSurplus()) {
-                Zone tempZone = convertZoneDataToZone(tempZoneData);
-                surplusList.add(tempZone);
-            }
+        for (ZoneData tempZoneData : zoneData.getSurplus()) {
+            Zone tempZone = convertZoneDataToZone(tempZoneData);
+            surplusList.add(tempZone);
         }
 
         convertZoneDataToZone(zoneData, convertZone, additionalList, surplusList);
