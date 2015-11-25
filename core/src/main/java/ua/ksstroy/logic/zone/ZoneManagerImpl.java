@@ -1,205 +1,208 @@
 package ua.ksstroy.logic.zone;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-
 import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component(value = "ZoneManagerImpl")
 public class ZoneManagerImpl implements ZoneManager {
 
-	@Autowired
-	@Qualifier("zoneDao")
-	ZoneDao zoneDaoImpl;
+    @Autowired
+    @Qualifier("zoneDao")
+    ZoneDao zoneDaoImpl;
 
-	public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
-		if (zoneDaoImpl.getAllHierarhy(projectId) == null)
-			throw new ZoneDaoDoesntExistException();
+    public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
+        if (zoneDaoImpl.getAllHierarhy(projectId) == null)
+            throw new ZoneDaoDoesntExistException();
 
-		ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getAllHierarhy(projectId));
-		return zoHiDa;
-	}
+        ZoneHierarchyData zoHiDa = convertZoneGroupToZoneHierarchyData(zoneDaoImpl.getAllHierarhy(projectId));
+        return zoHiDa;
+    }
 
-	@Override
-	public void addRootGroupToProject(String groupName, Integer projectId) {
-		zoneDaoImpl.addRootGroup(groupName, projectId);
-	}
+    @Override
+    public void addRootGroupToProject(String groupName, Integer projectId) {
+        zoneDaoImpl.addRootGroup(groupName, projectId);
+    }
 
-	public void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException {
-		boolean nameFree = true;
-		List<ZoneGroup> subGroups = zoneDaoImpl.getGroupsByParentGroupId(parentGroupId);
-		for (ZoneGroup zoneGroup : subGroups) {
-			if (groupName.equals(zoneGroup.getName()))
-				nameFree = false;
-		}
+    public void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException {
+        boolean nameFree = true;
+        List<ZoneGroup> subGroups = zoneDaoImpl.getGroupsByParentGroupId(parentGroupId);
+        for (ZoneGroup zoneGroup : subGroups) {
+            if (groupName.equals(zoneGroup.getName()))
+                nameFree = false;
+        }
 
-		if (nameFree) {
-			zoneDaoImpl.addGroupToGroup(groupName, parentGroupId);
-		} else {
-			throw new NameConflictException();
-		}
-	}
+        if (nameFree) {
+            zoneDaoImpl.addGroupToGroup(groupName, parentGroupId);
+        } else {
+            throw new NameConflictException();
+        }
+    }
 
-	public void addZone(ZoneData zone, String parentGroupId) throws NameConflictException {
-		boolean nameFree = true;
-		Zone zoneImpl = convertZoneDataToZone(zone);
-		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentGroupId);
-		for (Zone tempZone : subZones) {
-			if (zone.getName().equals(tempZone.getName()))
-				nameFree = false;
-		}
+    public void addZone(ZoneData zone, String parentGroupId) throws NameConflictException {
+        boolean nameFree = true;
+        Zone zoneImpl = convertZoneDataToZone(zone);
+        List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentGroupId);
+        for (Zone tempZone : subZones) {
+            if (zone.getName().equals(tempZone.getName()))
+                nameFree = false;
+        }
 
-		if (nameFree) {
-			zoneDaoImpl.storeZone(zoneImpl, parentGroupId);
-		} else {
-			throw new NameConflictException();
-		}
-	}
+        if (nameFree) {
+            zoneDaoImpl.storeZone(zoneImpl, parentGroupId);
+        } else {
+            throw new NameConflictException();
+        }
+    }
 
-	@Override
-	public void addSurplusToZone(ZoneData surplusZone, String parentZoneId) throws NameConflictException {
-		boolean nameFree = true;
-		Zone zoneImpl = convertZoneDataToZone(surplusZone);
-		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentZoneId);
-		for (Zone tempZone : subZones) {
-			if (surplusZone.getName().equals(tempZone.getName()))
-				nameFree = false;
-		}
+    @Override
+    public void addSurplusToZone(ZoneData surplusZone, String parentZoneId) throws NameConflictException {
+        boolean nameFree = true;
+        Zone zoneImpl = convertZoneDataToZone(surplusZone);
+        List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentZoneId);
+        for (Zone tempZone : subZones) {
+            if (surplusZone.getName().equals(tempZone.getName()))
+                nameFree = false;
+        }
 
-		if (nameFree) {
-			zoneDaoImpl.storeSurplusToZone(zoneImpl, parentZoneId);
-		} else {
-			throw new NameConflictException();
-		}
-	}
+        if (nameFree) {
+            zoneDaoImpl.storeSurplusToZone(zoneImpl, parentZoneId);
+        } else {
+            throw new NameConflictException();
+        }
+    }
 
-	@Override
-	public void addAdditionalToZone(ZoneData additionalZone, String parentZoneId) throws NameConflictException {
-		boolean nameFree = true;
-		Zone zoneImpl = convertZoneDataToZone(additionalZone);
-		List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentZoneId);
-		for (Zone tempZone : subZones) {
-			if (additionalZone.getName().equals(tempZone.getName()))
-				nameFree = false;
-		}
+    @Override
+    public void addAdditionalToZone(ZoneData additionalZone, String parentZoneId) throws NameConflictException {
+        boolean nameFree = true;
+        Zone zoneImpl = convertZoneDataToZone(additionalZone);
+        List<Zone> subZones = zoneDaoImpl.getZonesByParentGroupId(parentZoneId);
+        for (Zone tempZone : subZones) {
+            if (additionalZone.getName().equals(tempZone.getName()))
+                nameFree = false;
+        }
 
-		if (nameFree) {
-			zoneDaoImpl.storeAdditionalToZone(zoneImpl, parentZoneId);
-		} else {
-			throw new NameConflictException();
-		}
-	}
+        if (nameFree) {
+            zoneDaoImpl.storeAdditionalToZone(zoneImpl, parentZoneId);
+        } else {
+            throw new NameConflictException();
+        }
+    }
 
-	public ZoneData convertZoneToZoneData(Zone zone) {
-		ZoneData convZoneData = new ZoneData();
-		// TODO curiosity: how to test private methods via JUnit ?
+    public ZoneData convertZoneToZoneData(Zone zone) {
+        ZoneData convertZoneData = new ZoneData();
 
-		List<ZoneData> additionalList = new ArrayList<ZoneData>();
-		if (zone.getAdditional() != null && !zone.getAdditional().isEmpty()) {
-			for (Zone tempZone : zone.getAdditional()) {
-				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
-				additionalList.add(tempZoneData);
-			}
-		}
+        List<ZoneData> additionalList = new ArrayList<>();
+        if (zone.getAdditional() != null && !zone.getAdditional().isEmpty()) {
+            for (Zone tempZone : zone.getAdditional()) {
+                ZoneData tempZoneData = convertZoneToZoneData(tempZone);
+                additionalList.add(tempZoneData);
+            }
+        }
 
-		List<ZoneData> surplusList = new ArrayList<ZoneData>();
-		if (!zone.getSurplus().isEmpty()) {
-			for (Zone tempZone : zone.getSurplus()) {
-				ZoneData tempZoneData = convertZoneToZoneData(tempZone);
-				surplusList.add(tempZoneData);
-			}
-		}
+        List<ZoneData> surplusList = new ArrayList<>();
+        if (!zone.getSurplus().isEmpty()) {
+            for (Zone tempZone : zone.getSurplus()) {
+                ZoneData tempZoneData = convertZoneToZoneData(tempZone);
+                surplusList.add(tempZoneData);
+            }
+        }
 
-		convZoneData.setHeight(zone.getHeight());
-		convZoneData.setId(zone.getId());
-		convZoneData.setName(zone.getName());
-		convZoneData.setWidth(zone.getWidth());
-		convZoneData.setMeasureName(zone.getMeasure().toString());
-		convZoneData.setAdditional(additionalList);
-		convZoneData.setSurplus(surplusList);
-		convZoneData.setValue(zone.getValue());
-		return convZoneData;
-	}
+        convertZoneToZoneData(zone, convertZoneData, additionalList, surplusList);
 
-	public Zone convertZoneDataToZone(ZoneData zoneData) {
-		ZoneImpl convZone = new ZoneImpl();
+        return convertZoneData;
+    }
 
-		List<Zone> additionalList = new ArrayList<Zone>();
-		if (!zoneData.getAdditional().isEmpty()) {
-			for (ZoneData tempZoneData : zoneData.getAdditional()) {
-				Zone tempZone = convertZoneDataToZone(tempZoneData);
-				additionalList.add(tempZone);
-			}
-		}
+    private void convertZoneToZoneData(Zone zone, ZoneData convertZoneData, List<ZoneData> additionalList, List<ZoneData> surplusList) {
+        convertZoneData.setHeight(zone.getHeight());
+        convertZoneData.setId(zone.getId());
+        convertZoneData.setName(zone.getName());
+        convertZoneData.setWidth(zone.getWidth());
+        convertZoneData.setMeasureName(zone.getMeasure().toString());
+        convertZoneData.setAdditional(additionalList);
+        convertZoneData.setSurplus(surplusList);
+        convertZoneData.setValue(zone.getValue());
+    }
 
-		List<Zone> surplusList = new ArrayList<Zone>();
-		if (!zoneData.getSurplus().isEmpty()) {
-			for (ZoneData tempZoneData : zoneData.getSurplus()) {
-				Zone tempZone = convertZoneDataToZone(tempZoneData);
-				surplusList.add(tempZone);
-			}
-		}
+    public Zone convertZoneDataToZone(ZoneData zoneData) {
+        ZoneImpl convertZone = new ZoneImpl();
 
-		convZone.setHeight(zoneData.getHeight());
-		convZone.setId(zoneData.getId());
-		convZone.setName(zoneData.getName());
-		convZone.setWidth(zoneData.getWidth());
-		convZone.setMeasure(Measure.valueOf(zoneData.getMeasureName()));
-		convZone.setAdditional(additionalList);
-		convZone.setSurplus(surplusList);
-		return convZone;
-	}
+        List<Zone> additionalList = new ArrayList<>();
+        if (!zoneData.getAdditional().isEmpty()) {
+            for (ZoneData tempZoneData : zoneData.getAdditional()) {
+                Zone tempZone = convertZoneDataToZone(tempZoneData);
+                additionalList.add(tempZone);
+            }
+        }
 
-	private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup) {
-		ZoneHierarchyData zoHiDa = new ZoneHierarchyData();
+        List<Zone> surplusList = new ArrayList<>();
+        if (!zoneData.getSurplus().isEmpty()) {
+            for (ZoneData tempZoneData : zoneData.getSurplus()) {
+                Zone tempZone = convertZoneDataToZone(tempZoneData);
+                surplusList.add(tempZone);
+            }
+        }
 
-		List<ZoneData> rootZoneData = new ArrayList<ZoneData>();
+        convertZoneDataToZone(zoneData, convertZone, additionalList, surplusList);
 
-		if (rootZoneGroup.getZones() != null && !rootZoneGroup.getZones().isEmpty()) {
-			for (Zone tempZone : rootZoneGroup.getZones()) {
-				rootZoneData.add(convertZoneToZoneData(tempZone));
-			}
-		}
+        return convertZone;
+    }
 
-		List<ZoneHierarchyData> tempZoHiDa = new ArrayList<ZoneHierarchyData>();
-		if (rootZoneGroup.getGroups() != null && !rootZoneGroup.getGroups().isEmpty()) {
-			for (ZoneGroup tempGroup : rootZoneGroup.getGroups()) {
-				tempZoHiDa.add(convertZoneGroupToZoneHierarchyData(tempGroup));
-			}
-		}
+    private void convertZoneDataToZone(ZoneData zoneData, ZoneImpl convertZone, List<Zone> additionalList, List<Zone> surplusList) {
+        convertZone.setHeight(zoneData.getHeight());
+        convertZone.setId(zoneData.getId());
+        convertZone.setName(zoneData.getName());
+        convertZone.setWidth(zoneData.getWidth());
+        convertZone.setMeasure(Measure.valueOf(zoneData.getMeasureName()));
+        convertZone.setAdditional(additionalList);
+        convertZone.setSurplus(surplusList);
+    }
 
-		zoHiDa.setZones(rootZoneData);
-		zoHiDa.setGroups(tempZoHiDa);
-		zoHiDa.setId(rootZoneGroup.getId());
-		zoHiDa.setName(rootZoneGroup.getName());
+    private ZoneHierarchyData convertZoneGroupToZoneHierarchyData(ZoneGroup rootZoneGroup) {
+        ZoneHierarchyData zoHiDa = new ZoneHierarchyData();
 
-		return zoHiDa;
-	}
+        List<ZoneData> rootZoneData = new ArrayList<>();
 
-	@Override
-	public void updateGroup(String groupId, String newGroup) {
-		zoneDaoImpl.updateGroup(groupId, newGroup);
-	}
+        for (Zone tempZone : rootZoneGroup.getZones()) {
+            rootZoneData.add(convertZoneToZoneData(tempZone));
+        }
 
-	@Override
-	public void updateZone(String zoneId, ZoneData newZone) {
-		Zone zoneImpl = convertZoneDataToZone(newZone);
-		zoneDaoImpl.updateZone(zoneId, zoneImpl);
-	}
+        List<ZoneHierarchyData> tempZoHiDa = new ArrayList<>();
+        for (ZoneGroup tempGroup : rootZoneGroup.getGroups()) {
+            tempZoHiDa.add(convertZoneGroupToZoneHierarchyData(tempGroup));
+        }
 
-	@Override
-	public void removeZone(String zoneId) {
-		zoneDaoImpl.removeZone(zoneId);
-	}
+        zoHiDa.setZones(rootZoneData);
+        zoHiDa.setGroups(tempZoHiDa);
+        zoHiDa.setId(rootZoneGroup.getId());
+        zoHiDa.setName(rootZoneGroup.getName());
 
-	@Override
-	public void removeGroup(String groupId) {
-		zoneDaoImpl.removeGroup(groupId);
-	}
+        return zoHiDa;
+    }
+
+    @Override
+    public void updateGroup(String groupId, String newGroup) {
+        zoneDaoImpl.updateGroup(groupId, newGroup);
+    }
+
+    @Override
+    public void updateZone(String zoneId, ZoneData newZone) {
+        Zone zoneImpl = convertZoneDataToZone(newZone);
+        zoneDaoImpl.updateZone(zoneId, zoneImpl);
+    }
+
+    @Override
+    public void removeZone(String zoneId) {
+        zoneDaoImpl.removeZone(zoneId);
+    }
+
+    @Override
+    public void removeGroup(String groupId) {
+        zoneDaoImpl.removeGroup(groupId);
+    }
 
 }

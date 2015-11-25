@@ -15,7 +15,6 @@
 <script
 	src="<c:url value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" />"></script>
 
-
 <spring:url value="/resources/css/mainStyle.css" var="css" />
 <link href="${css}" rel="stylesheet" />
 
@@ -25,10 +24,7 @@
 </head>
 <body>
 	<div id="wraper">
-
 		<zone:node zhd="${zhd}" />
-
 	</div>
-	<!-- END OF WRAPER -->
 </body>
 </html>
