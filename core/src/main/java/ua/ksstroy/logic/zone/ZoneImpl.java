@@ -9,9 +9,9 @@ public class ZoneImpl implements Zone {
 
 	private String name;
 
-	private List<Zone> additional = new ArrayList<Zone>();
+	private List<Zone> additional = new ArrayList<>();
 
-	private List<Zone> surplus = new ArrayList<Zone>();
+	private List<Zone> surplus = new ArrayList<>();
 
 	private Double width;
 
@@ -43,8 +43,8 @@ public class ZoneImpl implements Zone {
 		this.additional = additional;
 	}
 
-	public void addAdditional(Zone zoneAddit) {
-		this.additional.add(zoneAddit);
+	public void addAdditional(Zone zoneAdditional) {
+		this.additional.add(zoneAdditional);
 	}
 
 	public List<Zone> getSurplus() {
@@ -55,8 +55,8 @@ public class ZoneImpl implements Zone {
 		this.surplus = surplus;
 	}
 
-	public void addSurplus(Zone zoneSurpl) {
-		this.surplus.add(zoneSurpl);
+	public void addSurplus(Zone zoneSurplus) {
+		this.surplus.add(zoneSurplus);
 	}
 
 	public Double getWidth() {

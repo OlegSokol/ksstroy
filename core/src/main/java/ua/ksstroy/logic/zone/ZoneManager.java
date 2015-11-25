@@ -1,5 +1,7 @@
 package ua.ksstroy.logic.zone;
 
+import ua.ksstroy.logic.zone.exceptions.NameConflictException;
+
 public interface ZoneManager {
 	/*
 	 * An objects that is used by the web tier to view and manage data from a

@@ -3,6 +3,7 @@ package ua.ksstroy.logic.zone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import ua.ksstroy.logic.zone.exceptions.NameConflictException;
 import ua.ksstroy.logic.zone.exceptions.ZoneDaoDoesntExistException;
 
 import java.util.ArrayList;
