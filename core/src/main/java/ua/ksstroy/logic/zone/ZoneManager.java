@@ -8,21 +8,12 @@ public interface ZoneManager {
 	 */
 	ZoneHierarchyData getRootZoneHierarchy(String projectId) throws NameConflictException;
 
-	void addRootGroupToProject(String groupName, Integer projectId) throws NameConflictException;
-
 	void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException;
 
 	void addZone(ZoneData zone, String parentGroupId) throws NameConflictException;
 
-	void addSurplusToZone(ZoneData surplusZone, String parentZoneId) throws NameConflictException;
+	void addZoneToZone(ZoneData zone, String parentZoneId) throws NameConflictException;
 
-	void addAdditionalToZone(ZoneData additionalZone, String parentZoneId) throws NameConflictException;
+	void subtractZoneFromZone(ZoneData zone, String parentZoneId) throws NameConflictException;
 
-	void updateZone(String zoneId, ZoneData newZone);
-
-	void removeZone(String zoneId);
-
-	void updateGroup(String groupId, String newGroup);
-
-	void removeGroup(String groupId);
 }

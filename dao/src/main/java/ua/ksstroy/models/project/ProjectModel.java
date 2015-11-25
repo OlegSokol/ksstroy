@@ -3,11 +3,27 @@ package ua.ksstroy.models.project;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import ua.ksstroy.models.zone.GroupsModel;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "projects", catalog = "ksstroy")
 public class ProjectModel implements Serializable {
@@ -23,22 +39,19 @@ public class ProjectModel implements Serializable {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@OneToOne(cascade = CascadeType.ALL)
+//	@GenericGenerator(name = "generator", strategy = "foreign", 
+//			parameters = @Parameter(name = "property", value = "groups"))
+//	@Id
+//	@GeneratedValue(generator = "generator")
+//	@Column(name = "ID_GROUP", nullable = false)
+//	private Integer idGroup;
+//
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_GROUP")
 	private GroupsModel groupsModel;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projects")
 	private List<UserModel> users;
-
-	public ProjectModel() {
-
-	}
-
-	public ProjectModel(String projectName, String description, GroupsModel groupsModel) {
-		this.projectName = projectName;
-		this.description = description;
-		this.groupsModel = groupsModel;
-	}
 
 	public Integer getId() {
 		return this.Id;
@@ -79,5 +92,13 @@ public class ProjectModel implements Serializable {
 	public void setGroupsModel(GroupsModel groupsModel) {
 		this.groupsModel = groupsModel;
 	}
+//
+//	public Integer getIdGroup() {
+//		return idGroup;
+//	}
+//
+//	public void setIdGroup(Integer idGroup) {
+//		this.idGroup = idGroup;
+//	}
 
 }

@@ -44,7 +44,7 @@ public class ZoneHierarchyMockFactory {
 
 	/*
 	 * for test purposes only!!! create List of ZoneData objects with hardcoded
-	 * values surplus and additional fields contain the same zoneDateList
+	 * values surplu and additioal fiels contain the same zoneDateList
 	 */
 	private static List<ZoneData> createZoneDataList() {
 		List<ZoneData> zoneDataList = new ArrayList<>();

@@ -16,13 +16,20 @@
 <script src="${js}"></script>
 </head>
 <body>
+
 	<div id="wraper">
+
 		<div>
 			<h2>KS STROY PROJECT</h2>
 			<p>
-				<a href="./projects" class="btn btn-default">PROJECTS</a>
-			</p>
+				<a href="./projects" class="btn btn-default">PROJECTS</a> 
+						</p>
 		</div>
+
+
+
 	</div>
+
+
 </body>
 </html>

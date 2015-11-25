@@ -3,48 +3,58 @@ package ua.ksstroy.models.zone;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-@SuppressWarnings("serial")
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 @Entity
 @Table(name = "groups", catalog = "ksstroy")
 public class GroupsModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "group_id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false)
 	private String id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "parent_group_id")
-	private Set<ZonesModel> zonesGroup = new HashSet<>();
+	/*
+	 * One to many group for zones
+	 */
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "groupsModel")
+	private List<ZonesModel> zones = new ArrayList<ZonesModel>();
+
+	/*
+	 * Many to one subgroups for root group same one entity
+	 */
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "parent_id")
-	private Set<GroupsModel> subGroups = new HashSet<>();
+	private GroupsModel rootgroup;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_id")
-	private GroupsModel subGroupsToRootGroup;
+	/*
+	 * One to many root root group for subgroups same one entity
+	 */
 
-	public GroupsModel() {
-
-	}
-
-	public GroupsModel(String name) {
-		this.name = name;
-	}
-
-	public GroupsModel(String name, Set<GroupsModel> subGroups) {
-		this.name = name;
-		this.subGroups = subGroups;
-	}
+	@OneToMany(mappedBy = "rootgroup", cascade = { CascadeType.ALL })
+	private List<GroupsModel> subgroups = new ArrayList<>();
 
 	public String getId() {
 		return id;
@@ -62,20 +72,27 @@ public class GroupsModel implements Serializable {
 		this.name = name;
 	}
 
-	public Set<ZonesModel> getZonesGroup() {
-		return zonesGroup;
+	public GroupsModel getRootgroup() {
+		return rootgroup;
 	}
 
-	public void setZonesGroup(Set<ZonesModel> zonesGroup) {
-		this.zonesGroup = zonesGroup;
+	public void setRootgroup(GroupsModel rootgroup) {
+		this.rootgroup = rootgroup;
 	}
 
-	public Set<GroupsModel> getSubGroups() {
-		return subGroups;
+	public List<GroupsModel> getSubgroups() {
+		return subgroups;
 	}
 
-	public void setSubGroups(Set<GroupsModel> subGroups) {
-		this.subGroups = subGroups;
+	public void setSubgroups(List<GroupsModel> subgroups) {
+		this.subgroups = subgroups;
 	}
 
+	public List<ZonesModel> getZones() {
+		return zones;
+	}
+
+	public void setZones(List<ZonesModel> zones) {
+		this.zones = zones;
+	}
 }
