@@ -6,23 +6,23 @@ import ua.ksstroy.logic.material.MaterialData;
 import ua.ksstroy.logic.zone.Measure;
 
 public class WorkTypeData {
-	
+
 	private Integer id;
 
 	private String name;
 
 	private String description;
-	
+
 	private Measure measure;
-	
+
 	private Double unitPrice;
 
 	private Set<MaterialData> materials;
-	
+
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}

@@ -9,13 +9,13 @@ public class WorkType {
 	private Integer id;
 
 	private String name;
-	
+
 	private String description;
-	
+
 	private Measure measure;
-	
+
 	private Double unitPrice;
-	
+
 	private Set<Material> materials;
 
 	public Integer getId() {
