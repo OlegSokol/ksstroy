@@ -2,47 +2,80 @@ package ua.ksstroy.logic.worktype;
 
 import static org.junit.Assert.*;
 
-import javax.annotation.Resource;
+import static org.mockito.Mockito.*;
+
+import java.util.HashSet;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-public class WorkTypeManagerImplTest {
+	@ContextConfiguration(locations = {"classpath:/spring-beans.xml"})
+	@RunWith(SpringJUnit4ClassRunner.class)
+	public class WorkTypeManagerImplTest {
+	     
+	    @Mock
+	    private WorkTypeDao workTypeDao;
+	     
+	    @InjectMocks
+	    @Autowired
+	    private WorkTypeManager manager;
+	     
+	     
+	    @Before
+	    public void setUp() {
+	        MockitoAnnotations.initMocks(this);
+	        // specify mock behave when method called
+	        when(workTypeDao.getChildWorkTypes(1)).thenReturn(new HashSet<WorkType>());
+	        when(workTypeDao.getParentWorkTypes()).thenReturn(new HashSet<WorkType>());
+	        
+	    }
+	 
+	     
+	    @Test
+	    public void testgetChildWorkTypes()   {
+	        assertNotNull(workTypeDao);
+	        assertNotNull(manager);
+	        assertEquals(new HashSet<>(), manager.getChildWorkTypes(1));
+	        
+	    }
+	    
+	    @Test
+	    public void testGetParentWorkTypes(){
+	    	  assertNotNull(workTypeDao);
+		        assertNotNull(manager);
+	    	assertEquals(new HashSet<>(), manager.getParentWorkTypes());
+	    	
+	    }
+	    
+	    @Test
+	    public void testAddChildWorkType(){
+	    	  assertNotNull(workTypeDao);
+		        assertNotNull(manager);
+	    	manager.addChildWorkType(new WorkTypeData(), 1);
+	    }
+	    @Test
+	    public void testDeleteWorkType(){
+	    	  assertNotNull(workTypeDao);
+		        assertNotNull(manager);
+	    	manager.deleteWorkType(1);
+	    }
+	    @Test
+	    public void testAddWorkType(){
+	    	  assertNotNull(workTypeDao);
+		        assertNotNull(manager);
+	    	manager.addWorkType(new WorkTypeData());
+	    }
+	    
+	}
 	
 	
-	WorkTypeManager manager;
+	
 
-	@Before
-	public void setUp(){
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
-		manager = context.getBean("WorkTypeManagerImpl", WorkTypeManager.class);
-		
-	}
-	@Test
-	public void testAddWorkType() {
-		manager.addWorkType(new WorkTypeData());
-	}
 
-	@Test
-	public void testAddChildWorkType() {
-		manager.addChildWorkType(new WorkTypeData(), 1);
-	}
-
-	@Test
-	public void testGetParentWorkTypes() {
-		manager.getParentWorkTypes();
-	}
-
-	@Test
-	public void testGetChildWorkTypes() {
-		manager.getChildWorkTypes(1);
-	}
-
-	@Test
-	public void testDeleteWorkType() {
-		manager.deleteWorkType(1);
-	}
-
-}

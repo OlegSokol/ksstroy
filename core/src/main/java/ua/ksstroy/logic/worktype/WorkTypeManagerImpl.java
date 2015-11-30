@@ -15,48 +15,38 @@ import ua.ksstroy.logic.material.MaterialData;
 @Component(value = "WorkTypeManagerImpl")
 public class WorkTypeManagerImpl implements WorkTypeManager {
 
-	@Autowired
-	@Qualifier("MockWorkTypeDao")
+	@Resource
 	WorkTypeDao workTypeDao;
-
 	@Override
 	public void addWorkType(WorkTypeData workTypeData) {
-		
 		workTypeDao.saveWorkType(
 				convertWorkTypeDataToWorkType(workTypeData));
 
 	}
-
 	@Override
 	public void addChildWorkType(WorkTypeData workTypeData, Integer parentWorkTypeId) {
-		// TODO Auto-generated method stub
-
+	//TODO doesn't have appropriate dao method yet
+				throw new NullPointerException();
 	}
-
+	@Override
+	public void deleteWorkType(Integer workTypeId) {
+		//TODO doesn't have appropriate dao method yet
+		throw new NullPointerException();
+	}
 	@Override
 	public Set<WorkType> getParentWorkTypes() {
-		// TODO Auto-generated method stub
-
 		Set<WorkType> list = new HashSet<>();
 		list = workTypeDao.getParentWorkTypes();
-
 		return list;
 	}
 
 	@Override
 	public Set<WorkType> getChildWorkTypes(Integer workTypeId) {
-
 		Set<WorkType> list = new HashSet<>();
 		list = workTypeDao.getChildWorkTypes(workTypeId);
-
 		return list;
 	}
 
-	@Override
-	public void deleteWorkType(Integer workTypeId) {
-		// TODO Auto-generated method stub
-
-	}
 
 	private WorkType convertWorkTypeDataToWorkType(WorkTypeData workTypeData) {
 WorkType workType = new WorkType();
