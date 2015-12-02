@@ -1,12 +1,8 @@
 package ua.ksstroy.logic.worktype;
 
+public interface WorkTypeGroupDao {
 
-public interface WorkTypeManager {
 
-
-	void addWorkType(WorkTypeData workTypeData, String parentGroupId);
-
-	void removeWorkType(String workTypeId);
 
 	/*
 	 * create an empty WorkTypeGroup 
