@@ -9,9 +9,12 @@ import ua.ksstroy.logic.worktype.WorkTypeData;
 import ua.ksstroy.logic.worktype.WorkTypeGroup;
 import ua.ksstroy.logic.worktype.WorkTypeGroupDao;
 import ua.ksstroy.logic.worktype.WorkTypeGroupData;
+import ua.ksstroy.logic.zone.ZoneGroup;
+import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
+import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
 
@@ -59,14 +62,12 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
 
 	@Override
 	public WorkTypeGroupData getWorkTypeHierarchy() {
-		final List<WorkTypeGroupData> listData = new ArrayList<>();
-		helper.doWithCommit(new DoInTransaction() {
-			@Override
-			public void process(SessionWrapper session) {
-				listData.add(convertWorkTypeGroupModelToData(session.get(WorkTypeGroupModel.class, "1")));
+		return helper.simpleAction(new GetInTransaction<WorkTypeGroupData>() {
+			public WorkTypeGroupData process(SessionWrapper session) {
+				 WorkTypeGroupData workTypeHierarchy = convertWorkTypeGroupModelToData(session.get(WorkTypeGroupModel.class, "1"));
+				return workTypeHierarchy;
 			}
 		});
-		return listData.iterator().next();
 	}
 	
 	public WorkTypeGroupData convertWorkTypeGroupModelToData(WorkTypeGroupModel model) {
