@@ -1,5 +1,7 @@
 package ua.ksstroy.persistence;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 public class SessionWrapper {
@@ -33,6 +35,11 @@ public class SessionWrapper {
 	public void save(Object o) {
 		session.save(o);
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T> List<T> getAll(T itemClass) {
+		return session.createCriteria(itemClass.getClass()).list();
 	}
 
 }

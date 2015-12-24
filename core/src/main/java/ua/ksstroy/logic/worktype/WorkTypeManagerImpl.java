@@ -3,7 +3,13 @@ package ua.ksstroy.logic.worktype;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+
+import ua.ksstroy.logic.material.Material;
+import ua.ksstroy.logic.material.MaterialData;
 
 
 @Component(value = "WorkTypeManagerImpl")
@@ -11,9 +17,6 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 
 	@Resource
 	WorkTypeDao workTypeDao;
-
-	
-
 
 	private WorkType convertWorkTypeDataToWorkType(WorkTypeData workTypeData) {
 WorkType workType = new WorkType();
@@ -53,9 +56,10 @@ workType.setUnitPrice(workTypeData.getUnitPrice());
 	public void removeWorkType(String workTypeId) {
 		// TODO Auto-generated method stub
 		
-	}
 
+	}
 	@Override
+
 	public void addWorkTypeGroup(String workTypeGroupName, String parentGroupId) {
 		// TODO Auto-generated method stub
 		
@@ -77,6 +81,7 @@ workType.setUnitPrice(workTypeData.getUnitPrice());
 	public WorkTypeGroupData getWorkTypeHierarchy() {
 		// TODO Auto-generated method stub
 		return null;
+
 	}
 }
 

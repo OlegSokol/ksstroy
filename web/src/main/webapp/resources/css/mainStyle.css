@@ -2,6 +2,20 @@ body {
 	background-color: #E0E0DF;
 }
 
+a {
+	display: inline-block;
+	color: white;
+	margin-top: 3px;
+	text-decoration: none;
+	padding: .2em 1em;
+	outline: none;
+	border-width: 0 0;
+	border-style: solid none;
+	border-radius: 6px;
+	background: linear-gradient(rgb(104, 104, 104), rgba(53, 53, 53, 0.69)) rgba(0, 0, 0, 0.86);
+	transition: 0.2s;
+}
+
 #zoneHierarchiDataTree {
 	display: inline-block;
 }

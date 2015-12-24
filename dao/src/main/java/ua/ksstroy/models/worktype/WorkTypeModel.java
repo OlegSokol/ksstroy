@@ -7,20 +7,18 @@ import java.util.Set;
 import javax.persistence.*;
 
 import ua.ksstroy.logic.zone.Measure;
-import ua.ksstroy.models.material.MaterialModel;
+import ua.ksstroy.models.zone.GroupsModel;
 
 @Entity
 @Table(name = "worktypes", catalog = "ksstroy")
 public class WorkTypeModel implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -940277992431249690L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "worktype_id", unique = true, nullable = false)
 	private Integer id;
 	
 	@ManyToOne(cascade = { CascadeType.ALL })
@@ -30,21 +28,38 @@ public class WorkTypeModel implements Serializable {
 	@OneToMany(mappedBy = "parentWorkType")
 	private Set<WorkTypeModel> childWorkTypes = new HashSet<WorkTypeModel>();
 	
-	@Column(name = "name", nullable = false)
+	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "description")
 	private String description;
 	
 	@Column(name = "measure_name")
-	private Measure measure;
+	private String measureName;
 	
 	@Column(name = "unit_price")
 	private Double unitPrice;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_group_id")
+	private WorkTypeGroupModel groupIdForZone;
+	
+	/*TODO add materials
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinTable(name = "worktype_material_rel", joinColumns = @JoinColumn(name = "worktype_id"), inverseJoinColumns = @JoinColumn(name = "material_id"))
 	private Set<MaterialModel> materials;
+	*/
+	public WorkTypeModel () {
+	}
+	
+	
+	public WorkTypeModel (String name, String description, Measure measure, Double unitPrice) {
+		this.name = name;
+		this.description = description;
+		this.measureName = measureName.toString();
+		this.unitPrice = unitPrice;
+	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -86,14 +101,12 @@ public class WorkTypeModel implements Serializable {
 		this.description = description;
 	}
 	
-	@Enumerated(EnumType.STRING)
-	public Measure getMeasure() {
-		return measure;
+	public String getMeasureName() {
+		return measureName;
 	}
-	
-	@Enumerated(EnumType.STRING)
-	public void setMeasure(Measure measure) {
-		this.measure = measure;
+
+	public void setMeasureName(Measure measureName) {
+		this.measureName = measureName.toString();
 	}
 
 	public Double getUnitPrice() {
@@ -104,12 +117,14 @@ public class WorkTypeModel implements Serializable {
 		this.unitPrice = unitPrice;
 	}
 
+	/*
 	public Set<MaterialModel> getMaterials() {
 		return materials;
 	}
 
 	public void setMaterials(Set<MaterialModel> materials) {
 		this.materials = materials;
-	}
+	}*/
 
 }
+

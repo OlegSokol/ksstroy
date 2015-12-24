@@ -1,6 +1,3 @@
-Create schema if not exists ksstroy;
-use ksstroy;
-
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -8,6 +5,7 @@ CREATE TABLE `projects` (
   `DESCRIPTION` VARCHAR(512), 
   `ID_GROUP` INT(10) UNSIGNED
 );  
+
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (33, 'Cool Project', 'Very cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (34, 'Another Cool Project', 'Super cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (35, 'Not Cool Project', 'Not cool', '1');
@@ -20,6 +18,7 @@ CREATE TABLE `users` (
   `PASSWORD` VARCHAR(64) NOT NULL,
   `ROLE` VARCHAR(32) NOT NULL
 );
+
 INSERT INTO `users` (`ID`, `NAME`, `PASSWORD`, `ROLE`) VALUES (1, 'admin', 'nimda', 'admin');
   
 
@@ -28,6 +27,7 @@ CREATE TABLE `user_project_rel` (
   `project` INT(10),
   `user` INT(10)
 );
+
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (33, 1);
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
@@ -65,6 +65,7 @@ CREATE TABLE `groups` (
     `name` VARCHAR(50) ,
     `parent_id` BIGINT(20) 
 );
+
 INSERT INTO `groups`  VALUES (1,'Kvartira',null);
 INSERT INTO `groups`  VALUES (2,'Penthaus',null);
 INSERT INTO `groups`  VALUES (3,'Dacha',null);
@@ -73,3 +74,42 @@ INSERT INTO `groups` VALUES (5,'Spalnya', 1);
 INSERT INTO `groups` VALUES (6,'Tualet', 1);
 INSERT INTO `groups` VALUES (7,'Vannaya', 2);
 INSERT INTO `groups` VALUES (8,'Prihozhaya', 2);
+
+
+drop table if exists `worktypes`;
+create table `worktypes` (
+	`worktype_id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `parent_id` BIGINT(20),
+    `name` VARCHAR(50),
+    `description` VARCHAR(512), 
+    `measure_name` VARCHAR(50) not NULL,
+    `unit_price` double,
+    `parent_group_id` INT(10) UNSIGNED
+);
+
+insert into `worktypes` values (1, null, 'podgotovka', 'zavarit_doshirak', 'L', 3.45, null);
+insert into `worktypes` values (2, null, 'namaz', 'molitva_alahu', 'L', 4.57, null);
+insert into `worktypes` values (3, 1, 'buy_doshirak', 'go_to_shop_for_doshirak', 'L', 4.57, 1);
+
+
+drop table if exists `worktype_material_rel`;
+create table `worktype_material_rel` (
+	`worktype_id` BIGINT(10) NOT NULL,
+    `material_id` BIGINT(10) NOT NULL
+);
+
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 2);
+
+
+drop table if exists `worktype_groups`;
+create table `worktype_groups` (
+	`group_id` BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` varchar(50),
+    `parent_id` bigint(20)
+);
+
+insert into `worktype_groups` values (1, 'root_group', null);
+insert into `worktype_groups` values (2, 'group_one', 1);
+insert into `worktype_groups` values (3, 'group_two', 2);
+

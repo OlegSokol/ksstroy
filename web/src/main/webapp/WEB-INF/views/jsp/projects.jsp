@@ -14,14 +14,15 @@
 </head>
 <body>
 <div id="wraper">
-    <h4>Projects</h4>
+    <h2>Projects</h2>
+
     <p>
         <c:if test="${empty projects}">
-            You haven't any project
+        You haven't any project
         </c:if>
 
         <c:forEach items="${projects}" var="entry">
-            <a href="./projects/${entry.id}">${entry.projectName}</a> <br>
+            <a href="./projects/${entry.id}">${entry.projectName}</a><br>
         </c:forEach>
     </p>
 </div>
