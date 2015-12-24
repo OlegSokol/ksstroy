@@ -1,6 +1,9 @@
 package ua.ksstroy.web;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,17 +16,16 @@ import ua.ksstroy.logic.zone.Measure;
 @Controller
 public class WorkTypeController {
 
-    @Autowired
-    WorkTypeManager workTypeManager;
+	 @Resource(name = "WorkTypeManagerImpl")
+      WorkTypeManager workTypeManager;
+	     
     ModelAndView workTypeObject;
-
     WorkTypeData workTypeData;
 
     @RequestMapping(value = "/workType", method = RequestMethod.GET)
     public ModelAndView showZHD() {
         workTypeObject = new ModelAndView("worktypes");
-        WorkTypeMock workTypeMock = new WorkTypeMock();
-        workTypeObject.addObject("workTypeObject", workTypeMock.getWorkTypeObject());
+        workTypeObject.addObject("workTypeObject", workTypeManager.getWorkTypeHierarchy());
         return workTypeObject;
     }
 
@@ -75,7 +77,7 @@ public class WorkTypeController {
         }
 
         workTypeManager.addWorkType(workTypeData, parentWorkTypeGroupId);
-
+        System.out.println("add work type");
         return "redirect:" + projectId;
     }
 

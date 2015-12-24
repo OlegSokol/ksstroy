@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<%@ attribute name="outerWorkTypeGroup" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroup" %>
+<%@ attribute name="outerWorkTypeGroup" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroupData" %>
 <%@ taglib prefix="worktype" tagdir="/WEB-INF/tags/worktype" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>

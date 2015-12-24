@@ -26,7 +26,7 @@ public class WorkTypeDaoImplTest {
 		worTypeData.setName(mockWorkTypeModelName);
 		worTypeData.setUnitPrice(mockWorkTypeModelUnitPrice);
 		
-		workTypeDaoImpl.addWorkType(worTypeData, "1");
+		workTypeDaoImpl.addWorkType(worTypeData, "2");
 	}
 	
 	@Test

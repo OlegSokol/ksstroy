@@ -17,6 +17,9 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 
 	@Resource
 	WorkTypeDao workTypeDao;
+	@Resource
+	WorkTypeGroupDao workTypeGroupDao;
+	
 
 	private WorkType convertWorkTypeDataToWorkType(WorkTypeData workTypeData) {
 WorkType workType = new WorkType();
@@ -48,39 +51,34 @@ workType.setUnitPrice(workTypeData.getUnitPrice());
 
 	@Override
 	public void addWorkType(WorkTypeData workTypeData, String parentGroupId) {
-		// TODO Auto-generated method stub
-		
+		workTypeDao.addWorkType(workTypeData, parentGroupId);
 	}
 
 	@Override
 	public void removeWorkType(String workTypeId) {
-		// TODO Auto-generated method stub
+		workTypeDao.removeWorkType(workTypeId);
 		
 
 	}
 	@Override
 
 	public void addWorkTypeGroup(String workTypeGroupName, String parentGroupId) {
-		// TODO Auto-generated method stub
-		
-	}
+		workTypeGroupDao.addWorkTypeGroup(workTypeGroupName, parentGroupId);
+			}
 
 	@Override
 	public void addWorkTypeGroup(String groupName) {
-		// TODO Auto-generated method stub
-		
+workTypeGroupDao.addWorkTypeGroup(groupName);		
 	}
 
 	@Override
 	public void removeWorkTypeGroup(String groupId) {
-		// TODO Auto-generated method stub
-		
+workTypeGroupDao.removeWorkTypeGroup(groupId);
 	}
 
 	@Override
 	public WorkTypeGroupData getWorkTypeHierarchy() {
-		// TODO Auto-generated method stub
-		return null;
+		return workTypeGroupDao.getWorkTypeHierarchy();
 
 	}
 }

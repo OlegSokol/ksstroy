@@ -3,6 +3,8 @@ package ua.ksstroy.dao.implementations;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import ua.ksstroy.logic.worktype.WorkTypeData;
 import ua.ksstroy.logic.worktype.WorkTypeGroup;
 import ua.ksstroy.logic.worktype.WorkTypeGroupDao;
@@ -13,6 +15,7 @@ import ua.ksstroy.persistence.DoInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
 
+@Component
 public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
 	private TransactionHelper helper = new TransactionHelper();
 
@@ -56,7 +59,7 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
 
 	@Override
 	public WorkTypeGroupData getWorkTypeHierarchy() {
-		final List<WorkTypeGroupData> listData = new ArrayList<WorkTypeGroupData>();
+		final List<WorkTypeGroupData> listData = new ArrayList<>();
 		helper.doWithCommit(new DoInTransaction() {
 			@Override
 			public void process(SessionWrapper session) {
