@@ -7,6 +7,6 @@ public interface WorkTypeDao {
 
 	void removeWorkType(String workTypeId);
 
-	 void updateWorkType(String WorkTypeId, WorkTypeData newWorkType);
+	 void updateWorkType(String workTypeId, WorkTypeData newWorkType);
 	
 }

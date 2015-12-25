@@ -42,8 +42,20 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 	}
 
 	@Override
-	public void updateWorkType(String WorkTypeId, WorkTypeData newWorkType) {
-		System.out.println("updateWorkType(String WorkTypeId, WorkTypeData newWorkType)");
+	public void updateWorkType(final String WorkTypeId, final WorkTypeData newWorkType) {
+		helper.doWithCommit(new DoInTransaction() {
+			@Override
+			public void process(SessionWrapper session) {
+				WorkTypeModel workTypeModel = session.get(WorkTypeModel.class, Integer.parseInt(WorkTypeId));
+				workTypeModel.setId(Integer.parseInt(WorkTypeId));
+				workTypeModel.setDescription(newWorkType.getDescription());
+				workTypeModel.setMeasureName(newWorkType.getMeasure());
+				workTypeModel.setName(newWorkType.getName());
+				workTypeModel.setUnitPrice(newWorkType.getUnitPrice());
+
+				session.saveOrUpdate(workTypeModel);
+			}
+		});
 	}
 
 
