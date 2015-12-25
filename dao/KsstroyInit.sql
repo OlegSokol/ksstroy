@@ -1,3 +1,4 @@
+USE  ksstroy;
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -76,7 +77,6 @@ INSERT INTO `groups` VALUES (4, 'Kuhnya', 1);
 INSERT INTO `groups` VALUES (5, 'Spalnya', 1);
 INSERT INTO `groups` VALUES (6, 'Tualet', 1);
 INSERT INTO `groups` VALUES (7, 'Vannaya', 2);
-
 INSERT INTO `groups` VALUES (8, 'Prihozhaya', 2);
 
 
@@ -90,9 +90,18 @@ CREATE TABLE `worktypes` (
   `parent_group_id` INT(10) UNSIGNED
 );
 
-INSERT INTO `worktypes` VALUES (1, 'podgotovka', 'zavarit_doshirak', 'L', 3.45, 3);
-INSERT INTO `worktypes` VALUES (2, 'namaz', 'molitva_alahu', 'L', 4.57, 3);
-INSERT INTO `worktypes` VALUES (3, 'buy_doshirak', 'go_to_shop_for_doshirak', 'L', 4.57, 3);
+INSERT INTO `worktypes` VALUES (1, 'worktype_1', 'worktype_1_descr.', 'L', 3.45, 2);
+INSERT INTO `worktypes` VALUES (2, 'worktype_2', 'worktype_2_descr.', 'L', 3.45, 2);
+INSERT INTO `worktypes` VALUES (3, 'worktype_3', 'worktype_3_descr.', 'L', 3.45, 3);
+INSERT INTO `worktypes` VALUES (4, 'worktype_4', 'worktype_4_descr.', 'L', 3.45, 3);
+INSERT INTO `worktypes` VALUES (5, 'worktype_5', 'worktype_5_descr.', 'L', 3.45, 4);
+INSERT INTO `worktypes` VALUES (6, 'worktype_6', 'worktype_6_descr.', 'L', 3.45, 4);
+INSERT INTO `worktypes` VALUES (7, 'worktype_7', 'worktype_7_descr.', 'L', 3.45, 5);
+INSERT INTO `worktypes` VALUES (8, 'worktype_8', 'worktype_8_descr.', 'L', 3.45, 5);
+INSERT INTO `worktypes` VALUES (9, 'worktype_9', 'worktype_9_descr.', 'L', 3.45, 6);
+INSERT INTO `worktypes` VALUES (10, 'worktype_10', 'worktype_10_descr.', 'L', 3.45, 6);
+INSERT INTO `worktypes` VALUES (11, 'worktype_11', 'worktype_11_descr.', 'L', 3.45, 7);
+INSERT INTO `worktypes` VALUES (12, 'worktype_12', 'worktype_12_descr.', 'L', 3.45, 7);
 
 
 DROP TABLE IF EXISTS `worktype_material_rel`;
@@ -112,7 +121,10 @@ CREATE TABLE `worktype_groups` (
   `parent_id` BIGINT(20)
 );
 
-INSERT INTO `worktype_groups` VALUES (1, 'root_group', NULL);
-INSERT INTO `worktype_groups` VALUES (2, 'group_one', 1);
-INSERT INTO `worktype_groups` VALUES (3, 'group_two', 2);
-INSERT INTO `worktype_groups` VALUES (3, 'group_three', 2);
+INSERT INTO `worktype_groups`  VALUES (1,'root_group', NULL);
+INSERT INTO `worktype_groups`  VALUES  (2,'group_level_1A', 1);
+INSERT INTO `worktype_groups` VALUES (3,'group_level_1B', 1);
+INSERT INTO `worktype_groups` VALUES (4,'group_level_2A', 2);
+INSERT INTO `worktype_groups` VALUES (5,'group_level_2B', 2);
+INSERT INTO `worktype_groups` VALUES (6,'group_level_2C', 3);
+INSERT INTO `worktype_groups` VALUES (7,'group_level_2D', 3);
