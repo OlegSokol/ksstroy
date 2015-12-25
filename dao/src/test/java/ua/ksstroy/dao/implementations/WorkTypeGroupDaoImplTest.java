@@ -47,8 +47,14 @@ public class WorkTypeGroupDaoImplTest {
 	@Test
 	public void testGetAllHierarchy() {
 		WorkTypeGroupDaoImpl workTypeDaoImpl = new WorkTypeGroupDaoImpl();
-				assertNotNull(workTypeDaoImpl.getWorkTypeHierarchy());
-	
+		assertNotNull(workTypeDaoImpl.getWorkTypeHierarchy());
+
+		WorkTypeGroupData workTypeGroupData = workTypeDaoImpl.getWorkTypeHierarchy();
+		List<WorkTypeGroupData> workTypeGroupsData = workTypeGroupData.getWorkTypeGroupsData();
+
+		for (WorkTypeGroupData data : workTypeGroupsData) {
+			System.out.println(data.getName());
+		}
 	}
 
 }
