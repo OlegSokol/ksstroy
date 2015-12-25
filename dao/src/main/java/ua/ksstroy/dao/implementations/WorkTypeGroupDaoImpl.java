@@ -71,7 +71,7 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                WorkTypeGroupModel workTypeGroupModel = session.get(WorkTypeGroupModel.class, Integer.parseInt(groupId));
+                WorkTypeGroupModel workTypeGroupModel = session.get(WorkTypeGroupModel.class, groupId);
                 workTypeGroupModel.setId(groupId);
                 workTypeGroupModel.setName(newName);
 
