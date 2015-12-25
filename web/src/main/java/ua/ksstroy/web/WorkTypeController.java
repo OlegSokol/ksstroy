@@ -90,7 +90,17 @@ public class WorkTypeController {
         return "redirect:" + projectId;
     }
 
-   /* @RequestMapping(value = "/workType/updateWorkType", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/workType/updateWorkTypeGroupName", method = RequestMethod.POST)
+    public String updateWorkTypeGroupName(@RequestParam("groupId") String groupId,
+                                 @RequestParam("newGroupName") String newGroupName,
+                                 @RequestParam("projectId") String projectId){
+        workTypeManager.updateWorkTypeGroupName(groupId,newGroupName);
+
+        return "redirect:" + projectId;
+    }
+
+    @RequestMapping(value = "/workType/updateWorkType", method = RequestMethod.POST)
     public String updateWorkType(@RequestParam("id") String id,
                                  @RequestParam("name") String name,
                                  @RequestParam("description") String description,
@@ -111,6 +121,6 @@ public class WorkTypeController {
         workTypeManager.updateWorkType(id, workTypeData);
 
         return "redirect:" + projectId;
-    }*/
+    }
 
 }

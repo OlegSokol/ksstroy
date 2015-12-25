@@ -7,8 +7,6 @@ public interface WorkTypeDao {
 
 	void removeWorkType(String workTypeId);
 
-
-	// TODO invent update WorkType
-	/* void updateWorkType(String WorkTypeId, WorkTypeData newWorkType); */
+	 void updateWorkType(String WorkTypeId, WorkTypeData newWorkType);
 	
 }

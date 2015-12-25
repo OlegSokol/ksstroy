@@ -22,6 +22,7 @@ public interface WorkTypeGroupDao {
 	 */
 	WorkTypeGroupData getWorkTypeHierarchy();
 
+	void updateWorkTypeGroupName(String groupId, String newName);
 	// TODO invent update WorkType
 	// TODO invent update WorkTypeGroup
 	/* void updateWorkType(String WorkTypeId, WorkTypeData newWorkType); */

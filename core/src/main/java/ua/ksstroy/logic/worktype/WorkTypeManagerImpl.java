@@ -1,15 +1,8 @@
 package ua.ksstroy.logic.worktype;
 
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-
-import ua.ksstroy.logic.material.Material;
-import ua.ksstroy.logic.material.MaterialData;
+import javax.annotation.Resource;
 
 
 @Component(value = "WorkTypeManagerImpl")
@@ -19,14 +12,14 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 	WorkTypeDao workTypeDao;
 	@Resource
 	WorkTypeGroupDao workTypeGroupDao;
-	
+
 
 	private WorkType convertWorkTypeDataToWorkType(WorkTypeData workTypeData) {
 WorkType workType = new WorkType();
 workType.setId(workTypeData.getId());
 workType.setDescription(workTypeData.getDescription());
 //TODO refactoring: to eliminate dublication use convertMaterial methods from MaterialManager
-//TODO implement convert Material 
+//TODO implement convert Material
 //workType.setMaterials(workTypeData.getMaterials());
 workType.setMeasure(workTypeData.getMeasure());
 workType.setName(workTypeData.getName());
@@ -39,14 +32,14 @@ workType.setUnitPrice(workTypeData.getUnitPrice());
 		workTypeData.setId(workType.getId());
 		workTypeData.setDescription(workType.getDescription());
 		//TODO refactoring: to eliminate dublication use convertMaterial methods from MaterialManager
-		//TODO implement convert Material 
+		//TODO implement convert Material
 		//workTypeData.setMaterials(materials);
 		workTypeData.setMeasure(workType.getMeasure());
 		workTypeData.setName(workType.getName());
 		workTypeData.setUnitPrice(workType.getUnitPrice());
-		
+
 		return workTypeData;
-		
+
 	}
 
 	@Override
@@ -57,7 +50,7 @@ workType.setUnitPrice(workTypeData.getUnitPrice());
 	@Override
 	public void removeWorkType(String workTypeId) {
 		workTypeDao.removeWorkType(workTypeId);
-		
+
 
 	}
 	@Override
@@ -68,7 +61,7 @@ workType.setUnitPrice(workTypeData.getUnitPrice());
 
 	@Override
 	public void addWorkTypeGroup(String groupName) {
-workTypeGroupDao.addWorkTypeGroup(groupName);		
+workTypeGroupDao.addWorkTypeGroup(groupName);
 	}
 
 	@Override
@@ -79,7 +72,14 @@ workTypeGroupDao.removeWorkTypeGroup(groupId);
 	@Override
 	public WorkTypeGroupData getWorkTypeHierarchy() {
 		return workTypeGroupDao.getWorkTypeHierarchy();
-
+	}
+	@Override
+	public void updateWorkTypeGroupName(String groupId,String newName){
+		workTypeGroupDao.updateWorkTypeGroupName(groupId,newName);
+	}
+@Override
+	public void updateWorkType(String WorkTypeId, WorkTypeData newWorkType){
+		workTypeDao.updateWorkType(WorkTypeId,newWorkType);
 	}
 }
 

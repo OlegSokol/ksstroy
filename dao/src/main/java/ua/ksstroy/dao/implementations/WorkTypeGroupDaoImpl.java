@@ -66,6 +66,11 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
         });
     }
 
+    @Override
+    public void updateWorkTypeGroupName(String groupId, String newName) {
+        System.out.println("updateWorkTypeGroupName(String groupId, String newName)");
+    }
+
     public WorkTypeGroupData convertWorkTypeGroupModelToData(WorkTypeGroupModel model) {
         WorkTypeGroupData data = new WorkTypeGroupData();
         data.setId(Integer.parseInt(model.getId()));

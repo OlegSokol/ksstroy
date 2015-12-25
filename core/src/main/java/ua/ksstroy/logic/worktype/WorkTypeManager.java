@@ -26,8 +26,6 @@ public interface WorkTypeManager {
 	 */
 	WorkTypeGroupData getWorkTypeHierarchy();
 
-	// TODO invent update WorkType
-	// TODO invent update WorkTypeGroup
-	/* void updateWorkType(String WorkTypeId, WorkTypeData newWorkType); */
-	/* void updateWorkTypeGroupName(String groupId, String newGroupName); */
+	void updateWorkType(String WorkTypeId, WorkTypeData newWorkType);
+ void updateWorkTypeGroupName(String groupId, String newGroupName);
 }

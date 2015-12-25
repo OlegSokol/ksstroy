@@ -41,6 +41,11 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		
 	}
 
+	@Override
+	public void updateWorkType(String WorkTypeId, WorkTypeData newWorkType) {
+		System.out.println("updateWorkType(String WorkTypeId, WorkTypeData newWorkType)");
+	}
+
 
 	private WorkTypeModel convertWorkTypeDataToModel(WorkTypeData workTypeData) {
 		WorkTypeModel model = new WorkTypeModel();
