@@ -12,7 +12,7 @@
 <body>
 <div id="wraper">
     <ul id="workTypeDataTree">
-            <worktype:node workTypeGroup="${workTypeObject}" />
+        <worktype:node workTypeGroup="${workTypeObject}"/>
     </ul>
 </div>
 </body>
