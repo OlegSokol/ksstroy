@@ -1,46 +1,57 @@
 package ua.ksstroy.logic.material;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MaterialTypeData {
-	
-	private String name;
 
-	private String description;
+    private Integer id;
 
-	private Double pricePerUnit;
-	
-	private String unitName;
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private String description;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private List<MaterialTypeData> materialTypeDataList = new ArrayList<>();
 
-	public String getDescription() {
-		return description;
-	}
+    private List<MaterialData> materialDataList = new ArrayList<>();
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getUnitName() {
-		return unitName;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setUnitName(String unitName) {
-		this.unitName = unitName;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Double getPricePerUnit() {
-		return pricePerUnit;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPricePerUnit(Double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
-	}
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
+    public List<MaterialTypeData> getMaterialTypeDataList() {
+        return materialTypeDataList;
+    }
+
+    public void setMaterialTypeDataList(List<MaterialTypeData> materialTypeDataList) {
+        this.materialTypeDataList = materialTypeDataList;
+    }
+
+    public List<MaterialData> getMaterialDataList() {
+        return materialDataList;
+    }
+
+    public void setMaterialDataList(List<MaterialData> materialDataList) {
+        this.materialDataList = materialDataList;
+    }
 }

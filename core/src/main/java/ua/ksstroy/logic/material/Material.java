@@ -1,39 +1,86 @@
 package ua.ksstroy.logic.material;
 
-import java.util.Set;
-
-import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.zone.Measure;
 
 public class Material {
-	
-	private int id;
-	
-	private String name;
-	
-	private Set<WorkType> workTypes; 
 
-	public int getId() {
-		return id;
-	}
+    private Integer id;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private String description;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private Measure measure;
 
-	public Set<WorkType> getWorkTypes() {
-		return workTypes;
-	}
+    private Double size;
 
-	public void setWorkTypes(Set<WorkType> workTypes) {
-		this.workTypes = workTypes;
-	}
+    private Double planedCost;
 
+    private Double dealCost;
+
+    private Double closedCost;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Measure getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(Measure measure) {
+        this.measure = measure;
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public Double getPlanedCost() {
+        return planedCost;
+    }
+
+    public void setPlanedCost(Double planedCost) {
+        this.planedCost = planedCost;
+    }
+
+    public Double getDealCost() {
+        return dealCost;
+    }
+
+    public void setDealCost(Double dealCost) {
+        this.dealCost = dealCost;
+    }
+
+    public Double getClosedCost() {
+        return closedCost;
+    }
+
+    public void setClosedCost(Double closedCost) {
+        this.closedCost = closedCost;
+    }
 }

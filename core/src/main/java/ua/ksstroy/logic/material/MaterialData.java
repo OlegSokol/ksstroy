@@ -1,55 +1,86 @@
 package ua.ksstroy.logic.material;
 
+import ua.ksstroy.logic.zone.Measure;
+
 public class MaterialData {
 
-	private MaterialTypeData type;
+    private Integer id;
 
-	private Double unitsPerWorkZoneMesure;
+    private String name;
 
-	private Double planedCost;
+    private String description;
 
-	private Double closedCost;
+    private Measure measure;
 
-	private Double dealCost;
+    private Double size;
 
-	public MaterialTypeData getType() {
-		return type;
-	}
+    private Double planedCost;
 
-	public void setType(MaterialTypeData type) {
-		this.type = type;
-	}
+    private Double dealCost;
 
-	public Double getPlanedCost() {
-		return planedCost;
-	}
+    private Double closedCost;
 
-	public void setPlanedCost(Double planedCost) {
-		this.planedCost = planedCost;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public Double getClosedCost() {
-		return closedCost;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setClosedCost(Double closedCost) {
-		this.closedCost = closedCost;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Double getDealCost() {
-		return dealCost;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDealCost(Double dealCost) {
-		this.dealCost = dealCost;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Double getUnitsPerWorkZoneMesure() {
-		return unitsPerWorkZoneMesure;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setUnitsPerWorkZoneMesure(Double unitsPerWorkZoneMesure) {
-		this.unitsPerWorkZoneMesure = unitsPerWorkZoneMesure;
-	}
+    public Measure getMeasure() {
+        return measure;
+    }
 
+    public void setMeasure(Measure measure) {
+        this.measure = measure;
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public Double getPlanedCost() {
+        return planedCost;
+    }
+
+    public void setPlanedCost(Double planedCost) {
+        this.planedCost = planedCost;
+    }
+
+    public Double getDealCost() {
+        return dealCost;
+    }
+
+    public void setDealCost(Double dealCost) {
+        this.dealCost = dealCost;
+    }
+
+    public Double getClosedCost() {
+        return closedCost;
+    }
+
+    public void setClosedCost(Double closedCost) {
+        this.closedCost = closedCost;
+    }
 }

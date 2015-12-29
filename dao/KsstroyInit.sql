@@ -6,9 +6,8 @@ CREATE TABLE `projects` (
   `DESCRIPTION`  VARCHAR(512),
   `ID_GROUP`     INT(10) UNSIGNED
 );
-
-
-INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`) VALUES (33, 'Cool Project', 'Very cool', '1');
+INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
+VALUES (33, 'Cool Project', 'Very cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
 VALUES (34, 'Another Cool Project', 'Super cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
@@ -22,8 +21,6 @@ CREATE TABLE `users` (
   `PASSWORD` VARCHAR(64)      NOT NULL,
   `ROLE`     VARCHAR(32)      NOT NULL
 );
-
-
 INSERT INTO `users` (`ID`, `NAME`, `PASSWORD`, `ROLE`) VALUES (1, 'admin', 'nimda', 'admin');
 
 
@@ -47,8 +44,6 @@ CREATE TABLE `zones` (
   `surplus_for_zones_id` INT(10) UNSIGNED, #have value only if the zone is surplus
   `addit_for_zones_id`   INT(10) UNSIGNED #have value only if the zone is additional
 );
-
-
 INSERT INTO `zones` VALUES (1, 'pol1', 10.0, 10.0, 'M2', 4, NULL, NULL);
 INSERT INTO `zones` VALUES (2, 'stenaA', 6.0, 3.0, 'M2', 5, NULL, NULL);
 INSERT INTO `zones` VALUES (3, 'potolok', 10.0, 10.0, 'M2', 5, NULL, NULL);
@@ -69,7 +64,6 @@ CREATE TABLE `groups` (
   `name`      VARCHAR(50),
   `parent_id` BIGINT(20)
 );
-
 INSERT INTO `groups` VALUES (1, 'Kvartira', NULL);
 INSERT INTO `groups` VALUES (2, 'Penthaus', NULL);
 INSERT INTO `groups` VALUES (3, 'Dacha', NULL);
@@ -89,7 +83,6 @@ CREATE TABLE `worktypes` (
   `unit_price`      DOUBLE,
   `parent_group_id` INT(10) UNSIGNED
 );
-
 INSERT INTO `worktypes` VALUES (1, 'worktype_1', 'worktype_1_descr.', 'L', 3.45, 2);
 INSERT INTO `worktypes` VALUES (2, 'worktype_2', 'worktype_2_descr.', 'L', 3.45, 2);
 INSERT INTO `worktypes` VALUES (3, 'worktype_3', 'worktype_3_descr.', 'L', 3.45, 3);
@@ -109,7 +102,6 @@ CREATE TABLE `worktype_material_rel` (
   `worktype_id` BIGINT(10) NOT NULL,
   `material_id` BIGINT(10) NOT NULL
 );
-
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1);
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 2);
 
@@ -120,7 +112,6 @@ CREATE TABLE `worktype_groups` (
   `name`      VARCHAR(50),
   `parent_id` BIGINT(20)
 );
-
 INSERT INTO `worktype_groups`  VALUES (1,'root_group', NULL);
 INSERT INTO `worktype_groups`  VALUES  (2,'group_level_1A', 1);
 INSERT INTO `worktype_groups` VALUES (3,'group_level_1B', 1);
