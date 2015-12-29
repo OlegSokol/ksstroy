@@ -2,10 +2,10 @@ package ua.ksstroy.logic.material;
 
 public interface MaterialDao {
 
-    void addMaterial(MaterialData materialData, String parentMaterialTypeId);
+    void addMaterial(final MaterialData materialData, final String parentMaterialTypeId);
 
-    void updateMaterial(String materialId, MaterialData newMaterial);
+    void updateMaterial(final String materialId, final MaterialData newMaterial);
 
-    void removeMaterial(String materialId);
+    void removeMaterial(final String materialId);
 
 }

@@ -20,10 +20,11 @@
         <mapping class="ua.ksstroy.models.zone.ZonesModel"></mapping>
 
         <mapping class="ua.ksstroy.models.zone.GroupsModel"></mapping>
-    
+
         <mapping class="ua.ksstroy.models.worktype.WorkTypeModel"></mapping>
-        <mapping class ="ua.ksstroy.models.worktype.WorkTypeGroupModel"></mapping>
-  <!--       <mapping class="ua.ksstroy.models.material.MaterialModel"></mapping>
-         -->
+        <mapping class="ua.ksstroy.models.worktype.WorkTypeGroupModel"></mapping>
+
+        <mapping class="ua.ksstroy.models.material.MaterialModel"></mapping>
+        <mapping class="ua.ksstroy.models.material.MaterialTypeModel"></mapping>
     </session-factory>
 </hibernate-configuration>

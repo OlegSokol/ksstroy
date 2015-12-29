@@ -20,6 +20,22 @@ public class MaterialData {
 
     private Double closedCost;
 
+    public MaterialData() {
+    }
+
+    public MaterialData(Integer id, String name, String description,
+                        Measure measure, Double size, Double planedCost,
+                        Double dealCost, Double closedCost) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.measure = measure;
+        this.size = size;
+        this.planedCost = planedCost;
+        this.dealCost = dealCost;
+        this.closedCost = closedCost;
+    }
+
     public Integer getId() {
         return id;
     }

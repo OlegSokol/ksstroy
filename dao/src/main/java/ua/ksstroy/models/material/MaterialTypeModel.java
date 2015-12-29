@@ -36,7 +36,11 @@ public class MaterialTypeModel implements Serializable {
     @JoinColumn(name = "parent_id")
     private MaterialTypeModel subMaterialTypeToRootType;
 
-    public MaterialTypeModel(String name, String description) {
+    public MaterialTypeModel() {
+    }
+
+    public MaterialTypeModel(String id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
     }

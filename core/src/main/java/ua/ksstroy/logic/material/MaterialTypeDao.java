@@ -4,12 +4,12 @@ public interface MaterialTypeDao {
 
     MaterialTypeData getMaterialHierarchy();
 
-    void addMaterialType(MaterialTypeData materialTypeDao);
+    void addMaterialType(final MaterialTypeData materialTypeDao);
 
-    void addMaterialTypeByParent(MaterialTypeData materialTypeDao, String parentMaterialTypeId);
+    void addMaterialTypeByParent(final MaterialTypeData materialTypeDao, final String parentMaterialTypeId);
 
-    void updateMaterialType(String materialId, MaterialTypeData newMaterialType);
+    void updateMaterialType(final String materialId, final MaterialTypeData newMaterialType);
 
-    void removeMaterialType(String materialId);
+    void removeMaterialType(final String materialId);
 
 }

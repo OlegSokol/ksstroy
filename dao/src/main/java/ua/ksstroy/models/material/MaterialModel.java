@@ -39,10 +39,14 @@ public class MaterialModel implements Serializable {
     @JoinColumn(name = "parent_id")
     private MaterialTypeModel materialTypeModel;
 
-    public MaterialModel(String name, String description, String measureName, Double size, Double planedCost, Double dealCost, Double closedCost) {
+    public MaterialModel() {
+    }
+
+    public MaterialModel(String id, String name, String description, String measureName, Double size, Double planedCost, Double dealCost, Double closedCost) {
+        this.id = id;
         this.name = name;
         this.description = description;
-        this.measureName = measureName.toString();
+        this.measureName = measureName;
         this.size = size;
         this.planedCost = planedCost;
         this.dealCost = dealCost;
