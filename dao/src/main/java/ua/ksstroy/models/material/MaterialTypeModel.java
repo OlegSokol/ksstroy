@@ -27,6 +27,15 @@ public class MaterialTypeModel implements Serializable {
     @OrderBy
     private Set<MaterialModel> materialTypeToMaterial = new LinkedHashSet<>();
 
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "parent_id")
+    @OrderBy
+    private Set<MaterialTypeModel> materialType = new LinkedHashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private MaterialTypeModel subMaterialTypeToRootType;
+
     public MaterialTypeModel(String name, String description) {
         this.name = name;
         this.description = description;
@@ -62,5 +71,21 @@ public class MaterialTypeModel implements Serializable {
 
     public void setMaterialTypeToMaterial(Set<MaterialModel> materialTypeToMaterial) {
         this.materialTypeToMaterial = materialTypeToMaterial;
+    }
+
+    public Set<MaterialTypeModel> getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(Set<MaterialTypeModel> materialType) {
+        this.materialType = materialType;
+    }
+
+    public MaterialTypeModel getSubMaterialTypeToRootType() {
+        return subMaterialTypeToRootType;
+    }
+
+    public void setSubMaterialTypeToRootType(MaterialTypeModel subMaterialTypeToRootType) {
+        this.subMaterialTypeToRootType = subMaterialTypeToRootType;
     }
 }
