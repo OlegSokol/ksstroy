@@ -5,7 +5,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "materials", catalog = "ksstroy")
-public class MaterialModel implements Serializable {
+@Table(name = "material_type", catalog = "ksstroy")
+public class MaterialTypeModel implements Serializable {
 
 }

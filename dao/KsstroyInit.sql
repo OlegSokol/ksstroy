@@ -1,11 +1,14 @@
-USE  ksstroy;
+USE ksstroy;
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `PROJECT_NAME` VARCHAR(64)      NOT NULL,
   `DESCRIPTION`  VARCHAR(512),
   `ID_GROUP`     INT(10) UNSIGNED
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
 VALUES (33, 'Cool Project', 'Very cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
@@ -20,7 +23,10 @@ CREATE TABLE `users` (
   `NAME`     VARCHAR(64)      NOT NULL,
   `PASSWORD` VARCHAR(64)      NOT NULL,
   `ROLE`     VARCHAR(32)      NOT NULL
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 INSERT INTO `users` (`ID`, `NAME`, `PASSWORD`, `ROLE`) VALUES (1, 'admin', 'nimda', 'admin');
 
 
@@ -28,7 +34,10 @@ DROP TABLE IF EXISTS `user_project_rel`;
 CREATE TABLE `user_project_rel` (
   `project` INT(10),
   `user`    INT(10)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (33, 1);
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
@@ -43,7 +52,10 @@ CREATE TABLE `zones` (
   `parent_group_id`      INT(10) UNSIGNED,
   `surplus_for_zones_id` INT(10) UNSIGNED, #have value only if the zone is surplus
   `addit_for_zones_id`   INT(10) UNSIGNED #have value only if the zone is additional
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 INSERT INTO `zones` VALUES (1, 'pol1', 10.0, 10.0, 'M2', 4, NULL, NULL);
 INSERT INTO `zones` VALUES (2, 'stenaA', 6.0, 3.0, 'M2', 5, NULL, NULL);
 INSERT INTO `zones` VALUES (3, 'potolok', 10.0, 10.0, 'M2', 5, NULL, NULL);
@@ -63,7 +75,10 @@ CREATE TABLE `groups` (
   `group_id`  BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name`      VARCHAR(50),
   `parent_id` BIGINT(20)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 INSERT INTO `groups` VALUES (1, 'Kvartira', NULL);
 INSERT INTO `groups` VALUES (2, 'Penthaus', NULL);
 INSERT INTO `groups` VALUES (3, 'Dacha', NULL);
@@ -82,7 +97,10 @@ CREATE TABLE `worktypes` (
   `measure_name`    VARCHAR(50) NOT NULL,
   `unit_price`      DOUBLE,
   `parent_group_id` INT(10) UNSIGNED
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 INSERT INTO `worktypes` VALUES (1, 'worktype_1', 'worktype_1_descr.', 'L', 3.45, 2);
 INSERT INTO `worktypes` VALUES (2, 'worktype_2', 'worktype_2_descr.', 'L', 3.45, 2);
 INSERT INTO `worktypes` VALUES (3, 'worktype_3', 'worktype_3_descr.', 'L', 3.45, 3);
@@ -97,25 +115,50 @@ INSERT INTO `worktypes` VALUES (11, 'worktype_11', 'worktype_11_descr.', 'L', 3.
 INSERT INTO `worktypes` VALUES (12, 'worktype_12', 'worktype_12_descr.', 'L', 3.45, 7);
 
 
-DROP TABLE IF EXISTS `worktype_material_rel`;
-CREATE TABLE `worktype_material_rel` (
-  `worktype_id` BIGINT(10) NOT NULL,
-  `material_id` BIGINT(10) NOT NULL
-);
-INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1);
-INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 2);
-
-
 DROP TABLE IF EXISTS `worktype_groups`;
 CREATE TABLE `worktype_groups` (
   `group_id`  BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name`      VARCHAR(50),
   `parent_id` BIGINT(20)
-);
-INSERT INTO `worktype_groups`  VALUES (1,'root_group', NULL);
-INSERT INTO `worktype_groups`  VALUES  (2,'group_level_1A', 1);
-INSERT INTO `worktype_groups` VALUES (3,'group_level_1B', 1);
-INSERT INTO `worktype_groups` VALUES (4,'group_level_2A', 2);
-INSERT INTO `worktype_groups` VALUES (5,'group_level_2B', 2);
-INSERT INTO `worktype_groups` VALUES (6,'group_level_2C', 3);
-INSERT INTO `worktype_groups` VALUES (7,'group_level_2D', 3);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+INSERT INTO `worktype_groups` VALUES (1, 'root_group', NULL);
+INSERT INTO `worktype_groups` VALUES (2, 'group_level_1A', 1);
+INSERT INTO `worktype_groups` VALUES (3, 'group_level_1B', 1);
+INSERT INTO `worktype_groups` VALUES (4, 'group_level_2A', 2);
+INSERT INTO `worktype_groups` VALUES (5, 'group_level_2B', 2);
+INSERT INTO `worktype_groups` VALUES (6, 'group_level_2C', 3);
+INSERT INTO `worktype_groups` VALUES (7, 'group_level_2D', 3);
+
+
+DROP TABLE IF EXISTS `material_type`;
+CREATE TABLE `material_type` (
+  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+  `name`        VARCHAR(50)  NOT NULL,
+  `description` VARCHAR(512) NOT NULL,
+  `parent_id`   BIGINT(20)   NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_id` (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+
+DROP TABLE IF EXISTS `materials`;
+CREATE TABLE `materials` (
+  `id`           INT(11)     NOT NULL AUTO_INCREMENT,
+  `name`         VARCHAR(50) NOT NULL,
+  `description`  VARCHAR(512)         DEFAULT NULL,
+  `measure_name` VARCHAR(5)  NOT NULL,
+  `size`         DOUBLE      NOT NULL,
+  `planed_cost`  DOUBLE      NOT NULL,
+  `deal_cost`    DOUBLE      NOT NULL,
+  `closed_cost`  DOUBLE      NOT NULL,
+  `parent_id`    BIGINT(20)  NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_id` (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
