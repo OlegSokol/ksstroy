@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
-public class ZoneDaoImplTest {
+public class ZoneGroupDaoImplTest {
 
     String mockGroupName = "mockGroupsFromTestZoneDaoImpl";
 
@@ -75,7 +75,7 @@ public class ZoneDaoImplTest {
 
     // @Test
     // public void testAddRootGroup() {
-    // ZoneDaoImpl daoImpl = new ZoneDaoImpl();
+    // ZoneGroupDaoImpl daoImpl = new ZoneGroupDaoImpl();
     //
     // String mockRootGroupName = "RootGroup";
     //
@@ -146,7 +146,7 @@ public class ZoneDaoImplTest {
 	 * finally get id of the mock GroupsModel and find all Zones to compare
 	 * it with ZonesModel we stored to DB
 	 
-	 ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+	 ZoneGroupDaoImpl zoneDaoImpl = new ZoneGroupDaoImpl();
 	
 	 List<Zone> zonesByParentGroupId =
 	 zoneDaoImpl.getZonesByParentGroupId(testedGroupByName.getId());
@@ -178,7 +178,7 @@ public class ZoneDaoImplTest {
                 .uniqueResult();
         session.getTransaction().commit();
 
-        ZoneDaoImpl zoneDaoImpl = new ZoneDaoImpl();
+        ZoneGroupDaoImpl zoneDaoImpl = new ZoneGroupDaoImpl();
 
         List<ZoneGroup> groupsByParentGroupId = zoneDaoImpl.getGroupsByParentGroupId(rootGroupsId.getId());
         session.beginTransaction();
@@ -206,7 +206,7 @@ public class ZoneDaoImplTest {
 
     @Test
     public void testStoreZone() {
-        ZoneDao zoneDao = new ZoneDaoImpl();
+        ZoneDao zoneDao = new ZoneGroupDaoImpl();
         Zone mockZoneImpl = new ZoneImpl();
         mockZoneImpl.setName(mockZoneImplName);
         mockZoneImpl.setHeight(mockZoneImplheight);

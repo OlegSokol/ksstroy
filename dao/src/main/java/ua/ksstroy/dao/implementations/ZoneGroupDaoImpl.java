@@ -26,7 +26,7 @@ import java.util.List;
 @Repository
 @Service
 @Component(value = "zoneDao")
-public class ZoneDaoImpl implements ZoneDao {
+public class ZoneGroupDaoImpl implements ZoneDao {
 
     private TransactionHelper helper = new TransactionHelper();
 
