@@ -1,69 +1,70 @@
 package ua.ksstroy.logic.worktype;
 
-import java.util.Set;
-
 import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.zone.Measure;
 
+import java.util.Set;
+
 public class WorkType {
-	private Integer id;
 
-	private String name;
+    private Integer id;
 
-	private String description;
+    private String name;
 
-	private Measure measure;
+    private String description;
 
-	private Double unitPrice;
+    private Measure measure;
 
-	private Set<Material> materials;
+    private Double unitPrice;
 
-	public Integer getId() {
-		return id;
-	}
+    private Set<Material> materials;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Measure getMeasure() {
-		return measure;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setMeasure(Measure measure) {
-		this.measure = measure;
-	}
+    public Measure getMeasure() {
+        return measure;
+    }
 
-	public Double getUnitPrice() {
-		return unitPrice;
-	}
+    public void setMeasure(Measure measure) {
+        this.measure = measure;
+    }
 
-	public void setUnitPrice(Double unitPrice) {
-		this.unitPrice = unitPrice;
-	}
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
 
-	public Set<Material> getMaterials() {
-		return materials;
-	}
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 
-	public void setMaterials(Set<Material> materials) {
-		this.materials = materials;
-	}
+    public Set<Material> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(Set<Material> materials) {
+        this.materials = materials;
+    }
 
 }
