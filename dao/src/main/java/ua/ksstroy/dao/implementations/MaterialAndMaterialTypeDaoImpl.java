@@ -1,6 +1,5 @@
 package ua.ksstroy.dao.implementations;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.ksstroy.logic.material.MaterialDao;
@@ -10,9 +9,7 @@ import ua.ksstroy.logic.material.MaterialTypeData;
 
 @Repository
 @Service
-@Component(value = "materialDao")
 public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, MaterialDao {
-
 
     @Override
     public MaterialTypeData getMaterialHierarchy() {
