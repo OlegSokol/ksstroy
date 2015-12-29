@@ -2,7 +2,7 @@ package ua.ksstroy.logic.material;
 
 public interface MaterialManager {
 
-    MaterialTypeData getMaterialHierarhy();
+    MaterialTypeData getMaterialHierarchy();
 
     void addMaterialType(MaterialTypeData materialTypeDao);
 

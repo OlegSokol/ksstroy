@@ -104,10 +104,10 @@ public class ZoneManagerImpl implements ZoneManager {
         }
 
         List<ZoneData> surplusList = new ArrayList<>();
-            for (Zone tempZone : zone.getSurplus()) {
-                ZoneData tempZoneData = convertZoneToZoneData(tempZone);
-                surplusList.add(tempZoneData);
-            }
+        for (Zone tempZone : zone.getSurplus()) {
+            ZoneData tempZoneData = convertZoneToZoneData(tempZone);
+            surplusList.add(tempZoneData);
+        }
 
         convertZoneToZoneData(zone, convertZoneData, additionalList, surplusList);
 
