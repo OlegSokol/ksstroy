@@ -168,12 +168,14 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         for (MaterialTypeModel typeModel : materialTypeModel.getMaterialType()) {
             materialTypeDataList.add(convertMaterialTypeModelToData(typeModel));
         }
+
         materialTypeData.setMaterialTypeDataList(materialTypeDataList);
 
         List<MaterialData> materialDataList = new ArrayList<>();
         for (MaterialModel materialModel : materialTypeModel.getMaterialTypeToMaterial()) {
-            materialDataList.add(new MaterialAndMaterialTypeDaoImpl().convertMaterialModelToMaterialData(materialModel));
+            materialDataList.add(convertMaterialModelToMaterialData(materialModel));
         }
+
         materialTypeData.setMaterialDataList(materialDataList);
 
         return materialTypeData;
