@@ -14,7 +14,7 @@ import ua.ksstroy.logic.worktype.WorkTypeData;
 
 public class WorkTypeDaoImplTest {
 	
-	String mockWorkTypeModelName = "testName";
+	/*String mockWorkTypeModelName = "testName";
 	String mockWorkTypeModelDescription = "testDescription";
 	Measure mockWorkTypeModelMeasureName = Measure.L;
 	Double mockWorkTypeModelUnitPrice = 16.7;
@@ -36,7 +36,7 @@ public class WorkTypeDaoImplTest {
 		WorkTypeDaoImpl workTypeDaoImpl = new WorkTypeDaoImpl();
 		
 		workTypeDaoImpl.removeWorkType("4");
-	}
+	}*/
 	
 	//WorkTypeModel mockWorkTypeModel;
 	

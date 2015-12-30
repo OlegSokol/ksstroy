@@ -13,11 +13,11 @@ public class WorkTypeData {
 
 	private String description;
 
-	private Measure measure;
+	private String measure;
 
 	private Double unitPrice;
 
-	private Set<MaterialData> materials;
+	/*private Set<MaterialData> materials;*/
 
 	public Integer getId() {
 		return id;
@@ -43,19 +43,20 @@ public class WorkTypeData {
 		this.description = description;
 	}
 
-	public Set<MaterialData> getMaterials() {
+	//TODO add materials
+	/*public Set<MaterialData> getMaterials() {
 		return materials;
 	}
 
 	public void setMaterials(Set<MaterialData> materials) {
 		this.materials = materials;
-	}
+	}*/
 
-	public Measure getMeasure() {
+	public String getMeasure() {
 		return measure;
 	}
 
-	public void setMeasure(Measure measure) {
+	public void setMeasure(String measure) {
 		this.measure = measure;
 	}
 

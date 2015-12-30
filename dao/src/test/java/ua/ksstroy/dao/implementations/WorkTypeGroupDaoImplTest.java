@@ -13,7 +13,7 @@ import ua.ksstroy.models.worktype.WorkTypeModel;
 
 public class WorkTypeGroupDaoImplTest {
 
-	@Test
+	/*@Test
 	public void testAddWorkTypeGroup() {
 		WorkTypeGroupDaoImpl workTypeGroupDaoImpl = new WorkTypeGroupDaoImpl();
 		
@@ -55,6 +55,6 @@ public class WorkTypeGroupDaoImplTest {
 		for (WorkTypeGroupData data : workTypeGroupsData) {
 			System.out.println(data.getName());
 		}
-	}
+	}*/
 
 }

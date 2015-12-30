@@ -68,7 +68,7 @@ public class WorkTypeController {
         workTypeData = new WorkTypeData();
         workTypeData.setName(name);
         workTypeData.setDescription(description);
-        workTypeData.setMeasure(Measure.valueOf(measure));
+        workTypeData.setMeasure(measure);
 
         try {
             workTypeData.setUnitPrice(new Double(unitPrice).doubleValue());
@@ -111,7 +111,7 @@ public class WorkTypeController {
         workTypeData = new WorkTypeData();
         workTypeData.setName(name);
         workTypeData.setDescription(description);
-        workTypeData.setMeasure(Measure.valueOf(measure));
+        workTypeData.setMeasure(measure);
         try {
             workTypeData.setUnitPrice(new Double(unitPrice).doubleValue());
         } catch (NumberFormatException e) {
