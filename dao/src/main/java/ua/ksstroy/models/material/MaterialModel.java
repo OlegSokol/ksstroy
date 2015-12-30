@@ -53,6 +53,16 @@ public class MaterialModel implements Serializable {
         this.closedCost = closedCost;
     }
 
+    public MaterialModel(String name, String description, String measureName, Double size, Double planedCost, Double dealCost, Double closedCost) {
+        this.name = name;
+        this.description = description;
+        this.measureName = measureName;
+        this.size = size;
+        this.planedCost = planedCost;
+        this.dealCost = dealCost;
+        this.closedCost = closedCost;
+    }
+
     public String getId() {
         return id;
     }

@@ -128,18 +128,16 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
 
     private MaterialTypeModel convertMaterialTypeDataToMaterialTypeModel(MaterialTypeData materialTypeData) {
 
-        MaterialTypeModel materialTypeModel = new MaterialTypeModel(
-                materialTypeData.getId().toString(),
-                materialTypeData.getName(),
-                materialTypeData.getDescription()
-        );
+        MaterialTypeModel materialTypeModel = new MaterialTypeModel();
+        materialTypeModel.setName(materialTypeData.getName());
+        materialTypeModel.setDescription(materialTypeData.getDescription());
+
         return materialTypeModel;
     }
 
     private MaterialModel convertMaterialDataToMaterialTypeModel(MaterialData materialData) {
 
         MaterialModel materialModel = new MaterialModel(
-                materialData.getId().toString(),
                 materialData.getName(),
                 materialData.getDescription(),
                 materialData.getMeasure().toString(),
@@ -154,7 +152,6 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
     protected MaterialData convertMaterialModelToMaterialData(MaterialModel model) {
 
         MaterialData data = new MaterialData(
-                Integer.parseInt(model.getId()),
                 model.getName(),
                 model.getDescription(),
                 Measure.valueOf(model.getMeasureName()),

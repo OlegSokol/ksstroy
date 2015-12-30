@@ -16,6 +16,7 @@
 <body>
 <div id="wraper">
     <a href="${pageContext.request.contextPath}/workType">View Work Types</a> <br>
+    <a href="${pageContext.request.contextPath}/material">View Material</a> <br>
     <zone:node zhd="${zhd}"/>
 </div>
 </body>

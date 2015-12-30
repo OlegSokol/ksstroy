@@ -55,7 +55,9 @@ public class MaterialAndMaterialTypeDaoImplTest {
     @Test
     public void testAddMaterialTypeByParent() throws Exception {
 
-        MaterialTypeModel materialTypeModel = new MaterialTypeModel("30", "mockMaterialTypeToRoot", "Description");
+        MaterialTypeModel materialTypeModel = new MaterialTypeModel();
+        materialTypeModel.setName("mockMaterialTypeToRoot");
+        materialTypeModel.setDescription("Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterialTypeByParent(convertMaterialTypeModelToData(materialTypeModel), "2");
@@ -120,7 +122,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
     @Test
     public void testAddMaterial() throws Exception {
-        MaterialModel materialModel = new MaterialModel("18", "material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
+        MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
@@ -179,7 +181,6 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
         MaterialTypeData materialTypeData = new MaterialTypeData();
 
-        materialTypeData.setId(Integer.parseInt(materialTypeModel.getId()));
         materialTypeData.setName(materialTypeModel.getName());
         materialTypeData.setDescription(materialTypeModel.getDescription());
 
