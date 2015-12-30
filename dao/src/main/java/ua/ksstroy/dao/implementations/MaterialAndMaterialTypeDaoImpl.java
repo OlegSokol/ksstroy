@@ -64,9 +64,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
             @Override
             public void process(SessionWrapper session) {
                 MaterialTypeModel materialTypeModel = session.get(MaterialTypeModel.class, materialId);
-                materialTypeModel.setDescription(newMaterialType.getDescription());
-                materialTypeModel.setName(newMaterialType.getName());
-
+                convertMaterialTypeDataToModel(materialTypeModel, newMaterialType);
                 session.saveOrUpdate(materialTypeModel);
             }
         });
@@ -102,15 +100,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
             @Override
             public void process(SessionWrapper session) {
                 MaterialModel materialModel = session.get(MaterialModel.class, materialId);
-
-                materialModel.setName(newMaterial.getName());
-                materialModel.setDescription(newMaterial.getDescription());
-                materialModel.setMeasureName(newMaterial.getMeasure().toString());
-                materialModel.setSize(newMaterial.getSize());
-                materialModel.setPlanedCost(newMaterial.getPlanedCost());
-                materialModel.setDealCost(newMaterial.getDealCost());
-                materialModel.setClosedCost(newMaterial.getClosedCost());
-
+                convertMaterialDataToMaterialModel(materialModel, newMaterial);
                 session.saveOrUpdate(materialModel);
             }
         });
@@ -184,6 +174,21 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         materialTypeData.setMaterialDataList(materialDataList);
 
         return materialTypeData;
+    }
+
+    private void convertMaterialDataToMaterialModel(MaterialModel materialModel, MaterialData newMaterial) {
+        materialModel.setName(newMaterial.getName());
+        materialModel.setDescription(newMaterial.getDescription());
+        materialModel.setMeasureName(newMaterial.getMeasure().toString());
+        materialModel.setSize(newMaterial.getSize());
+        materialModel.setPlanedCost(newMaterial.getPlanedCost());
+        materialModel.setDealCost(newMaterial.getDealCost());
+        materialModel.setClosedCost(newMaterial.getClosedCost());
+    }
+
+    private void convertMaterialTypeDataToModel(MaterialTypeModel materialTypeModel, MaterialTypeData newMaterialType) {
+        materialTypeModel.setDescription(newMaterialType.getDescription());
+        materialTypeModel.setName(newMaterialType.getName());
     }
 
 }

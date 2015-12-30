@@ -9,42 +9,42 @@ import java.util.List;
 
 public interface Zone {
 
-	public String getId();
+	String getId();
 
-	public void setId(String id);
+	void setId(String id);
 
-	public String getName();
+	String getName();
 
-	public void setName(String name);
+	void setName(String name);
 
-	public List<Zone> getAdditional();
+	List<Zone> getAdditional();
 
-	public void setAdditional(List<Zone> additional);
+	void setAdditional(List<Zone> additional);
 
-	public void addAdditional(Zone zoneAddit);
+	void addAdditional(Zone zoneAddit);
 
-	public List<Zone> getSurplus();
+	List<Zone> getSurplus();
 
-	public void setSurplus(List<Zone> surplus);
+	void setSurplus(List<Zone> surplus);
 
-	public void addSurplus(Zone zoneSurpl);
+	void addSurplus(Zone zoneSurpl);
 
-	public Measure getMeasure();
+	Measure getMeasure();
 
-	public void setMeasure(Measure measure);
+	void setMeasure(Measure measure);
 
-	public Double getWidth();
+	Double getWidth();
 
-	public void setWidth(Double width);
+	void setWidth(Double width);
 
-	public Double getHeight();
+	Double getHeight();
 
-	public void setHeight(Double height);
+	void setHeight(Double height);
 
 	/*
 	 * calculate square of the Zone according to additional and surplus zones
 	 * squares.
 	 */
-	public Double getValue();
+	Double getValue();
 
 }

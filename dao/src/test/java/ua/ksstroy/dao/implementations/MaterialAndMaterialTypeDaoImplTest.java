@@ -38,7 +38,9 @@ public class MaterialAndMaterialTypeDaoImplTest {
     @Test
     public void testAddMaterialType() throws Exception {
 
-        MaterialTypeModel materialTypeModel = new MaterialTypeModel("30", "mockMaterialType", "Description");
+        MaterialTypeModel materialTypeModel = new MaterialTypeModel();
+        materialTypeModel.setName("mockMaterialType");
+        materialTypeModel.setDescription("Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToData(materialTypeModel));
@@ -75,10 +77,10 @@ public class MaterialAndMaterialTypeDaoImplTest {
     @Test
     public void testUpdateMaterialType() throws Exception {
 
-        MaterialTypeModel materialTypeModel = new MaterialTypeModel("30", "mockMaterialType", "Description");
+        MaterialTypeModel materialTypeModel = new MaterialTypeModel("mockMaterialType", "Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToMaterialWorkTypeDataFromUpdate(materialTypeModel));
+        materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToDataFromUpdate(materialTypeModel));
 
         MaterialTypeModel materialTypeResult;
 
@@ -92,19 +94,9 @@ public class MaterialAndMaterialTypeDaoImplTest {
         session.delete(materialTypeResult);
     }
 
-    private MaterialTypeData convertMaterialTypeModelToMaterialWorkTypeDataFromUpdate(MaterialTypeModel materialTypeModel) {
-
-        MaterialTypeData typeData = new MaterialTypeData(
-                Integer.parseInt(materialTypeModel.getId()),
-                materialTypeModel.getName(),
-                materialTypeModel.getDescription()
-        );
-        return typeData;
-    }
-
     @Test
     public void testRemoveMaterialType() throws Exception {
-        MaterialTypeModel materialTypeModel = new MaterialTypeModel("30", "mockMaterialType", "Description");
+        MaterialTypeModel materialTypeModel = new MaterialTypeModel("mockMaterialType", "Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToData(materialTypeModel));
@@ -140,7 +132,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
     @Test
     public void testUpdateMaterial() throws Exception {
 
-        MaterialModel materialModel = new MaterialModel("18", "material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
+        MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
@@ -161,7 +153,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
     @Test
     public void testRemoveMaterial() throws Exception {
-        MaterialModel materialModel = new MaterialModel("18", "material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
+        MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().convertMaterialModelToMaterialData(materialModel), "6");
@@ -185,6 +177,15 @@ public class MaterialAndMaterialTypeDaoImplTest {
         materialTypeData.setDescription(materialTypeModel.getDescription());
 
         return materialTypeData;
+    }
+
+    private MaterialTypeData convertMaterialTypeModelToDataFromUpdate(MaterialTypeModel materialTypeModel) {
+
+        MaterialTypeData typeData = new MaterialTypeData(
+                materialTypeModel.getName(),
+                materialTypeModel.getDescription()
+        );
+        return typeData;
     }
 
 }

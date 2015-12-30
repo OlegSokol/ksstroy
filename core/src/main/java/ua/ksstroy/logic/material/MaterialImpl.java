@@ -2,7 +2,10 @@ package ua.ksstroy.logic.material;
 
 import ua.ksstroy.logic.zone.Measure;
 
-public class MaterialData {
+/**
+ * Created by Zheka on 30.12.2015.
+ */
+public class MaterialImpl implements Material{
 
     private Integer id;
 
@@ -19,22 +22,6 @@ public class MaterialData {
     private Double dealCost;
 
     private Double closedCost;
-
-    public MaterialData() {
-
-    }
-
-    public MaterialData(String name, String description,
-                        Measure measure, Double size, Double planedCost,
-                        Double dealCost, Double closedCost) {
-        this.name = name;
-        this.description = description;
-        this.measure = measure;
-        this.size = size;
-        this.planedCost = planedCost;
-        this.dealCost = dealCost;
-        this.closedCost = closedCost;
-    }
 
     public Integer getId() {
         return id;
@@ -98,5 +85,15 @@ public class MaterialData {
 
     public void setClosedCost(Double closedCost) {
         this.closedCost = closedCost;
+    }
+
+    @Override
+    public Double getSummaryPriceMaterial() {
+        return null;
+    }
+
+    @Override
+    public Double getSummaryQuantityMaterial() {
+        return null;
     }
 }

@@ -39,8 +39,7 @@ public class MaterialTypeModel implements Serializable {
     public MaterialTypeModel() {
     }
 
-    public MaterialTypeModel(String id, String name, String description) {
-        this.id = id;
+    public MaterialTypeModel(String name, String description) {
         this.name = name;
         this.description = description;
     }

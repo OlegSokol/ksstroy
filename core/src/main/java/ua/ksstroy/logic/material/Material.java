@@ -2,85 +2,50 @@ package ua.ksstroy.logic.material;
 
 import ua.ksstroy.logic.zone.Measure;
 
-public class Material {
+public interface Material {
 
-    private Integer id;
+    Integer getId();
 
-    private String name;
+    void setId(Integer id);
 
-    private String description;
+    String getName();
 
-    private Measure measure;
+    void setName(String name);
 
-    private Double size;
+    String getDescription();
 
-    private Double planedCost;
+    void setDescription(String description);
 
-    private Double dealCost;
+    Measure getMeasure();
 
-    private Double closedCost;
+    void setMeasure(Measure measure);
 
-    public Integer getId() {
-        return id;
-    }
+    Double getSize();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    void setSize(Double size);
 
-    public String getName() {
-        return name;
-    }
+    Double getPlanedCost();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    void setPlanedCost(Double planedCost);
 
-    public String getDescription() {
-        return description;
-    }
+    Double getDealCost();
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    void setDealCost(Double dealCost);
 
-    public Measure getMeasure() {
-        return measure;
-    }
+    Double getClosedCost();
 
-    public void setMeasure(Measure measure) {
-        this.measure = measure;
-    }
+    void setClosedCost(Double closedCost);
 
-    public Double getSize() {
-        return size;
-    }
+    /*
+    * Calculate price all material into material Type
+    */
 
-    public void setSize(Double size) {
-        this.size = size;
-    }
+    Double getSummaryPriceMaterial();
 
-    public Double getPlanedCost() {
-        return planedCost;
-    }
+    /*
+    * Calculate quantity all material into material Type
+    */
 
-    public void setPlanedCost(Double planedCost) {
-        this.planedCost = planedCost;
-    }
+    Double getSummaryQuantityMaterial();
 
-    public Double getDealCost() {
-        return dealCost;
-    }
-
-    public void setDealCost(Double dealCost) {
-        this.dealCost = dealCost;
-    }
-
-    public Double getClosedCost() {
-        return closedCost;
-    }
-
-    public void setClosedCost(Double closedCost) {
-        this.closedCost = closedCost;
-    }
 }

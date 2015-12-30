@@ -1,9 +1,6 @@
 package ua.ksstroy.logic.worktype;
 
-import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.zone.Measure;
-
-import java.util.Set;
 
 public class WorkType {
 
@@ -16,8 +13,6 @@ public class WorkType {
     private Measure measure;
 
     private Double unitPrice;
-
-    private Set<Material> materials;
 
     public Integer getId() {
         return id;
@@ -57,14 +52,6 @@ public class WorkType {
 
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
-    }
-
-    public Set<Material> getMaterials() {
-        return materials;
-    }
-
-    public void setMaterials(Set<Material> materials) {
-        this.materials = materials;
     }
 
 }
