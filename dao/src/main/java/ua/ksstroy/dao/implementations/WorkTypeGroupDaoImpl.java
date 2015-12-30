@@ -1,9 +1,7 @@
 package ua.ksstroy.dao.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.worktype.WorkTypeGroupDao;
-import ua.ksstroy.logic.worktype.WorkTypeGroupData;
+import ua.ksstroy.logic.worktype.*;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -57,10 +55,10 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
     }
 
     @Override
-    public WorkTypeGroupData getWorkTypeHierarchy() {
-        return helper.simpleAction(new GetInTransaction<WorkTypeGroupData>() {
-            public WorkTypeGroupData process(SessionWrapper session) {
-                WorkTypeGroupData workTypeHierarchy = convertWorkTypeGroupModelToData(session.get(WorkTypeGroupModel.class, "1"));
+    public WorkTypeGroup getWorkTypeHierarchy() {
+        return helper.simpleAction(new GetInTransaction<WorkTypeGroup>() {
+            public WorkTypeGroup process(SessionWrapper session) {
+                WorkTypeGroup workTypeHierarchy = convertWorkTypeGroupModelToWockTypeGroup(session.get(WorkTypeGroupModel.class, "1"));
                 return workTypeHierarchy;
             }
         });
@@ -81,7 +79,28 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
         });
     }
 
-    public WorkTypeGroupData convertWorkTypeGroupModelToData(WorkTypeGroupModel model) {
+    public WorkTypeGroup convertWorkTypeGroupModelToWockTypeGroup(WorkTypeGroupModel model) {
+        WorkTypeGroup workTypeGroup = new WorkTypeGroupImpl();
+        workTypeGroup.setId(Integer.parseInt(model.getId()));
+        workTypeGroup.setName(model.getName());
+
+        List<WorkTypeGroup> workTypeGroupList = new ArrayList<>();
+        for (WorkTypeGroupModel group : model.getSubGroups()) {
+            workTypeGroupList.add(convertWorkTypeGroupModelToWockTypeGroup(group));
+        }
+        workTypeGroup.setWorkTypeGroups(workTypeGroupList);
+
+        List<WorkType> workTypes = new ArrayList<>();
+        for (WorkTypeModel workTypeModel : model.getWorkTypeGroup()) {
+            workTypes.add(new WorkTypeDaoImpl().convertWorkTypeModelToWorkType(workTypeModel));
+        }
+        workTypeGroup.setWorkTypes(workTypes);
+
+        return workTypeGroup;
+
+    }
+
+    /*public WorkTypeGroupData convertWorkTypeGroupModelToData(WorkTypeGroupModel model) {
         WorkTypeGroupData data = new WorkTypeGroupData();
         data.setId(Integer.parseInt(model.getId()));
         data.setName(model.getName());
@@ -99,5 +118,5 @@ public class WorkTypeGroupDaoImpl implements WorkTypeGroupDao {
         data.setWorkTypesData(workTypeData);
 
         return data;
-    }
+    }*/
 }

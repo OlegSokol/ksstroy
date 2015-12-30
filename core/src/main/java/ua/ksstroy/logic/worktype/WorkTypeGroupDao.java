@@ -8,7 +8,7 @@ public interface WorkTypeGroupDao {
 
 	void removeWorkTypeGroup(String groupId);
 
-	WorkTypeGroupData getWorkTypeHierarchy();
+	WorkTypeGroup getWorkTypeHierarchy();
 
 	void updateWorkTypeGroupName(String groupId, String newName);
 

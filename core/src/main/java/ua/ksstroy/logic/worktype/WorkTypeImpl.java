@@ -7,16 +7,17 @@ import java.util.Set;
 
 /**
  * Logic for WorkTypes
- * Created by sokol on 30.12.2015.
+ * Created by soklakov on 30.12.2015.
  */
 public class WorkTypeImpl implements WorkType {
+
     private Integer id;
 
     private String name;
 
     private String description;
 
-    private Measure measure;
+    private String measure;
 
     private Double unitPrice;
 
@@ -46,11 +47,11 @@ public class WorkTypeImpl implements WorkType {
         this.description = description;
     }
 
-    public Measure getMeasure() {
+    public String getMeasure() {
         return measure;
     }
 
-    public void setMeasure(Measure measure) {
+    public void setMeasure(String measure) {
         this.measure = measure;
     }
 
@@ -62,11 +63,12 @@ public class WorkTypeImpl implements WorkType {
         this.unitPrice = unitPrice;
     }
 
-    public Set<Material> getMaterials() {
+    //TODO add material when material will be ready
+    /*public Set<Material> getMaterials() {
         return materials;
     }
 
     public void setMaterials(Set<Material> materials) {
         this.materials = materials;
-    }
+    }*/
 }

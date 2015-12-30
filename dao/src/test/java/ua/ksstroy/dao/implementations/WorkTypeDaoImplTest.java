@@ -8,7 +8,9 @@ import org.junit.Test;
 
 import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.zone.Measure;
+ import ua.ksstroy.logic.worktype.WorkTypeImpl;
+ import ua.ksstroy.logic.zone.Measure;
+ import ua.ksstroy.models.worktype.WorkTypeModel;
 
 public class WorkTypeDaoImplTest {
 	
@@ -20,13 +22,13 @@ public class WorkTypeDaoImplTest {
 	@Test
 	public void testaddWorkType() {
 		WorkTypeDaoImpl workTypeDaoImpl = new WorkTypeDaoImpl();
-		WorkTypeData worTypeData = new WorkTypeData();
-		worTypeData.setDescription(mockWorkTypeModelDescription);
-		worTypeData.setMeasure(mockWorkTypeModelMeasureName);
-		worTypeData.setName(mockWorkTypeModelName);
-		worTypeData.setUnitPrice(mockWorkTypeModelUnitPrice);
+		WorkType worType = new WorkTypeImpl();
+		worType.setDescription(mockWorkTypeModelDescription);
+		worType.setMeasure(mockWorkTypeModelMeasureName);
+		worType.setName(mockWorkTypeModelName);
+		worType.setUnitPrice(mockWorkTypeModelUnitPrice);
 		
-		workTypeDaoImpl.addWorkType(worTypeData, "2");
+		workTypeDaoImpl.addWorkType(worType, "2");
 	}
 	
 	@Test

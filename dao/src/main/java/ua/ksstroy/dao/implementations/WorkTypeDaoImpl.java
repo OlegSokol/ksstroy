@@ -1,8 +1,10 @@
 package ua.ksstroy.dao.implementations;
 
 import org.springframework.stereotype.Component;
+import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeDao;
 import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.worktype.WorkTypeImpl;
 import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
@@ -15,12 +17,11 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 	private TransactionHelper helper = new TransactionHelper();
 
 	@Override
-	public void addWorkType(final WorkTypeData workTypeData, final String parentGroupId) {
+	public void addWorkType(final WorkType workType, final String parentGroupId) {
 		 helper.doWithCommit(new DoInTransaction() {
 	            @Override
 	            public void process(SessionWrapper session) {
-	                WorkTypeModel model;
-	                model = convertWorkTypeDataToModel(workTypeData);
+	                WorkTypeModel model = convertWorkTypeToWorkTypeModel(workType);
 					WorkTypeGroupModel parentGroup = session.get(WorkTypeGroupModel.class, parentGroupId);
 					parentGroup.getWorkTypeGroup().add(model);
 					session.saveOrUpdate(parentGroup);
@@ -42,7 +43,7 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 	}
 
 	@Override
-	public void updateWorkType(final String WorkTypeId, final WorkTypeData newWorkType) {
+	public void updateWorkType(final String WorkTypeId, final WorkType newWorkType) {
 		helper.doWithCommit(new DoInTransaction() {
 			@Override
 			public void process(SessionWrapper session) {
@@ -58,8 +59,34 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		});
 	}
 
+	public WorkTypeModel convertWorkTypeToWorkTypeModel(WorkType workType) {
+		WorkTypeModel model = new WorkTypeModel();
 
-	private WorkTypeModel convertWorkTypeDataToModel(WorkTypeData workTypeData) {
+		model.setId(workType.getId());
+		model.setName(workType.getName());
+		model.setUnitPrice(workType.getUnitPrice());
+		model.setMeasureName(workType.getMeasure());
+		model.setDescription(workType.getDescription());
+
+		return model;
+
+	}
+
+	public WorkType convertWorkTypeModelToWorkType(WorkTypeModel model) {
+		WorkType workType = new WorkTypeImpl();
+
+		workType.setId(model.getId());
+		workType.setName(model.getName());
+		workType.setDescription(model.getDescription());
+		workType.setUnitPrice(model.getUnitPrice());
+		workType.setMeasure(model.getMeasureName());
+
+		return workType;
+
+	}
+
+
+	/*private WorkTypeModel convertWorkTypeDataToModel(WorkTypeData workTypeData) {
 		WorkTypeModel model = new WorkTypeModel();
 		model.setId(workTypeData.getId());
 		model.setName(workTypeData.getName());
@@ -67,7 +94,7 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		model.setMeasureName(workTypeData.getMeasure());
 		model.setUnitPrice(workTypeData.getUnitPrice());
 
-		/*
+		*//*
 		 * TODO add Material Set Set<MaterialModel> materialsModelSet = new
 		 * HashSet<>(); Set<Material> materialsSet = workType.getMaterials();
 		 * 
@@ -76,7 +103,7 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		 * materialsModelSet.add(convertMaterialToModel(material)); }
 		 * 
 		 * model.setMaterials(materialsModelSet);
-		 */
+		 *//*
 
 		return model;
 	}
@@ -89,17 +116,17 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 		workType.setMeasure(Measure.valueOf(model.getMeasureName()));
 		workType.setUnitPrice(model.getUnitPrice());
 
-		/*
+		*//*
 		 * TODO add Material Set Set<Material> materialsSet = new HashSet<>();
 		 * Set<MaterialModel> materialsModelSet = model.getMaterials(); for
 		 * (MaterialModel materialModel : materialsModelSet) {
 		 * materialsSet.add(convertModelToMaterial(materialModel)); }
 		 * 
 		 * workType.setMaterials(materialsSet);
-		 */
+		 *//*
 		return workType;
 	}
-	/*
+	*//*
 	 * TODO add material converters private MaterialModel
 	 * convertMaterialToModel(Material material) {
 	 * 

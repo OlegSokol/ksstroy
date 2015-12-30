@@ -12,8 +12,7 @@ import ua.ksstroy.models.zone.GroupsModel;
 @Entity
 @Table(name = "worktypes", catalog = "ksstroy")
 public class WorkTypeModel implements Serializable {
-	
-	
+
 	private static final long serialVersionUID = -940277992431249690L;
 
 	@Id
@@ -75,8 +74,8 @@ public class WorkTypeModel implements Serializable {
 		return measureName;
 	}
 
-	public void setMeasureName(Measure measureName) {
-		this.measureName = measureName.toString();
+	public void setMeasureName(String measureName) {
+		this.measureName = measureName;
 	}
 
 	public Double getUnitPrice() {

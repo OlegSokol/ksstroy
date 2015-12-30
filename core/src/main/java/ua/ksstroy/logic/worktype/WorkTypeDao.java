@@ -1,11 +1,13 @@
 package ua.ksstroy.logic.worktype;
 
+import ua.ksstroy.models.worktype.WorkTypeModel;
+
 public interface WorkTypeDao {
 
-    void addWorkType(WorkTypeData workTypeData, String parentGroupId);
+    void addWorkType(WorkType workType, String parentGroupId);
 
     void removeWorkType(String workTypeId);
 
-    void updateWorkType(String workTypeId, WorkTypeData newWorkType);
+    void updateWorkType(String workTypeId, WorkType newWorkType);
 
 }
