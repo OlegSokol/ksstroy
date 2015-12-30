@@ -5,66 +5,31 @@ import ua.ksstroy.logic.zone.Measure;
 
 import java.util.Set;
 
-public class WorkType {
+public interface WorkType {
 
-    private Integer id;
 
-    private String name;
+    public Integer getId();
 
-    private String description;
+    public void setId(Integer id);
 
-    private Measure measure;
+    public String getName();
 
-    private Double unitPrice;
+    public void setName(String name);
 
-    private Set<Material> materials;
+    public String getDescription();
 
-    public Integer getId() {
-        return id;
-    }
+    public void setDescription(String description);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public Measure getMeasure();
 
-    public String getName() {
-        return name;
-    }
+    public void setMeasure(Measure measure);
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public Double getUnitPrice();
 
-    public String getDescription() {
-        return description;
-    }
+    public void setUnitPrice(Double unitPrice);
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public Set<Material> getMaterials();
 
-    public Measure getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(Measure measure) {
-        this.measure = measure;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Set<Material> getMaterials() {
-        return materials;
-    }
-
-    public void setMaterials(Set<Material> materials) {
-        this.materials = materials;
-    }
+    public void setMaterials(Set<Material> materials);
 
 }
