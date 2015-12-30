@@ -164,7 +164,7 @@ CREATE TABLE `materials` (
   `planed_cost`  DOUBLE UNSIGNED DEFAULT NULL,
   `deal_cost`    DOUBLE UNSIGNED DEFAULT NULL,
   `closed_cost`  DOUBLE UNSIGNED DEFAULT NULL,
-  `parent_id`    BIGINT(20)      NOT NULL,
+  `parent_id`    BIGINT(20),
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`)
 )

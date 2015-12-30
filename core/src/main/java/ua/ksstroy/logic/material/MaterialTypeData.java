@@ -24,6 +24,11 @@ public class MaterialTypeData {
         this.description = description;
     }
 
+    public MaterialTypeData(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }

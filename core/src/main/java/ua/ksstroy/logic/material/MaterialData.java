@@ -36,6 +36,18 @@ public class MaterialData {
         this.closedCost = closedCost;
     }
 
+    public MaterialData(String name, String description,
+                        Measure measure, Double size, Double planedCost,
+                        Double dealCost, Double closedCost) {
+        this.name = name;
+        this.description = description;
+        this.measure = measure;
+        this.size = size;
+        this.planedCost = planedCost;
+        this.dealCost = dealCost;
+        this.closedCost = closedCost;
+    }
+
     public Integer getId() {
         return id;
     }

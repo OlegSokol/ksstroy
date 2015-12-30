@@ -77,7 +77,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                session.delete(session.get(MaterialTypeModel.class, Integer.parseInt(materialId)));
+                session.delete(session.get(MaterialTypeModel.class, materialId));
             }
         });
     }
@@ -103,6 +103,14 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
             public void process(SessionWrapper session) {
                 MaterialModel materialModel = session.get(MaterialModel.class, materialId);
 
+                materialModel.setName(newMaterial.getName());
+                materialModel.setDescription(newMaterial.getDescription());
+                materialModel.setMeasureName(newMaterial.getMeasure().toString());
+                materialModel.setSize(newMaterial.getSize());
+                materialModel.setPlanedCost(newMaterial.getPlanedCost());
+                materialModel.setDealCost(newMaterial.getDealCost());
+                materialModel.setClosedCost(newMaterial.getClosedCost());
+
                 session.saveOrUpdate(materialModel);
             }
         });
@@ -113,7 +121,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                session.delete(session.get(MaterialModel.class, Integer.parseInt(materialId)));
+                session.delete(session.get(MaterialModel.class, materialId));
             }
         });
     }
@@ -143,7 +151,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         return materialModel;
     }
 
-    private MaterialData convertMaterialModelToMaterialData(MaterialModel model) {
+    protected MaterialData convertMaterialModelToMaterialData(MaterialModel model) {
 
         MaterialData data = new MaterialData(
                 Integer.parseInt(model.getId()),
@@ -158,7 +166,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         return data;
     }
 
-    private MaterialTypeData convertMaterialTypeModelToData(MaterialTypeModel materialTypeModel) {
+    protected MaterialTypeData convertMaterialTypeModelToData(MaterialTypeModel materialTypeModel) {
         MaterialTypeData materialTypeData = new MaterialTypeData();
         materialTypeData.setId(Integer.parseInt(materialTypeModel.getId()));
         materialTypeData.setName(materialTypeModel.getName());
