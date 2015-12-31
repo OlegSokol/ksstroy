@@ -15,6 +15,7 @@
 
 <ul class="zones">
     <c:forEach var="zones" items="${zhd.zones}">
+        <li>
         <div class="item">
             <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
                 ${zones.name}
@@ -38,5 +39,7 @@
             <zone:additional additional="${zones.additional}"/>
             <zone:surplus surplus="${zones.surplus}"/>
         </ul>
+
     </c:forEach>
+    </li>
 </ul>
