@@ -12,6 +12,8 @@
     <spring:url value="/resources/css/mainStyle.css" var="css"/>
     <link href="${css}" rel="stylesheet"/>
 
+    <spring:url value="/resources/js/mainScript.js" var="js"/>
+    <script type="text/javascript" src="${js}"></script>
 </head>
 <body>
 <div id="wraper">

@@ -10,7 +10,7 @@
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn"/>
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
-<div class="controller">
+<div class="controller hidden">
     <div class="controller_name">ADD ZONE</div>
     <form action="${pageContext.request.contextPath}/projects/addZone" method="post">
         <input type="hidden" name="parentGroupId" value="${zhd.id}">
@@ -35,6 +35,6 @@
             </tr>
             </tbody>
         </table>
-        <input class="accepth_changes_btn" type="image" src="${done_btn}">
+        <input class="accept_changes_btn clickableIcon" type="image" src="${done_btn}">
     </form>
 </div>

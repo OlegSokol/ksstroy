@@ -1,23 +1,11 @@
+/*THIS CSS SHOULD CONTAIN ONLY COMMON STYLES*/
+/*Page specific styles must be in their own css file*/
 body {
 	background-color: #E0E0DF;
 }
 
-a {
-	display: inline-block;
-	color: white;
-	margin-top: 3px;
-	text-decoration: none;
-	padding: .2em 1em;
-	outline: none;
-	border-width: 0 0;
-	border-style: solid none;
-	border-radius: 6px;
-	background: linear-gradient(rgb(104, 104, 104), rgba(53, 53, 53, 0.69)) rgba(0, 0, 0, 0.86);
-	transition: 0.2s;
-}
-
-#zoneHierarchiDataTree {
-	display: inline-block;
+li {
+	list-style-type: none;
 }
 
 #wraper {
@@ -25,34 +13,71 @@ a {
 	padding: 1%;
 }
 
-/*Zone Hierarchy data tree and all components*/
-#zoneHierarchiDataTree li {
-	list-style-type: none;
+.item {
+	vertical-align: top;
+	margin: 3px;
+	color: #666666;
+	background-color: #ffffff;
+	border-color: #eeeeee;
+	display: inline-block;
+	padding: 2px;
+	white-space: nowrap;
+	font-weight: normal;
+	font-size: 18px;
+	border-radius: 3px;
+	box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
 }
 
-.delete_btn:HOVER {
+.item a {
+	display: inline-block;
+	padding-left: 5%;
+	text-decoration: none;
+
+}
+
+.item a:hover {
+	display: inline-block;
+	transform: scale(1.1);
+	text-decoration: none;
+}
+
+.item a:active {
+	display: inline-block;
 	transform: scale(1.3);
+	text-decoration: none;
 }
 
-.delete_btn:ACTIVE {
-	transform: scale(0.75);
+.item a:visited {
+	display: inline-block;
+	padding-left: 5%;
+	text-decoration: none;
+}
+
+/*button begin
+*/
+.dropdown_btn {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.delete_btn {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.show_update_forms_btn {
+	display: inline-block;
+	padding-top: 2px;
 }
 
 .add_btn {
-	display: table;
-}
-
-.add_btn:HOVER {
-	transform: scale(1.3);
-}
-
-.add_btn:ACTIVE {
-	transform: scale(0.75);
+	display: inline-block;
+	padding-top: 2px;
 }
 
 .clickableIcon {
-	vertical-align: middle;
-	display: inline-block;
+	cursor: pointer;
 }
 
 .clickableIcon:HOVER {
@@ -63,17 +88,9 @@ a {
 	transform: scale(0.75);
 }
 
-.accepth_changes_btn {
+.accept_changes_btn {
 	position: relative;
 	float: right;
-}
-
-.accepth_changes_btn:HOVER {
-	transform: scale(1.3);
-}
-
-.accepth_changes_btn:ACTIVE {
-	transform: scale(0.75);
 }
 
 .add_delete_wrapper {
@@ -81,52 +98,26 @@ a {
 	display: inline-block;
 }
 
-.item {
-	vertical-align: top;
-	margin: 10px;
-	color: #666666;
-	background-color: #ffffff;
-	border-color: #eeeeee;
-	display: inline-block;
-	padding: 2px;
-	font-weight: normal;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid transparent;
-	white-space: nowrap;
-	font-size: 18px;
-	line-height: 1.846;
-	border-radius: 3px;
-	-webkit-box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
-	box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
+.add_delete_wrapper form {
+	margin-bottom: 0px;
 }
 
-.controller {
-	vertical-align: top;
-	text-align: center;
-	margin: 10px;
-	color: #666666;
-	background-color: #ffffff;
-	border-color: #eeeeee;
-	display: none; 
-	display: inline-block;
-	padding: 5px;
-	font-weight: normal;
-	cursor: pointer;
-	background-image: none;
-	border: 1px solid transparent;
-	white-space: nowrap;
-	font-size: 18px;
-	line-height: 1.846;
-	border-radius: 3px;
-	-webkit-box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
-	box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
-	text-align: right;
-}
+/*buttons end
+*/
 
 .controller_name {
 	text-align: center;
 	font-size: 80%;
+}
+
+.controller {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/*
+.hidden should be in the end of the css
+*/
+.hidden {
+	display: none;
 }

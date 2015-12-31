@@ -12,7 +12,7 @@
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
 
-<div class="controller">
+<div class="controller hidden">
     <div class="controller_name">ADD SURPLUS</div>
     <form action="${pageContext.request.contextPath}/projects/addSurplusZone" method="post">
         <input type="hidden" name="parentZoneId" value="${zones.id}">
@@ -37,6 +37,6 @@
             </tr>
             </tbody>
         </table>
-        <input class="accepth_changes_btn" type="image" src="${done_btn}">
+        <input class="accept_changes_btn" type="image" src="${done_btn}">
     </form>
 </div>

@@ -11,30 +11,29 @@
 <spring:url value="/resources/img/add_btn.png" var="add_btn"/>
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn"/>
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
+<spring:url value="/resources/img/show_updates_btn.png" var="show_update_forms_btn"/>
 
 <ul class="zones">
     <c:forEach var="zones" items="${zhd.zones}">
         <div class="item">
-            <img class="clickableIcon" src="${arrow_drop_down}" alt="Arrow">
+            <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
                 ${zones.name}
             <div class="add_delete_wrapper">
                 <div class="delete_btn">
                     <form action="${pageContext.request.contextPath}/projects/removeZone" method="post">
                         <input type="hidden" name="projectId" value="${projectId}">
                         <input type="hidden" name="zoneId" value="${zones.id}">
-                        <input type="image" src="${delete_btn}" alt="Delete">
+                        <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
                     </form>
                 </div>
-                <div class="add_btn">
-                    <img src="${add_btn}" alt="Add">
-                </div>
+                <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+                <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
             </div>
-        </div>
 
         <zone:addAdditional zones="${zones}"/>
         <zone:addSurplus zones="${zones}"/>
         <zone:updateZone zones="${zones}"/>
-
+        </div>
         <ul class="subZones">
             <zone:additional additional="${zones.additional}"/>
             <zone:surplus surplus="${zones.surplus}"/>
