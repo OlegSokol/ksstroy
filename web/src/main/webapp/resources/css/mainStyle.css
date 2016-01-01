@@ -115,9 +115,24 @@ li {
 	vertical-align: middle;
 }
 
+
 /*
 .hidden should be in the end of the css
 */
 .hidden {
 	display: none;
+}
+.initializers .controller{
+	display:inline-block;
+	vertical-align: top;
+	margin: 3px;
+	color: #666666;
+	background-color: #ffffff;
+	border-color: #eeeeee;
+	padding: 2px;
+	white-space: nowrap;
+	font-weight: normal;
+	font-size: 18px;
+	border-radius: 3px;
+	box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
 }
