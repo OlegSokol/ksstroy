@@ -15,16 +15,16 @@ import ua.ksstroy.logic.zone.ZoneManager;
 import javax.annotation.Resource;
 
 @Controller
-public class HierarhyController {
+public class ZonesController {
 
     private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
     @Resource(name = "ZoneManagerImpl")
     ZoneManager zoneManager;
     ModelAndView project;
 
-    @RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
-    public ModelAndView showZHD(@PathVariable String projectId) {
-        project = new ModelAndView("hierarhyByProject");
+    @RequestMapping(value = "/projects/{projectId}/zones", method = RequestMethod.GET)
+    public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
+        project = new ModelAndView("zones");
         project.addObject("projectId", projectId);
         ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId);
         project.addObject("rootGroupId", zhd.getId());

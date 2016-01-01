@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>
+<%@ taglib prefix="group" tagdir="/WEB-INF/tags/group" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,9 +18,11 @@
     <script type="text/javascript" src="${js}"></script>
 </head>
 <body>
-<div id="wraper">
-    <a href="${pageContext.request.contextPath}/workType">View Work Types</a> <br>
-    <a href="${pageContext.request.contextPath}/material">View Material</a> <br>
+<div id="wrapper">
+    <ul class="initializers">
+        <group:addGroup zhd ="${zhd}"/>
+        <group:addZone zhd ="${zhd}"/>
+    </ul>
     <zone:node zhd="${zhd}"/>
 </div>
 </body>
