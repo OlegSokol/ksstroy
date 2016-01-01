@@ -8,10 +8,16 @@
 <head>
     <spring:url value="/resources/css/mainStyle.css" var="css"/>
     <link href="${css}" rel="stylesheet"/>
+    <spring:url value="/resources/js/mainScript.js" var="js"/>
+    <script src="${js}"></script>
 </head>
 <body>
 <div id="wraper">
     <ul id="workTypeDataTree">
+        <ul class="initializers">
+            <worktype:addWorkTypeGroup innerWorkTypeGroup="${workTypeGroup}"/>
+            <worktype:addWorkTypes workTypeGroup="${workTypeGroup}"/>
+        </ul>
         <worktype:node workTypeGroup="${workTypeObject}"/>
     </ul>
 </div>

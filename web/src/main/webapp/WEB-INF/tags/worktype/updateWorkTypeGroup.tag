@@ -8,7 +8,7 @@
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
 <c:if test="${workTypeGroup.name ne 'root_group'}">
-    <div class="controller">
+    <div class="controller hidden">
         <div class="controller_name">Update WorkTypeGroupName</div>
         <form action="${pageContext.request.contextPath}/workType/updateWorkTypeGroupName" method="post">
             <input type="hidden" name="groupId" value="${workTypeGroup.id}">
@@ -21,7 +21,7 @@
                 </tr>
                 </tbody>
             </table>
-            <input class="accepth_changes_btn" type="image" src="${done_btn}">
+            <input class="accept_changes_btn clickableIcon" type="image" src="${done_btn}">
         </form>
     </div>
 </c:if>

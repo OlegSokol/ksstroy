@@ -124,7 +124,7 @@ CREATE TABLE `worktype_groups` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `worktype_groups` VALUES (1, 'root_group', NULL);
+INSERT INTO `worktype_groups` VALUES (1, 'root_worktype_group', NULL);
 INSERT INTO `worktype_groups` VALUES (2, 'group_level_1A', 1);
 INSERT INTO `worktype_groups` VALUES (3, 'group_level_1B', 1);
 INSERT INTO `worktype_groups` VALUES (4, 'group_level_2A', 2);
