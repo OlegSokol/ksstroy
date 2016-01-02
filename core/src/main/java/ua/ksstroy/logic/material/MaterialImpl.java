@@ -2,10 +2,7 @@ package ua.ksstroy.logic.material;
 
 import ua.ksstroy.logic.zone.Measure;
 
-/**
- * Created by Zheka on 30.12.2015.
- */
-public class MaterialImpl implements Material{
+public class MaterialImpl implements Material {
 
     private Integer id;
 
@@ -22,6 +19,22 @@ public class MaterialImpl implements Material{
     private Double dealCost;
 
     private Double closedCost;
+
+    public MaterialImpl() {
+    }
+
+    public MaterialImpl(Integer id, String name, String description,
+                        Measure measure, Double size, Double planedCost,
+                        Double dealCost, Double closedCost) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.measure = measure;
+        this.size = size;
+        this.planedCost = planedCost;
+        this.dealCost = dealCost;
+        this.closedCost = closedCost;
+    }
 
     public Integer getId() {
         return id;

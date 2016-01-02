@@ -16,10 +16,10 @@ public class MaterialTypeData {
     private List<MaterialData> materialDataList = new ArrayList<>();
 
     public MaterialTypeData() {
-
     }
 
-    public MaterialTypeData(String name, String description) {
+    public MaterialTypeData(Integer id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
     }

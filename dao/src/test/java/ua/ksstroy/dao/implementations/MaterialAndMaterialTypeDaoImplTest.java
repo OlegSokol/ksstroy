@@ -1,22 +1,8 @@
 package ua.ksstroy.dao.implementations;
 
-import org.hibernate.Session;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import ua.ksstroy.logic.material.MaterialData;
-import ua.ksstroy.logic.material.MaterialTypeData;
-import ua.ksstroy.logic.zone.Measure;
-import ua.ksstroy.models.material.MaterialModel;
-import ua.ksstroy.models.material.MaterialTypeModel;
-import ua.ksstroy.persistence.HibernateUtil;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 public class MaterialAndMaterialTypeDaoImplTest {
 
-    private Session session;
+    /*private Session session;
 
     @Before
     public void setUp() throws Exception {
@@ -118,7 +104,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
-                convertMaterialModelToMaterialData(materialModel), "6");
+                convertMaterialModelToMaterialImpl(materialModel), "6");
 
         MaterialModel materialResult;
 
@@ -136,7 +122,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
-                convertMaterialModelToMaterialData(materialModel), "6");
+                convertMaterialModelToMaterialImpl(materialModel), "6");
 
         MaterialModel materialResult;
 
@@ -156,7 +142,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().convertMaterialModelToMaterialData(materialModel), "6");
+        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().convertMaterialModelToMaterialImpl(materialModel), "6");
 
         MaterialModel materialResult;
 
@@ -187,5 +173,6 @@ public class MaterialAndMaterialTypeDaoImplTest {
         );
         return typeData;
     }
-
+    */
 }
+

@@ -2,13 +2,13 @@ package ua.ksstroy.logic.material;
 
 public interface MaterialTypeDao {
 
-    MaterialTypeData getMaterialHierarchy();
+    MaterialType getMaterialHierarchy();
 
-    void addMaterialType(final MaterialTypeData materialTypeDao);
+    void addMaterialType(final MaterialType materialTypeDao);
 
-    void addMaterialTypeByParent(final MaterialTypeData materialTypeDao, final String parentMaterialTypeId);
+    void addMaterialTypeByParent(final MaterialType materialTypeDao, final String parentMaterialTypeId);
 
-    void updateMaterialType(final String materialId, final MaterialTypeData newMaterialType);
+    void updateMaterialType(final String materialId, final MaterialType newMaterialType);
 
     void removeMaterialType(final String materialId);
 

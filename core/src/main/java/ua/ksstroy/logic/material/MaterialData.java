@@ -21,12 +21,11 @@ public class MaterialData {
     private Double closedCost;
 
     public MaterialData() {
-
     }
 
-    public MaterialData(String name, String description,
-                        Measure measure, Double size, Double planedCost,
-                        Double dealCost, Double closedCost) {
+    public MaterialData(Integer id, String name, String description, Measure measure,
+                        Double size, Double planedCost, Double dealCost, Double closedCost) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.measure = measure;
