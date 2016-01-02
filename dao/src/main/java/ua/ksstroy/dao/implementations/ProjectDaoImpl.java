@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import ua.ksstroy.logic.project.Project;
 import ua.ksstroy.logic.project.ProjectDao;
 import ua.ksstroy.models.project.ProjectModel;
-import ua.ksstroy.models.project.UserModel;
+import ua.ksstroy.models.user.UserModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
 @Component("projectDao")

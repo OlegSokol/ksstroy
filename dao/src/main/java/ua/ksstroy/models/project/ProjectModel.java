@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import ua.ksstroy.models.user.UserModel;
 import ua.ksstroy.models.zone.GroupsModel;
 
 @SuppressWarnings("serial")

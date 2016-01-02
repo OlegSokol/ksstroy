@@ -179,7 +179,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
     }
 
     private void convertMaterialDataToMaterialModel(MaterialModel materialModel, MaterialData newMaterial) {
-        materialModel.setName(newMaterial.getName());
+                materialModel.setName(newMaterial.getName());
         materialModel.setDescription(newMaterial.getDescription());
         materialModel.setMeasureName(newMaterial.getMeasure().toString());
         materialModel.setSize(newMaterial.getSize());
