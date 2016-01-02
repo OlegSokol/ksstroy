@@ -150,6 +150,8 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
                 Double.parseDouble(String.valueOf(model.getDealCost())),
                 Double.parseDouble(String.valueOf(model.getClosedCost()))
         );
+        //TODO:refactoring: maybe should add this to the constructor
+        data.setId(Integer.parseInt(model.getId()));
         return data;
     }
 
