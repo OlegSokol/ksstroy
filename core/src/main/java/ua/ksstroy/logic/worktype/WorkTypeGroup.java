@@ -4,19 +4,19 @@ import java.util.List;
 
 public interface WorkTypeGroup {
 
-    public Integer getId();
+    Integer getId();
 
-    public void setId(Integer id);
+    void setId(Integer id);
 
-    public String getName();
+    String getName();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public List<WorkTypeGroup> getWorkTypeGroups();
+    List<WorkTypeGroup> getWorkTypeGroups();
 
-    public void setWorkTypeGroups(List<WorkTypeGroup> workTypeGroups);
+    void setWorkTypeGroups(List<WorkTypeGroup> workTypeGroups);
 
-    public List<WorkType> getWorkTypes();
+    List<WorkType> getWorkTypes();
 
-    public void setWorkTypes(List<WorkType> workTypes);
+    void setWorkTypes(List<WorkType> workTypes);
 }
