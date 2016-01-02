@@ -1,57 +1,30 @@
 package ua.ksstroy.logic.worktype;
 
-import ua.ksstroy.logic.zone.Measure;
+public interface WorkType {
 
-public class WorkType {
+    public Integer getId();
 
-    private Integer id;
+    public void setId(Integer id);
 
-    private String name;
+    public String getName();
 
-    private String description;
+    public void setName(String name);
 
-    private Measure measure;
+    public String getDescription();
 
-    private Double unitPrice;
+    public void setDescription(String description);
 
-    public Integer getId() {
-        return id;
-    }
+    public String getMeasure();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setMeasure(String measure);
 
-    public String getName() {
-        return name;
-    }
+    public Double getUnitPrice();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setUnitPrice(Double unitPrice);
 
-    public String getDescription() {
-        return description;
-    }
+    //TODO add materials when materials will be ready
+    //public Set<Material> getMaterials();
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Measure getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(Measure measure) {
-        this.measure = measure;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
+    //public void setMaterials(Set<Material> materials);
 
 }

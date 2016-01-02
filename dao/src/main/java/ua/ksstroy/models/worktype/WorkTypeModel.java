@@ -75,8 +75,8 @@ public class WorkTypeModel implements Serializable {
 		return measureName;
 	}
 
-	public void setMeasureName(Measure measureName) {
-		this.measureName = measureName.toString();
+	public void setMeasureName(String measureName) {
+		this.measureName = measureName;
 	}
 
 	public Double getUnitPrice() {
