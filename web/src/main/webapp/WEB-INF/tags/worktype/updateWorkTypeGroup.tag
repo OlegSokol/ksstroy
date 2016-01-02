@@ -10,7 +10,7 @@
 <c:if test="${workTypeGroup.name ne 'root_group'}">
     <div class="controller hidden">
         <div class="controller_name">Update WorkTypeGroupName</div>
-        <form action="${pageContext.request.contextPath}/workType/updateWorkTypeGroupName" method="post">
+        <form action="${pageContext.request.contextPath}/projects/updateWorkTypeGroupName" method="post">
             <input type="hidden" name="groupId" value="${workTypeGroup.id}">
             <input type="hidden" name="projectId" value="${projectId}">
             <table>

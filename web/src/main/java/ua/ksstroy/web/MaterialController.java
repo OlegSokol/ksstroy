@@ -1,6 +1,7 @@
 package ua.ksstroy.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,16 +23,16 @@ public class MaterialController {
     MaterialData materialData;
     MaterialTypeData materialTypeData;
 
-    @RequestMapping(value = "/material", method = RequestMethod.GET)
-    public ModelAndView showZHD() {
-
+    @RequestMapping(value = "/projects/{projectId}/material", method = RequestMethod.GET)
+    public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
         this.materialModelView = new ModelAndView("materials");
+        this.materialModelView.addObject("projectId", projectId);
         this.materialModelView.addObject("materialObject", materialManager.getMaterialHierarchy());
 
         return materialModelView;
     }
 
-   /* @RequestMapping(value = "/material/addMaterialType", method = RequestMethod.POST)
+   /* @RequestMapping(value = "/projects/addMaterialType", method = RequestMethod.POST)
     public String addOuterMaterialType(@RequestParam("name") String name,
                                        @RequestParam("description") String description,
                                        @RequestParam("projectId") String projectId) {
@@ -45,7 +46,7 @@ public class MaterialController {
         return "redirect:" + projectId;
     }*/
 
-    @RequestMapping(value = "/material/addMaterialType", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/addMaterialType", method = RequestMethod.POST)
     public String addInnerMaterialType(@RequestParam("name") String name,
                                        @RequestParam("description") String description,
                                        @RequestParam("parentId") String parentMaterialTypeId,
@@ -57,10 +58,10 @@ public class MaterialController {
 
         this.materialManager.addMaterialTypeByParent(materialTypeData, parentMaterialTypeId);
 
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/material";
     }
 
-    @RequestMapping(value = "/material/updateMaterialType", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/updateMaterialType", method = RequestMethod.POST)
     public String updateMaterialType(@RequestParam("id") String id,
                                      @RequestParam("name") String name,
                                      @RequestParam("description") String description,
@@ -72,19 +73,19 @@ public class MaterialController {
 
         this.materialManager.updateMaterialType(id, materialTypeData);
 
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/material";
     }
 
-    @RequestMapping(value = "/material/removeMaterialType", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/removeMaterialType", method = RequestMethod.POST)
     public String removeMaterialType(@RequestParam("id") String id,
                                      @RequestParam("projectId") String projectId) {
 
         this.materialManager.removeMaterialType(id);
 
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/material";
     }
 
-    @RequestMapping(value = "/material/addMaterial", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/addMaterial", method = RequestMethod.POST)
     public String addMaterial(@RequestParam("name") String name,
                               @RequestParam("description") String description,
                               @RequestParam("measure") String measure,
@@ -114,11 +115,11 @@ public class MaterialController {
 
         this.materialManager.addMaterial(materialData, parentMaterialTypeId);
 
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/material";
     }
 
 
-    @RequestMapping(value = "/material/updateMaterial", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/updateMaterial", method = RequestMethod.POST)
     public String updateMaterial(@RequestParam("id") String id,
                                  @RequestParam("name") String name,
                                  @RequestParam("description") String description,
@@ -148,15 +149,15 @@ public class MaterialController {
 
         this.materialManager.updateMaterial(id, materialData);
 
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/material";
     }
 
-    @RequestMapping(value = "/material/removeMaterial", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/removeMaterial", method = RequestMethod.POST)
     public String removeMaterial(@RequestParam("id") String id,
                                  @RequestParam("projectId") String projectId) {
 
         materialManager.removeMaterial(id);
 
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/material";
     }
 }

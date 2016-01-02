@@ -15,10 +15,9 @@
 <div id="wraper">
     <ul id="workTypeDataTree">
         <ul class="initializers">
-            <material:addMaterial materialTypeData="${materialObject}"/>
             <material:addMaterialType innerMaterialTypeData="${materialObject}"/>
+            <material:addMaterial materialTypeData="${materialObject}"/>
         </ul>
-
         <material:node materialTypeData="${materialObject}"/>
     </ul>
 </div>

@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <title>project</title>
-  <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
-  <link href="${commonCss}" rel="stylesheet"/>
+    <title>project</title>
+    <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
+    <link href="${commonCss}" rel="stylesheet"/>
     <spring:url value="/resources/css/project.css" var="customCss"/>
-  <link href="${customCss}" rel="stylesheet"/>
+    <link href="${customCss}" rel="stylesheet"/>
 
-  <spring:url value="/resources/js/main.js" var="js"/>
-  <script src="${js}"></script>
+    <spring:url value="/resources/js/main.js" var="js"/>
+    <script src="${js}"></script>
 </head>
 <body>
 this is single project page!!
@@ -21,8 +21,7 @@ this is single project page!!
 
         <a class="menu_item" href="${projectId}/zones">Zones</a>
 
-
-        <a class="menu_item"  href="#">
+        <a class="menu_item" href="#">
             Work(will be soon)
             <table>
                 <tbody>
@@ -35,8 +34,7 @@ this is single project page!!
         </a>
 
 
-
-        <a class="menu_item"  href="#">
+        <a class="menu_item" href="#">
             Materials(will be soon)
             <table>
                 <tbody>
@@ -49,7 +47,6 @@ this is single project page!!
         </a>
 
 
-
     </header>
 
 
@@ -57,17 +54,15 @@ this is single project page!!
         <h4>LIBRARY</h4>
         <li>
             <div>
-                <a class="menu_item" href="${pageContext.request.contextPath}/workType">WorkTypes</a>
+                <a class="menu_item" href="${projectId}/workType">WorkTypes</a>
             </div>
-
         </li>
         <li>
             <div>
-                <a class="menu_item" href="${pageContext.request.contextPath}/material">Materials</a>
+                <a class="menu_item" href="${projectId}/material">Materials</a>
             </div>
-
         </li>
     </ul>
-    </div>
+</div>
 </body>
 </html>

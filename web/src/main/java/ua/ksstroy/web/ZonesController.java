@@ -38,7 +38,7 @@ public class ZonesController {
                                   @RequestParam("projectId") String projectId) {
 
         zoneManager.addGroupToGroup(groupName, parentGroupId);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/addZone", method = RequestMethod.POST)
@@ -58,7 +58,7 @@ public class ZonesController {
         }
         zoneFromWeb.setMeasureName(measureName);
         zoneManager.addZone(zoneFromWeb, parentGroupId);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/addAdditionalZone", method = RequestMethod.POST)
@@ -77,7 +77,7 @@ public class ZonesController {
         }
         zoneFromWeb.setMeasureName(measureName);
         zoneManager.addAdditionalToZone(zoneFromWeb, parentZoneId);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/addSurplusZone", method = RequestMethod.POST)
@@ -97,7 +97,7 @@ public class ZonesController {
         zoneFromWeb.setMeasureName(measureName);
 
         zoneManager.addSurplusToZone(zoneFromWeb, parentZoneId);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/removeZone", method = RequestMethod.POST)
@@ -105,7 +105,7 @@ public class ZonesController {
                              @RequestParam("projectId") String projectId) {
 
         zoneManager.removeZone(zoneId);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/removeGroup", method = RequestMethod.POST)
@@ -113,7 +113,7 @@ public class ZonesController {
                               @RequestParam("projectId") String projectId) {
 
         zoneManager.removeGroup(groupId);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/updateGroup", method = RequestMethod.POST)
@@ -122,7 +122,7 @@ public class ZonesController {
                               @RequestParam("projectId") String projectId) {
 
         zoneManager.updateGroup(groupId, newGroup);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
     @RequestMapping(value = "/projects/updateZone", method = RequestMethod.POST)
@@ -142,7 +142,7 @@ public class ZonesController {
         zoneFromWeb.setMeasureName(measureName);
 
         zoneManager.updateZone(zoneId, zoneFromWeb);
-        return "redirect:" + projectId;
+        return "redirect:" + projectId + "/zones";
     }
 
 }

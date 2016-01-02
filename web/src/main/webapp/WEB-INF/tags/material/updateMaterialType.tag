@@ -10,7 +10,7 @@
 <c:if test="${materialTypeData.name ne 'root_group'}">
     <div class="controller hidden">
         <div class="controller_name">Update Material Type</div>
-        <form action="${pageContext.request.contextPath}/material/updateMaterialType" method="post">
+        <form action="${pageContext.request.contextPath}/projects/updateMaterialType" method="post">
             <input type="hidden" name="id" value="${materialTypeData.id}">
             <input type="hidden" name="projectId" value="${projectId}">
             <table>
