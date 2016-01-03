@@ -5,12 +5,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.Converter;
 import ua.ksstroy.converter.zoneGroup.GroupsModelToGroupConverter;
+import ua.ksstroy.converter.zoneGroup.GroupsModelToZoneGroupHierarchyConverter;
 import ua.ksstroy.converter.zoneGroup.ZoneToZoneModelConverter;
 import ua.ksstroy.converter.zoneGroup.ZonesModelToZoneConverter;
-import ua.ksstroy.logic.zone.Zone;
-import ua.ksstroy.logic.zone.ZoneDao;
-import ua.ksstroy.logic.zone.ZoneGroup;
-import ua.ksstroy.logic.zone.ZoneGroupImpl;
+import ua.ksstroy.logic.zoneGroup.Zone;
+import ua.ksstroy.logic.zoneGroup.ZoneDao;
+import ua.ksstroy.logic.zoneGroup.ZoneGroup;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
@@ -30,11 +30,11 @@ public class ZoneGroupDaoImpl implements ZoneDao {
 
     private TransactionHelper helper = new TransactionHelper();
 
-    public ZoneGroup getAllHierarhy(final String projectId) {
+    public ZoneGroup getAllHierarchy(final String projectId) {
         return helper.simpleAction(new GetInTransaction<ZoneGroup>() {
             public ZoneGroup process(SessionWrapper session) {
                 ProjectModel project = session.get(ProjectModel.class, Integer.parseInt(projectId));
-                return convertGroupsModelToZoneGroup(project.getGroupsModel());
+                return new GroupsModelToZoneGroupHierarchyConverter().convert(project.getGroupsModel());
             }
         });
     }
@@ -86,7 +86,6 @@ public class ZoneGroupDaoImpl implements ZoneDao {
                 return groupsByParentGroupId;
             }
         });
-
     }
 
     @Override
@@ -95,43 +94,6 @@ public class ZoneGroupDaoImpl implements ZoneDao {
             @Override
             public List<Zone> process(SessionWrapper session) {
                 return convertMany(session.get(GroupsModel.class, groupId).getZonesGroup(),
-                        new ZonesModelToZoneConverter());
-            }
-        });
-    }
-
-    //TODO remove this method if it's not needed
-    @Override
-    public List<Zone> getZonesByParentZoneId(final String zoneId) {
-        return helper.simpleAction(new GetInTransaction<List<Zone>>() {
-            @Override
-            public List<Zone> process(SessionWrapper session) {
-                ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-                List<Zone> zonesByParentGroupId = convertMany(parentZone.getAdditionalZone(), new ZonesModelToZoneConverter());
-                zonesByParentGroupId.addAll(convertMany(parentZone.getSurplusZone(), new ZonesModelToZoneConverter()));
-                return zonesByParentGroupId;
-            }
-        });
-    }
-
-    @Override
-    public List<Zone> getAdditionalZonesByParentZoneId(final String zoneId) {
-        return helper.simpleAction(new GetInTransaction<List<Zone>>() {
-            @Override
-            public List<Zone> process(SessionWrapper session) {
-                return convertMany(session.get(ZonesModel.class, zoneId).getAdditionalZone(),
-                        new ZonesModelToZoneConverter());
-            }
-        });
-
-    }
-
-    @Override
-    public List<Zone> getSurplusZonesByParentZoneId(final String zoneId) {
-        return helper.simpleAction(new GetInTransaction<List<Zone>>() {
-            @Override
-            public List<Zone> process(SessionWrapper session) {
-                return convertMany(session.get(ZonesModel.class, zoneId).getSurplusZone(),
                         new ZonesModelToZoneConverter());
             }
         });
@@ -163,7 +125,6 @@ public class ZoneGroupDaoImpl implements ZoneDao {
                 session.saveOrUpdate(parentZone);
             }
         });
-
     }
 
     @Override
@@ -177,10 +138,8 @@ public class ZoneGroupDaoImpl implements ZoneDao {
                 parentZone.getSurplusZone().add(zoneModelPreparedForSave);
 
                 session.saveOrUpdate(parentZone);
-
             }
         });
-
     }
 
     @Override
@@ -203,18 +162,13 @@ public class ZoneGroupDaoImpl implements ZoneDao {
             @Override
             public void process(SessionWrapper session) {
                 ZonesModel zone = session.get(ZonesModel.class, zoneId);
-                convertZoneToZoneModel(zone, newZone);
+                zone.setName(newZone.getName());
+                zone.setHeight(newZone.getHeight());
+                zone.setWidth(newZone.getWidth());
+                zone.setMeasureName(newZone.getMeasure());
                 session.saveOrUpdate(zone);
-
             }
         });
-    }
-
-    private void convertZoneToZoneModel(ZonesModel zone, Zone newZone) {
-        zone.setName(newZone.getName());
-        zone.setHeight(newZone.getHeight());
-        zone.setWidth(newZone.getWidth());
-        zone.setMeasureName(newZone.getMeasure());
     }
 
     @Override
@@ -236,37 +190,4 @@ public class ZoneGroupDaoImpl implements ZoneDao {
         return targetCollection;
     }
 
-    private ZoneGroupImpl convertGroupsModelToZoneGroup(GroupsModel groupsModel) {
-        ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
-        zoneGroup.setId(groupsModel.getId());
-        zoneGroup.setName(groupsModel.getName());
-
-        List<ZoneGroup> subGroups = new ArrayList<>();
-        for (GroupsModel subgroup : groupsModel.getSubGroups()) {
-            subGroups.add(convertGroupsModelToZoneGroup(subgroup));
-        }
-        zoneGroup.setGroups(subGroups);
-
-        List<Zone> rootZones = new ArrayList<>();
-        List<Zone> surplusZones = new ArrayList<>();
-        List<Zone> additionalZones = new ArrayList<>();
-
-        for (ZonesModel oneRootZone : groupsModel.getZonesGroup()) {
-            for (ZonesModel oneAdditionalZone : oneRootZone.getAdditionalZone())
-                additionalZones.add(new ZonesModelToZoneConverter().convert(oneAdditionalZone));
-
-            for (ZonesModel oneSurplusZone : oneRootZone.getSurplusZone())
-                surplusZones.add(new ZonesModelToZoneConverter().convert(oneSurplusZone));
-
-            Zone allZonesAndSubZones = new ZonesModelToZoneConverter().convert(oneRootZone);
-            allZonesAndSubZones.setAdditional(additionalZones);
-            allZonesAndSubZones.setSurplus(surplusZones);
-
-            rootZones.add(allZonesAndSubZones);
-
-        }
-        zoneGroup.setZones(rootZones);
-
-        return zoneGroup;
-    }
 }

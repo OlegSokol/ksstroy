@@ -50,8 +50,8 @@ CREATE TABLE `zones` (
   `height`               DOUBLE UNSIGNED NOT NULL,
   `mesure_name`          VARCHAR(50)     NOT NULL,
   `parent_group_id`      INT(10) UNSIGNED,
-  `surplus_for_zones_id` INT(10) UNSIGNED, #have value only if the zone is surplus
-  `addit_for_zones_id`   INT(10) UNSIGNED #have value only if the zone is additional
+  `surplus_for_zones_id` INT(10) UNSIGNED, #have value only if the zoneGroup is surplus
+  `addit_for_zones_id`   INT(10) UNSIGNED #have value only if the zoneGroup is additional
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

@@ -1,28 +1,25 @@
 package ua.ksstroy.logic.project;
 
-
 public class Project {
-	
-	private Integer id;
-	private String projectName;
 
-	
+    private Integer id;
 
-	public Integer getId() {
-		return this.id;
-	}
+    private String projectName;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getProjectName() {
-		return projectName;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
+    public String getProjectName() {
+        return projectName;
+    }
 
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
 }

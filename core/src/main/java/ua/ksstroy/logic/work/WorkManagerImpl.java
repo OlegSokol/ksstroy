@@ -1,9 +1,5 @@
 package ua.ksstroy.logic.work;
 
-import java.util.List;
-
-import ua.ksstroy.logic.zone.ZoneGroup;
-
 public class WorkManagerImpl implements WorkManager{
 	
 	// Mock - Test

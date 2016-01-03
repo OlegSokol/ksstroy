@@ -1,7 +1,6 @@
-package ua.ksstroy.logic.worktype;
+package ua.ksstroy.logic.workType;
 
 import ua.ksstroy.logic.material.Material;
-import ua.ksstroy.logic.zone.Measure;
 
 import java.util.Set;
 

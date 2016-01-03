@@ -1,4 +1,4 @@
-package ua.ksstroy.logic.worktype;
+package ua.ksstroy.logic.workType;
 
 import java.util.ArrayList;
 import java.util.List;

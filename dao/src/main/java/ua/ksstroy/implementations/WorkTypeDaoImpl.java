@@ -1,9 +1,12 @@
 package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.workType.WorkTypeModelToWorkTypeConvert;
+import ua.ksstroy.converter.workType.WorkTypeGroupModelToWorkTypeGroupHierarchyConverter;
 import ua.ksstroy.converter.workType.WorkTypeToWorkTypeModelConvert;
-import ua.ksstroy.logic.worktype.*;
+import ua.ksstroy.logic.workType.WorkType;
+import ua.ksstroy.logic.workType.WorkTypeDao;
+import ua.ksstroy.logic.workType.WorkTypeGroup;
+import ua.ksstroy.logic.workType.WorkTypeGroupDao;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -11,12 +14,20 @@ import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
     private TransactionHelper helper = new TransactionHelper();
+
+    @Override
+    public WorkTypeGroup getWorkTypeHierarchy() {
+        return helper.simpleAction(new GetInTransaction<WorkTypeGroup>() {
+            public WorkTypeGroup process(SessionWrapper session) {
+                WorkTypeGroup workTypeHierarchy = new WorkTypeGroupModelToWorkTypeGroupHierarchyConverter().
+                        convert(session.get(WorkTypeGroupModel.class, "1"));
+                return workTypeHierarchy;
+            }
+        });
+    }
 
     @Override
     public void addWorkTypeGroup(final String workTypeGroupName, final String parentGroupId) {
@@ -54,16 +65,6 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
             }
         });
 
-    }
-
-    @Override
-    public WorkTypeGroup getWorkTypeHierarchy() {
-        return helper.simpleAction(new GetInTransaction<WorkTypeGroup>() {
-            public WorkTypeGroup process(SessionWrapper session) {
-                WorkTypeGroup workTypeHierarchy = convertWorkTypeGroupModelToWorkTypeGroup(session.get(WorkTypeGroupModel.class, "1"));
-                return workTypeHierarchy;
-            }
-        });
     }
 
     @Override
@@ -123,28 +124,6 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
         });
     }
 
-    public WorkTypeGroup convertWorkTypeGroupModelToWorkTypeGroup(WorkTypeGroupModel model) {
-        WorkTypeGroup workTypeGroup = new WorkTypeGroupImpl();
-        workTypeGroup.setId(Integer.parseInt(model.getId()));
-        workTypeGroup.setName(model.getName());
-
-        List<WorkTypeGroup> workTypeGroupList = new ArrayList<>();
-        for (WorkTypeGroupModel group : model.getSubGroups()) {
-            workTypeGroupList.add(convertWorkTypeGroupModelToWorkTypeGroup(group));
-        }
-        workTypeGroup.setWorkTypeGroups(workTypeGroupList);
-
-        List<WorkType> workTypes = new ArrayList<>();
-        for (WorkTypeModel workTypeModel : model.getWorkTypeGroup()) {
-            workTypes.add(new WorkTypeModelToWorkTypeConvert().convert(workTypeModel));
-        }
-        workTypeGroup.setWorkTypes(workTypes);
-
-        return workTypeGroup;
-
-    }
-
-
 	/*private WorkTypeModel convertWorkTypeDataToModel(WorkTypeData workTypeData) {
         WorkTypeModel model = new WorkTypeModel();
 		model.setId(workTypeData.getId());
@@ -186,7 +165,7 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
         return workType;
 	}
 	*//*
-	 * TODO add material converters private MaterialModel
+     * TODO add material converters private MaterialModel
 	 * convertMaterialToModel(Material material) {
 	 *
 	 * MaterialModel materialModel = new MaterialModel();

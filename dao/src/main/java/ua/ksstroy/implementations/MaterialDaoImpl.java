@@ -2,19 +2,19 @@ package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import ua.ksstroy.converter.material.MaterialModelToMaterialConvert;
 import ua.ksstroy.converter.material.MaterialToMaterialTypeModelConvert;
+import ua.ksstroy.converter.material.MaterialTypeModelToMaterialTypeHierarchyConverter;
 import ua.ksstroy.converter.material.MaterialTypeToMaterialTypeModelConvert;
-import ua.ksstroy.logic.material.*;
+import ua.ksstroy.logic.material.Material;
+import ua.ksstroy.logic.material.MaterialDao;
+import ua.ksstroy.logic.material.MaterialType;
+import ua.ksstroy.logic.material.MaterialTypeDao;
 import ua.ksstroy.models.material.MaterialModel;
 import ua.ksstroy.models.material.MaterialTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
 import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 @Service
@@ -26,7 +26,7 @@ public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
     public MaterialType getMaterialHierarchy() {
         return helper.simpleAction(new GetInTransaction<MaterialType>() {
             public MaterialType process(SessionWrapper session) {
-                MaterialType materialTypeHierarchy = convertMaterialTypeModelToMaterialType(session.get(MaterialTypeModel.class, "1"));
+                MaterialType materialTypeHierarchy = new MaterialTypeModelToMaterialTypeHierarchyConverter().convert(session.get(MaterialTypeModel.class, "1"));
                 return materialTypeHierarchy;
             }
         });
@@ -48,7 +48,7 @@ public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialTypeModel materialTypeModel= new MaterialTypeToMaterialTypeModelConvert().convert(materialTypeDao);
+                MaterialTypeModel materialTypeModel = new MaterialTypeToMaterialTypeModelConvert().convert(materialTypeDao);
                 materialTypeModel.setSubMaterialTypeToRootType(session.get(MaterialTypeModel.class, parentMaterialTypeId));
                 session.save(materialTypeModel);
             }
@@ -61,7 +61,8 @@ public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
             @Override
             public void process(SessionWrapper session) {
                 MaterialTypeModel materialTypeModel = session.get(MaterialTypeModel.class, materialId);
-                convertMaterialTypeImplToModel(materialTypeModel, newMaterialType);
+                materialTypeModel.setDescription(newMaterialType.getDescription());
+                materialTypeModel.setName(newMaterialType.getName());
                 session.saveOrUpdate(materialTypeModel);
             }
         });
@@ -82,7 +83,7 @@ public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialModel materialModel= new MaterialToMaterialTypeModelConvert().convert(materialImpl);
+                MaterialModel materialModel = new MaterialToMaterialTypeModelConvert().convert(materialImpl);
                 MaterialTypeModel materialTypeModel = session.get(MaterialTypeModel.class, parentMaterialTypeId);
                 materialTypeModel.getMaterialTypeToMaterial().add(materialModel);
                 session.save(materialModel);
@@ -102,39 +103,6 @@ public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
         });
     }
 
-    @Override
-    public void removeMaterial(final String materialId) {
-        helper.doWithCommit(new DoInTransaction() {
-            @Override
-            public void process(SessionWrapper session) {
-                session.delete(session.get(MaterialModel.class, materialId));
-            }
-        });
-    }
-
-    protected MaterialType convertMaterialTypeModelToMaterialType(MaterialTypeModel materialTypeModel) {
-        MaterialType materialTypeImpl = new MaterialTypeImpl();
-        materialTypeImpl.setId(Integer.parseInt(materialTypeModel.getId()));
-        materialTypeImpl.setName(materialTypeModel.getName());
-        materialTypeImpl.setDescription(materialTypeModel.getDescription());
-
-        List<MaterialType> materialTypeImplList = new ArrayList<>();
-        for (MaterialTypeModel typeModel : materialTypeModel.getMaterialType()) {
-            materialTypeImplList.add(convertMaterialTypeModelToMaterialType(typeModel));
-        }
-
-        materialTypeImpl.setMaterialTypeImplList(materialTypeImplList);
-
-        List<Material> materialImplList = new ArrayList<>();
-        for (MaterialModel materialModel : materialTypeModel.getMaterialTypeToMaterial()) {
-            materialImplList.add(new MaterialModelToMaterialConvert().convert(materialModel));
-        }
-
-        materialTypeImpl.setMaterialImplList(materialImplList);
-
-        return materialTypeImpl;
-    }
-
     private void convertMaterialToMaterialModel(MaterialModel materialModel, Material newMaterial) {
         materialModel.setName(newMaterial.getName());
         materialModel.setDescription(newMaterial.getDescription());
@@ -145,9 +113,14 @@ public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
         materialModel.setClosedCost(newMaterial.getClosedCost());
     }
 
-    private void convertMaterialTypeImplToModel(MaterialTypeModel materialTypeModel, MaterialType newMaterialType) {
-        materialTypeModel.setDescription(newMaterialType.getDescription());
-        materialTypeModel.setName(newMaterialType.getName());
+    @Override
+    public void removeMaterial(final String materialId) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                session.delete(session.get(MaterialModel.class, materialId));
+            }
+        });
     }
 
 }

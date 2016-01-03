@@ -1,10 +1,12 @@
-package ua.ksstroy.logic.zone;
+package ua.ksstroy.logic.zoneGroup;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ua.ksstroy.converter.zoneGroup.ZoneDataToZoneConverter;
+import ua.ksstroy.converter.zoneGroup.ZoneToZoneDataConverter;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
@@ -33,7 +35,7 @@ public class ZoneManagerTest {
         mockZoneImpl.setWidth(mockZoneImplWidth);
         mockZoneImpl.setMeasure(mockZoneImplMeasureName);
 
-        ZoneData mockZoneData = zoneManager.convertZoneToZoneData(mockZoneImpl);
+        ZoneData mockZoneData = new ZoneToZoneDataConverter().convert(mockZoneImpl);
         assertEquals(mockZoneData.getMeasureName(), mockZoneImpl.getMeasure().toString());
         assertNotNull(mockZoneData.getValue());
         assertEquals(mockZoneImplHeight.doubleValue() * mockZoneImplWidth.doubleValue(),
@@ -43,7 +45,7 @@ public class ZoneManagerTest {
     @Test
     public void testConvertZoneDataToZone() {
         mockZoneData.setMeasureName(mockZoneDataMeasureName);
-        mockZoneImpl = zoneManager.convertZoneDataToZone(mockZoneData);
+        mockZoneImpl = new ZoneDataToZoneConverter().convert(mockZoneData);
         assertEquals(mockZoneData.getMeasureName(), mockZoneImpl.getMeasure().toString());
     }
 

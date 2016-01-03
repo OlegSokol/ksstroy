@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.worktype.WorkTypeManager;
-import ua.ksstroy.logic.zone.Measure;
+import ua.ksstroy.logic.workType.WorkTypeData;
+import ua.ksstroy.logic.workType.WorkTypeManager;
 
 import javax.annotation.Resource;
 

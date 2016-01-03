@@ -1,14 +1,4 @@
 package ua.ksstroy.implementations;
- import java.util.*;
-import static org.junit.Assert.*;
-
-import java.util.HashSet;
-
-import org.junit.Test;
-
-import ua.ksstroy.logic.worktype.WorkType;
-import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.zone.Measure;
 
 public class WorkTypeDaoImplTest {
 	

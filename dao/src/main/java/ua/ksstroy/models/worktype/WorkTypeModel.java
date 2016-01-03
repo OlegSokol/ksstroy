@@ -1,13 +1,8 @@
 package ua.ksstroy.models.worktype;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.*;
-
-import ua.ksstroy.logic.zone.Measure;
-import ua.ksstroy.models.zone.GroupsModel;
 
 @Entity
 @Table(name = "worktypes", catalog = "ksstroy")

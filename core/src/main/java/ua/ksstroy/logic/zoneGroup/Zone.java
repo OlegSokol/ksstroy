@@ -1,9 +1,9 @@
-package ua.ksstroy.logic.zone;
+package ua.ksstroy.logic.zoneGroup;
 
 import java.util.List;
 
 /*
- * An object representing a particular single zone in 
+ * An object representing a particular single zoneGroup in
  * a building (e.g Zone "Kitchen" contains surplus zones: Windows, Door etc.).
  */
 

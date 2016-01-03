@@ -1,16 +1,17 @@
 package ua.ksstroy.logic.work;
 
+import ua.ksstroy.logic.workType.WorkTypeData;
+import ua.ksstroy.logic.zoneGroup.ZoneData;
+
 import java.util.List;
-import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.zone.ZoneData;
 
 public interface Work {
 	
-	public WorkTypeData getType(); 
+	public WorkTypeData getType();
 
 	public void setType(WorkTypeData type); 
 
-	public List<ZoneData> getWorkZones(); 
+	public List<ZoneData> getWorkZones();
 
 	public void setWorkZones(List<ZoneData> workZones); 
 

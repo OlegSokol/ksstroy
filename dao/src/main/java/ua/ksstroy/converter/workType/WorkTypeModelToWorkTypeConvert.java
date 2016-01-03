@@ -1,8 +1,8 @@
 package ua.ksstroy.converter.workType;
 
 import org.springframework.core.convert.converter.Converter;
-import ua.ksstroy.logic.worktype.WorkType;
-import ua.ksstroy.logic.worktype.WorkTypeImpl;
+import ua.ksstroy.logic.workType.WorkType;
+import ua.ksstroy.logic.workType.WorkTypeImpl;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 
 public class WorkTypeModelToWorkTypeConvert implements Converter<WorkTypeModel, WorkType> {

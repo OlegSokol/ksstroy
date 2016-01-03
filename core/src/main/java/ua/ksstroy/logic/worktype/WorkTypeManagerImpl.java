@@ -1,10 +1,10 @@
-package ua.ksstroy.logic.worktype;
+package ua.ksstroy.logic.workType;
 
 import org.springframework.stereotype.Component;
+import ua.ksstroy.converter.workType.WorkTypeDataToWorkTypeConverter;
+import ua.ksstroy.converter.workType.WorkTypeGroupToWorkTypeGroupDataHierarchyConverter;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component(value = "WorkTypeManagerImpl")
 public class WorkTypeManagerImpl implements WorkTypeManager {
@@ -16,8 +16,7 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 
     @Override
     public void addWorkType(WorkTypeData workTypeData, String parentGroupId) {
-
-        workTypeDao.addWorkType(convertWorkTypeDataToWorkType(workTypeData), parentGroupId);
+        workTypeDao.addWorkType(new WorkTypeDataToWorkTypeConverter().convert(workTypeData), parentGroupId);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 
     @Override
     public WorkTypeGroupData getWorkTypeHierarchy() {
-        return convertWorkTypeGroupToWorkTypeGroupData(workTypeGroupDao.getWorkTypeHierarchy());
+        return new WorkTypeGroupToWorkTypeGroupDataHierarchyConverter().convert(workTypeGroupDao.getWorkTypeHierarchy());
     }
 
     @Override
@@ -52,52 +51,7 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 
     @Override
     public void updateWorkType(String WorkTypeId, WorkTypeData newWorkType) {
-        workTypeDao.updateWorkType(WorkTypeId, convertWorkTypeDataToWorkType(newWorkType));
+        workTypeDao.updateWorkType(WorkTypeId, new WorkTypeDataToWorkTypeConverter().convert(newWorkType));
     }
 
-    public WorkType convertWorkTypeDataToWorkType(WorkTypeData workTypeData) {
-        WorkType workType = new WorkTypeImpl();
-
-        workType.setId(workTypeData.getId());
-        workType.setName(workTypeData.getName());
-        workType.setUnitPrice(workTypeData.getUnitPrice());
-        workType.setDescription(workTypeData.getDescription());
-        workType.setMeasure(workTypeData.getMeasure());
-
-        return workType;
-    }
-
-    public WorkTypeGroupData convertWorkTypeGroupToWorkTypeGroupData(WorkTypeGroup workTypeGroup) {
-        WorkTypeGroupData workTypeGroupData = new WorkTypeGroupData();
-
-        workTypeGroupData.setId(workTypeGroup.getId());
-        workTypeGroupData.setName(workTypeGroup.getName());
-
-        List<WorkTypeGroupData> workTypeGroupList = new ArrayList<>();
-        for (WorkTypeGroup group : workTypeGroup.getWorkTypeGroups()) {
-            workTypeGroupList.add(convertWorkTypeGroupToWorkTypeGroupData(group));
-        }
-        workTypeGroupData.setWorkTypeGroupsData(workTypeGroupList);
-
-        List<WorkTypeData> workTypesList = new ArrayList<>();
-        for (WorkType workType : workTypeGroup.getWorkTypes()) {
-            workTypesList.add(convertWorkTypeToWorkTypeData(workType));
-        }
-        workTypeGroupData.setWorkTypesData(workTypesList);
-
-
-        return workTypeGroupData;
-    }
-
-    public WorkTypeData convertWorkTypeToWorkTypeData(WorkType workType) {
-        WorkTypeData workTypeData = new WorkTypeData();
-
-        workTypeData.setId(workType.getId());
-        workTypeData.setName(workType.getName());
-        workTypeData.setDescription(workType.getDescription());
-        workTypeData.setMeasure(workType.getMeasure());
-        workTypeData.setUnitPrice(workType.getUnitPrice());
-
-        return workTypeData;
-    }
 }

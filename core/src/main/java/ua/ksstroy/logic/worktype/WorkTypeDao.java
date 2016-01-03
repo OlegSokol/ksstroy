@@ -1,4 +1,4 @@
-package ua.ksstroy.logic.worktype;
+package ua.ksstroy.logic.workType;
 
 public interface WorkTypeDao {
 

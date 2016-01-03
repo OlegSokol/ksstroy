@@ -1,29 +1,14 @@
-package ua.ksstroy.logic.zone;
+package ua.ksstroy.logic.zoneGroup;
 
 import java.util.List;
 
-/*
- *A data Access interface is used to separate low level data accessing API 
- *  from high level business services.
- */
-
 public interface ZoneDao {
 
-	ZoneGroup getAllHierarhy(String projectId);
+	ZoneGroup getAllHierarchy(String projectId);
 
 	List<ZoneGroup> getGroupsByParentGroupId(String groupId);
 
 	List<Zone> getZonesByParentGroupId(String groupId);
-
-	List<Zone> getZonesByParentZoneId(String zoneId);
-
-	List<Zone> getAdditionalZonesByParentZoneId(String zoneId);
-
-	List<Zone> getSurplusZonesByParentZoneId(String zoneId);
-
-	/*
-	 * actions from Zones
-	 */
 
 	void storeZone(Zone zone, String parentGroupId);
 
@@ -34,10 +19,6 @@ public interface ZoneDao {
 	void updateZone(String zoneId, Zone newZone);
 
 	void removeZone(String zoneId);
-
-	/*
-	 * actions from Groups
-	 */
 
 	void addRootGroup(String groupName, Integer projectId);
 

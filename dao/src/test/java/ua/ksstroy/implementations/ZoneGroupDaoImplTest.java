@@ -5,10 +5,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ua.ksstroy.converter.zoneGroup.ZonesModelToZoneConverter;
-import ua.ksstroy.logic.zone.*;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
+import ua.ksstroy.logic.zoneGroup.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,19 +18,13 @@ import static org.junit.Assert.*;
 
 public class ZoneGroupDaoImplTest {
 
-    String mockGroupName = "mockGroupsFromTestZoneDaoImpl";
-
-    // remove fields and create local variable or direct parameters to
-    // constructor
     String mockZoneName = "mockZoneFromTestZoneDaoImpl";
     double mockZoneWidth = 13.0;
-    double mockZoneHeight = 12.0;
     Measure mockZoneMeasureName = Measure.KG;
     Zone mockZoneImpl = new ZoneImpl();
     String mockZoneImplName = "mockZoneImplName";
     Double mockZoneImplWidth = 13.05;
-    Double mockZoneImplheight = 15.1;
-    String mockZoneImplParentGroupId = "375";// Big enough randomNumber
+    Double mockZoneImplHeight = 15.1;
     Measure mockZoneImplMeasureName = Measure.GR;
     private Session session;
 
@@ -40,7 +34,7 @@ public class ZoneGroupDaoImplTest {
         session.beginTransaction();
         mockZoneImpl = new ZoneImpl();
         mockZoneImpl.setName(mockZoneImplName);
-        mockZoneImpl.setHeight(mockZoneImplheight);
+        mockZoneImpl.setHeight(mockZoneImplHeight);
         mockZoneImpl.setWidth(mockZoneWidth);
         mockZoneImpl.setMeasure(mockZoneImplMeasureName);
     }
@@ -53,7 +47,7 @@ public class ZoneGroupDaoImplTest {
 
     @Test
     public void convertZonesModelToZone() {
-        ZonesModel mockZonesModel = new ZonesModel(mockZoneName, mockZoneImplWidth, mockZoneImplheight,
+        ZonesModel mockZonesModel = new ZonesModel(mockZoneName, mockZoneImplWidth, mockZoneImplHeight,
                 mockZoneMeasureName);
         Zone convertedFromModelZone = new ZonesModelToZoneConverter().convert(mockZonesModel);
 
@@ -209,7 +203,7 @@ public class ZoneGroupDaoImplTest {
         ZoneDao zoneDao = new ZoneGroupDaoImpl();
         Zone mockZoneImpl = new ZoneImpl();
         mockZoneImpl.setName(mockZoneImplName);
-        mockZoneImpl.setHeight(mockZoneImplheight);
+        mockZoneImpl.setHeight(mockZoneImplHeight);
         mockZoneImpl.setWidth(mockZoneWidth);
         mockZoneImpl.setMeasure(mockZoneImplMeasureName);
         zoneDao.storeZone(mockZoneImpl, "1");

@@ -1,16 +1,5 @@
 package ua.ksstroy.implementations;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-
-import ua.ksstroy.logic.worktype.WorkTypeGroupData;
-import ua.ksstroy.models.worktype.WorkTypeGroupModel;
-import ua.ksstroy.models.worktype.WorkTypeModel;
-
 public class WorkTypeGroupDaoImplTest {
 
 	/*@Test

@@ -1,9 +1,4 @@
-package ua.ksstroy.logic.worktype;
-
-import java.util.Set;
-
-import ua.ksstroy.logic.material.MaterialData;
-import ua.ksstroy.logic.zone.Measure;
+package ua.ksstroy.logic.workType;
 
 public class WorkTypeData {
 

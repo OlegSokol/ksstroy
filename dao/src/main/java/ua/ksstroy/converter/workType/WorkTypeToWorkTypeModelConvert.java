@@ -2,7 +2,7 @@ package ua.ksstroy.converter.workType;
 
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.workType.WorkType;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 
 public class WorkTypeToWorkTypeModelConvert implements Converter<WorkType, WorkTypeModel> {
