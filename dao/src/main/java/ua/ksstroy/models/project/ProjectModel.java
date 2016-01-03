@@ -16,7 +16,7 @@ public class ProjectModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", unique = true, nullable = false)
-	private Integer Id;
+	private String Id;
 
 	@Column(name = "PROJECT_NAME", nullable = false)
 	private String projectName;
@@ -41,11 +41,11 @@ public class ProjectModel implements Serializable {
 		this.groupsModel = groupsModel;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return this.Id;
 	}
 
-	public void setId(Integer Id) {
+	public void setId(String Id) {
 		this.Id = Id;
 	}
 

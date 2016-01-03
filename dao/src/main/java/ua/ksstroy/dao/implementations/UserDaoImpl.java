@@ -1,9 +1,12 @@
 package ua.ksstroy.dao.implementations;
 
 import org.springframework.stereotype.Component;
+import ua.ksstroy.converter.ProjectModelToProjectConverter;
 import ua.ksstroy.converter.UserModelToUserConverter;
+import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;
 import ua.ksstroy.logic.user.UserImpl;
+import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.user.UserModel;
 import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
@@ -19,19 +22,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<UserImpl> getAllUsers() {
-        List<UserImpl> userList = new ArrayList<>();
-        List<UserModel> userModelsList = helper.simpleAction(new GetInTransaction<List<UserModel>>() {
+        return helper.simpleAction(new GetInTransaction<List<UserImpl>>() {
             @Override
-            public List<UserModel> process(SessionWrapper session) {
-                return session.getAll(new UserModel());
+            public List<UserImpl> process(SessionWrapper session) {
+                List<UserImpl> userList = new ArrayList<UserImpl>();
+                List<UserModel> userModelList = session.getAll(new UserModel());
+                for (UserModel userModel : userModelList) {
+                    UserImpl userImpl = new UserModelToUserConverter().convert(userModel);
+                    userList.add(userImpl);
+                }
+
+                return userList;
             }
         });
-
-        for (UserModel userModel : userModelsList) {
-            userList.add(new UserModelToUserConverter().convert(userModel));
-        }
-        return userList;
     }
-
-
 }

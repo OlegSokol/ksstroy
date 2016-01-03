@@ -22,7 +22,11 @@
 
     <ul class="items_list">
         <c:forEach var="user" items="${usersList}">
-            <user:user user="${user}"/>
+        <%--    <user:user user="${user}"/>--%>
+
+            ${user.name}
+
+            ${user.projectsList}
 
         </c:forEach>
     </ul>
