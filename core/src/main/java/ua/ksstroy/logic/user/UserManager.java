@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface UserManager {
 /*   void addUser(UserData userData);*/
-    List<UserImpl> getAllUsers();
+    List<UserData> getAllUsers();
  /*   *//*
     update user by id from userData
      *//*
