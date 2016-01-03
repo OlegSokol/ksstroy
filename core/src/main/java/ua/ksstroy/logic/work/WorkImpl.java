@@ -2,7 +2,9 @@ package ua.ksstroy.logic.work;
 
 import java.util.List;
 
+import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneData;
 
 public class WorkImpl implements Work{
@@ -11,11 +13,11 @@ private String id;
 	
 	private String name;
 	
-	private WorkTypeData type;
+	private WorkType type;
 	
-	private List<ZoneData> workZones;
+	private List<Zone> workZones;
 	
-	private List<CoverData> allCovers;
+	private List<Cover> allCovers;
 	
 	private Double planedCost;
 	
@@ -25,39 +27,39 @@ private String id;
 
 	private Double dealCost;
 	
-	private List<AdjustmentData> adjustments;
+	private List<Adjustment> adjustments;
 	
 	@Override
-	public WorkTypeData getType() {
+	public WorkType getType() {
 	
 		return type;
 	}
 
 	@Override
-	public void setType(WorkTypeData type) {
+	public void setType(WorkType type) {
 
 		this.type=type;
 	}
 
 	@Override
-	public List<ZoneData> getWorkZones() {
+	public List<Zone> getWorkZones() {
 		
 		return workZones;
 	}
 
 	@Override
-	public void setWorkZones(List<ZoneData> workZones) {
+	public void setWorkZones(List<Zone> workZones) {
 		this.workZones=workZones;
 		
 	}
 
 	@Override
-	public List<CoverData> getAllCovers() {
+	public List<Cover> getAllCovers() {
 		return allCovers;
 	}
 
 	@Override
-	public void setAllCovers(List<CoverData> allCovers) {
+	public void setAllCovers(List<Cover> allCovers) {
 		this.allCovers=allCovers;
 		
 	}
@@ -134,13 +136,13 @@ private String id;
 	}
 
 	@Override
-	public List<AdjustmentData> getAdjustments() {
+	public List<Adjustment> getAdjustments() {
 		// TODO Auto-generated method stub
 		return adjustments;
 	}
 
 	@Override
-	public void setAdjustments(List<AdjustmentData> adjustments) {
+	public void setAdjustments(List<Adjustment> adjustments) {
 	this.adjustments=adjustments;
 		
 	}
