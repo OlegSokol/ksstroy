@@ -13,7 +13,7 @@
 <c:forEach var="project" items="${user.projectsList}" >
     <li>
         <div class="item">
-        <a href="project.html">${project.projectName}</a>
+        <a href="/projects/${project.id}">${project.projectName}</a>
         <div class="add_delete_wrapper">
             <form action="/projects/removeGroup" method="post">
                 <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">

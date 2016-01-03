@@ -33,7 +33,7 @@ public class ZoneGroupDaoImpl implements ZoneDao {
     public ZoneGroup getAllHierarhy(final String projectId) {
         return helper.simpleAction(new GetInTransaction<ZoneGroup>() {
             public ZoneGroup process(SessionWrapper session) {
-                ProjectModel project = session.get(ProjectModel.class, Integer.parseInt(projectId));
+                ProjectModel project = session.get(ProjectModel.class, projectId);
                 return convertGroupsModelToZoneGroup(project.getGroupsModel());
             }
         });
