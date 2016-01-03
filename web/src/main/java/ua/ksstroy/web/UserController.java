@@ -19,6 +19,6 @@ public class UserController {
     @RequestMapping(value = "/users_projects", method = RequestMethod.GET)
     public ModelAndView usersAndProjects() {
         List<UserData> allUsers = userManager.getAllUsers();
-        return new ModelAndView("users_projects", "user", allUsers);
+        return new ModelAndView("users_projects", "usersList", allUsers);
     }
 }
