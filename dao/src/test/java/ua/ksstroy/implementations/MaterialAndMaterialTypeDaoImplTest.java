@@ -1,4 +1,4 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 public class MaterialAndMaterialTypeDaoImplTest {
 
@@ -104,7 +104,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
-                convertMaterialModelToMaterialImpl(materialModel), "6");
+                convert(materialModel), "6");
 
         MaterialModel materialResult;
 
@@ -122,7 +122,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
         materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
-                convertMaterialModelToMaterialImpl(materialModel), "6");
+                convert(materialModel), "6");
 
         MaterialModel materialResult;
 
@@ -142,7 +142,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().convertMaterialModelToMaterialImpl(materialModel), "6");
+        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().convert(materialModel), "6");
 
         MaterialModel materialResult;
 

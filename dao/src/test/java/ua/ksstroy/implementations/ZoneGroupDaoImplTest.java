@@ -1,10 +1,10 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.ksstroy.converter.ZonesModelToZoneConverter;
+import ua.ksstroy.converter.zoneGroup.ZonesModelToZoneConverter;
 import ua.ksstroy.logic.zone.*;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;

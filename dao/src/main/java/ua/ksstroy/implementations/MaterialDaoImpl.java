@@ -1,9 +1,11 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import ua.ksstroy.converter.material.MaterialModelToMaterialConvert;
+import ua.ksstroy.converter.material.MaterialToMaterialTypeModelConvert;
+import ua.ksstroy.converter.material.MaterialTypeToMaterialTypeModelConvert;
 import ua.ksstroy.logic.material.*;
-import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.material.MaterialModel;
 import ua.ksstroy.models.material.MaterialTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -16,15 +18,15 @@ import java.util.List;
 
 @Repository
 @Service
-public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, MaterialDao {
+public class MaterialDaoImpl implements MaterialTypeDao, MaterialDao {
 
     private TransactionHelper helper = new TransactionHelper();
 
     @Override
-    public MaterialTypeImpl getMaterialHierarchy() {
-        return helper.simpleAction(new GetInTransaction<MaterialTypeImpl>() {
-            public MaterialTypeImpl process(SessionWrapper session) {
-                MaterialTypeImpl materialTypeHierarchy = convertMaterialTypeModelToMaterialTypeImpl(session.get(MaterialTypeModel.class, "1"));
+    public MaterialType getMaterialHierarchy() {
+        return helper.simpleAction(new GetInTransaction<MaterialType>() {
+            public MaterialType process(SessionWrapper session) {
+                MaterialType materialTypeHierarchy = convertMaterialTypeModelToMaterialType(session.get(MaterialTypeModel.class, "1"));
                 return materialTypeHierarchy;
             }
         });
@@ -35,8 +37,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialTypeModel materialTypeModel;
-                materialTypeModel = convertMaterialTypeImplToMaterialTypeModel(materialTypeImpl);
+                MaterialTypeModel materialTypeModel = new MaterialTypeToMaterialTypeModelConvert().convert(materialTypeImpl);
                 session.save(materialTypeModel);
             }
         });
@@ -47,8 +48,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialTypeModel materialTypeModel;
-                materialTypeModel = convertMaterialTypeImplToMaterialTypeModel(materialTypeDao);
+                MaterialTypeModel materialTypeModel= new MaterialTypeToMaterialTypeModelConvert().convert(materialTypeDao);
                 materialTypeModel.setSubMaterialTypeToRootType(session.get(MaterialTypeModel.class, parentMaterialTypeId));
                 session.save(materialTypeModel);
             }
@@ -82,8 +82,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialModel materialModel;
-                materialModel = convertMaterialImplToMaterialTypeModel(materialImpl);
+                MaterialModel materialModel= new MaterialToMaterialTypeModelConvert().convert(materialImpl);
                 MaterialTypeModel materialTypeModel = session.get(MaterialTypeModel.class, parentMaterialTypeId);
                 materialTypeModel.getMaterialTypeToMaterial().add(materialModel);
                 session.save(materialModel);
@@ -97,7 +96,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
             @Override
             public void process(SessionWrapper session) {
                 MaterialModel materialModel = session.get(MaterialModel.class, materialId);
-                convertMaterialImplToMaterialModel(materialModel, newMaterial);
+                convertMaterialToMaterialModel(materialModel, newMaterial);
                 session.saveOrUpdate(materialModel);
             }
         });
@@ -113,60 +112,22 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         });
     }
 
-    private MaterialTypeModel convertMaterialTypeImplToMaterialTypeModel(MaterialType materialTypeImpl) {
-
-        MaterialTypeModel materialTypeModel = new MaterialTypeModel();
-        materialTypeModel.setName(materialTypeImpl.getName());
-        materialTypeModel.setDescription(materialTypeImpl.getDescription());
-
-        return materialTypeModel;
-    }
-
-    private MaterialModel convertMaterialImplToMaterialTypeModel(Material materialImpl) {
-
-        MaterialModel materialModel = new MaterialModel(
-                materialImpl.getName(),
-                materialImpl.getDescription(),
-                materialImpl.getMeasure().toString(),
-                Double.parseDouble(String.valueOf(materialImpl.getSize())),
-                Double.parseDouble(String.valueOf(materialImpl.getPlanedCost())),
-                Double.parseDouble(String.valueOf(materialImpl.getDealCost())),
-                Double.parseDouble(String.valueOf(materialImpl.getClosedCost()))
-        );
-        return materialModel;
-    }
-
-    protected MaterialImpl convertMaterialModelToMaterialImpl(MaterialModel model) {
-
-        MaterialImpl material = new MaterialImpl(
-                Integer.parseInt(model.getId()),
-                model.getName(),
-                model.getDescription(),
-                Measure.valueOf(model.getMeasureName()),
-                Double.parseDouble(String.valueOf(model.getSize())),
-                Double.parseDouble(String.valueOf(model.getPlanedCost())),
-                Double.parseDouble(String.valueOf(model.getDealCost())),
-                Double.parseDouble(String.valueOf(model.getClosedCost()))
-        );
-        return material;
-    }
-
-    protected MaterialTypeImpl convertMaterialTypeModelToMaterialTypeImpl(MaterialTypeModel materialTypeModel) {
-        MaterialTypeImpl materialTypeImpl = new MaterialTypeImpl();
+    protected MaterialType convertMaterialTypeModelToMaterialType(MaterialTypeModel materialTypeModel) {
+        MaterialType materialTypeImpl = new MaterialTypeImpl();
         materialTypeImpl.setId(Integer.parseInt(materialTypeModel.getId()));
         materialTypeImpl.setName(materialTypeModel.getName());
         materialTypeImpl.setDescription(materialTypeModel.getDescription());
 
-        List<MaterialTypeImpl> materialTypeImplList = new ArrayList<>();
+        List<MaterialType> materialTypeImplList = new ArrayList<>();
         for (MaterialTypeModel typeModel : materialTypeModel.getMaterialType()) {
-            materialTypeImplList.add(convertMaterialTypeModelToMaterialTypeImpl(typeModel));
+            materialTypeImplList.add(convertMaterialTypeModelToMaterialType(typeModel));
         }
 
         materialTypeImpl.setMaterialTypeImplList(materialTypeImplList);
 
-        List<MaterialImpl> materialImplList = new ArrayList<>();
+        List<Material> materialImplList = new ArrayList<>();
         for (MaterialModel materialModel : materialTypeModel.getMaterialTypeToMaterial()) {
-            materialImplList.add(convertMaterialModelToMaterialImpl(materialModel));
+            materialImplList.add(new MaterialModelToMaterialConvert().convert(materialModel));
         }
 
         materialTypeImpl.setMaterialImplList(materialImplList);
@@ -174,7 +135,7 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeDao, Material
         return materialTypeImpl;
     }
 
-    private void convertMaterialImplToMaterialModel(MaterialModel materialModel, Material newMaterial) {
+    private void convertMaterialToMaterialModel(MaterialModel materialModel, Material newMaterial) {
         materialModel.setName(newMaterial.getName());
         materialModel.setDescription(newMaterial.getDescription());
         materialModel.setMeasureName(newMaterial.getMeasure().toString());

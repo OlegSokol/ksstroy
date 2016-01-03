@@ -1,4 +1,4 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 import java.util.ArrayList;
 import java.util.List;

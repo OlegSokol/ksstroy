@@ -1,4 +1,4 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 import static org.junit.Assert.*;
 

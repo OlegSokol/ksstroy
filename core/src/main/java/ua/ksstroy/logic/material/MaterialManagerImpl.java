@@ -10,11 +10,11 @@ import java.util.List;
 @Component(value = "MaterialManagerImpl")
 public class MaterialManagerImpl implements MaterialManager {
 
-    @Qualifier("materialAndMaterialTypeDaoImpl")
+    @Qualifier("materialDaoImpl")
     @Resource
     MaterialDao materialDao;
 
-    @Qualifier("materialAndMaterialTypeDaoImpl")
+    @Qualifier("materialDaoImpl")
     @Resource
     MaterialTypeDao materialTypeDao;
 

@@ -16,12 +16,12 @@ public interface MaterialType {
 
     void setDescription(String description);
 
-    List<MaterialTypeImpl> getMaterialTypeImplList();
+    List<MaterialType> getMaterialTypeImplList();
 
-    void setMaterialTypeImplList(List<MaterialTypeImpl> materialTypeImplList);
+    void setMaterialTypeImplList(List<MaterialType> materialTypeImplList);
 
-    List<MaterialImpl> getMaterialImplList();
+    List<Material> getMaterialImplList();
 
-    void setMaterialImplList(List<MaterialImpl> materialImplList);
+    void setMaterialImplList(List<Material> materialImplList);
 
 }

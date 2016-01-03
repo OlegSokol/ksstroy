@@ -1,12 +1,12 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.converter.GroupsModelToGroupConverter;
-import ua.ksstroy.converter.ZoneToZoneModelConverter;
-import ua.ksstroy.converter.ZonesModelToZoneConverter;
+import ua.ksstroy.converter.zoneGroup.GroupsModelToGroupConverter;
+import ua.ksstroy.converter.zoneGroup.ZoneToZoneModelConverter;
+import ua.ksstroy.converter.zoneGroup.ZonesModelToZoneConverter;
 import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.logic.zone.ZoneDao;
 import ua.ksstroy.logic.zone.ZoneGroup;
@@ -203,15 +203,18 @@ public class ZoneGroupDaoImpl implements ZoneDao {
             @Override
             public void process(SessionWrapper session) {
                 ZonesModel zone = session.get(ZonesModel.class, zoneId);
-                zone.setName(newZone.getName());
-                zone.setHeight(newZone.getHeight());
-                zone.setWidth(newZone.getWidth());
-                zone.setMeasureName(newZone.getMeasure());
-
+                convertZoneToZoneModel(zone, newZone);
                 session.saveOrUpdate(zone);
 
             }
         });
+    }
+
+    private void convertZoneToZoneModel(ZonesModel zone, Zone newZone) {
+        zone.setName(newZone.getName());
+        zone.setHeight(newZone.getHeight());
+        zone.setWidth(newZone.getWidth());
+        zone.setMeasureName(newZone.getMeasure());
     }
 
     @Override

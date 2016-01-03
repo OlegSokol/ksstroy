@@ -11,9 +11,9 @@ public class MaterialTypeImpl implements MaterialType {
 
     private String description;
 
-    private List<MaterialTypeImpl> materialTypeImplList = new ArrayList<>();
+    private List<MaterialType> materialTypeImplList = new ArrayList<>();
 
-    private List<MaterialImpl> materialImplList = new ArrayList<>();
+    private List<Material> materialImplList = new ArrayList<>();
 
     public MaterialTypeImpl() {
 
@@ -21,11 +21,6 @@ public class MaterialTypeImpl implements MaterialType {
 
     public MaterialTypeImpl(Integer id, String name, String description) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    public MaterialTypeImpl(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -60,22 +55,22 @@ public class MaterialTypeImpl implements MaterialType {
         this.description = description;
     }
 
-    public List<MaterialTypeImpl> getMaterialTypeImplList() {
+    public List<MaterialType> getMaterialTypeImplList() {
         return materialTypeImplList;
     }
 
     @Override
-    public void setMaterialTypeImplList(List<MaterialTypeImpl> materialTypeImplList) {
+    public void setMaterialTypeImplList(List<MaterialType> materialTypeImplList) {
         this.materialTypeImplList = materialTypeImplList;
     }
 
     @Override
-    public List<MaterialImpl> getMaterialImplList() {
+    public List<Material> getMaterialImplList() {
         return materialImplList;
     }
 
     @Override
-    public void setMaterialImplList(List<MaterialImpl> materialImplList) {
+    public void setMaterialImplList(List<Material> materialImplList) {
         this.materialImplList = materialImplList;
     }
 }
