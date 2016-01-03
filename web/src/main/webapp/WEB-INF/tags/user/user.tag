@@ -36,6 +36,9 @@
                     <tr>
                         <td>role</td>
                         <td><input type="text" name="width" value="${user.role}"></td>
+                    </tr> <tr>
+                        <td>password</td>
+                        <td><input type="text" name="width" value="${user.password}"></td>
                     </tr>
 
                     </tbody>

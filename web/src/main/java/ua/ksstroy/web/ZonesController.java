@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 @Controller
 public class ZonesController {
 
-    private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
+    private final Logger logger = LoggerFactory.getLogger(IndexPageController.class);
     @Resource(name = "ZoneManagerImpl")
     ZoneManager zoneManager;
     ModelAndView project;
