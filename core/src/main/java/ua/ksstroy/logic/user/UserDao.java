@@ -10,5 +10,6 @@ public interface UserDao {
     and populate according record in a DB
      */
 void addUser(UserImpl user);
+    void deleteUser(String userId);
 
 }

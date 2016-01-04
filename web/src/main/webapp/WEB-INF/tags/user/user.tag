@@ -15,8 +15,8 @@
         <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
         ${user.name}
         <div class="add_delete_wrapper">
-            <form action="/projects/removeGroup" method="post">
-                <input type="hidden" value="${user.id}">
+            <form action="${pageContext.request.contextPath}/users_projects/deleteUser" method="post">
+                <input type="hidden" name="userId" value="${user.id}">
                 <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
             </form>
             <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">

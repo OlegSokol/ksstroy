@@ -14,6 +14,7 @@ public class UserManagerImpl implements UserManager {
     @Autowired
     UserDao userDao;
 
+
     @Override
     public void addUser(UserData userData) {
         userDao.addUser(convertUserDataToUserImpl(userData));
@@ -22,6 +23,11 @@ public class UserManagerImpl implements UserManager {
     @Override
     public List<UserData> getAllUsers() {
         return convertUserImplToUserData(userDao.getAllUsers());
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        userDao.deleteUser(userId);
     }
 
     private List<UserImpl> convertUserDatalToUserImplList(List<UserData> userDataList) {
@@ -62,15 +68,15 @@ public class UserManagerImpl implements UserManager {
         user.setPassword(userData.getPassword());
         List<ProjectImpl> projectList = new ArrayList<>();
         //TODO curiosity: how to handle exception throughout adding of new User from WEB
-        try{
-        for (ProjectData projectData : userData.getProjectsList()) {
-            ProjectImpl project = new ProjectImpl();
-            project.setId(projectData.getId());
-            project.setProjectName(projectData.getProjectName());
-            project.setDescription(projectData.getDescription());
-            projectList.add(project);
-        }}
-        catch (NullPointerException e){
+        try {
+            for (ProjectData projectData : userData.getProjectsList()) {
+                ProjectImpl project = new ProjectImpl();
+                project.setId(projectData.getId());
+                project.setProjectName(projectData.getProjectName());
+                project.setDescription(projectData.getDescription());
+                projectList.add(project);
+            }
+        } catch (NullPointerException e) {
             System.out.println("catched");
         }
 

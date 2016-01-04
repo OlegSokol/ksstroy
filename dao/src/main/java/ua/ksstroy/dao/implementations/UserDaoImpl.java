@@ -49,4 +49,15 @@ public class UserDaoImpl implements UserDao {
             }
         });
     }
+
+    @Override
+    public void deleteUser(final String userId) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+               session.delete(session.get(UserModel.class,userId));
+            }
+        });
+    }
+
 }

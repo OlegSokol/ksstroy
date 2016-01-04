@@ -36,4 +36,10 @@ public class UserController {
         System.out.println("ADD USER !!!");
         return "redirect:"+"/users_projects";
     }
+
+    @RequestMapping(value = "/users_projects/deleteUser", method = RequestMethod.POST)
+    public  String deleteUser(@RequestParam("userId") String userId){
+        userManager.deleteUser(userId);
+        return "redirect:"+"/users_projects";
+    }
 }
