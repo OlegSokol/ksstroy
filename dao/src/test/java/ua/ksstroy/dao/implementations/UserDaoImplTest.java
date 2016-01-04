@@ -46,7 +46,8 @@ public class UserDaoImplTest extends UserDaoImpl {
 
     @Test
     public void userDaoCrudTest() throws Exception {
-        userDao.updateProject(mockProjectData);
+        userDao.deleteProject("35");
+     //   userDao.updateProject(mockProjectData);
       //  userDao.addProject("2",mockProjectImpl);
        // userDao.deleteUser("4");
 //        userDao.addUser(mockUserImpl);

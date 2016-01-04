@@ -14,5 +14,6 @@ public interface UserManager {
     void deleteUser(String userId);
     void addProject(String userId, ProjectData projectData);
     void updateProject(ProjectData projectData);
+    void deleteProject(String projectId);
 
 }

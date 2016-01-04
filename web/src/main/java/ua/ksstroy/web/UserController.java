@@ -59,7 +59,6 @@ public class UserController {
     }
 
 
-
     @RequestMapping(value = "/users_projects/addProject", method = RequestMethod.POST)
     public String addProject(
             @RequestParam("userId") String userId,
@@ -76,14 +75,18 @@ public class UserController {
     public String updateProject(
             @RequestParam("projectId") String projectId,
             @RequestParam("name") String name,
-            @RequestParam("description") String description)
-            {
-                ProjectData projectData =new ProjectData();
-                projectData.setId(projectId);
-                projectData.setDescription(description);
-                projectData.setProjectName(name);
-                userManager.updateProject(projectData);
+            @RequestParam("description") String description) {
+        ProjectData projectData = new ProjectData();
+        projectData.setId(projectId);
+        projectData.setDescription(description);
+        projectData.setProjectName(name);
+        userManager.updateProject(projectData);
         return "redirect:" + "/users_projects";
     }
 
+    @RequestMapping(value = "/users_projects/deleteProject", method = RequestMethod.POST)
+    public String deleteProject(@RequestParam("projectId") String projectId) {
+        userManager.deleteProject(projectId);
+        return "redirect:" + "/users_projects";
+    }
 }

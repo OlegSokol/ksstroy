@@ -20,4 +20,5 @@ void addUser(UserImpl user);
     void addProject(String userId, ProjectImpl projectImpl);
 
     void updateProject(ProjectData projectData);
+    void deleteProject(String projectId);
 }

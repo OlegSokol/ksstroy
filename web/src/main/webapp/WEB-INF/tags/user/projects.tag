@@ -15,7 +15,8 @@
         <div class="item">
         <a href="/projects/${project.id}">${project.projectName}</a>
         <div class="add_delete_wrapper">
-            <form action="/projects/removeGroup" method="post">
+            <form action="${pageContext.request.contextPath}/users_projects/deleteProject" method="post">
+                <input type="hidden" name="projectId" value="${project.id}">
                 <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
             </form>
             <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">

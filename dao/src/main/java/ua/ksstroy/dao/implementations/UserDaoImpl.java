@@ -101,4 +101,14 @@ public class UserDaoImpl implements UserDao {
         });
     }
 
+    @Override
+    public void deleteProject(final String projectId) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                session.delete(session.get(ProjectModel.class,projectId));
+            }
+        });
+    }
+
 }

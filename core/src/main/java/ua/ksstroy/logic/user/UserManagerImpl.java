@@ -45,6 +45,11 @@ public class UserManagerImpl implements UserManager {
 userDao.updateProject(projectData);
     }
 
+    @Override
+    public void deleteProject(String projectId) {
+        userDao.deleteProject(projectId);
+    }
+
     private List<UserImpl> convertUserDatalToUserImplList(List<UserData> userDataList) {
         List<UserImpl> userList = new ArrayList<>();
         for (UserData userData : userDataList) {
