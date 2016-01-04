@@ -55,7 +55,21 @@ public class UserDaoImpl implements UserDao {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-               session.delete(session.get(UserModel.class,userId));
+               session.delete(session.get(UserModel.class, userId));
+            }
+        });
+    }
+
+    @Override
+    public void updateUser(final UserData userData) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                UserModel userBeforeUpdate=session.get(UserModel.class, userData.getId());
+                userBeforeUpdate.setName(userData.getName());
+                userBeforeUpdate.setPassword(userData.getPassword());
+                userBeforeUpdate.setRole(userData.getRole());
+                session.saveOrUpdate(userBeforeUpdate);
             }
         });
     }

@@ -11,5 +11,6 @@ public interface UserDao {
      */
 void addUser(UserImpl user);
     void deleteUser(String userId);
+    void updateUser(UserData userData);
 
 }

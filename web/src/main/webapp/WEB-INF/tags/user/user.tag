@@ -26,7 +26,8 @@
 
         <div class="controller hidden">
             <div class="controller_name">UPDATE USER</div>
-            <form action="/updateUser" method="post">
+            <form action="${pageContext.request.contextPath}/users_projects/updateUser" method="post">
+               <input type="hidden" name="userId" value="${user.id}">
                 <table>
                     <tbody>
                     <tr>
@@ -35,10 +36,10 @@
                     </tr>
                     <tr>
                         <td>role</td>
-                        <td><input type="text" name="width" value="${user.role}"></td>
+                        <td><input type="text" name="role" value="${user.role}"></td>
                     </tr> <tr>
                         <td>password</td>
-                        <td><input type="text" name="width" value="${user.password}"></td>
+                        <td><input type="text" name="password" value="${user.password}"></td>
                     </tr>
 
                     </tbody>

@@ -33,7 +33,21 @@ public class UserController {
         userData.setPassword(password);
         userData.setRole(role);
         userManager.addUser(userData);
-        System.out.println("ADD USER !!!");
+        return "redirect:"+"/users_projects";
+    }
+
+    @RequestMapping(value = "/users_projects/updateUser", method = RequestMethod.POST)
+    public String updateUser(
+            @RequestParam("userId") String userId,
+            @RequestParam("name") String name,
+                          @RequestParam("password") String password,
+                          @RequestParam("role") String role) {
+        UserData userData = new UserData();
+        userData.setId(userId);
+        userData.setName(name);
+        userData.setPassword(password);
+        userData.setRole(role);
+        userManager.updateUser(userData);
         return "redirect:"+"/users_projects";
     }
 

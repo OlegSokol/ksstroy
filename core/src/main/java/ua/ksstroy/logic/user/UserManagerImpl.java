@@ -26,6 +26,11 @@ public class UserManagerImpl implements UserManager {
     }
 
     @Override
+    public void updateUser(UserData userData) {
+        userDao.updateUser(userData);
+    }
+
+    @Override
     public void deleteUser(String userId) {
         userDao.deleteUser(userId);
     }
