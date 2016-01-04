@@ -3,11 +3,14 @@ package ua.ksstroy.dao.implementations;
 import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.ProjectModelToProjectConverter;
 import ua.ksstroy.converter.UserModelToUserConverter;
+import ua.ksstroy.converter.UserToUserModelConverter;
 import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;
+import ua.ksstroy.logic.user.UserData;
 import ua.ksstroy.logic.user.UserImpl;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.user.UserModel;
+import ua.ksstroy.persistence.DoInTransaction;
 import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
@@ -33,6 +36,16 @@ public class UserDaoImpl implements UserDao {
                 }
 
                 return userList;
+            }
+        });
+    }
+
+    @Override
+    public void addUser(final UserImpl user) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                session.saveOrUpdate(new UserToUserModelConverter().convert(user));
             }
         });
     }

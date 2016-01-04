@@ -21,6 +21,10 @@
 <div id="wraper">
 <h2>Users</h2>
     <ul class="items_list">
+        <ul class="initializers">
+        <user:addUser/>
+
+        </ul>
         <c:forEach var="user" items="${usersList}">
             <user:user user="${user}"/>
             <ul>

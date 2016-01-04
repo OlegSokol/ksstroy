@@ -226,6 +226,7 @@ public class ZoneGroupDaoImpl implements ZoneDao {
         });
     }
 
+//TODO : turn out to the Converter interface
     private <S, T> List<T> convertMany(Collection<S> sourceCollection, Converter<S, T> converter) {
         final List<T> targetCollection = new ArrayList<>();
         for (S source : sourceCollection)

@@ -15,28 +15,19 @@ public class UserManagerImpl implements UserManager {
     UserDao userDao;
 
     @Override
+    public void addUser(UserData userData) {
+        userDao.addUser(convertUserDataToUserImpl(userData));
+    }
+
+    @Override
     public List<UserData> getAllUsers() {
-        return  convertUserImplToUserData(userDao.getAllUsers());
+        return convertUserImplToUserData(userDao.getAllUsers());
     }
 
     private List<UserImpl> convertUserDatalToUserImplList(List<UserData> userDataList) {
         List<UserImpl> userList = new ArrayList<>();
         for (UserData userData : userDataList) {
-            UserImpl user = new UserImpl();
-            List<ProjectImpl> projectList=new ArrayList<>();
-            for (ProjectData projectData : userData.getProjectsList()) {
-                ProjectImpl project = new ProjectImpl();
-                project.setId(projectData.getId());
-                project.setProjectName(projectData.getProjectName());
-                project.setDescription(projectData.getDescription());
-                projectList.add(project);
-            }
-            user.setId(userData.getId());
-            user.setName(userData.getName());
-            user.setRole(userData.getRole());
-            user.setPassword(userData.getPassword());
-            user.setProjectsList(projectList);
-            userList.add(user);
+            userList.add(convertUserDataToUserImpl(userData));
         }
         return userList;
     }
@@ -62,4 +53,29 @@ public class UserManagerImpl implements UserManager {
         }
         return userDataList;
     }
+
+    private UserImpl convertUserDataToUserImpl(UserData userData) {
+        UserImpl user = new UserImpl();
+        user.setId(userData.getId());
+        user.setName(userData.getName());
+        user.setRole(userData.getRole());
+        user.setPassword(userData.getPassword());
+        List<ProjectImpl> projectList = new ArrayList<>();
+        //TODO curiosity: how to handle exception throughout adding of new User from WEB
+        try{
+        for (ProjectData projectData : userData.getProjectsList()) {
+            ProjectImpl project = new ProjectImpl();
+            project.setId(projectData.getId());
+            project.setProjectName(projectData.getProjectName());
+            project.setDescription(projectData.getDescription());
+            projectList.add(project);
+        }}
+        catch (NullPointerException e){
+            System.out.println("catched");
+        }
+
+        user.setProjectsList(projectList);
+        return user;
+    }
+
 }
