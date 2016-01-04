@@ -1,6 +1,8 @@
 package ua.ksstroy.logic.user;
 
 
+import ua.ksstroy.logic.project.ProjectData;
+
 import java.util.List;
 
 public interface UserManager {
@@ -10,5 +12,7 @@ public interface UserManager {
     update user by id from userData*/
     void updateUser(UserData userData);
     void deleteUser(String userId);
+    void addProject(String userId, ProjectData projectData);
+    void updateProject(ProjectData projectData);
 
 }

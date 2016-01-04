@@ -35,6 +35,16 @@ public class UserManagerImpl implements UserManager {
         userDao.deleteUser(userId);
     }
 
+    @Override
+    public void addProject(String userId, ProjectData projectData) {
+        userDao.addProject(userId, convertProjectDataToProjectImpl(projectData));
+    }
+
+    @Override
+    public void updateProject(ProjectData projectData) {
+userDao.updateProject(projectData);
+    }
+
     private List<UserImpl> convertUserDatalToUserImplList(List<UserData> userDataList) {
         List<UserImpl> userList = new ArrayList<>();
         for (UserData userData : userDataList) {
@@ -87,6 +97,14 @@ public class UserManagerImpl implements UserManager {
 
         user.setProjectsList(projectList);
         return user;
+    }
+
+    private ProjectImpl convertProjectDataToProjectImpl(ProjectData projectData){
+        ProjectImpl project  = new ProjectImpl();
+        project.setId(projectData.getId());
+        project.setProjectName(projectData.getProjectName());
+        project.setDescription(projectData.getDescription());
+        return project;
     }
 
 }

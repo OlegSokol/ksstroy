@@ -22,12 +22,13 @@
         </div>
         <div class="controller hidden">
             <div class="controller_name">UPDATE PROJECT</div>
-            <form action="/projects/updateZone" method="post">
+            <form action="${pageContext.request.contextPath}/users_projects/updateProject" method="post">
+                <input type="hidden" name="projectId" value="${project.id}">
                 <table>
                     <tbody>
                     <tr>
                         <td>name</td>
-                        <td><input type="text" name="projectName" value="${project.projectName}"></td>
+                        <td><input type="text" name="name" value="${project.projectName}"></td>
                     </tr>
                     <tr>
                         <td>description</td>
@@ -36,7 +37,7 @@
 
                     </tbody>
                 </table>
-                <input class="accept_changes_btn clickableIcon" type="image" src="./resources/img/done_btn.png">
+                <input class="accept_changes_btn clickableIcon" type="image" src="${done_btn}">
             </form>
         </div>
     </div>

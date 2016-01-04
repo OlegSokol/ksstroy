@@ -11,41 +11,20 @@
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
 
-    <div class="item">
-        <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
-        ${user.name}
-        <div class="add_delete_wrapper">
-            <form action="${pageContext.request.contextPath}/users_projects/deleteUser" method="post">
-                <input type="hidden" name="userId" value="${user.id}">
-                <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
-            </form>
-            <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
-            <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}"
-                 alt="show_update_forms">
-        </div>
-
-        <div class="controller hidden">
-            <div class="controller_name">UPDATE USER</div>
-            <form action="${pageContext.request.contextPath}/users_projects/updateUser" method="post">
-               <input type="hidden" name="userId" value="${user.id}">
-                <table>
-                    <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td><input type="text" name="name" value="${user.name}"></td>
-                    </tr>
-                    <tr>
-                        <td>role</td>
-                        <td><input type="text" name="role" value="${user.role}"></td>
-                    </tr> <tr>
-                        <td>password</td>
-                        <td><input type="text" name="password" value="${user.password}"></td>
-                    </tr>
-
-                    </tbody>
-                </table>
-                <input class="accept_changes_btn clickableIcon" type="image" src="${done_btn}">
-            </form>
-        </div>
+<div class="item">
+    <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
+    ${user.name}
+    <div class="add_delete_wrapper">
+        <form action="${pageContext.request.contextPath}/users_projects/deleteUser" method="post">
+            <input type="hidden" name="userId" value="${user.id}">
+            <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
+        </form>
+        <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+        <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}"
+             alt="show_update_forms">
     </div>
+
+    <user:updataUser user="${user}"/>
+    <user:addProject user="${user}"/>
+</div>
 

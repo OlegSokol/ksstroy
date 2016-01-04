@@ -2,8 +2,10 @@ package ua.ksstroy.dao.implementations;
 
 import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.ProjectModelToProjectConverter;
+import ua.ksstroy.converter.ProjectToProjectModelConverter;
 import ua.ksstroy.converter.UserModelToUserConverter;
 import ua.ksstroy.converter.UserToUserModelConverter;
+import ua.ksstroy.logic.project.ProjectData;
 import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;
 import ua.ksstroy.logic.user.UserData;
@@ -55,7 +57,7 @@ public class UserDaoImpl implements UserDao {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-               session.delete(session.get(UserModel.class, userId));
+                session.delete(session.get(UserModel.class, userId));
             }
         });
     }
@@ -65,11 +67,36 @@ public class UserDaoImpl implements UserDao {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                UserModel userBeforeUpdate=session.get(UserModel.class, userData.getId());
+                UserModel userBeforeUpdate = session.get(UserModel.class, userData.getId());
                 userBeforeUpdate.setName(userData.getName());
                 userBeforeUpdate.setPassword(userData.getPassword());
                 userBeforeUpdate.setRole(userData.getRole());
                 session.saveOrUpdate(userBeforeUpdate);
+            }
+        });
+    }
+
+    @Override
+    public void addProject(final String userId, final ProjectImpl project) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                UserModel userModel = session.get(UserModel.class, userId);
+                userModel.getProjects().add(new ProjectToProjectModelConverter().convert(project));
+                session.saveOrUpdate(userModel);
+            }
+        });
+    }
+
+    @Override
+    public void updateProject(final ProjectData projectData) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                ProjectModel projectModel = session.get(ProjectModel.class, projectData.getId());
+                projectModel.setProjectName(projectData.getProjectName());
+                projectModel.setDescription(projectData.getDescription());
+                session.saveOrUpdate(projectModel);
             }
         });
     }
