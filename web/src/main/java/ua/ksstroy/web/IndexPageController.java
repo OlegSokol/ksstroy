@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class WelcomeControllerForTest {
+public class IndexPageController {
 
-	private final Logger logger = LoggerFactory.getLogger(WelcomeControllerForTest.class);
+	private final Logger logger = LoggerFactory.getLogger(IndexPageController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String testRootPage() {

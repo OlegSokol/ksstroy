@@ -17,7 +17,21 @@
         <h2>KS STROY PROJECT</h2>
 
         <p>
-            <a href="./projects" class="btn btn-default">PROJECTS</a>
+            Enterprise resource planning (ERP) is a category of business management software. Typically a suite of integrated applications
+            ,that an organization can use to collect, store, manage and interpret data from many
+            business activities, including:
+            product planning, cost
+            manufacturing or service delivery
+            marketing and sales
+            inventory management
+            shipping and payment
+        </p>
+        <p>
+            KsStroy is a domain specific ERP for building.
+        </p>
+
+        <p>
+            <a href="./users_projects">Users with projects</a>
         </p>
     </div>
 </div>

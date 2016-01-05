@@ -1,4 +1,6 @@
-package ua.ksstroy.models.project;
+package ua.ksstroy.models.user;
+
+import ua.ksstroy.models.project.ProjectModel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +26,7 @@ public class UserModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	private Integer Id;
+	private String Id;
 
 	@Column(name = "NAME", nullable = false)
 	private String name;
@@ -39,11 +41,11 @@ public class UserModel implements Serializable {
 	@JoinTable(name = "user_project_rel", joinColumns = @JoinColumn(name = "user"), inverseJoinColumns = @JoinColumn(name = "project"))
 	private List<ProjectModel> projects;
 
-	public Integer getId() {
+	public String getId() {
 		return this.Id;
 	}
 
-	public void setId(Integer Id) {
+	public void setId(String Id) {
 		this.Id = Id;
 	}
 
