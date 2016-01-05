@@ -1,6 +1,7 @@
 package ua.ksstroy.dao.implementations;
 
 import org.junit.*;
+import ua.ksstroy.implementations.UserDaoImpl;
 import ua.ksstroy.logic.project.ProjectData;
 import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;
@@ -9,9 +10,6 @@ import ua.ksstroy.logic.user.UserImpl;
 
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class UserDaoImplTest extends UserDaoImpl {
 

@@ -1,16 +1,18 @@
-package ua.ksstroy.dao.implementations;
+package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.converter.GroupsModelToGroupConverter;
-import ua.ksstroy.converter.ZoneToZoneModelConverter;
-import ua.ksstroy.converter.ZonesModelToZoneConverter;
-import ua.ksstroy.logic.zone.Zone;
-import ua.ksstroy.logic.zone.ZoneDao;
-import ua.ksstroy.logic.zone.ZoneGroup;
-import ua.ksstroy.logic.zone.ZoneGroupImpl;
+
+import ua.ksstroy.converter.zoneGroup.GroupsModelToGroupConverter;
+import ua.ksstroy.converter.zoneGroup.GroupsModelToZoneGroupHierarchyConverter;
+import ua.ksstroy.converter.zoneGroup.ZoneToZoneModelConverter;
+import ua.ksstroy.converter.zoneGroup.ZonesModelToZoneConverter;
+import ua.ksstroy.logic.zoneGroup.Zone;
+import ua.ksstroy.logic.zoneGroup.ZoneDao;
+import ua.ksstroy.logic.zoneGroup.ZoneGroup;
+import ua.ksstroy.logic.zoneGroup.ZoneGroupImpl;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
@@ -30,14 +32,6 @@ public class ZoneGroupDaoImpl implements ZoneDao {
 
     private TransactionHelper helper = new TransactionHelper();
 
-    public ZoneGroup getAllHierarhy(final String projectId) {
-        return helper.simpleAction(new GetInTransaction<ZoneGroup>() {
-            public ZoneGroup process(SessionWrapper session) {
-                ProjectModel project = session.get(ProjectModel.class, Integer.parseInt(projectId));
-                return new GroupsModelToZoneGroupHierarchyConverter().convert(project.getGroupsModel());
-            }
-        });
-    }
 
     @Override
     public void addRootGroup(final String groupName, final Integer projectId) {
@@ -75,6 +69,16 @@ public class ZoneGroupDaoImpl implements ZoneDao {
     }
 
     @Override
+    public ZoneGroup getAllHierarchy(final String projectId) {
+        return helper.simpleAction(new GetInTransaction<ZoneGroup>() {
+            public ZoneGroup process(SessionWrapper session) {
+                ProjectModel project = session.get(ProjectModel.class, projectId);
+                return new GroupsModelToZoneGroupHierarchyConverter().convert(project.getGroupsModel());
+            }
+        });
+    }
+
+    @Override
     public List<ZoneGroup> getGroupsByParentGroupId(final String groupId) {
         return helper.simpleAction(new GetInTransaction<List<ZoneGroup>>() {
             @Override
@@ -100,42 +104,6 @@ public class ZoneGroupDaoImpl implements ZoneDao {
         });
     }
 
-    //TODO remove this method if it's not needed
-    @Override
-    public List<Zone> getZonesByParentZoneId(final String zoneId) {
-        return helper.simpleAction(new GetInTransaction<List<Zone>>() {
-            @Override
-            public List<Zone> process(SessionWrapper session) {
-                ZonesModel parentZone = session.get(ZonesModel.class, zoneId);
-                List<Zone> zonesByParentGroupId = convertMany(parentZone.getAdditionalZone(), new ZonesModelToZoneConverter());
-                zonesByParentGroupId.addAll(convertMany(parentZone.getSurplusZone(), new ZonesModelToZoneConverter()));
-                return zonesByParentGroupId;
-            }
-        });
-    }
-
-    @Override
-    public List<Zone> getAdditionalZonesByParentZoneId(final String zoneId) {
-        return helper.simpleAction(new GetInTransaction<List<Zone>>() {
-            @Override
-            public List<Zone> process(SessionWrapper session) {
-                return convertMany(session.get(ZonesModel.class, zoneId).getAdditionalZone(),
-                        new ZonesModelToZoneConverter());
-            }
-        });
-
-    }
-
-    @Override
-    public List<Zone> getSurplusZonesByParentZoneId(final String zoneId) {
-        return helper.simpleAction(new GetInTransaction<List<Zone>>() {
-            @Override
-            public List<Zone> process(SessionWrapper session) {
-                return convertMany(session.get(ZonesModel.class, zoneId).getSurplusZone(),
-                        new ZonesModelToZoneConverter());
-            }
-        });
-    }
 
     @Override
     public void storeZone(final Zone zone, final String parentGroupId) {

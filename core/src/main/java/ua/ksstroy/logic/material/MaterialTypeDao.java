@@ -4,7 +4,7 @@ public interface MaterialTypeDao {
 
     MaterialType getMaterialHierarchy();
 
-    void addMaterialType(final MaterialType materialTypeDao);
+ void addMaterialType(final MaterialType materialTypeDao);
 
     void addMaterialTypeByParent(final MaterialType materialTypeDao, final String parentMaterialTypeId);
 

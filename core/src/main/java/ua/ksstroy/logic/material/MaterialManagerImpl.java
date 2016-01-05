@@ -24,7 +24,7 @@ public class MaterialManagerImpl implements MaterialManager {
         return new MaterialTypeModelToDataHierarchyConverter().convert(this.materialTypeDao.getMaterialHierarchy());
     }
 
-    @Override
+   @Override
     public void addMaterialType(MaterialTypeData materialTypeDao) {
         this.materialTypeDao.addMaterialType(new MaterialTypeDataToMaterialTypeConverter().convert(materialTypeDao));
     }
