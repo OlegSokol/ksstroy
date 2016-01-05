@@ -8,12 +8,14 @@
 <spring:url value="/resources/img/show_updates_btn.png" var="show_update_forms_btn"/>
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 <spring:url value="/resources/css/mainStyle.css" var="css"/>
+<spring:url value="/resources/js/jquery-2.1.4.min.js" var="jQuery"/>
 <spring:url value="/resources/js/mainScript.js" var="js"/>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <link href="${css}" rel="stylesheet"/>
+
+    <script src="${jQuery}"></script>
     <script src="${js}"></script>
     <title>users_projects</title>
 </head>
