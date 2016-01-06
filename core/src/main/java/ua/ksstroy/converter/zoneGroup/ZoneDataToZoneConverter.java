@@ -1,10 +1,10 @@
-package ua.ksstroy.converter.zoneGroup;
+package ua.ksstroy.converter.zonegroup;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.zoneGroup.Measure;
-import ua.ksstroy.logic.zoneGroup.Zone;
-import ua.ksstroy.logic.zoneGroup.ZoneData;
-import ua.ksstroy.logic.zoneGroup.ZoneImpl;
+import ua.ksstroy.logic.zonegroup.Measure;
+import ua.ksstroy.logic.zonegroup.Zone;
+import ua.ksstroy.logic.zonegroup.ZoneData;
+import ua.ksstroy.logic.zonegroup.ZoneImpl;
 
 import java.util.ArrayList;
 import java.util.List;

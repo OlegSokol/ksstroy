@@ -1,9 +1,9 @@
-package ua.ksstroy.converter.workType;
+package ua.ksstroy.converter.worktype;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.workType.WorkType;
-import ua.ksstroy.logic.workType.WorkTypeGroup;
-import ua.ksstroy.logic.workType.WorkTypeGroupImpl;
+import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.worktype.WorkTypeGroup;
+import ua.ksstroy.logic.worktype.WorkTypeGroupImpl;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 

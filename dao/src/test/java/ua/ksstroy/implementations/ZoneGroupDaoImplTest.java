@@ -4,11 +4,11 @@ import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.ksstroy.converter.zoneGroup.ZonesModelToZoneConverter;
+import ua.ksstroy.converter.zonegroup.ZonesModelToZoneConverter;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
-import ua.ksstroy.logic.zoneGroup.*;
+import ua.ksstroy.logic.zonegroup.*;
 
 import java.util.HashSet;
 import java.util.List;

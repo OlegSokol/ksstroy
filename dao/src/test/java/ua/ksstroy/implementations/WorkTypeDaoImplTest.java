@@ -33,15 +33,15 @@ public class WorkTypeDaoImplTest {
 	public void testSaveWorkType() {
 		WorkTypeDaoImpl workTypeDaoImpl = new WorkTypeDaoImpl();
 		
-		WorkType workType = new WorkType();
-		workType.setName("test");
-		workType.setMeasure(mockWorkTypeModelMeasureName);
-		workTypeDaoImpl.saveWorkType(workType);
+		WorkType worktype = new WorkType();
+		worktype.setName("test");
+		worktype.setMeasure(mockWorkTypeModelMeasureName);
+		workTypeDaoImpl.saveWorkType(worktype);
 		
 		WorkType getWorkType = workTypeDaoImpl.getWorkTypeById(3);
 		
 		assertNotNull(getWorkType);
-		//assertEquals(workType.getName(), getWorkType.getName());
+		//assertEquals(worktype.getName(), getWorkType.getName());
 		
 	}
 	
@@ -49,19 +49,19 @@ public class WorkTypeDaoImplTest {
 	public void testGetWorkTypeById() {
 		WorkTypeDaoImpl workTypeDaoImpl = new WorkTypeDaoImpl();
 	
-		WorkType workType = workTypeDaoImpl.getWorkTypeById(1);
+		WorkType worktype = workTypeDaoImpl.getWorkTypeById(1);
 		
-		assertEquals("podgotovka", workType.getName());
+		assertEquals("podgotovka", worktype.getName());
 	}
 	
 	@Test
 	public void testUpdateWorkType() {
 		WorkTypeDaoImpl workTypeDaoImpl = new WorkTypeDaoImpl();
 		
-		WorkType workType = workTypeDaoImpl.getWorkTypeById(1);
-		workType.setName("testUpdate");
+		WorkType worktype = workTypeDaoImpl.getWorkTypeById(1);
+		worktype.setName("testUpdate");
 		
-		workTypeDaoImpl.updateWorkType(workType);
+		workTypeDaoImpl.updateWorkType(worktype);
 
 	}
 	

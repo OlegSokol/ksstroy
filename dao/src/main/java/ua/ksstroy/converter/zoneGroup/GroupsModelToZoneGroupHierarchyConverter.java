@@ -1,9 +1,9 @@
-package ua.ksstroy.converter.zoneGroup;
+package ua.ksstroy.converter.zonegroup;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.zoneGroup.Zone;
-import ua.ksstroy.logic.zoneGroup.ZoneGroup;
-import ua.ksstroy.logic.zoneGroup.ZoneGroupImpl;
+import ua.ksstroy.logic.zonegroup.Zone;
+import ua.ksstroy.logic.zonegroup.ZoneGroup;
+import ua.ksstroy.logic.zonegroup.ZoneGroupImpl;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 

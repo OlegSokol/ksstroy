@@ -1,11 +1,11 @@
-package ua.ksstroy.logic.zoneGroup;
+package ua.ksstroy.logic.zonegroup;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.zoneGroup.ZoneDataToZoneConverter;
-import ua.ksstroy.converter.zoneGroup.ZoneGroupToZoneHierarchyDataHierarchyConverter;
-import ua.ksstroy.logic.zoneGroup.exceptions.NameConflictException;
+import ua.ksstroy.converter.zonegroup.ZoneDataToZoneConverter;
+import ua.ksstroy.converter.zonegroup.ZoneGroupToZoneHierarchyDataHierarchyConverter;
+import ua.ksstroy.logic.zonegroup.exceptions.NameConflictException;
 
 @Component(value = "ZoneManagerImpl")
 public class ZoneManagerImpl implements ZoneManager {

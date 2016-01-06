@@ -2,8 +2,8 @@ package ua.ksstroy.logic.work;
 
 import java.util.List;
 
-import ua.ksstroy.logic.workType.WorkTypeData;
-import ua.ksstroy.logic.zoneGroup.ZoneData;
+import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.zonegroup.ZoneData;
 
 public class WorkData {
 	

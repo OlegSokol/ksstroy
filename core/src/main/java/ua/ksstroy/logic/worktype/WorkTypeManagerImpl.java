@@ -1,8 +1,8 @@
-package ua.ksstroy.logic.workType;
+package ua.ksstroy.logic.worktype;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.workType.WorkTypeDataToWorkTypeConverter;
-import ua.ksstroy.converter.workType.WorkTypeGroupToWorkTypeGroupDataHierarchyConverter;
+import ua.ksstroy.converter.worktype.WorkTypeDataToWorkTypeConverter;
+import ua.ksstroy.converter.worktype.WorkTypeGroupToWorkTypeGroupDataHierarchyConverter;
 
 import javax.annotation.Resource;
 

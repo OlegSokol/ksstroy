@@ -1,5 +1,5 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
-<%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zoneGroup.ZoneData" %>
+<%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zonegroup.ZoneData" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>

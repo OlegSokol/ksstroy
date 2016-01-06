@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.zoneGroup.ZoneData;
-import ua.ksstroy.logic.zoneGroup.ZoneHierarchyData;
-import ua.ksstroy.logic.zoneGroup.ZoneManager;
+import ua.ksstroy.logic.zonegroup.ZoneData;
+import ua.ksstroy.logic.zonegroup.ZoneHierarchyData;
+import ua.ksstroy.logic.zonegroup.ZoneManager;
 
 import javax.annotation.Resource;
 

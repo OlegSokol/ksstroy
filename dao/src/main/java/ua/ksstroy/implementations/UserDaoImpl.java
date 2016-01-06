@@ -1,7 +1,6 @@
 package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.ProjectModelToProjectConverter;
 import ua.ksstroy.converter.ProjectToProjectModelConverter;
 import ua.ksstroy.converter.UserModelToUserConverter;
 import ua.ksstroy.converter.UserToUserModelConverter;

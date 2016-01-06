@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.workType.WorkTypeData;
-import ua.ksstroy.logic.workType.WorkTypeManager;
+import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.worktype.WorkTypeManager;
 
 import javax.annotation.Resource;
 
@@ -34,7 +34,7 @@ public class WorkTypeController {
 
         workTypeManager.addWorkTypeGroup(outerWorkTypeGroupName);
 
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
     @RequestMapping(value = "/projects/addInnerWorkTypeGroup", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class WorkTypeController {
 
         workTypeManager.addWorkTypeGroup(innerWorkTypeGroupName, parentWorkTypeGroupId);
 
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
     @RequestMapping(value = "/projects/removeWorkTypeGroup", method = RequestMethod.POST)
@@ -53,7 +53,7 @@ public class WorkTypeController {
 
         workTypeManager.removeWorkTypeGroup(id);
 
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
     @RequestMapping(value = "/projects/addWorkType", method = RequestMethod.POST)
@@ -77,7 +77,7 @@ public class WorkTypeController {
 
         workTypeManager.addWorkType(workTypeData, parentWorkTypeGroupId);
         System.out.println("add work type");
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
     @RequestMapping(value = "/projects/removeWorkType", method = RequestMethod.POST)
@@ -86,7 +86,7 @@ public class WorkTypeController {
 
         workTypeManager.removeWorkType(id);
 
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
     @RequestMapping(value = "/projects/updateWorkTypeGroupName", method = RequestMethod.POST)
@@ -95,7 +95,7 @@ public class WorkTypeController {
                                           @RequestParam("projectId") String projectId) {
         workTypeManager.updateWorkTypeGroupName(groupId, newGroupName);
 
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
     @RequestMapping(value = "/projects/updateWorkType", method = RequestMethod.POST)
@@ -118,7 +118,7 @@ public class WorkTypeController {
 
         workTypeManager.updateWorkType(id, workTypeData);
 
-        return "redirect:" + projectId + "/workType";
+        return "redirect:" + projectId + "/worktype";
     }
 
 }

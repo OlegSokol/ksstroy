@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import ua.ksstroy.logic.zoneGroup.Measure;
+import ua.ksstroy.logic.zonegroup.Measure;
 
 @SuppressWarnings("serial")
 @Entity

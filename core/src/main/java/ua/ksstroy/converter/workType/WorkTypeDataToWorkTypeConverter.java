@@ -1,9 +1,9 @@
-package ua.ksstroy.converter.workType;
+package ua.ksstroy.converter.worktype;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.workType.WorkType;
-import ua.ksstroy.logic.workType.WorkTypeData;
-import ua.ksstroy.logic.workType.WorkTypeImpl;
+import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.worktype.WorkTypeImpl;
 
 public class WorkTypeDataToWorkTypeConverter implements Converter<WorkTypeData, WorkType> {
     public WorkType convert(WorkTypeData workTypeData) {

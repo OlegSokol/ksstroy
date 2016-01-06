@@ -1,12 +1,12 @@
-package ua.ksstroy.logic.zoneGroup;
+package ua.ksstroy.logic.zonegroup;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.ksstroy.converter.zoneGroup.ZoneDataToZoneConverter;
-import ua.ksstroy.converter.zoneGroup.ZoneToZoneDataConverter;
+import ua.ksstroy.converter.zonegroup.ZoneDataToZoneConverter;
+import ua.ksstroy.converter.zonegroup.ZoneToZoneDataConverter;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 

@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.material;
 
-import ua.ksstroy.logic.zoneGroup.Measure;
+import ua.ksstroy.logic.zonegroup.Measure;
 
 public class MaterialData {
 

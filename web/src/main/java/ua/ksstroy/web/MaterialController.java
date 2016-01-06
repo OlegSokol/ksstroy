@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.ksstroy.logic.material.MaterialData;
 import ua.ksstroy.logic.material.MaterialManager;
 import ua.ksstroy.logic.material.MaterialTypeData;
-import ua.ksstroy.logic.zoneGroup.Measure;
+import ua.ksstroy.logic.zonegroup.Measure;
 
 import javax.annotation.Resource;
 

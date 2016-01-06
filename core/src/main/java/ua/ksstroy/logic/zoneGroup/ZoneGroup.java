@@ -1,10 +1,10 @@
-package ua.ksstroy.logic.zoneGroup;
+package ua.ksstroy.logic.zonegroup;
 
 import java.util.List;
 
 /*
  * 	An  object representing a particular group
- * of zoneGroup objects with included Zones list and internal ZoneGroups in
+ * of zonegroup objects with included Zones list and internal ZoneGroups in
  * a building.
  * (e.g ZoneGroup "Hotel Plazma" contains ZoneGroups:"Restaurant", 
  * "Hall", "Rooms" etc  .) Structurally is a binary three. 

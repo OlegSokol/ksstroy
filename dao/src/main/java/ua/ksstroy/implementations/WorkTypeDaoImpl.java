@@ -1,12 +1,12 @@
 package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.workType.WorkTypeGroupModelToWorkTypeGroupHierarchyConverter;
-import ua.ksstroy.converter.workType.WorkTypeToWorkTypeModelConvert;
-import ua.ksstroy.logic.workType.WorkType;
-import ua.ksstroy.logic.workType.WorkTypeDao;
-import ua.ksstroy.logic.workType.WorkTypeGroup;
-import ua.ksstroy.logic.workType.WorkTypeGroupDao;
+import ua.ksstroy.converter.worktype.WorkTypeGroupModelToWorkTypeGroupHierarchyConverter;
+import ua.ksstroy.converter.worktype.WorkTypeToWorkTypeModelConvert;
+import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.worktype.WorkTypeDao;
+import ua.ksstroy.logic.worktype.WorkTypeGroup;
+import ua.ksstroy.logic.worktype.WorkTypeGroupDao;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -134,7 +134,7 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
 
 		*//*
          * TODO add Material Set Set<MaterialModel> materialsModelSet = new
-		 * HashSet<>(); Set<Material> materialsSet = workType.getMaterials();
+		 * HashSet<>(); Set<Material> materialsSet = worktype.getMaterials();
 		 *
 		 * for (Material material : materialsSet) {
 		 *
@@ -147,12 +147,12 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
 	}
 
 	protected WorkTypeData convertModelToWorkTypeData(WorkTypeModel model) {
-		WorkTypeData workType = new WorkTypeData();
-		workType.setId(model.getId());
-		workType.setName(model.getName());
-		workType.setDescription(model.getDescription());
-		workType.setMeasure(Measure.valueOf(model.getMeasureName()));
-		workType.setUnitPrice(model.getUnitPrice());
+		WorkTypeData worktype = new WorkTypeData();
+		worktype.setId(model.getId());
+		worktype.setName(model.getName());
+		worktype.setDescription(model.getDescription());
+		worktype.setMeasure(Measure.valueOf(model.getMeasureName()));
+		worktype.setUnitPrice(model.getUnitPrice());
 
 		*//*
          * TODO add Material Set Set<Material> materialsSet = new HashSet<>();
@@ -160,9 +160,9 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
 		 * (MaterialModel materialModel : materialsModelSet) {
 		 * materialsSet.add(convertModelToMaterial(materialModel)); }
 		 *
-		 * workType.setMaterials(materialsSet);
+		 * worktype.setMaterials(materialsSet);
 		 *//*
-        return workType;
+        return worktype;
 	}
 	*//*
      * TODO add material converters private MaterialModel

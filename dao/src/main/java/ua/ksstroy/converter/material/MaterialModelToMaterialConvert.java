@@ -3,7 +3,7 @@ package ua.ksstroy.converter.material;
 import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.material.MaterialImpl;
-import ua.ksstroy.logic.zoneGroup.Measure;
+import ua.ksstroy.logic.zonegroup.Measure;
 import ua.ksstroy.models.material.MaterialModel;
 
 public class MaterialModelToMaterialConvert implements Converter<MaterialModel, Material> {

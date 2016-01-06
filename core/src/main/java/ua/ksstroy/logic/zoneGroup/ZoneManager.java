@@ -1,6 +1,6 @@
-package ua.ksstroy.logic.zoneGroup;
+package ua.ksstroy.logic.zonegroup;
 
-import ua.ksstroy.logic.zoneGroup.exceptions.NameConflictException;
+import ua.ksstroy.logic.zonegroup.exceptions.NameConflictException;
 
 public interface ZoneManager {
 	/*

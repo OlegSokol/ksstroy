@@ -1,4 +1,4 @@
-package ua.ksstroy.logic.zoneGroup;
+package ua.ksstroy.logic.zonegroup;
 
 import java.util.List;
 

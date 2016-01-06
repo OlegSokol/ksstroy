@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.ksstroy.logic.zoneGroup.Measure;
+import ua.ksstroy.logic.zonegroup.Measure;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.persistence.HibernateUtil;
 

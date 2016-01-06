@@ -1,10 +1,10 @@
-package ua.ksstroy.converter.workType;
+package ua.ksstroy.converter.worktype;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.workType.WorkType;
-import ua.ksstroy.logic.workType.WorkTypeData;
-import ua.ksstroy.logic.workType.WorkTypeGroup;
-import ua.ksstroy.logic.workType.WorkTypeGroupData;
+import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.worktype.WorkTypeGroup;
+import ua.ksstroy.logic.worktype.WorkTypeGroupData;
 
 import java.util.ArrayList;
 import java.util.List;
