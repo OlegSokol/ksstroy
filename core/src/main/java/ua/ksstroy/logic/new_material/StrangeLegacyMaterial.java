@@ -4,7 +4,7 @@ import java.util.Set;
 
 import ua.ksstroy.logic.worktype.WorkType;
 
-public class Material {
+public class StrangeLegacyMaterial {
 	
 	private int id;
 	

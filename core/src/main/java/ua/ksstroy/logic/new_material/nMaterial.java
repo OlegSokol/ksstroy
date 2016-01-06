@@ -2,7 +2,7 @@ package ua.ksstroy.logic.new_material;
 
 import ua.ksstroy.logic.material.MaterialTypeData;
 
-public class MaterialData {
+public class nMaterial {
 
 	private MaterialTypeData type;
 

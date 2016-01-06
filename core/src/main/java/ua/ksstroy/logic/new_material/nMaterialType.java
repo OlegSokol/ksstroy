@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.new_material;
 
-public class MaterialTypeData {
+public class nMaterialType {
 	
 	private String name;
 
