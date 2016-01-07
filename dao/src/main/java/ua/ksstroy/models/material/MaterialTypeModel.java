@@ -6,7 +6,7 @@ import java.io.Serializable;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "materials", catalog = "ksstroy")
+@Table(name = "material_type", catalog = "ksstroy")
 public class MaterialTypeModel implements Serializable {
 
     @Id

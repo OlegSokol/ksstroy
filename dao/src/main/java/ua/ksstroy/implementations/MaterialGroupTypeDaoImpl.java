@@ -2,7 +2,7 @@ package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import ua.ksstroy.converter.material.MaterialTypeGroupModelToMaterialTypeGroupHierarchyConverter;
+import ua.ksstroy.converter.material.MaterialTypeGroupModelToGroupHierarchyConverter;
 import ua.ksstroy.converter.material.MaterialTypeGroupToModelConverter;
 import ua.ksstroy.converter.material.MaterialTypeToMaterialTypeModelConverter;
 import ua.ksstroy.logic.material.MaterialType;
@@ -26,7 +26,7 @@ public class MaterialGroupTypeDaoImpl implements MaterialTypeGroupDao, MaterialT
     public MaterialTypeGroup getMaterialHierarchy() {
         return helper.simpleAction(new GetInTransaction<MaterialTypeGroup>() {
             public MaterialTypeGroup process(SessionWrapper session) {
-                MaterialTypeGroup materialTypeGroupHierarchy = new MaterialTypeGroupModelToMaterialTypeGroupHierarchyConverter().convert(session.get(MaterialTypeGroupModel.class, "1"));
+                MaterialTypeGroup materialTypeGroupHierarchy = new MaterialTypeGroupModelToGroupHierarchyConverter().convert(session.get(MaterialTypeGroupModel.class, "1"));
                 return materialTypeGroupHierarchy;
             }
         });
@@ -49,7 +49,7 @@ public class MaterialGroupTypeDaoImpl implements MaterialTypeGroupDao, MaterialT
             @Override
             public void process(SessionWrapper session) {
                 MaterialTypeGroupModel materialTypeGroupModel = new MaterialTypeGroupToModelConverter().convert(materialTypeGroupDao);
-                materialTypeGroupModel.setSubMaterialTypeToRootType(session.get(MaterialTypeGroupModel.class, parentMaterialTypeGroupId));
+                materialTypeGroupModel.setSubMaterialTypeGroup(session.get(MaterialTypeGroupModel.class, parentMaterialTypeGroupId));
                 session.save(materialTypeGroupModel);
             }
         });
@@ -85,7 +85,7 @@ public class MaterialGroupTypeDaoImpl implements MaterialTypeGroupDao, MaterialT
             public void process(SessionWrapper session) {
                 MaterialTypeModel materialTypeModel = new MaterialTypeToMaterialTypeModelConverter().convert(materialTypeImpl);
                 MaterialTypeGroupModel materialTypeGroupModel = session.get(MaterialTypeGroupModel.class, parentMaterialTypeGroupId);
-                materialTypeGroupModel.getMaterialTypeToMaterial().add(materialTypeModel);
+                materialTypeGroupModel.getMaterialTypeGroupToMaterialType().add(materialTypeModel);
                 session.save(materialTypeModel);
             }
         });

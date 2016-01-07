@@ -8,7 +8,7 @@ import java.util.Set;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "material_type", catalog = "ksstroy")
+@Table(name = "material_type_group", catalog = "ksstroy")
 public class MaterialTypeGroupModel implements Serializable {
 
     @Id
@@ -25,16 +25,16 @@ public class MaterialTypeGroupModel implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id")
     @OrderBy
-    private Set<MaterialTypeModel> materialTypeToMaterial = new LinkedHashSet<>();
+    private Set<MaterialTypeModel> materialTypeGroupToMaterialType = new LinkedHashSet<>();
 
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
     @OrderBy
-    private Set<MaterialTypeGroupModel> materialType = new LinkedHashSet<>();
+    private Set<MaterialTypeGroupModel> materialTypeGroup = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private MaterialTypeGroupModel subMaterialTypeToRootType;
+    private MaterialTypeGroupModel subMaterialTypeGroup;
 
     public MaterialTypeGroupModel() {
     }
@@ -68,27 +68,27 @@ public class MaterialTypeGroupModel implements Serializable {
         this.description = description;
     }
 
-    public Set<MaterialTypeModel> getMaterialTypeToMaterial() {
-        return materialTypeToMaterial;
+    public Set<MaterialTypeModel> getMaterialTypeGroupToMaterialType() {
+        return materialTypeGroupToMaterialType;
     }
 
-    public void setMaterialTypeToMaterial(Set<MaterialTypeModel> materialTypeToMaterial) {
-        this.materialTypeToMaterial = materialTypeToMaterial;
+    public void setMaterialTypeGroupToMaterialType(Set<MaterialTypeModel> materialTypeGroupToMaterialType) {
+        this.materialTypeGroupToMaterialType = materialTypeGroupToMaterialType;
     }
 
-    public Set<MaterialTypeGroupModel> getMaterialType() {
-        return materialType;
+    public Set<MaterialTypeGroupModel> getMaterialTypeGroup() {
+        return materialTypeGroup;
     }
 
-    public void setMaterialType(Set<MaterialTypeGroupModel> materialType) {
-        this.materialType = materialType;
+    public void setMaterialTypeGroup(Set<MaterialTypeGroupModel> materialTypeGroup) {
+        this.materialTypeGroup = materialTypeGroup;
     }
 
-    public MaterialTypeGroupModel getSubMaterialTypeToRootType() {
-        return subMaterialTypeToRootType;
+    public MaterialTypeGroupModel getSubMaterialTypeGroup() {
+        return subMaterialTypeGroup;
     }
 
-    public void setSubMaterialTypeToRootType(MaterialTypeGroupModel subMaterialTypeToRootType) {
-        this.subMaterialTypeToRootType = subMaterialTypeToRootType;
+    public void setSubMaterialTypeGroup(MaterialTypeGroupModel subMaterialTypeGroup) {
+        this.subMaterialTypeGroup = subMaterialTypeGroup;
     }
 }

@@ -5,7 +5,7 @@ import ua.ksstroy.logic.material.MaterialType;
 import ua.ksstroy.logic.material.MaterialTypeImpl;
 import ua.ksstroy.models.material.MaterialTypeModel;
 
-public class MaterialTypeModelToMaterialTypeConvert implements Converter<MaterialTypeModel, MaterialType> {
+public class MaterialTypeModelToMaterialTypeConverter implements Converter<MaterialTypeModel, MaterialType> {
     public MaterialType convert(MaterialTypeModel model) {
         MaterialType materialType = new MaterialTypeImpl(
                 model.getId(),
