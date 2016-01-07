@@ -8,10 +8,10 @@ public class MaterialTypeGroupToModelConverter implements Converter<MaterialType
 
     public MaterialTypeGroupModel convert(MaterialTypeGroup materialTypeGroupImpl) {
 
-        MaterialTypeGroupModel materialTypeGroupModel = new MaterialTypeGroupModel();
-        materialTypeGroupModel.setName(materialTypeGroupImpl.getName());
-        materialTypeGroupModel.setDescription(materialTypeGroupImpl.getDescription());
-
+        MaterialTypeGroupModel materialTypeGroupModel = new MaterialTypeGroupModel(
+                materialTypeGroupImpl.getName(),
+                materialTypeGroupImpl.getDescription()
+        );
         return materialTypeGroupModel;
     }
 }

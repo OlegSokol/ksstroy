@@ -1,8 +1,8 @@
-package ua.ksstroy.logic.new_material;
+package ua.ksstroy.logic.material;
 
 import ua.ksstroy.logic.material.MaterialTypeGroupData;
 
-public class nMaterial {
+public class Material {
 
 	private MaterialTypeGroupData type;
 

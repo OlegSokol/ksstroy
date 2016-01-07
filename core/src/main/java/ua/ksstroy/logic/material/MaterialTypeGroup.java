@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface MaterialTypeGroup {
 
-    Integer getId();
+    String getId();
 
-    void setId(Integer id);
+    void setId(String id);
 
     String getName();
 

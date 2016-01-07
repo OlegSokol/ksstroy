@@ -16,7 +16,8 @@ public class MaterialTypeGroupModelToDataHierarchyConverter implements Converter
         MaterialTypeGroupData materialTypeGroupData = new MaterialTypeGroupData(
                 materialTypeGroup.getId(),
                 materialTypeGroup.getName(),
-                materialTypeGroup.getDescription());
+                materialTypeGroup.getDescription()
+        );
 
         List<MaterialTypeGroupData> materialTypeGroupDataList = new ArrayList<>();
         for (MaterialTypeGroup type : materialTypeGroup.getMaterialTypeGroupImplList()) {

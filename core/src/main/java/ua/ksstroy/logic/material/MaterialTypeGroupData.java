@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MaterialTypeGroupData {
 
-    private Integer id;
+    private String id;
 
     private String name;
 
@@ -18,17 +18,17 @@ public class MaterialTypeGroupData {
     public MaterialTypeGroupData() {
     }
 
-    public MaterialTypeGroupData(Integer id, String name, String description) {
+    public MaterialTypeGroupData(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

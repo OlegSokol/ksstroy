@@ -1,8 +1,8 @@
-package ua.ksstroy.logic.new_material;
-
-import java.util.Set;
+package ua.ksstroy.logic.material;
 
 import ua.ksstroy.logic.worktype.WorkType;
+
+import java.util.Set;
 
 public class StrangeLegacyMaterial {
 	

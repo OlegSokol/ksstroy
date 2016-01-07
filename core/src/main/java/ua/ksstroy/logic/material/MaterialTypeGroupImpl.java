@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MaterialTypeGroupImpl implements MaterialTypeGroup {
 
-    private Integer id;
+    private String id;
 
     private String name;
 
@@ -19,19 +19,19 @@ public class MaterialTypeGroupImpl implements MaterialTypeGroup {
 
     }
 
-    public MaterialTypeGroupImpl(Integer id, String name, String description) {
+    public MaterialTypeGroupImpl(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

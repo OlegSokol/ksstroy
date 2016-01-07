@@ -23,13 +23,6 @@ public class MaterialTypeImpl implements MaterialType {
         this.unitName = unitName;
     }
 
-    public MaterialTypeImpl(String name, String description, Double pricePerUnit, String unitName) {
-        this.name = name;
-        this.description = description;
-        this.pricePerUnit = pricePerUnit;
-        this.unitName = unitName;
-    }
-
     @Override
     public String getId() {
         return id;
