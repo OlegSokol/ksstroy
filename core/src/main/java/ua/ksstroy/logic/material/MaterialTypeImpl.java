@@ -1,37 +1,35 @@
 package ua.ksstroy.logic.material;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MaterialTypeImpl implements MaterialType {
 
-    private Integer id;
+    private String id;
 
     private String name;
 
     private String description;
 
-    private List<MaterialType> materialTypeImplList = new ArrayList<>();
+    private Double pricePerUnit;
 
-    private List<Material> materialImplList = new ArrayList<>();
+    private String unitName;
 
     public MaterialTypeImpl() {
-
     }
 
-    public MaterialTypeImpl(Integer id, String name, String description) {
+    public MaterialTypeImpl(String id, String name, String description, Double pricePerUnit, String unitName) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.pricePerUnit = pricePerUnit;
+        this.unitName = unitName;
     }
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -55,22 +53,31 @@ public class MaterialTypeImpl implements MaterialType {
         this.description = description;
     }
 
-    public List<MaterialType> getMaterialTypeImplList() {
-        return materialTypeImplList;
+    public Double getPricePerUnit() {
+        return pricePerUnit;
+    }
+
+    public void setPricePerUnit(Double pricaPerUnit) {
+        this.pricePerUnit = pricaPerUnit;
     }
 
     @Override
-    public void setMaterialTypeImplList(List<MaterialType> materialTypeImplList) {
-        this.materialTypeImplList = materialTypeImplList;
+    public String getUnitName() {
+        return unitName;
     }
 
     @Override
-    public List<Material> getMaterialImplList() {
-        return materialImplList;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 
     @Override
-    public void setMaterialImplList(List<Material> materialImplList) {
-        this.materialImplList = materialImplList;
+    public Double getSummaryPriceMaterial() {
+        return null;
+    }
+
+    @Override
+    public Double getSummaryQuantityMaterial() {
+        return null;
     }
 }

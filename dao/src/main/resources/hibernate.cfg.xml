@@ -25,7 +25,7 @@
         <mapping class="ua.ksstroy.models.worktype.WorkTypeModel"/>
         <mapping class="ua.ksstroy.models.worktype.WorkTypeGroupModel"/>
 
-        <mapping class="ua.ksstroy.models.material.MaterialModel"/>
         <mapping class="ua.ksstroy.models.material.MaterialTypeModel"/>
+        <mapping class="ua.ksstroy.models.material.MaterialTypeGroupModel"/>
     </session-factory>
 </hibernate-configuration>

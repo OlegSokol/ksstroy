@@ -18,7 +18,7 @@ import ua.ksstroy.persistence.TransactionHelper;
 
 @Repository
 @Service
-public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, MaterialTypeDao {
+public class MaterialGroupTypeDaoImpl implements MaterialTypeGroupDao, MaterialTypeDao {
 
     private TransactionHelper helper = new TransactionHelper();
 
@@ -26,8 +26,8 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
     public MaterialTypeGroup getMaterialHierarchy() {
         return helper.simpleAction(new GetInTransaction<MaterialTypeGroup>() {
             public MaterialTypeGroup process(SessionWrapper session) {
-                MaterialTypeGroup materialTypeHierarchy = new MaterialTypeGroupModelToGroupHierarchyConverter().convert(session.get(MaterialTypeGroupModel.class, 1));
-                return materialTypeHierarchy;
+                MaterialTypeGroup materialTypeGroupHierarchy = new MaterialTypeGroupModelToGroupHierarchyConverter().convert(session.get(MaterialTypeGroupModel.class, "1"));
+                return materialTypeGroupHierarchy;
             }
         });
     }
@@ -37,20 +37,18 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialTypeGroupModel materialTypeGroupModel;
-                materialTypeGroupModel = new MaterialTypeGroupToModelConverter().convert(materialTypeGroup);
+                MaterialTypeGroupModel materialTypeGroupModel = new MaterialTypeGroupToModelConverter().convert(materialTypeGroup);
                 session.save(materialTypeGroupModel);
             }
         });
     }
 
-
     @Override
-    public void addMaterialTypeGroupByParent(final MaterialTypeGroup materialTypeGroup, final String parentMaterialTypeGroupId) {
+    public void addMaterialTypeGroupByParent(final MaterialTypeGroup materialTypeGroupDao, final String parentMaterialTypeGroupId) {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialTypeGroupModel materialTypeGroupModel = new MaterialTypeGroupToModelConverter().convert(materialTypeGroup);
+                MaterialTypeGroupModel materialTypeGroupModel = new MaterialTypeGroupToModelConverter().convert(materialTypeGroupDao);
                 materialTypeGroupModel.setSubMaterialTypeGroup(session.get(MaterialTypeGroupModel.class, parentMaterialTypeGroupId));
                 session.save(materialTypeGroupModel);
             }
@@ -63,7 +61,8 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
             @Override
             public void process(SessionWrapper session) {
                 MaterialTypeGroupModel materialTypeGroupModel = session.get(MaterialTypeGroupModel.class, materialTypeGroupId);
-                convertMaterialTypeGroupToModel(materialTypeGroupModel, newMaterialTypeGroup);
+                materialTypeGroupModel.setDescription(newMaterialTypeGroup.getDescription());
+                materialTypeGroupModel.setName(newMaterialTypeGroup.getName());
                 session.saveOrUpdate(materialTypeGroupModel);
             }
         });
@@ -80,14 +79,14 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
     }
 
     @Override
-    public void addMaterialType(final MaterialType materialType, final String parentMaterialTypeGroupId) {
+    public void addMaterialType(final MaterialType materialTypeImpl, final String parentMaterialTypeGroupId) {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
-                MaterialTypeModel materialTypeModel = new MaterialTypeToMaterialTypeModelConverter().convert(materialType);
+                MaterialTypeModel materialTypeModel = new MaterialTypeToMaterialTypeModelConverter().convert(materialTypeImpl);
                 MaterialTypeGroupModel materialTypeGroupModel = session.get(MaterialTypeGroupModel.class, parentMaterialTypeGroupId);
                 materialTypeGroupModel.getMaterialTypeGroupToMaterialType().add(materialTypeModel);
-                session.save(materialTypeGroupModel);
+                session.save(materialTypeModel);
             }
         });
     }
@@ -98,10 +97,17 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
             @Override
             public void process(SessionWrapper session) {
                 MaterialTypeModel materialTypeModel = session.get(MaterialTypeModel.class, materialTypeId);
-                convertMaterialDataToMaterialModel(materialTypeModel, newMaterialType);
+                convertMaterialTypeToMaterialTypeModel(materialTypeModel, newMaterialType);
                 session.saveOrUpdate(materialTypeModel);
             }
         });
+    }
+
+    private void convertMaterialTypeToMaterialTypeModel(MaterialTypeModel materialTypeModel, MaterialType newMaterialType) {
+        materialTypeModel.setName(newMaterialType.getName());
+        materialTypeModel.setDescription(newMaterialType.getDescription());
+        materialTypeModel.setPricePerUnit(newMaterialType.getPricePerUnit());
+        materialTypeModel.setUnitName(newMaterialType.getUnitName());
     }
 
     @Override
@@ -112,19 +118,6 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
                 session.delete(session.get(MaterialTypeModel.class, materialTypeId));
             }
         });
-    }
-
-
-    private void convertMaterialDataToMaterialModel(MaterialTypeModel materialTypeModel, MaterialType newMaterialType) {
-        materialTypeModel.setName(newMaterialType.getName());
-        materialTypeModel.setDescription(newMaterialType.getDescription());
-        materialTypeModel.setUnitName(newMaterialType.getUnitName());
-        materialTypeModel.setPricePerUnit(newMaterialType.getPricePerUnit());
-    }
-
-    private void convertMaterialTypeGroupToModel(MaterialTypeGroupModel materialTypeGroupModel, MaterialTypeGroup newMaterialTypeGroup) {
-        materialTypeGroupModel.setDescription(newMaterialTypeGroup.getDescription());
-        materialTypeGroupModel.setName(newMaterialTypeGroup.getName());
     }
 
 }

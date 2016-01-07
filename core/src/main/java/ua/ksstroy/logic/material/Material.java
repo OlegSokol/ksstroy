@@ -1,51 +1,57 @@
 package ua.ksstroy.logic.material;
 
-import ua.ksstroy.logic.zonegroup.Measure;
+import ua.ksstroy.logic.material.MaterialTypeGroupData;
 
-public interface Material {
+public class Material {
 
-    Integer getId();
+	private MaterialTypeGroupData type;
 
-    void setId(Integer id);
+	private Double unitsPerWorkZoneMeasure;
 
-    String getName();
+	private Double planedCost;
 
-    void setName(String name);
+	private Double closedCost;
 
-    String getDescription();
+	private Double dealCost;
 
-    void setDescription(String description);
+	public MaterialTypeGroupData getType() {
+		return type;
+	}
 
-    Measure getMeasure();
+	public void setType(MaterialTypeGroupData type) {
+		this.type = type;
+	}
 
-    void setMeasure(Measure measure);
+	public Double getPlanedCost() {
+		return planedCost;
+	}
 
-    Double getSize();
+	public void setPlanedCost(Double planedCost) {
+		this.planedCost = planedCost;
+	}
 
-    void setSize(Double size);
+	public Double getClosedCost() {
+		return closedCost;
+	}
 
-    Double getPlanedCost();
+	public void setClosedCost(Double closedCost) {
+		this.closedCost = closedCost;
+	}
 
-    void setPlanedCost(Double planedCost);
+	public Double getDealCost() {
+		return dealCost;
+	}
 
-    Double getDealCost();
+	public void setDealCost(Double dealCost) {
+		this.dealCost = dealCost;
+	}
 
-    void setDealCost(Double dealCost);
+	public Double getUnitsPerWorkZoneMeasure() {
+		return unitsPerWorkZoneMeasure;
+	}
 
-    Double getClosedCost();
-
-    void setClosedCost(Double closedCost);
-
-    /*
-    * Calculate price all material into material Type
-    */
-
-    Double getSummaryPriceMaterial();
-
-    /*
-    * Calculate quantity all material into material Type
-    */
-
-    Double getSummaryQuantityMaterial();
+	public void setUnitsPerWorkZoneMeasure(Double unitsPerWorkZoneMeasure) {
+		this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
+	}
 
 }

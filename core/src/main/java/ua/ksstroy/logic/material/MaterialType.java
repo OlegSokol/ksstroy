@@ -1,12 +1,10 @@
 package ua.ksstroy.logic.material;
 
-import java.util.List;
-
 public interface MaterialType {
 
-    Integer getId();
+    String getId();
 
-    void setId(Integer id);
+    void setId(String id);
 
     String getName();
 
@@ -16,12 +14,24 @@ public interface MaterialType {
 
     void setDescription(String description);
 
-    List<MaterialType> getMaterialTypeImplList();
+    Double getPricePerUnit();
 
-    void setMaterialTypeImplList(List<MaterialType> materialTypeImplList);
+    void setPricePerUnit(Double pricePerUnit);
 
-    List<Material> getMaterialImplList();
+    String getUnitName();
 
-    void setMaterialImplList(List<Material> materialImplList);
+    void setUnitName(String unitName);
+
+    /*
+    * Calculate price all material into material Type
+    */
+
+    Double getSummaryPriceMaterial();
+
+    /*
+    * Calculate quantity all material into material Type
+    */
+
+    Double getSummaryQuantityMaterial();
 
 }

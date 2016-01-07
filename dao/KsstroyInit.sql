@@ -133,11 +133,11 @@ INSERT INTO `worktype_groups` VALUES (6, 'group_level_2C', 3);
 INSERT INTO `worktype_groups` VALUES (7, 'group_level_2D', 3);
 
 
-DROP TABLE IF EXISTS `material_type`;
-CREATE TABLE `material_type` (
+DROP TABLE IF EXISTS `material_type_group`;
+CREATE TABLE `material_type_group` (
   `id`          INT(11)     NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(50) NOT NULL,
-  `description` VARCHAR(512) DEFAULT NULL,
+  `description` VARCHAR(512)         DEFAULT NULL,
   `parent_id`   BIGINT(20),
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`)
@@ -145,39 +145,35 @@ CREATE TABLE `material_type` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `material_type` VALUES (1, 'root_material_type', 'root_material_type_descr.', NULL);
-INSERT INTO `material_type` VALUES (2, 'material_type_level_1A', 'material_type_1A_descr.', 1);
-INSERT INTO `material_type` VALUES (3, 'material_type_level_1B', 'material_type_1B_descr.', 1);
-INSERT INTO `material_type` VALUES (4, 'material_type_level_2A', 'material_type_2A_descr.', 2);
-INSERT INTO `material_type` VALUES (5, 'material_type_level_2B', 'material_type_2B_descr.', 2);
-INSERT INTO `material_type` VALUES (6, 'material_type_level_2C', 'material_type_2C_descr.', 3);
-INSERT INTO `material_type` VALUES (7, 'material_type_level_2D', 'material_type_2D_descr.', 3);
+INSERT INTO `material_type_group` VALUES (1, 'root_material_type_group', 'root_material_type_group_descr.', NULL);
+INSERT INTO `material_type_group` VALUES (2, 'material_type_group_level_1A', 'material_type_group_1A_descr.', 1);
+INSERT INTO `material_type_group` VALUES (3, 'material_type_group_level_1B', 'material_type_group_1B_descr.', 1);
+INSERT INTO `material_type_group` VALUES (4, 'material_type_group_level_2A', 'material_type_group_2A_descr.', 2);
+INSERT INTO `material_type_group` VALUES (5, 'material_type_group_level_2B', 'material_type_group_2B_descr.', 2);
+INSERT INTO `material_type_group` VALUES (6, 'material_type_group_level_2C', 'material_type_group_2C_descr.', 3);
+INSERT INTO `material_type_group` VALUES (7, 'material_type_group_level_2D', 'material_type_group_2D_descr.', 3);
 
 
-DROP TABLE IF EXISTS `materials`;
-CREATE TABLE `materials` (
-  `id`           INT(11)         NOT NULL AUTO_INCREMENT,
-  `name`         VARCHAR(50)     NOT NULL,
-  `description`  VARCHAR(512)             DEFAULT NULL,
-  `measure_name` VARCHAR(5)      NOT NULL,
-  `size`         DOUBLE UNSIGNED NOT NULL,
-  `planed_cost`  DOUBLE UNSIGNED DEFAULT NULL,
-  `deal_cost`    DOUBLE UNSIGNED DEFAULT NULL,
-  `closed_cost`  DOUBLE UNSIGNED DEFAULT NULL,
-  `parent_id`    BIGINT(20),
+DROP TABLE IF EXISTS `material_type`;
+CREATE TABLE `material_type` (
+  `id`             INT(11)     NOT NULL AUTO_INCREMENT,
+  `name`           VARCHAR(50) NOT NULL,
+  `description`    VARCHAR(512)         DEFAULT NULL,
+  `price_per_unit` DOUBLE      NOT NULL,
+  `unit_name`      VARCHAR(50) NOT NULL,
+  `parent_id`      BIGINT(20),
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `materials` VALUES (1, 'material_1', 'material_1_descr.', 'L', 10, 7.0, 6.87, 6.87, 2);
-INSERT INTO `materials` VALUES (2, 'material_2', 'material_2_descr.', 'L', 10, 19.0, 18.35, 17.01, 2);
-INSERT INTO `materials` VALUES (3, 'material_3', 'material_3_descr.', 'L', 10, 456.0, 19.09, 14.45, 3);
-INSERT INTO `materials` VALUES (4, 'material_4', 'material_4_descr.', 'L', 10, 456.0, 19.09, 14.45, 3);
-INSERT INTO `materials` VALUES (5, 'material_5', 'material_5_descr.', 'L', 10, 456.0, 19.09, 14.45, 4);
-INSERT INTO `materials` VALUES (6, 'material_6', 'material_6_descr.', 'L', 10, 456.0, 19.09, 14.45, 4);
-INSERT INTO `materials` VALUES (7, 'material_7', 'material_7_descr.', 'L', 10, 456.0, 19.09, 14.45, 5);
-INSERT INTO `materials` VALUES (8, 'material_8', 'material_8_descr.', 'L', 10, 456.0, 19.09, 14.45, 5);
-INSERT INTO `materials` VALUES (9, 'material_9', 'material_9_descr.', 'L', 10, 456.0, 19.09, 14.45, 6);
-INSERT INTO `materials` VALUES (10, 'material_10', 'material_10_descr.', 'L', 10, 456.0, 19.09, 14.45, 7);
+INSERT INTO `material_type` VALUES (1, 'material_type_1', 'material_type_1_descr.', '3.0', 'unit_name_1', '2');
+INSERT INTO `material_type` VALUES (2, 'material_type_2', 'material_type_2_descr.', '3.0', 'unit_name_2', '3');
+INSERT INTO `material_type` VALUES (3, 'material_type_3', 'material_type_3_descr.', '3.0', 'unit_name_3', '4');
+INSERT INTO `material_type` VALUES (4, 'material_type_4', 'material_type_4_descr.', '3.0', 'unit_name_4', '5');
+INSERT INTO `material_type` VALUES (5, 'material_type_5', 'material_type_5_descr.', '3.0', 'unit_name_5', '6');
+INSERT INTO `material_type` VALUES (6, 'material_type_6', 'material_type_6_descr.', '3.0', 'unit_name_6', '6');
+INSERT INTO `material_type` VALUES (7, 'material_type_7', 'material_type_7_descr.', '3.0', 'unit_name_7', '7');
+INSERT INTO `material_type` VALUES (8, 'material_type_8', 'material_type_8_descr.', '3.0', 'unit_name_8', '7');
+INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr.', '3.0', 'unit_name_9', '7');

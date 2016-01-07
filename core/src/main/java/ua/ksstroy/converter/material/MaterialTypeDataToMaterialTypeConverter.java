@@ -11,7 +11,9 @@ public class MaterialTypeDataToMaterialTypeConverter implements Converter<Materi
         MaterialType materialType = new MaterialTypeImpl(
                 materialTypeData.getId(),
                 materialTypeData.getName(),
-                materialTypeData.getDescription());
+                materialTypeData.getDescription(),
+                materialTypeData.getPricePerUnit(),
+                materialTypeData.getUnitName());
 
         return materialType;
     }

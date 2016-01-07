@@ -2,61 +2,61 @@ package ua.ksstroy.logic.material;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.material.MaterialDataToMaterialConverter;
 import ua.ksstroy.converter.material.MaterialTypeDataToMaterialTypeConverter;
-import ua.ksstroy.converter.material.MaterialTypeModelToDataHierarchyConverter;
+import ua.ksstroy.converter.material.MaterialTypeGroupDataToMaterialTypeGroupConverter;
+import ua.ksstroy.converter.material.MaterialTypeGroupModelToDataHierarchyConverter;
 
 import javax.annotation.Resource;
 
 @Component(value = "MaterialManagerImpl")
 public class MaterialManagerImpl implements MaterialManager {
 
-    @Qualifier("materialDaoImpl")
-    @Resource
-    MaterialDao materialDao;
-
-    @Qualifier("materialDaoImpl")
+    @Qualifier("materialGroupTypeDaoImpl")
     @Resource
     MaterialTypeDao materialTypeDao;
 
-    @Override
-    public MaterialTypeData getMaterialHierarchy() {
-        return new MaterialTypeModelToDataHierarchyConverter().convert(this.materialTypeDao.getMaterialHierarchy());
-    }
-
-   @Override
-    public void addMaterialType(MaterialTypeData materialTypeDao) {
-        this.materialTypeDao.addMaterialType(new MaterialTypeDataToMaterialTypeConverter().convert(materialTypeDao));
-    }
+    @Qualifier("materialGroupTypeDaoImpl")
+    @Resource
+    MaterialTypeGroupDao materialTypeGroupDao;
 
     @Override
-    public void addMaterialTypeByParent(MaterialTypeData materialTypeDao, String parentMaterialTypeId) {
-        this.materialTypeDao.addMaterialTypeByParent(new MaterialTypeDataToMaterialTypeConverter().convert(materialTypeDao), parentMaterialTypeId);
+    public MaterialTypeGroupData getMaterialHierarchy() {
+        return new MaterialTypeGroupModelToDataHierarchyConverter().convert(this.materialTypeGroupDao.getMaterialHierarchy());
     }
 
     @Override
-    public void updateMaterialType(String materialId, MaterialTypeData newMaterialType) {
-        this.materialTypeDao.updateMaterialType(materialId, new MaterialTypeDataToMaterialTypeConverter().convert(newMaterialType));
+    public void addMaterialTypeGroup(MaterialTypeGroupData materialTypeGroupDao) {
+        this.materialTypeGroupDao.addMaterialTypeGroup(new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(materialTypeGroupDao));
     }
 
     @Override
-    public void removeMaterialType(String materialId) {
-        this.materialTypeDao.removeMaterialType(materialId);
+    public void addMaterialTypeGroupByParent(MaterialTypeGroupData materialTypeGroupDao, String parentMaterialTypeGroupId) {
+        this.materialTypeGroupDao.addMaterialTypeGroupByParent(new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(materialTypeGroupDao), parentMaterialTypeGroupId);
     }
 
     @Override
-    public void addMaterial(MaterialData materialData, String parentMaterialTypeId) {
-        this.materialDao.addMaterial(new MaterialDataToMaterialConverter().convert(materialData), parentMaterialTypeId);
+    public void updateMaterialTypeGroup(String materialTypeGroupId, MaterialTypeGroupData newMaterialTypeGroup) {
+        this.materialTypeGroupDao.updateMaterialTypeGroup(materialTypeGroupId, new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(newMaterialTypeGroup));
     }
 
     @Override
-    public void updateMaterial(String materialId, MaterialData newMaterial) {
-        this.materialDao.updateMaterial(materialId, new MaterialDataToMaterialConverter().convert(newMaterial));
+    public void removeMaterialTypeGroup(String materialTypeGroupId) {
+        this.materialTypeGroupDao.removeMaterialTypeGroup(materialTypeGroupId);
     }
 
     @Override
-    public void removeMaterial(String materialId) {
-        this.materialDao.removeMaterial(materialId);
+    public void addMaterialType(MaterialTypeData materialTypeData, String parentMaterialTypeId) {
+        this.materialTypeDao.addMaterialType(new MaterialTypeDataToMaterialTypeConverter().convert(materialTypeData), parentMaterialTypeId);
+    }
+
+    @Override
+    public void updateMaterialType(String materialTypeId, MaterialTypeData newMaterialType) {
+        this.materialTypeDao.updateMaterialType(materialTypeId, new MaterialTypeDataToMaterialTypeConverter().convert(newMaterialType));
+    }
+
+    @Override
+    public void removeMaterialType(String materialTypeId) {
+        this.materialTypeDao.removeMaterialType(materialTypeId);
     }
 
 }
