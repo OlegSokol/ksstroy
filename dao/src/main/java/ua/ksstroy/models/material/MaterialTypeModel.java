@@ -2,13 +2,11 @@ package ua.ksstroy.models.material;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "material_type", catalog = "ksstroy")
+@Table(name = "materials", catalog = "ksstroy")
 public class MaterialTypeModel implements Serializable {
 
     @Id
@@ -22,26 +20,24 @@ public class MaterialTypeModel implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_id")
-    @OrderBy
-    private Set<MaterialModel> materialTypeToMaterial = new LinkedHashSet<>();
+    @Column(name = "price_per_unit")
+    private Double pricePerUnit;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "parent_id")
-    @OrderBy
-    private Set<MaterialTypeModel> materialType = new LinkedHashSet<>();
+    @Column(name = "unit_name")
+    private String unitName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private MaterialTypeModel subMaterialTypeToRootType;
+    private MaterialTypeGroupModel materialTypeGroupModel;
 
     public MaterialTypeModel() {
     }
 
-    public MaterialTypeModel(String name, String description) {
+    public MaterialTypeModel(String name, String description, Double pricePerUnit, String unitName) {
         this.name = name;
         this.description = description;
+        this.pricePerUnit = pricePerUnit;
+        this.unitName = unitName;
     }
 
     public String getId() {
@@ -68,27 +64,27 @@ public class MaterialTypeModel implements Serializable {
         this.description = description;
     }
 
-    public Set<MaterialModel> getMaterialTypeToMaterial() {
-        return materialTypeToMaterial;
+    public Double getPricePerUnit() {
+        return pricePerUnit;
     }
 
-    public void setMaterialTypeToMaterial(Set<MaterialModel> materialTypeToMaterial) {
-        this.materialTypeToMaterial = materialTypeToMaterial;
+    public void setPricePerUnit(Double pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 
-    public Set<MaterialTypeModel> getMaterialType() {
-        return materialType;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setMaterialType(Set<MaterialTypeModel> materialType) {
-        this.materialType = materialType;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 
-    public MaterialTypeModel getSubMaterialTypeToRootType() {
-        return subMaterialTypeToRootType;
+    public MaterialTypeGroupModel getMaterialTypeGroupModel() {
+        return materialTypeGroupModel;
     }
 
-    public void setSubMaterialTypeToRootType(MaterialTypeModel subMaterialTypeToRootType) {
-        this.subMaterialTypeToRootType = subMaterialTypeToRootType;
+    public void setMaterialTypeGroupModel(MaterialTypeGroupModel materialTypeGroupModel) {
+        this.materialTypeGroupModel = materialTypeGroupModel;
     }
 }

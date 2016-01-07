@@ -1,12 +1,12 @@
 package ua.ksstroy.logic.new_material;
 
-import ua.ksstroy.logic.material.MaterialTypeData;
+import ua.ksstroy.logic.material.MaterialTypeGroupData;
 
 public class nMaterial {
 
-	private MaterialTypeData type;
+	private MaterialTypeGroupData type;
 
-	private Double unitsPerWorkZoneMesure;
+	private Double unitsPerWorkZoneMeasure;
 
 	private Double planedCost;
 
@@ -14,11 +14,11 @@ public class nMaterial {
 
 	private Double dealCost;
 
-	public MaterialTypeData getType() {
+	public MaterialTypeGroupData getType() {
 		return type;
 	}
 
-	public void setType(MaterialTypeData type) {
+	public void setType(MaterialTypeGroupData type) {
 		this.type = type;
 	}
 
@@ -46,12 +46,12 @@ public class nMaterial {
 		this.dealCost = dealCost;
 	}
 
-	public Double getUnitsPerWorkZoneMesure() {
-		return unitsPerWorkZoneMesure;
+	public Double getUnitsPerWorkZoneMeasure() {
+		return unitsPerWorkZoneMeasure;
 	}
 
-	public void setUnitsPerWorkZoneMesure(Double unitsPerWorkZoneMesure) {
-		this.unitsPerWorkZoneMesure = unitsPerWorkZoneMesure;
+	public void setUnitsPerWorkZoneMeasure(Double unitsPerWorkZoneMeasure) {
+		this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
 	}
 
 }

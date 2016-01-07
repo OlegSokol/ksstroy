@@ -29,7 +29,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         materialTypeModel.setDescription("Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToData(materialTypeModel));
+        materialAndMaterialTypeDao.addMaterialTypeGroup(convertMaterialTypeModelToData(materialTypeModel));
 
         MaterialTypeModel materialTypeResult;
 
@@ -48,7 +48,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         materialTypeModel.setDescription("Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterialTypeByParent(convertMaterialTypeModelToData(materialTypeModel), "2");
+        materialAndMaterialTypeDao.addMaterialTypeGroupByParent(convertMaterialTypeModelToData(materialTypeModel), "2");
 
         MaterialTypeModel materialTypeResult;
 
@@ -66,7 +66,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialTypeModel materialTypeModel = new MaterialTypeModel("mockMaterialType", "Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToDataFromUpdate(materialTypeModel));
+        materialAndMaterialTypeDao.addMaterialTypeGroup(convertMaterialTypeModelToDataFromUpdate(materialTypeModel));
 
         MaterialTypeModel materialTypeResult;
 
@@ -75,7 +75,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialTypeData materialTypeData = new MaterialTypeData("updateName", "updateDesc");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao1 = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao1.updateMaterialType(materialTypeResult.getId(), materialTypeData);
+        materialAndMaterialTypeDao1.updateMaterialTypeGroup(materialTypeResult.getId(), materialTypeData);
 
         session.delete(materialTypeResult);
     }
@@ -85,14 +85,14 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialTypeModel materialTypeModel = new MaterialTypeModel("mockMaterialType", "Description");
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterialType(convertMaterialTypeModelToData(materialTypeModel));
+        materialAndMaterialTypeDao.addMaterialTypeGroup(convertMaterialTypeModelToData(materialTypeModel));
 
         MaterialTypeModel materialTypeResult;
 
         materialTypeResult = (MaterialTypeModel) session.createQuery("from MaterialTypeModel where name='mockMaterialType'").uniqueResult();
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao1 = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao1.removeMaterialType(materialTypeResult.getId());
+        materialAndMaterialTypeDao1.removeMaterialTypeGroup(materialTypeResult.getId());
 
         assertNotNull(materialTypeResult);
 
@@ -103,7 +103,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
+        materialAndMaterialTypeDao.addMaterialTypeGroup(new MaterialAndMaterialTypeDaoImpl().
                 convert(materialModel), "6");
 
         MaterialModel materialResult;
@@ -121,7 +121,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().
+        materialAndMaterialTypeDao.addMaterialTypeGroup(new MaterialAndMaterialTypeDaoImpl().
                 convert(materialModel), "6");
 
         MaterialModel materialResult;
@@ -131,7 +131,7 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialData materialData = new MaterialData("update", "updateDesc", Measure.EACH, 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao1 = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao1.updateMaterial(materialResult.getId().toString(), materialData);
+        materialAndMaterialTypeDao1.updateMaterialTypeGroup(materialResult.getId().toString(), materialData);
 
         session.delete(materialResult);
 
@@ -142,14 +142,14 @@ public class MaterialAndMaterialTypeDaoImplTest {
         MaterialModel materialModel = new MaterialModel("material", "desc", "M2", 30.0, 3.0, 2.8, 2.8);
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao.addMaterial(new MaterialAndMaterialTypeDaoImpl().convert(materialModel), "6");
+        materialAndMaterialTypeDao.addMaterialTypeGroup(new MaterialAndMaterialTypeDaoImpl().convert(materialModel), "6");
 
         MaterialModel materialResult;
 
         materialResult = (MaterialModel) session.createQuery("from MaterialModel where name='material'").uniqueResult();
 
         MaterialAndMaterialTypeDaoImpl materialAndMaterialTypeDao1 = new MaterialAndMaterialTypeDaoImpl();
-        materialAndMaterialTypeDao1.removeMaterial(materialResult.getId().toString());
+        materialAndMaterialTypeDao1.removeMaterialTypeGroup(materialResult.getId().toString());
 
         assertNotNull(materialResult);
 

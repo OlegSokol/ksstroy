@@ -1,34 +1,40 @@
 package ua.ksstroy.logic.material;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MaterialTypeData {
 
-    private Integer id;
+    private String id;
 
     private String name;
 
     private String description;
 
-    private List<MaterialTypeData> materialTypeDataList = new ArrayList<>();
+    private Double pricePerUnit;
 
-    private List<MaterialData> materialDataList = new ArrayList<>();
+    private String unitName;
 
     public MaterialTypeData() {
     }
 
-    public MaterialTypeData(Integer id, String name, String description) {
+    public MaterialTypeData(String id, String name, String description, Double pricePerUnit, String unitName) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.pricePerUnit = pricePerUnit;
+        this.unitName = unitName;
     }
 
-    public Integer getId() {
+    public MaterialTypeData(String name, String description, Double pricePerUnit, String unitName) {
+        this.name = name;
+        this.description = description;
+        this.pricePerUnit = pricePerUnit;
+        this.unitName = unitName;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,19 +54,19 @@ public class MaterialTypeData {
         this.description = description;
     }
 
-    public List<MaterialTypeData> getMaterialTypeDataList() {
-        return materialTypeDataList;
+    public Double getPricePerUnit() {
+        return pricePerUnit;
     }
 
-    public void setMaterialTypeDataList(List<MaterialTypeData> materialTypeDataList) {
-        this.materialTypeDataList = materialTypeDataList;
+    public void setPricePerUnit(Double pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 
-    public List<MaterialData> getMaterialDataList() {
-        return materialDataList;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setMaterialDataList(List<MaterialData> materialDataList) {
-        this.materialDataList = materialDataList;
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 }

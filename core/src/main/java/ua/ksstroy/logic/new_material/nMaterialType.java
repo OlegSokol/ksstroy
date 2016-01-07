@@ -1,7 +1,9 @@
 package ua.ksstroy.logic.new_material;
 
 public class nMaterialType {
-	
+
+	private String id;
+
 	private String name;
 
 	private String description;

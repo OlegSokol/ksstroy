@@ -2,20 +2,20 @@ package ua.ksstroy.logic.material;
 
 public interface MaterialManager {
 
-    MaterialTypeData getMaterialHierarchy();
+    MaterialTypeGroupData getMaterialHierarchy();
 
-  void addMaterialType(MaterialTypeData materialTypeDao);
+    void addMaterialTypeGroup(MaterialTypeGroupData materialTypeGroupDao);
 
-    void addMaterialTypeByParent(MaterialTypeData materialTypeDao, String parentMaterialTypeId);
+    void addMaterialTypeGroupByParent(MaterialTypeGroupData materialTypeGroupDao, String parentMaterialTypeGroupId);
 
-    void updateMaterialType(String materialId, MaterialTypeData newMaterialType);
+    void updateMaterialTypeGroup(String materialTypeGroupId, MaterialTypeGroupData newMaterialTypeGroup);
 
-    void removeMaterialType(String materialId);
+    void removeMaterialTypeGroup(String materialTypeGroupId);
 
-    void addMaterial(MaterialData materialData, String parentMaterialTypeId);
+    void addMaterialType(MaterialTypeData materialTypeData, String parentMaterialTypeId);
 
-    void updateMaterial(String materialId, MaterialData newMaterial);
+    void updateMaterialType(String materialTypeId, MaterialTypeData newMaterialType);
 
-    void removeMaterial(String materialId);
+    void removeMaterialType(String materialTypeId);
 
 }
