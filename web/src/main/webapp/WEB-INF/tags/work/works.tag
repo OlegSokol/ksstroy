@@ -26,6 +26,6 @@
             </div>
             <work:updateWork work="${work}"/>
         </div>
-        <%--<work:covers coverList="${work.allCovers}"/>--%>
+    <work:covers coverList="${work.allCovers}"/>
     </li>
 </c:forEach>

@@ -14,7 +14,7 @@
     <li>
         <div class="item">
             <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
-                ${cover.name}
+                ${cover.description}
             <div class="add_delete_wrapper">
                 <form action="<%--${pageContext.request.contextPath}/projects/removeWork--%>" method="post">
                     <input type="hidden" name="projectId" value="${projectId}">
@@ -24,7 +24,7 @@
                 <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
                 <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
             </div>
-            <%--<cover:updateCover cover="${cover}"/>--%>
+            <%--<cover:updateCover cover="${cover.allCovers}"/>--%>
         </div>
     </li>
 </c:forEach>
