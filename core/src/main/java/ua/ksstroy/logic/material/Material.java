@@ -1,57 +1,25 @@
 package ua.ksstroy.logic.material;
 
-import ua.ksstroy.logic.material.MaterialTypeGroupData;
+public interface Material {
 
-public class Material {
+    MaterialType getMaterialType();
 
-	private MaterialTypeGroupData type;
+    void setMaterialType(MaterialType materialType);
 
-	private Double unitsPerWorkZoneMeasure;
+    Double getUnitsPerWorkZoneMeasure();
 
-	private Double planedCost;
+    void setUnitsPerWorkZoneMeasure(Double unitsPerWorkZoneMeasure);
 
-	private Double closedCost;
+    Double getPlanedCost();
 
-	private Double dealCost;
+    void setPlanedCost(Double planedCost);
 
-	public MaterialTypeGroupData getType() {
-		return type;
-	}
+    Double getDealCost();
 
-	public void setType(MaterialTypeGroupData type) {
-		this.type = type;
-	}
+    void setDealCost(Double dealCost);
 
-	public Double getPlanedCost() {
-		return planedCost;
-	}
+    Double getClosedCost();
 
-	public void setPlanedCost(Double planedCost) {
-		this.planedCost = planedCost;
-	}
-
-	public Double getClosedCost() {
-		return closedCost;
-	}
-
-	public void setClosedCost(Double closedCost) {
-		this.closedCost = closedCost;
-	}
-
-	public Double getDealCost() {
-		return dealCost;
-	}
-
-	public void setDealCost(Double dealCost) {
-		this.dealCost = dealCost;
-	}
-
-	public Double getUnitsPerWorkZoneMeasure() {
-		return unitsPerWorkZoneMeasure;
-	}
-
-	public void setUnitsPerWorkZoneMeasure(Double unitsPerWorkZoneMeasure) {
-		this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
-	}
+    void setClosedCost(Double closedCost);
 
 }
