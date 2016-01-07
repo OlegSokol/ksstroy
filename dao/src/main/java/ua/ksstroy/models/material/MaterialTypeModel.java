@@ -2,6 +2,8 @@ package ua.ksstroy.models.material;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -25,6 +27,11 @@ public class MaterialTypeModel implements Serializable {
 
     @Column(name = "unit_name")
     private String unitName;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_id_for_type")
+    @OrderBy
+    private Set<MaterialModel> materialTypeToMaterial = new LinkedHashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
@@ -87,4 +94,5 @@ public class MaterialTypeModel implements Serializable {
     public void setMaterialTypeGroupModel(MaterialTypeGroupModel materialTypeGroupModel) {
         this.materialTypeGroupModel = materialTypeGroupModel;
     }
+
 }

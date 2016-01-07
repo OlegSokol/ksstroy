@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.material.MaterialTypeGroupModelToGroupHierarchyConverter;
 import ua.ksstroy.converter.material.MaterialTypeGroupToModelConverter;
 import ua.ksstroy.converter.material.MaterialTypeToMaterialTypeModelConverter;
-import ua.ksstroy.logic.material.MaterialType;
-import ua.ksstroy.logic.material.MaterialTypeDao;
-import ua.ksstroy.logic.material.MaterialTypeGroup;
-import ua.ksstroy.logic.material.MaterialTypeGroupDao;
+import ua.ksstroy.logic.material.*;
 import ua.ksstroy.models.material.MaterialTypeGroupModel;
 import ua.ksstroy.models.material.MaterialTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -18,9 +15,13 @@ import ua.ksstroy.persistence.TransactionHelper;
 
 @Repository
 @Service
-public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, MaterialTypeDao {
+public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, MaterialTypeDao, MaterialDao {
 
     private TransactionHelper helper = new TransactionHelper();
+
+    /*
+    ALL HIERARCHY MATERIAL
+     */
 
     @Override
     public MaterialTypeGroup getMaterialHierarchy() {
@@ -31,6 +32,10 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
             }
         });
     }
+
+    /*
+    MATERIAL TYPE GROUP
+     */
 
     @Override
     public void addMaterialTypeGroup(final MaterialTypeGroup materialTypeGroup) {
@@ -79,6 +84,10 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
         });
     }
 
+    /*
+    MATERIAL TYPE
+     */
+
     @Override
     public void addMaterialType(final MaterialType materialType, final String parentMaterialTypeGroupId) {
         helper.doWithCommit(new DoInTransaction() {
@@ -125,6 +134,25 @@ public class MaterialAndMaterialTypeDaoImpl implements MaterialTypeGroupDao, Mat
     private void convertMaterialTypeGroupToModel(MaterialTypeGroupModel materialTypeGroupModel, MaterialTypeGroup newMaterialTypeGroup) {
         materialTypeGroupModel.setDescription(newMaterialTypeGroup.getDescription());
         materialTypeGroupModel.setName(newMaterialTypeGroup.getName());
+    }
+
+    /*
+    MATERIAL
+     */
+
+    @Override
+    public void addMaterial(Material material, String parentMaterialTypeId) {
+
+    }
+
+    @Override
+    public void updateMaterial(String materialId, Material newMaterial) {
+
+    }
+
+    @Override
+    public void removeMaterial(String materialId) {
+
     }
 
 }
