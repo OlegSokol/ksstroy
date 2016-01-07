@@ -4,20 +4,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import ua.ksstroy.logic.zone.Measure;
+import ua.ksstroy.models.work.WorkModel;
 
 @SuppressWarnings("serial")
 @Entity
@@ -60,6 +53,9 @@ public class ZonesModel implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "surplus_for_zones_id")
 	private ZonesModel surplusZoneToRootZone;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "workZones")
+	private List<WorkModel> works;
 
 	public ZonesModel() {
 
@@ -128,4 +124,11 @@ public class ZonesModel implements Serializable {
 		this.surplusZone = surplusZone;
 	}
 
+	public List<WorkModel> getWorks() {
+		return works;
+	}
+
+	public void setWorks(List<WorkModel> works) {
+		this.works = works;
+	}
 }

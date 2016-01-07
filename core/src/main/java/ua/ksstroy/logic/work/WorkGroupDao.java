@@ -11,4 +11,6 @@ public interface WorkGroupDao {
     WorkGroup getWorkHierarchy();
 
     void updateWorkGroupName(String groupId, String newName);
+
+    WorkGroup getWorkGroup(final String id);
 }

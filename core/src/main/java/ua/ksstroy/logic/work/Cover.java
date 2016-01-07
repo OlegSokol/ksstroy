@@ -2,6 +2,10 @@ package ua.ksstroy.logic.work;
 
 public interface Cover {
 
+	public String getId();
+
+	public void setId(String id);
+
 	public Double getValue();
 
 	public void setValue(Double value);

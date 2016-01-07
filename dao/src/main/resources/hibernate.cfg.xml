@@ -26,5 +26,10 @@
 
         <mapping class="ua.ksstroy.models.material.MaterialModel"></mapping>
         <mapping class="ua.ksstroy.models.material.MaterialTypeModel"></mapping>
+
+        <mapping class="ua.ksstroy.models.work.WorkModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.WorkGroupModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.AdjustmentModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.CoverModel"></mapping>
     </session-factory>
 </hibernate-configuration>

@@ -21,7 +21,7 @@ this is single project page!!
 
         <a class="menu_item" href="${projectId}/zones">Zones</a>
 
-        <a class="menu_item" href="#">
+        <a class="menu_item" href="${projectId}/work">
             Work(will be soon)
             <table>
                 <tbody>

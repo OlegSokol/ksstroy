@@ -181,3 +181,84 @@ INSERT INTO `materials` VALUES (7, 'material_7', 'material_7_descr.', 'L', 10, 4
 INSERT INTO `materials` VALUES (8, 'material_8', 'material_8_descr.', 'L', 10, 456.0, 19.09, 14.45, 5);
 INSERT INTO `materials` VALUES (9, 'material_9', 'material_9_descr.', 'L', 10, 456.0, 19.09, 14.45, 6);
 INSERT INTO `materials` VALUES (10, 'material_10', 'material_10_descr.', 'L', 10, 456.0, 19.09, 14.45, 7);
+
+drop table if exists `works`;
+create table `works` (
+	`id` bigint(11) not null auto_increment primary key,
+    `name` varchar(50),
+    `work_type_id` bigint(11),
+    `planed_cost` DOUBLE,
+    `perspective_cost` DOUBLE,
+    `closed_cost` DOUBLE,
+    `deal_cost` DOUBLE,
+    `parent_group_id` bigint(11)
+);
+
+insert into `works` values (1, 'root_ziro', 1, 1, 2, 3, 4, 1);
+insert into `works` values (2, 'work_one', 2, 1, 2, 3, 4, 2);
+insert into `works` values (3, 'work_two', 2, 1, 2, 3, 4, 3);
+insert into `works` values (4, 'work_tree', 3, 1, 2, 3, 4, 3);
+insert into `works` values (5, 'work_four', 3, 1, 2, 3, 4, 1);
+insert into `works` values (6, 'work_five', 3, 1, 2, 3, 4, 2);
+
+drop table if exists `work_zone_rel`;
+create table `work_zone_rel` (
+	`id` bigint(11) not null auto_increment primary key,
+    `zone_id` bigint(11),
+    `work_id` bigint(11)
+);
+
+insert into `work_zone_rel` values (1, 1, 1);
+insert into `work_zone_rel` values (2, 2, 2);
+insert into `work_zone_rel` values (3, 3, 3);
+insert into `work_zone_rel` values (4, 4, 4);
+insert into `work_zone_rel` values (5, 5, 5);
+insert into `work_zone_rel` values (6, 6, 6);
+
+
+insert into `work_zone_rel` values ();
+
+drop table if exists `adjustments`;
+create table `adjustments` (
+	`id` bigint(11) not null auto_increment primary key,
+    `value` double,
+    `is_absolute` TINYINT,
+    `work_id` bigint(11)
+);
+
+insert into `adjustments` values (1, 23, 1, 1);
+insert into `adjustments` values (2, 23, 1, 2);
+insert into `adjustments` values (3, 23, 1, 3);
+insert into `adjustments` values (4, 23, 1, 4);
+insert into `adjustments` values (5, 23, 1, 5);
+insert into `adjustments` values (6, 23, 1, 6);
+
+drop table if exists `covers`;
+create table `covers` (
+	`id` bigint(11) not null auto_increment primary key,
+    `value` double,
+    `date` varchar(20),
+    `description` varchar(20),
+    `work_id` bigint(11)
+);
+
+insert into `covers` values (1, 12, '12', 'desc1', 1);
+insert into `covers` values (2, 12, '12', 'desc2', 2);
+insert into `covers` values (3, 12, '12', 'desc3', 3);
+insert into `covers` values (4, 12, '12', 'desc4', 4);
+insert into `covers` values (5, 12, '12', 'desc5', 5);
+insert into `covers` values (6, 12, '12', 'desc6', 6);
+
+drop table if exists `work_groups`;
+create table `work_groups` (
+	`id` bigint(11) not null auto_increment primary key,
+    `name` varchar(20),
+    `parent_id` bigint(11)
+);
+
+insert into `work_groups` values (1, 'root_group', null);
+insert into `work_groups` values (2, 'group1', 1);
+insert into `work_groups` values (3, 'group2', 1);
+insert into `work_groups` values (4, 'group3', 2);
+insert into `work_groups` values (5, 'group4', 2);
+insert into `work_groups` values (6, 'group5', 3);
