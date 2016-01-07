@@ -18,7 +18,7 @@ import ua.ksstroy.persistence.TransactionHelper;
 
 @Repository
 @Service
-public class MaterialGroupTypeDaoImpl implements MaterialTypeGroupDao, MaterialTypeDao {
+public class MaterialGroupTypeAndMaterialDaoImpl implements MaterialTypeGroupDao, MaterialTypeDao {
 
     private TransactionHelper helper = new TransactionHelper();
 
