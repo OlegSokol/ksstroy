@@ -1,12 +1,11 @@
 package ua.ksstroy.models.zone;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import static javax.persistence.GenerationType.IDENTITY;
 
 
 @SuppressWarnings("serial")
