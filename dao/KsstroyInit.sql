@@ -44,7 +44,7 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
 DROP TABLE IF EXISTS `zones`;
 CREATE TABLE `zones` (
-  `id`                   BIGINT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `zone_id`              BIGINT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name`                 VARCHAR(50)     NOT NULL,
   `width`                DOUBLE UNSIGNED NOT NULL,
   `height`               DOUBLE UNSIGNED NOT NULL,
@@ -177,3 +177,85 @@ INSERT INTO `material_type` VALUES (6, 'material_type_6', 'material_type_6_descr
 INSERT INTO `material_type` VALUES (7, 'material_type_7', 'material_type_7_descr.', '3.0', 'unit_name_7', '7');
 INSERT INTO `material_type` VALUES (8, 'material_type_8', 'material_type_8_descr.', '3.0', 'unit_name_8', '7');
 INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr.', '3.0', 'unit_name_9', '7');
+
+
+DROP TABLE IF EXISTS `works`;
+CREATE TABLE `works` (
+  `work_id`          BIGINT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`             VARCHAR(50),
+  `work_type_id`     BIGINT(11),
+  `planed_cost`      DOUBLE,
+  `perspective_cost` DOUBLE,
+  `closed_cost`      DOUBLE,
+  `deal_cost`        DOUBLE,
+  `parent_group_id`  BIGINT(11)
+);
+
+INSERT INTO `works` VALUES (1, 'Work_ziro', 1, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (2, 'work_one', 2, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (3, 'work_two', 2, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (4, 'work_tree', 3, 1, 2, 3, 4, 5);
+INSERT INTO `works` VALUES (5, 'work_four', 3, 1, 2, 3, 4, 5);
+INSERT INTO `works` VALUES (6, 'work_five', 3, 1, 2, 3, 4, 6);
+
+DROP TABLE IF EXISTS `work_zone_rel`;
+CREATE TABLE `work_zone_rel` (
+  `id`      BIGINT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `work_id` BIGINT(11),
+  `zone_id` BIGINT(11)
+);
+
+INSERT INTO `work_zone_rel` VALUES (1, 1, 1);
+INSERT INTO `work_zone_rel` VALUES (2, 2, 1);
+INSERT INTO `work_zone_rel` VALUES (3, 3, 2);
+INSERT INTO `work_zone_rel` VALUES (4, 4, 4);
+INSERT INTO `work_zone_rel` VALUES (5, 5, 5);
+INSERT INTO `work_zone_rel` VALUES (6, 6, 6);
+
+
+INSERT INTO `work_zone_rel` VALUES ();
+
+DROP TABLE IF EXISTS `adjustments`;
+CREATE TABLE `adjustments` (
+  `id`          BIGINT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `value`       DOUBLE,
+  `is_absolute` TINYINT,
+  `work_id`     BIGINT(11)
+);
+
+INSERT INTO `adjustments` VALUES (1, 23, 1, 1);
+INSERT INTO `adjustments` VALUES (2, 23, 1, 2);
+INSERT INTO `adjustments` VALUES (3, 23, 1, 3);
+INSERT INTO `adjustments` VALUES (4, 23, 1, 4);
+INSERT INTO `adjustments` VALUES (5, 23, 1, 5);
+INSERT INTO `adjustments` VALUES (6, 23, 1, 6);
+
+DROP TABLE IF EXISTS `covers`;
+CREATE TABLE `covers` (
+  `id`          BIGINT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `value`       DOUBLE,
+  `date`        VARCHAR(20),
+  `description` VARCHAR(20),
+  `work_id`     BIGINT(11)
+);
+
+INSERT INTO `covers` VALUES (1, 12, '12', 'cover1', 1);
+INSERT INTO `covers` VALUES (2, 12, '12', 'cover2', 2);
+INSERT INTO `covers` VALUES (3, 12, '12', 'cover3', 3);
+INSERT INTO `covers` VALUES (4, 12, '12', 'cover4', 4);
+INSERT INTO `covers` VALUES (5, 12, '12', 'cover5', 5);
+INSERT INTO `covers` VALUES (6, 12, '12', 'cover6', 6);
+
+DROP TABLE IF EXISTS `work_groups`;
+CREATE TABLE `work_groups` (
+  `id`        BIGINT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name`      VARCHAR(20),
+  `parent_id` BIGINT(11)
+);
+
+INSERT INTO `work_groups` VALUES (1, 'root_group', NULL);
+INSERT INTO `work_groups` VALUES (2, 'group1_lvl_a', 1);
+INSERT INTO `work_groups` VALUES (3, 'group2_lvl_a', 1);
+INSERT INTO `work_groups` VALUES (4, 'group3_lvl_b', 2);
+INSERT INTO `work_groups` VALUES (5, 'group4_lvl_b', 2);
+INSERT INTO `work_groups` VALUES (6, 'group5_lvl_b', 3);

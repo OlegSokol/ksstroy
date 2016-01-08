@@ -11,11 +11,11 @@ import javax.annotation.Resource;
 @Component(value = "MaterialManagerImpl")
 public class MaterialManagerImpl implements MaterialManager {
 
-    @Qualifier("materialGroupTypeDaoImpl")
+    @Qualifier("materialGroupTypeAndMaterialDaoImpl")
     @Resource
     MaterialTypeDao materialTypeDao;
 
-    @Qualifier("materialGroupTypeDaoImpl")
+    @Qualifier("materialGroupTypeAndMaterialDaoImpl")
     @Resource
     MaterialTypeGroupDao materialTypeGroupDao;
 

@@ -1,131 +1,135 @@
 package ua.ksstroy.models.zone;
 
-import static javax.persistence.GenerationType.IDENTITY;
+import ua.ksstroy.logic.zonegroup.Measure;
+import ua.ksstroy.models.work.WorkModel;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import ua.ksstroy.logic.zonegroup.Measure;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "zones", catalog = "ksstroy")
 public class ZonesModel implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private String id;
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "zone_id", unique = true, nullable = false)
+    private String id;
 
-	@Column(name = "name", nullable = false)
-	private String name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-	@Column(name = "width")
-	private Double width;
+    @Column(name = "width")
+    private Double width;
 
-	@Column(name = "height")
-	private Double height;
+    @Column(name = "height")
+    private Double height;
 
-	@Column(name = "mesure_name")
-	private String measureName;
+    @Column(name = "mesure_name")
+    private String measureName;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_group_id")
-	private GroupsModel groupIdForZone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_group_id")
+    private GroupsModel groupIdForZone;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "addit_for_zones_id")
-	private Set<ZonesModel> additionalZone = new LinkedHashSet<>();
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "addit_for_zones_id")
+    private Set<ZonesModel> additionalZone = new LinkedHashSet<>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "addit_for_zones_id")
-	private ZonesModel additZoneToRootZone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "addit_for_zones_id")
+    private ZonesModel additZoneToRootZone;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "surplus_for_zones_id")
-	private Set<ZonesModel> surplusZone = new LinkedHashSet<>();
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "surplus_for_zones_id")
+    private Set<ZonesModel> surplusZone = new LinkedHashSet<>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "surplus_for_zones_id")
-	private ZonesModel surplusZoneToRootZone;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "surplus_for_zones_id")
+    private ZonesModel surplusZoneToRootZone;
 
-	public ZonesModel() {
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "workZones")
+    private List<WorkModel> works;
 
-	}
+    public ZonesModel() {
 
-	public ZonesModel(String name, Double width, Double height, Measure measureName) {
-		this.name = name;
-		this.width = width;
-		this.height = height;
-		this.measureName = measureName.toString();
-	}
+    }
 
-	public String getId() {
-		return id;
-	}
+    public ZonesModel(String name, Double width, Double height, Measure measureName) {
+        this.name = name;
+        this.width = width;
+        this.height = height;
+        this.measureName = measureName.toString();
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
 
-	public String getName() {
-		return name;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Double getWidth() {
-		return width;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setWidth(Double width) {
-		this.width = width;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Double getHeight() {
-		return height;
-	}
+    public Double getWidth() {
+        return width;
+    }
 
-	public void setHeight(Double height) {
-		this.height = height;
-	}
+    public void setWidth(Double width) {
+        this.width = width;
+    }
 
-	public String getMeasureName() {
-		return measureName;
-	}
+    public Double getHeight() {
+        return height;
+    }
 
-	public void setMeasureName(Measure measureName) {
-		this.measureName = measureName.toString();
-	}
+    public void setHeight(Double height) {
+        this.height = height;
+    }
 
-	public Set<ZonesModel> getAdditionalZone() {
-		return additionalZone;
-	}
+    public String getMeasureName() {
+        return measureName;
+    }
 
-	public void setAdditionalZone(Set<ZonesModel> additionalZone) {
-		this.additionalZone = additionalZone;
-	}
+    public void setMeasureName(Measure measureName) {
+        this.measureName = measureName.toString();
+    }
 
-	public Set<ZonesModel> getSurplusZone() {
-		return surplusZone;
-	}
+    public Set<ZonesModel> getAdditionalZone() {
+        return additionalZone;
+    }
 
-	public void setSurplusZone(Set<ZonesModel> surplusZone) {
-		this.surplusZone = surplusZone;
-	}
+    public void setAdditionalZone(Set<ZonesModel> additionalZone) {
+        this.additionalZone = additionalZone;
+    }
+
+    public Set<ZonesModel> getSurplusZone() {
+        return surplusZone;
+    }
+
+    public void setSurplusZone(Set<ZonesModel> surplusZone) {
+        this.surplusZone = surplusZone;
+    }
+
+    public List<WorkModel> getWorks() {
+        return works;
+    }
+
+    public void setWorks(List<WorkModel> works) {
+        this.works = works;
+    }
 
 }

@@ -1,148 +1,148 @@
 package ua.ksstroy.logic.work;
 
+import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.zonegroup.Zone;
+
 import java.util.List;
 
-import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.zonegroup.ZoneData;
+public class WorkImpl implements Work {
 
-public class WorkImpl implements Work{
-	
-private String id;
-	
-	private String name;
-	
-	private WorkTypeData type;
-	
-	private List<ZoneData> workZones;
-	
-	private List<CoverData> allCovers;
-	
-	private Double planedCost;
-	
-	private Double perspectiveCost;
-	
-	private Double closedCost;
+    private String id;
 
-	private Double dealCost;
-	
-	private List<AdjustmentData> adjustments;
-	
-	@Override
-	public WorkTypeData getType() {
-	
-		return type;
-	}
+    private String name;
 
-	@Override
-	public void setType(WorkTypeData type) {
+    private WorkType type;
 
-		this.type=type;
-	}
+    private List<Zone> workZones;
 
-	@Override
-	public List<ZoneData> getWorkZones() {
-		
-		return workZones;
-	}
+    private List<Cover> allCovers;
 
-	@Override
-	public void setWorkZones(List<ZoneData> workZones) {
-		this.workZones=workZones;
-		
-	}
+    private Double planedCost;
 
-	@Override
-	public List<CoverData> getAllCovers() {
-		return allCovers;
-	}
+    private Double perspectiveCost;
 
-	@Override
-	public void setAllCovers(List<CoverData> allCovers) {
-		this.allCovers=allCovers;
-		
-	}
+    private Double closedCost;
 
-	@Override
-	public String getId() {
-		return id;
-	}
+    private Double dealCost;
 
-	@Override
-	public void setId(String id) {
-		this.id=id;
-		
-	}
+    private List<Adjustment> adjustments;
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return name;
-	}
+    @Override
+    public WorkType getType() {
 
-	@Override
-	public void setName(String name) {
-		this.name=name;
-		
-	}
+        return type;
+    }
 
-	@Override
-	public Double getPlanedCost() {
-		// TODO Auto-generated method stub
-		return planedCost;
-	}
+    @Override
+    public void setType(WorkType type) {
 
-	@Override
-	public void setPlanedCost(Double planedCost) {
-		this.planedCost=planedCost;
-		
-	}
+        this.type = type;
+    }
 
-	@Override
-	public Double getPerspectiveCost() {
-		// TODO Auto-generated method stub
-		return perspectiveCost;
-	}
+    @Override
+    public List<Zone> getWorkZones() {
 
-	@Override
-	public void setPerspectiveCost(Double perspectiveCost) {
-		this.perspectiveCost=perspectiveCost;
-		
-	}
+        return workZones;
+    }
 
-	@Override
-	public Double getClosedCost() {
-		// TODO Auto-generated method stub
-		return closedCost;
-	}
+    @Override
+    public void setWorkZones(List<Zone> workZones) {
+        this.workZones = workZones;
 
-	@Override
-	public void setClosedCost(Double closedCost) {
-		this.closedCost=closedCost;
-		
-	}
+    }
 
-	@Override
-	public Double getDealCost() {
-		// TODO Auto-generated method stub
-		return dealCost;
-	}
+    @Override
+    public List<Cover> getAllCovers() {
+        return allCovers;
+    }
 
-	@Override
-	public void setDealCost(Double dealCost) {
-		this.dealCost=dealCost;
-		
-	}
+    @Override
+    public void setAllCovers(List<Cover> allCovers) {
+        this.allCovers = allCovers;
 
-	@Override
-	public List<AdjustmentData> getAdjustments() {
-		// TODO Auto-generated method stub
-		return adjustments;
-	}
+    }
 
-	@Override
-	public void setAdjustments(List<AdjustmentData> adjustments) {
-	this.adjustments=adjustments;
-		
-	}
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+
+    }
+
+    @Override
+    public String getName() {
+        // TODO Auto-generated method stub
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+
+    }
+
+    @Override
+    public Double getPlanedCost() {
+        // TODO Auto-generated method stub
+        return planedCost;
+    }
+
+    @Override
+    public void setPlanedCost(Double planedCost) {
+        this.planedCost = planedCost;
+
+    }
+
+    @Override
+    public Double getPerspectiveCost() {
+        // TODO Auto-generated method stub
+        return perspectiveCost;
+    }
+
+    @Override
+    public void setPerspectiveCost(Double perspectiveCost) {
+        this.perspectiveCost = perspectiveCost;
+
+    }
+
+    @Override
+    public Double getClosedCost() {
+        // TODO Auto-generated method stub
+        return closedCost;
+    }
+
+    @Override
+    public void setClosedCost(Double closedCost) {
+        this.closedCost = closedCost;
+
+    }
+
+    @Override
+    public Double getDealCost() {
+        // TODO Auto-generated method stub
+        return dealCost;
+    }
+
+    @Override
+    public void setDealCost(Double dealCost) {
+        this.dealCost = dealCost;
+
+    }
+
+    @Override
+    public List<Adjustment> getAdjustments() {
+        // TODO Auto-generated method stub
+        return adjustments;
+    }
+
+    @Override
+    public void setAdjustments(List<Adjustment> adjustments) {
+        this.adjustments = adjustments;
+
+    }
 
 }

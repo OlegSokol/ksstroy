@@ -13,6 +13,7 @@ import ua.ksstroy.persistence.TransactionHelper;
 
 @Component
 public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
+
     private TransactionHelper helper = new TransactionHelper();
 
     @Override
@@ -26,7 +27,7 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
         });
     }
 
-    public WorkType getWorkType(final String workTypeId) {
+    public WorkType getWorkTypeById(final String workTypeId) {
         return helper.simpleAction(new GetInTransaction<WorkType>() {
             public WorkType process(SessionWrapper session) {
                 WorkTypeModel workTypeModel = session.get(WorkTypeModel.class, Integer.parseInt(workTypeId));

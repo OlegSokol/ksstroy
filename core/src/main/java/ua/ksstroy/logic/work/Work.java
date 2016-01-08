@@ -1,23 +1,23 @@
 package ua.ksstroy.logic.work;
 
-import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.zonegroup.ZoneData;
+import ua.ksstroy.logic.worktype.WorkType;
+import ua.ksstroy.logic.zonegroup.Zone;
 
 import java.util.List;
 
 public interface Work {
 	
-	public WorkTypeData getType();
+	public WorkType getType();
 
-	public void setType(WorkTypeData type); 
+	public void setType(WorkType type);
 
-	public List<ZoneData> getWorkZones();
+	public List<Zone> getWorkZones();
 
-	public void setWorkZones(List<ZoneData> workZones); 
+	public void setWorkZones(List<Zone> workZones);
 
-	public List<CoverData> getAllCovers(); 
+	public List<Cover> getAllCovers();
 
-	public void setAllCovers(List<CoverData> allCovers); 
+	public void setAllCovers(List<Cover> allCovers);
 
 	public String getId(); 
 
@@ -43,8 +43,8 @@ public interface Work {
 
 	public void setDealCost(Double dealCost); 
 
-	public List<AdjustmentData> getAdjustments(); 
+	public List<Adjustment> getAdjustments();
 
-	public void setAdjustments(List<AdjustmentData> adjustments); 
+	public void setAdjustments(List<Adjustment> adjustments);
 
 }

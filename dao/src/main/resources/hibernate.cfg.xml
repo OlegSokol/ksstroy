@@ -13,7 +13,6 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
 
-
         <!-- List of XML mapping files -->
         <mapping class="ua.ksstroy.models.project.ProjectModel"></mapping>
         <mapping class="ua.ksstroy.models.user.UserModel"></mapping>
@@ -27,5 +26,10 @@
 
         <mapping class="ua.ksstroy.models.material.MaterialTypeModel"/>
         <mapping class="ua.ksstroy.models.material.MaterialTypeGroupModel"/>
+
+        <mapping class="ua.ksstroy.models.work.WorkModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.WorkGroupModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.AdjustmentModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.CoverModel"></mapping>
     </session-factory>
 </hibernate-configuration>

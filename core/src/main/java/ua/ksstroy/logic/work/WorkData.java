@@ -1,9 +1,9 @@
 package ua.ksstroy.logic.work;
 
-import java.util.List;
-
 import ua.ksstroy.logic.worktype.WorkTypeData;
 import ua.ksstroy.logic.zonegroup.ZoneData;
+
+import java.util.List;
 
 public class WorkData {
 	
@@ -26,8 +26,6 @@ public class WorkData {
 	private Double dealCost;
 	
 	private List<AdjustmentData> adjustments;
-	
-	
 
 	public WorkTypeData getType() {
 		return type;

@@ -3,6 +3,7 @@ package ua.ksstroy.logic.worktype;
 import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.worktype.WorkTypeDataToWorkTypeConverter;
 import ua.ksstroy.converter.worktype.WorkTypeGroupToWorkTypeGroupDataHierarchyConverter;
+import ua.ksstroy.converter.worktype.WorkTypeToWorkTypeDataConverter;
 
 import javax.annotation.Resource;
 
@@ -47,6 +48,11 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
     @Override
     public void updateWorkTypeGroupName(String groupId, String newName) {
         workTypeGroupDao.updateWorkTypeGroupName(groupId, newName);
+    }
+
+    @Override
+    public WorkTypeData getWorkTypeById(String id) {
+        return new WorkTypeToWorkTypeDataConverter().convert(workTypeDao.getWorkTypeById(id));
     }
 
     @Override

@@ -23,8 +23,8 @@ this is single project page!!
 
         <a class="menu_item" href="${projectId}/zones">Zones</a>
 
-        <a class="menu_item" href="#">
-            Work(will be soon)
+        <a class="menu_item" href="${projectId}/work">
+            Work(new!!!)
             <table>
                 <tbody>
                 <tr>

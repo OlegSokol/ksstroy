@@ -8,4 +8,6 @@ public interface WorkTypeDao {
 
     void updateWorkType(String workTypeId, WorkType newWorkType);
 
+    WorkType getWorkTypeById(String id);
+
 }
