@@ -26,6 +26,7 @@ public class MaterialManagerImpl implements MaterialManager {
         materialData.setPlanedCost(material.getPlanedCost());
         materialData.setDealCost(material.getDealCost());
         materialData.setId(material.getId());
+        materialData.setUnitsPerWorkZoneMeasure(material.getUnitsPerWorkZoneMeasure());
         materialData.setMaterialType(new MaterialTypeImplToDataConverter().convert(material.getMaterialType()));
         return materialData;
     }
