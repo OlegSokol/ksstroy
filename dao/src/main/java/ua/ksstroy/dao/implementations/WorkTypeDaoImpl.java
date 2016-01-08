@@ -9,6 +9,7 @@ import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
+import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
 
@@ -58,6 +59,17 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 			}
 		});
 	}
+
+	@Override
+	public WorkType getWorkTypeById(final String id) {
+		return helper.simpleAction(new GetInTransaction<WorkType>() {
+			public WorkType process(SessionWrapper session) {
+				WorkType workType = convertWorkTypeModelToWorkType(session.get(WorkTypeModel.class, id));
+				return workType;
+			}
+		});
+	}
+
 
 	public WorkTypeModel convertWorkTypeToWorkTypeModel(WorkType workType) {
 		WorkTypeModel model = new WorkTypeModel();

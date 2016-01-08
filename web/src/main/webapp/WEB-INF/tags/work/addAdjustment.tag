@@ -7,7 +7,7 @@
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
 <div class="controller hidden">
-    <div class="controller_name">Add Cover</div>
+    <div class="controller_name">Add Adjustment</div>
     <form action="${pageContext.request.contextPath}/projects/addAdjustmentToWork" method="post">
         <input type="hidden" name="workId" value="${work.id}">
         <input type="hidden" name="projectId" value="${projectId}">

@@ -17,16 +17,16 @@
                 <td>name:</td>
                 <td><input type="text" name="name" placeholder="Enter name"></td>
             </tr>
-            <%--<tr> TODO add type in future
-                <td>type:</td>
-                <td><input type="text" name="type" placeholder="Enter description"></td>
-            </tr>--%>
+            <tr>
+                <td>type id:</td>
+                <td><input type="text" name="workTypeId" placeholder="Enter type id"></td>
+            </tr>
             <tr>
                 <td>planedCost:</td>
                 <td><input type="text" name="planedCost" placeholder="Enter planedCost"></td>
             </tr>
 
-            <tr>
+            <tr> e
                 <td>perspectiveCost:</td>
                 <td><input type="text" name="perspectiveCost" placeholder="Enter perspectiveCost"></td>
             </tr>

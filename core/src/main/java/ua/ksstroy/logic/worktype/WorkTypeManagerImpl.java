@@ -51,6 +51,11 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
     }
 
     @Override
+    public WorkTypeData getWorkTypeById(String id) {
+       return convertWorkTypeToWorkTypeData(workTypeDao.getWorkTypeById(id));
+    }
+
+    @Override
     public void updateWorkType(String WorkTypeId, WorkTypeData newWorkType) {
         workTypeDao.updateWorkType(WorkTypeId, convertWorkTypeDataToWorkType(newWorkType));
     }

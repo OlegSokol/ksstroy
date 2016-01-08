@@ -18,4 +18,6 @@ public interface WorkTypeManager {
     void updateWorkType(String WorkTypeId, WorkTypeData newWorkType);
 
     void updateWorkTypeGroupName(String groupId, String newGroupName);
+
+    WorkTypeData getWorkTypeById(String id);
 }

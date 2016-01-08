@@ -10,6 +10,7 @@ import ua.ksstroy.logic.work.AdjustmentData;
 import ua.ksstroy.logic.work.CoverData;
 import ua.ksstroy.logic.work.WorkData;
 import ua.ksstroy.logic.work.WorkManager;
+import ua.ksstroy.logic.worktype.WorkTypeData;
 import ua.ksstroy.logic.worktype.WorkTypeManagerImpl;
 
 import javax.annotation.Resource;
@@ -27,6 +28,7 @@ public class WorkController {
     WorkData workData;
     CoverData coverData;
     AdjustmentData adjustmentData;
+    WorkTypeData workTypeData;
 
     @RequestMapping(value = "/projects/{projectId}/work", method = RequestMethod.GET)
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
@@ -82,12 +84,15 @@ public class WorkController {
                               @RequestParam("closedCost") String closedCost,
                               @RequestParam("dealCost") String dealCost,
                               @RequestParam("parentId") String parentWorkTypeGroupId,
-                              @RequestParam("projectId") String projectId
-                          /*@RequestParam("workTypeId") String workTypeId*/) {
+                              @RequestParam("projectId") String projectId,
+                          @RequestParam("workTypeId") String workTypeId) {
 
         workData = new WorkData();
         workData.setName(name);
 
+        workTypeData = workTypeManager.getWorkTypeById(workTypeId);
+
+        workData.setType(workTypeData);
         try {
             workData.setPlanedCost(new Double(planedCoast).doubleValue());
             workData.setPerspectiveCost(new Double(perspectiveCost).doubleValue());
