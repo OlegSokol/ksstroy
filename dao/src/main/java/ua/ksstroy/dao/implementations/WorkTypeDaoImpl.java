@@ -64,7 +64,7 @@ public class WorkTypeDaoImpl implements WorkTypeDao {
 	public WorkType getWorkTypeById(final String id) {
 		return helper.simpleAction(new GetInTransaction<WorkType>() {
 			public WorkType process(SessionWrapper session) {
-				WorkType workType = convertWorkTypeModelToWorkType(session.get(WorkTypeModel.class, id));
+				WorkType workType = convertWorkTypeModelToWorkType(session.get(WorkTypeModel.class, Integer.parseInt(id)));
 				return workType;
 			}
 		});

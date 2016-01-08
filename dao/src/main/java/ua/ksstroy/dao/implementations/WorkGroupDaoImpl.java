@@ -13,6 +13,7 @@ import ua.ksstroy.persistence.TransactionHelper;
 
 @Component
 public class WorkGroupDaoImpl implements WorkGroupDao {
+    private static final String ROOT_GROUP_ID = "1";
     TransactionHelper helper = new TransactionHelper();
 
     @Override
@@ -54,7 +55,7 @@ public class WorkGroupDaoImpl implements WorkGroupDao {
     public WorkGroup getWorkHierarchy() {
         return helper.simpleAction(new GetInTransaction<WorkGroup>() {
             public WorkGroup process(SessionWrapper session) {
-                WorkGroup workHierarchy = new WorkGroupModelToWorkGroupConvertor().convert(session.get(WorkGroupModel.class, "1"));
+                WorkGroup workHierarchy = new WorkGroupModelToWorkGroupConvertor().convert(session.get(WorkGroupModel.class, ROOT_GROUP_ID));
                 return workHierarchy;
             }
         });
