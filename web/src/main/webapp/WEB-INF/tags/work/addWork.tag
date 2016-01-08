@@ -26,7 +26,7 @@
                 <td><input type="text" name="planedCost" placeholder="Enter planedCost"></td>
             </tr>
 
-            <tr> e
+            <tr>
                 <td>perspectiveCost:</td>
                 <td><input type="text" name="perspectiveCost" placeholder="Enter perspectiveCost"></td>
             </tr>
