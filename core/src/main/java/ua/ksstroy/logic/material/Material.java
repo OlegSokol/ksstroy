@@ -1,6 +1,7 @@
 package ua.ksstroy.logic.material;
 
 public interface Material {
+    //TODO:finish after obtain more specific information about the entity
 
     MaterialType getMaterialType();
 

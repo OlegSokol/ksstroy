@@ -1,6 +1,6 @@
 package ua.ksstroy.logic.material;
 
-public interface MaterialManager {
+public interface MaterialLibraryManager {
 
     MaterialTypeGroupData getMaterialHierarchy();
 

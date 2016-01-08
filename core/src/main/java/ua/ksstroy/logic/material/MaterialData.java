@@ -1,8 +1,9 @@
 package ua.ksstroy.logic.material;
 
 public class MaterialData {
+    //TODO:finish after obtain more specific information about the entity
 
-    private MaterialType materialType;
+    private MaterialTypeData materialType;
 
     private Double unitsPerWorkZoneMeasure;
 
@@ -15,7 +16,7 @@ public class MaterialData {
     public MaterialData() {
     }
 
-    public MaterialData(MaterialType materialType, Double unitsPerWorkZoneMeasure, Double planedCost, Double dealCost, Double closedCost) {
+    public MaterialData(MaterialTypeData materialType, Double unitsPerWorkZoneMeasure, Double planedCost, Double dealCost, Double closedCost) {
         this.materialType = materialType;
         this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
         this.planedCost = planedCost;
@@ -23,13 +24,6 @@ public class MaterialData {
         this.closedCost = closedCost;
     }
 
-    public MaterialType getMaterialType() {
-        return materialType;
-    }
-
-    public void setMaterialType(MaterialType materialType) {
-        this.materialType = materialType;
-    }
 
     public Double getUnitsPerWorkZoneMeasure() {
         return unitsPerWorkZoneMeasure;
