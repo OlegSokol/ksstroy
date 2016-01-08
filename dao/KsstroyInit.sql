@@ -182,17 +182,19 @@ INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr
 DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials` (
   `id`                          INT(8)      NOT NULL AUTO_INCREMENT,
-  `name`                        VARCHAR(50) NOT NULL,
-  `description`                 VARCHAR(512)         DEFAULT NULL,
-  `price_per_unit`              DOUBLE      NOT NULL,
-  `unit_name`                   VARCHAR(50) NOT NULL,
-  `units_per_work_zone_measure` VARCHAR(5)  NOT NULL,
-  `planed_cost`                 DOUBLE      NOT NULL,
-  `deal_cost`                   DOUBLE      NOT NULL,
-  `closed_cost`                 DOUBLE      NOT NULL,
-  `parent_id_for_type`          BIGINT(8),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_id` (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+   `units_per_work_zone_measure` DOUBLE  ,
+  `planed_cost`                 DOUBLE      ,
+  `deal_cost`                   DOUBLE      ,
+  `closed_cost`                 DOUBLE      ,
+  `material_type_id`          INT(8),
+  PRIMARY KEY (`id`)
+ )
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;
+
+  INSERT INTO `materials` VALUES (1, '2', '10.0', '3.0', '4.2', '1');
+  INSERT INTO `materials` VALUES (2, '2', '10.0', '3.0', '4.2', '2');
+  INSERT INTO `materials` VALUES (3, '2', '10.0', '3.0', '4.2', '3');
+  INSERT INTO `materials` VALUES (4, '2', '10.0', '3.0', '4.2', '4');
+  INSERT INTO `materials` VALUES (5, '2', '10.0', '3.0', '4.2', '5');
+

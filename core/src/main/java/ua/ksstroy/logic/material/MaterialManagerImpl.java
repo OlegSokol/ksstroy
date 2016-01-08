@@ -1,6 +1,5 @@
 package ua.ksstroy.logic.material;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.material.MaterialTypeDataToMaterialTypeConverter;
 import ua.ksstroy.converter.material.MaterialTypeGroupDataToMaterialTypeGroupConverter;
@@ -11,11 +10,11 @@ import javax.annotation.Resource;
 @Component(value = "MaterialManagerImpl")
 public class MaterialManagerImpl implements MaterialManager {
 
-    @Qualifier("materialGroupTypeDaoImpl")
+
     @Resource
     MaterialTypeDao materialTypeDao;
 
-    @Qualifier("materialGroupTypeDaoImpl")
+
     @Resource
     MaterialTypeGroupDao materialTypeGroupDao;
 
