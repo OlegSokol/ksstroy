@@ -14,17 +14,16 @@
     <li>
         <div class="item">
             <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
-                ${adjustment.name}
+                adjustment value: ${adjustment.value}$
             <div class="add_delete_wrapper">
                 <form action="<%--${pageContext.request.contextPath}/projects/removeWork--%>" method="post">
                     <input type="hidden" name="projectId" value="${projectId}">
                     <input type="hidden" name="id" value="${adjustment.id}">
-                    <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
+                   <%-- <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">--%>
                 </form>
-                <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
-                <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
+                <%--<img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+                <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">--%>
             </div>
-            <work:updateAdjustment cover="${cover}"/>
         </div>
     </li>
 </c:forEach>

@@ -168,7 +168,9 @@ public class WorkController {
 
         adjustmentData = new AdjustmentData();
         try {
+            System.out.println("VALUE IS STARTING ASSIGNED");
             adjustmentData.setValue(new Double(value).doubleValue());
+            System.out.println("VALUE ASSIGNED!!");
             adjustmentData.setAbsolute(new Boolean(isAbsolute).booleanValue());
 
         } catch (NumberFormatException e) {

@@ -11,6 +11,7 @@
 <spring:url value="/resources/img/show_updates_btn.png" var="show_update_forms_btn"/>
 
 <c:forEach var="work" items="${workList}">
+    <ul class ="group">
     <li>
         <div class="item">
             <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
@@ -25,7 +26,14 @@
                 <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
             </div>
             <work:updateWork work="${work}"/>
+            <work:addCover work="${work}"/>
+            <work:addAdjustment work="${work}"/>
         </div>
-    <work:covers coverList="${work.allCovers}"/>
+        <ul class ="subgroup">
+            <work:covers coverList="${work.allCovers}"/>
+            <work:adjustment adjustmentList="${work.adjustments}"/>
+            <work:zones zoneList="${work.workZones}"/>
+        </ul>
+    </ul>
     </li>
 </c:forEach>

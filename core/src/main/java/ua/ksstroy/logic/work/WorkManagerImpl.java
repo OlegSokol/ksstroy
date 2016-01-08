@@ -116,7 +116,7 @@ public class WorkManagerImpl implements WorkManager{
 
 		adjustment.setId(adjustmentData.getId());
 		adjustment.setAbsolute(adjustmentData.isAbsolute());
-		adjustment.setValue(adjustment.getValue());
+		adjustment.setValue(adjustmentData.getValue());
 
 		return adjustment;
 	}
