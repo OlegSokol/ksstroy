@@ -25,7 +25,7 @@ public class WorkDoaImplTest extends TestCase {
         workDoa.addWork(work, "1");
     }*/
 
-    public void testAddCoverToWork() throws Exception {
+    /*public void testAddCoverToWork() throws Exception {
         WorkDoaImpl workDoa = new WorkDoaImpl();
 
         Cover cover = new CoverImpl();
@@ -34,7 +34,9 @@ public class WorkDoaImplTest extends TestCase {
         cover.setDescription("test");
 
 
-    }
+    }*/
+
+
 
     public void testAddAdjustmentToWork() throws Exception {
 

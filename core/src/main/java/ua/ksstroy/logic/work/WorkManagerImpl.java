@@ -60,7 +60,8 @@ public class WorkManagerImpl implements WorkManager{
 
 	@Override
 	public WorkGroupData getWorkHierarchy() {
-		return convertWorkGroupToWorkGroupData(workGroupDao.getWorkHierarchy());
+		WorkGroupData workGroup = convertWorkGroupToWorkGroupData(workGroupDao.getWorkHierarchy());
+		return workGroup;
 	}
 
 	@Override
@@ -157,6 +158,7 @@ public class WorkManagerImpl implements WorkManager{
 		for (Zone zone : work.getWorkZones()) {
 			zoneDatas.add(new ZoneManagerImpl().convertZoneToZoneData(zone));
 		}
+		workData.setWorkZones(zoneDatas);
 
 		List<CoverData> coverDatas = new ArrayList<>();
 		for (Cover cover : work.getAllCovers()) {
