@@ -1,5 +1,9 @@
 package ua.ksstroy.logic.worktype;
 
+import ua.ksstroy.logic.material.MaterialImpl;
+
+import java.util.List;
+
 public interface WorkType {
 
     Integer getId();
@@ -22,9 +26,8 @@ public interface WorkType {
 
     void setUnitPrice(Double unitPrice);
 
-    //TODO add materials when materials will be ready
-    //Set<Material> getMaterials();
 
-    //void setMaterials(Set<Material> materials);
+    List<MaterialImpl> getMaterials();
+    void setMaterials(List<MaterialImpl> materials);
 
 }

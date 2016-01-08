@@ -22,12 +22,11 @@ public class MaterialLibraryController {
     MaterialTypeGroupData materialTypeGroupData;
 
     //TODO:refactoring: libraries url should be global /libraries/material for example. and what a hell are project id is for?
-    @RequestMapping(value = "/projects/{projectId}/material", method = RequestMethod.GET)
+    @RequestMapping(value = "/projects/{projectId}/library_materials", method = RequestMethod.GET)
     public ModelAndView getAllMaterialsLibrary(@PathVariable("projectId") String projectId) {
-        this.materialModelView = new ModelAndView("materials");
+        this.materialModelView = new ModelAndView("library_materials");
         this.materialModelView.addObject("projectId", projectId);
         this.materialModelView.addObject("materialObject", materialManager.getMaterialHierarchy());
-
         return materialModelView;
     }
 

@@ -1,7 +1,7 @@
 package ua.ksstroy.logic.material;
 
 public class MaterialImpl implements Material {
-    //TODO:finish after obtain more specific information about the entity
+    private String id;
 
     private MaterialType materialType;
 
@@ -13,16 +13,6 @@ public class MaterialImpl implements Material {
 
     private Double closedCost;
 
-    public MaterialImpl() {
-    }
-
-    public MaterialImpl(MaterialType materialType, Double unitsPerWorkZoneMeasure, Double planedCost, Double dealCost, Double closedCost) {
-        this.materialType = materialType;
-        this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
-        this.planedCost = planedCost;
-        this.dealCost = dealCost;
-        this.closedCost = closedCost;
-    }
 
     @Override
     public MaterialType getMaterialType() {
@@ -74,4 +64,11 @@ public class MaterialImpl implements Material {
         this.closedCost = closedCost;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

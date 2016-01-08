@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.ksstroy.logic.material.MaterialDao;
+import ua.ksstroy.logic.material.MaterialManager;
 import ua.ksstroy.logic.material.MaterialTypeData;
 import ua.ksstroy.logic.material.MaterialTypeGroupData;
 
@@ -14,20 +15,19 @@ import ua.ksstroy.logic.material.MaterialTypeGroupData;
 public class MaterialController {
 
     @Autowired
-    MaterialDao materialDao;
+    MaterialManager materialManager;
 
     ModelAndView materialModelView;
-    MaterialTypeData materialTypeData;
-    MaterialTypeGroupData materialTypeGroupData;
 
-    //TODO:finish after obtain more specific information about the entity
 
-  /*  @RequestMapping(value = "/projects/{projectId}/materials", method = RequestMethod.GET)
+
+
+   @RequestMapping(value = "/projects/{projectId}/materials", method = RequestMethod.GET)
     public ModelAndView getAllMaterialsByProjectId(@PathVariable("projectId") String projectId) {
         this.materialModelView = new ModelAndView("materials");
         this.materialModelView.addObject("projectId", projectId);
-        this.materialModelView.addObject("MaterialsList", materialDao.getAllMaterialsByPoject(projectId));
+        this.materialModelView.addObject("MaterialsList", materialManager.getAllMaterials());
 
         return materialModelView;
-    }*/
+    }
 }

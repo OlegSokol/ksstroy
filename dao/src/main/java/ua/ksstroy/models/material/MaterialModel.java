@@ -1,31 +1,46 @@
-package ua.ksstroy.logic.material;
+package ua.ksstroy.models.material;
 
-public class MaterialData {
+import ua.ksstroy.logic.material.MaterialType;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+@Entity
+@Table(name = "materials", catalog = "ksstroy")
+public class MaterialModel implements Serializable {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private String id;
 
-    private MaterialTypeData materialType;
-
+    @Column(name = "units_per_work_zone_measure")
     private Double unitsPerWorkZoneMeasure;
 
+    @Column(name = "planed_cost")
     private Double planedCost;
 
+    @Column(name = "deal_cost")
     private Double dealCost;
 
+    @Column(name = "closed_cost")
     private Double closedCost;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "material_type_id")
+    private MaterialTypeModel materialType;
+
+    public MaterialModel(){
+
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public MaterialTypeData getMaterialType() {
-        return materialType;
-    }
-
-    public void setMaterialType(MaterialTypeData materialType) {
-        this.materialType = materialType;
     }
 
     public Double getUnitsPerWorkZoneMeasure() {
@@ -61,8 +76,11 @@ public class MaterialData {
     }
 
 
+    public MaterialTypeModel getMaterialType() {
+        return materialType;
+    }
 
-
-
-
+    public void setMaterialType(MaterialTypeModel materialType) {
+        this.materialType = materialType;
+    }
 }

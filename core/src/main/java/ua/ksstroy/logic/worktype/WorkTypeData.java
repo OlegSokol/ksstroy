@@ -1,5 +1,9 @@
 package ua.ksstroy.logic.worktype;
 
+import ua.ksstroy.logic.material.MaterialData;
+
+import java.util.List;
+
 public class WorkTypeData {
 
 	private Integer id;
@@ -12,7 +16,7 @@ public class WorkTypeData {
 
 	private Double unitPrice;
 
-	/*private Set<MaterialData> materials;*/
+	private List<MaterialData> materials;
 
 	public Integer getId() {
 		return id;
@@ -63,4 +67,11 @@ public class WorkTypeData {
 		this.unitPrice = unitPrice;
 	}
 
+	public List<MaterialData> getMaterials() {
+		return materials;
+	}
+
+	public void setMaterials(List<MaterialData> materials) {
+		this.materials = materials;
+	}
 }

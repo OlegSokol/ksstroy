@@ -1,13 +1,9 @@
 package ua.ksstroy.logic.worktype;
 
-import ua.ksstroy.logic.material.MaterialType;
+import ua.ksstroy.logic.material.MaterialImpl;
 
-import java.util.Set;
+import java.util.List;
 
-/**
- * Logic for WorkTypes
- * Created by soklakov on 30.12.2015.
- */
 public class WorkTypeImpl implements WorkType {
 
     private Integer id;
@@ -20,7 +16,7 @@ public class WorkTypeImpl implements WorkType {
 
     private Double unitPrice;
 
-    private Set<MaterialType> materialTypes;
+    private List<MaterialImpl> materials;
 
     public Integer getId() {
         return id;
@@ -62,12 +58,13 @@ public class WorkTypeImpl implements WorkType {
         this.unitPrice = unitPrice;
     }
 
-    //TODO add material when material will be ready
-    /*public Set<Material> getMaterials() {
+    @Override
+    public List<MaterialImpl> getMaterials() {
         return materials;
     }
 
-    public void setMaterials(Set<Material> materials) {
+    @Override
+    public void setMaterials(List<MaterialImpl> materials) {
         this.materials = materials;
-    }*/
+    }
 }

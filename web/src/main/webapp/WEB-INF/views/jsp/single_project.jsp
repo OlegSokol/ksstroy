@@ -36,7 +36,7 @@ this is single project page!!
         </a>
 
 
-        <a class="menu_item" href="#">
+        <a class="menu_item" href="${projectId}/materials">
             Materials(will be soon)
             <table>
                 <tbody>
@@ -61,7 +61,7 @@ this is single project page!!
         </li>
         <li>
             <div>
-                <a class="menu_item" href="${projectId}/material">Materials</a>
+                <a class="menu_item" href="${projectId}/library_materials">Materials</a>
             </div>
         </li>
     </ul>
