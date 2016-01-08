@@ -44,7 +44,7 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
 DROP TABLE IF EXISTS `zones`;
 CREATE TABLE `zones` (
-  `id`                   BIGINT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `zone_id`                   BIGINT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name`                 VARCHAR(50)     NOT NULL,
   `width`                DOUBLE UNSIGNED NOT NULL,
   `height`               DOUBLE UNSIGNED NOT NULL,
@@ -184,7 +184,7 @@ INSERT INTO `materials` VALUES (10, 'material_10', 'material_10_descr.', 'L', 10
 
 drop table if exists `works`;
 create table `works` (
-	`id` bigint(11) not null auto_increment primary key,
+	`work_id` bigint(11) not null auto_increment primary key,
     `name` varchar(50),
     `work_type_id` bigint(11),
     `planed_cost` DOUBLE,
@@ -194,23 +194,23 @@ create table `works` (
     `parent_group_id` bigint(11)
 );
 
-insert into `works` values (1, 'root_ziro', 1, 1, 2, 3, 4, 1);
-insert into `works` values (2, 'work_one', 2, 1, 2, 3, 4, 2);
-insert into `works` values (3, 'work_two', 2, 1, 2, 3, 4, 3);
-insert into `works` values (4, 'work_tree', 3, 1, 2, 3, 4, 3);
-insert into `works` values (5, 'work_four', 3, 1, 2, 3, 4, 1);
-insert into `works` values (6, 'work_five', 3, 1, 2, 3, 4, 2);
+insert into `works` values (1, 'Work_ziro', 1, 1, 2, 3, 4, 4);
+insert into `works` values (2, 'work_one', 2, 1, 2, 3, 4, 4);
+insert into `works` values (3, 'work_two', 2, 1, 2, 3, 4, 4);
+insert into `works` values (4, 'work_tree', 3, 1, 2, 3, 4, 5);
+insert into `works` values (5, 'work_four', 3, 1, 2, 3, 4, 5);
+insert into `works` values (6, 'work_five', 3, 1, 2, 3, 4, 6);
 
 drop table if exists `work_zone_rel`;
 create table `work_zone_rel` (
 	`id` bigint(11) not null auto_increment primary key,
-    `zone_id` bigint(11),
-    `work_id` bigint(11)
+    `work_id` bigint(11),
+    `zone_id` bigint(11)
 );
 
 insert into `work_zone_rel` values (1, 1, 1);
-insert into `work_zone_rel` values (2, 2, 2);
-insert into `work_zone_rel` values (3, 3, 3);
+insert into `work_zone_rel` values (2, 2, 1);
+insert into `work_zone_rel` values (3, 3, 2);
 insert into `work_zone_rel` values (4, 4, 4);
 insert into `work_zone_rel` values (5, 5, 5);
 insert into `work_zone_rel` values (6, 6, 6);
@@ -242,12 +242,12 @@ create table `covers` (
     `work_id` bigint(11)
 );
 
-insert into `covers` values (1, 12, '12', 'desc1', 1);
-insert into `covers` values (2, 12, '12', 'desc2', 2);
-insert into `covers` values (3, 12, '12', 'desc3', 3);
-insert into `covers` values (4, 12, '12', 'desc4', 4);
-insert into `covers` values (5, 12, '12', 'desc5', 5);
-insert into `covers` values (6, 12, '12', 'desc6', 6);
+insert into `covers` values (1, 12, '12', 'cover1', 1);
+insert into `covers` values (2, 12, '12', 'cover2', 2);
+insert into `covers` values (3, 12, '12', 'cover3', 3);
+insert into `covers` values (4, 12, '12', 'cover4', 4);
+insert into `covers` values (5, 12, '12', 'cover5', 5);
+insert into `covers` values (6, 12, '12', 'cover6', 6);
 
 drop table if exists `work_groups`;
 create table `work_groups` (
@@ -257,8 +257,8 @@ create table `work_groups` (
 );
 
 insert into `work_groups` values (1, 'root_group', null);
-insert into `work_groups` values (2, 'group1', 1);
-insert into `work_groups` values (3, 'group2', 1);
-insert into `work_groups` values (4, 'group3', 2);
-insert into `work_groups` values (5, 'group4', 2);
-insert into `work_groups` values (6, 'group5', 3);
+insert into `work_groups` values (2, 'group1_lvl_a', 1);
+insert into `work_groups` values (3, 'group2_lvl_a', 1);
+insert into `work_groups` values (4, 'group3_lvl_b', 2);
+insert into `work_groups` values (5, 'group4_lvl_b', 2);
+insert into `work_groups` values (6, 'group5_lvl_b', 3);
