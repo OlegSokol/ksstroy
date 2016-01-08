@@ -19,7 +19,7 @@ public class ZonesModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "zone_id", unique = true, nullable = false)
 	private String id;
 
 	@Column(name = "name", nullable = false)

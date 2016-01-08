@@ -13,7 +13,7 @@ public class WorkModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "work_id", unique = true, nullable = false)
     private String id;
 
     @Column(name = "name")
@@ -25,9 +25,9 @@ public class WorkModel {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "work_zone_rel", catalog = "ksstroy", joinColumns = {
-            @JoinColumn(name = "work_id"/*, nullable = false, updatable = false*/) },
-            inverseJoinColumns = { @JoinColumn(name = "zone_id"/*,
-                    nullable = false, updatable = false*/) })
+            @JoinColumn(name = "work_id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "zone_id",
+                    nullable = false, updatable = false) })
     private List<ZonesModel> workZones;
 
     @OneToMany(cascade = CascadeType.ALL)
