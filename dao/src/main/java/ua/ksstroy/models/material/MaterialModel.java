@@ -1,9 +1,11 @@
 package ua.ksstroy.models.material;
 
 import ua.ksstroy.logic.material.MaterialType;
+import ua.ksstroy.models.worktype.WorkTypeModel;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -30,6 +32,9 @@ public class MaterialModel implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "material_type_id")
     private MaterialTypeModel materialType;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "materials")
+    private List<WorkTypeModel>  workTypeModels;
 
     public MaterialModel(){
 
@@ -82,5 +87,13 @@ public class MaterialModel implements Serializable {
 
     public void setMaterialType(MaterialTypeModel materialType) {
         this.materialType = materialType;
+    }
+
+    public List<WorkTypeModel> getWorkTypeModels() {
+        return workTypeModels;
+    }
+
+    public void setWorkTypeModels(List<WorkTypeModel> workTypeModels) {
+        this.workTypeModels = workTypeModels;
     }
 }

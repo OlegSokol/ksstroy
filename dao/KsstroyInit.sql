@@ -190,11 +190,26 @@ CREATE TABLE `materials` (
   PRIMARY KEY (`id`)
  )
 ENGINE = InnoDB
-DEFAULT CHARSET = utf8;
+  DEFAULT CHARSET = utf8;
+
+
 
   INSERT INTO `materials` VALUES (1, '2', '10.0', '3.0', '4.2', '1');
   INSERT INTO `materials` VALUES (2, '2', '10.0', '3.0', '4.2', '2');
   INSERT INTO `materials` VALUES (3, '2', '10.0', '3.0', '4.2', '3');
   INSERT INTO `materials` VALUES (4, '2', '10.0', '3.0', '4.2', '4');
   INSERT INTO `materials` VALUES (5, '2', '10.0', '3.0', '4.2', '5');
+
+DROP TABLE IF EXISTS `worktype_material_rel`;
+CREATE TABLE `worktype_material_rel` (
+  `worktype_id` INT(10),
+  `material_id`    INT(10)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 2);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 1);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 2);
 

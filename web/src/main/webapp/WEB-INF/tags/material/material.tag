@@ -8,10 +8,10 @@
 
 <%@attribute name="materialsList" type="java.util.List" %>
 
-<c:forEach var="material" items="${MaterialsList}">
+<c:forEach var="material" items="${materialsList}">
 <li>
       <div class="item">
-
+the peace of:
       ${material.materialType.name}
     <div class="add_delete_wrapper">
       <form action="${pageContext.request.contextPath}/users_projects/deleteUser" method="post">

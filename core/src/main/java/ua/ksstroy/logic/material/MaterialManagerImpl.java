@@ -20,7 +20,7 @@ public class MaterialManagerImpl implements MaterialManager {
     }
 
 
-    private MaterialData convertMaterialImplToData(MaterialImpl material) {
+    public MaterialData convertMaterialImplToData(MaterialImpl material) {
         MaterialData materialData = new MaterialData();
         materialData.setClosedCost(material.getClosedCost());
         materialData.setPlanedCost(material.getPlanedCost());
@@ -31,7 +31,7 @@ public class MaterialManagerImpl implements MaterialManager {
         return materialData;
     }
 
-    private List<MaterialData> convertMaterialImplToData(List<MaterialImpl> materialList) {
+    public List<MaterialData> convertMaterialImplToData(List<MaterialImpl> materialList) {
         List<MaterialData> materialDatas = new ArrayList<>();
         for (MaterialImpl material : materialList) {
             materialDatas.add(this.convertMaterialImplToData(material));

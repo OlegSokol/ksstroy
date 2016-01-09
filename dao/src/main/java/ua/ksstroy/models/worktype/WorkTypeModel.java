@@ -1,6 +1,9 @@
 package ua.ksstroy.models.worktype;
 
+import ua.ksstroy.models.material.MaterialModel;
+
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -32,11 +35,11 @@ public class WorkTypeModel implements Serializable {
 	@JoinColumn(name = "parent_group_id")
 	private WorkTypeGroupModel parentGroupId;
 
-  	/*TODO add materials
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
 	@JoinTable(name = "worktype_material_rel", joinColumns = @JoinColumn(name = "worktype_id"), inverseJoinColumns = @JoinColumn(name = "material_id"))
-	private Set<MaterialModel> materials;
-	*/
+	private List<MaterialModel> materials;
+
 	public WorkTypeModel () {
 	}
 
@@ -80,6 +83,22 @@ public class WorkTypeModel implements Serializable {
 
 	public void setUnitPrice(Double unitPrice) {
 		this.unitPrice = unitPrice;
+	}
+
+	public List<MaterialModel> getMaterials() {
+		return materials;
+	}
+
+	public void setMaterials(List<MaterialModel> materials) {
+		this.materials = materials;
+	}
+
+	public WorkTypeGroupModel getParentGroupId() {
+		return parentGroupId;
+	}
+
+	public void setParentGroupId(WorkTypeGroupModel parentGroupId) {
+		this.parentGroupId = parentGroupId;
 	}
 
 
