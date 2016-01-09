@@ -15,10 +15,9 @@
     <script src="${js}"></script>
 </head>
 <body>
-this is single project page!!
-
 <div id="wraper">
-
+    user: ${userName}<br>
+    project:${projectName}
     <header>
 
         <a class="menu_item" href="${projectId}/zones">Zones</a>
