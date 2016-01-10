@@ -13,12 +13,11 @@
 <c:forEach var="project" items="${user.projectsList}" >
     <li>
         <div class="item">
-            <form action="${pageContext.request.contextPath}/projects/${project.id}" method="post">
-                <input type="hidden" name="userName" value="${user.name}">
-                <input type="hidden" name="projectName" value="${project.projectName}">
-
-                <input type="submit"   value="${project.projectName}">
-            </form>
+            <form class="inline_form" name="formFor${project.id}" action="${pageContext.request.contextPath}/projects/${project.id}" method="post">
+            <input type="hidden" name="userName" value="${user.name}">
+            <input type="hidden" name="projectName" value="${project.projectName}">
+            <a href="javascript:document.formFor${project.id}.submit()">${project.projectName}</a>
+        </form>
 
         <div class="add_delete_wrapper">
             <form action="${pageContext.request.contextPath}/users_projects/deleteProject" method="post">
