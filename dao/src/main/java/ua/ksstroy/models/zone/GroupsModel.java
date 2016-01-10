@@ -80,4 +80,11 @@ public class GroupsModel implements Serializable {
 		this.subGroups = subGroups;
 	}
 
+	public GroupsModel getSubGroupsToRootGroup() {
+		return subGroupsToRootGroup;
+	}
+
+	public void setSubGroupsToRootGroup(GroupsModel subGroupsToRootGroup) {
+		this.subGroupsToRootGroup = subGroupsToRootGroup;
+	}
 }

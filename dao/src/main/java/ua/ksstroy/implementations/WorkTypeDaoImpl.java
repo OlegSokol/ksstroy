@@ -2,6 +2,7 @@ package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.worktype.WorkTypeGroupModelToWorkTypeGroupHierarchyConverter;
+import ua.ksstroy.converter.worktype.WorkTypeModelToWorkTypeConvert;
 import ua.ksstroy.converter.worktype.WorkTypeToWorkTypeModelConvert;
 import ua.ksstroy.logic.worktype.*;
 import ua.ksstroy.models.worktype.WorkTypeGroupModel;
@@ -30,14 +31,8 @@ public class WorkTypeDaoImpl implements WorkTypeGroupDao, WorkTypeDao {
     public WorkType getWorkTypeById(final String workTypeId) {
         return helper.simpleAction(new GetInTransaction<WorkType>() {
             public WorkType process(SessionWrapper session) {
-                WorkTypeModel workTypeModel = session.get(WorkTypeModel.class, Integer.parseInt(workTypeId));
-                WorkType workType = new WorkTypeImpl();
-                workType.setId(workTypeModel.getId());
-                workType.setName(workTypeModel.getName());
-                workType.setDescription(workTypeModel.getDescription());
-                workType.setUnitPrice(workTypeModel.getUnitPrice());
-                workType.setMeasure(workTypeModel.getMeasureName());
-                return workType;
+                return new WorkTypeModelToWorkTypeConvert().convert(session.get(WorkTypeModel.class, Integer.parseInt(workTypeId)));
+
             }
         });
     }

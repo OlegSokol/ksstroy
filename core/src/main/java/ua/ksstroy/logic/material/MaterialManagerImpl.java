@@ -1,62 +1,41 @@
 package ua.ksstroy.logic.material;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.material.MaterialTypeDataToMaterialTypeConverter;
-import ua.ksstroy.converter.material.MaterialTypeGroupDataToMaterialTypeGroupConverter;
-import ua.ksstroy.converter.material.MaterialTypeGroupModelToDataHierarchyConverter;
+import ua.ksstroy.converter.material.MaterialTypeImplToDataConverter;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
-@Component(value = "MaterialManagerImpl")
+@Service
 public class MaterialManagerImpl implements MaterialManager {
 
-    @Qualifier("materialGroupTypeAndMaterialDaoImpl")
-    @Resource
-    MaterialTypeDao materialTypeDao;
-
-    @Qualifier("materialGroupTypeAndMaterialDaoImpl")
-    @Resource
-    MaterialTypeGroupDao materialTypeGroupDao;
+    @Autowired
+    MaterialDao materialDao;
 
     @Override
-    public MaterialTypeGroupData getMaterialHierarchy() {
-        return new MaterialTypeGroupModelToDataHierarchyConverter().convert(this.materialTypeGroupDao.getMaterialHierarchy());
+    public List<MaterialData> getAllMaterials() {
+        return this.convertMaterialImplToData(materialDao.getAllMaterials());
     }
 
-    @Override
-    public void addMaterialTypeGroup(MaterialTypeGroupData materialTypeGroupDao) {
-        this.materialTypeGroupDao.addMaterialTypeGroup(new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(materialTypeGroupDao));
+
+    public MaterialData convertMaterialImplToData(MaterialImpl material) {
+        MaterialData materialData = new MaterialData();
+        materialData.setClosedCost(material.getClosedCost());
+        materialData.setPlanedCost(material.getPlanedCost());
+        materialData.setDealCost(material.getDealCost());
+        materialData.setId(material.getId());
+        materialData.setUnitsPerWorkZoneMeasure(material.getUnitsPerWorkZoneMeasure());
+        materialData.setMaterialType(new MaterialTypeImplToDataConverter().convert(material.getMaterialType()));
+        return materialData;
     }
 
-    @Override
-    public void addMaterialTypeGroupByParent(MaterialTypeGroupData materialTypeGroupDao, String parentMaterialTypeGroupId) {
-        this.materialTypeGroupDao.addMaterialTypeGroupByParent(new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(materialTypeGroupDao), parentMaterialTypeGroupId);
+    public List<MaterialData> convertMaterialImplToData(List<MaterialImpl> materialList) {
+        List<MaterialData> materialDatas = new ArrayList<>();
+        for (MaterialImpl material : materialList) {
+            materialDatas.add(this.convertMaterialImplToData(material));
+        }
+        return materialDatas;
     }
-
-    @Override
-    public void updateMaterialTypeGroup(String materialTypeGroupId, MaterialTypeGroupData newMaterialTypeGroup) {
-        this.materialTypeGroupDao.updateMaterialTypeGroup(materialTypeGroupId, new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(newMaterialTypeGroup));
-    }
-
-    @Override
-    public void removeMaterialTypeGroup(String materialTypeGroupId) {
-        this.materialTypeGroupDao.removeMaterialTypeGroup(materialTypeGroupId);
-    }
-
-    @Override
-    public void addMaterialType(MaterialTypeData materialTypeData, String parentMaterialTypeId) {
-        this.materialTypeDao.addMaterialType(new MaterialTypeDataToMaterialTypeConverter().convert(materialTypeData), parentMaterialTypeId);
-    }
-
-    @Override
-    public void updateMaterialType(String materialTypeId, MaterialTypeData newMaterialType) {
-        this.materialTypeDao.updateMaterialType(materialTypeId, new MaterialTypeDataToMaterialTypeConverter().convert(newMaterialType));
-    }
-
-    @Override
-    public void removeMaterialType(String materialTypeId) {
-        this.materialTypeDao.removeMaterialType(materialTypeId);
-    }
-
 }

@@ -1,11 +1,12 @@
 package ua.ksstroy.logic.material;
 
+import java.util.List;
+
 public interface MaterialDao {
-
-    void addMaterial(final Material material, final String parentMaterialTypeId);
-
-    void updateMaterial(final String materialId, final Material newMaterial);
-
-    void removeMaterial(final String materialId);
+    //TODO:finish after obtain more specific information about the entity
+/*
+    temporary method for stepByStepDeveloping
+     */
+    List<MaterialImpl> getAllMaterials();
 
 }

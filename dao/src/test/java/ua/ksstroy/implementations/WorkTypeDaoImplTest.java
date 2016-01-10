@@ -1,5 +1,9 @@
 package ua.ksstroy.implementations;
 
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertNotNull;
+
 public class WorkTypeDaoImplTest {
 	
 	/*String mockWorkTypeModelName = "testName";
@@ -80,5 +84,7 @@ public class WorkTypeDaoImplTest {
 		assertFalse(workTypeDaoImpl.getChildWorkTypes(1).isEmpty());
 	}
 	*/
-	
+
+
+
 }

@@ -44,7 +44,7 @@ INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
 
 DROP TABLE IF EXISTS `zones`;
 CREATE TABLE `zones` (
-  `zone_id`              BIGINT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id`                   BIGINT(10)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name`                 VARCHAR(50)     NOT NULL,
   `width`                DOUBLE UNSIGNED NOT NULL,
   `height`               DOUBLE UNSIGNED NOT NULL,
@@ -177,6 +177,42 @@ INSERT INTO `material_type` VALUES (6, 'material_type_6', 'material_type_6_descr
 INSERT INTO `material_type` VALUES (7, 'material_type_7', 'material_type_7_descr.', '3.0', 'unit_name_7', '7');
 INSERT INTO `material_type` VALUES (8, 'material_type_8', 'material_type_8_descr.', '3.0', 'unit_name_8', '7');
 INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr.', '3.0', 'unit_name_9', '7');
+
+
+DROP TABLE IF EXISTS `materials`;
+CREATE TABLE `materials` (
+  `id`                          INT(8)      NOT NULL AUTO_INCREMENT,
+   `units_per_work_zone_measure` DOUBLE  ,
+  `planed_cost`                 DOUBLE      ,
+  `deal_cost`                   DOUBLE      ,
+  `closed_cost`                 DOUBLE      ,
+  `material_type_id`          INT(8),
+  PRIMARY KEY (`id`)
+ )
+ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+
+
+  INSERT INTO `materials` VALUES (1, '2', '10.0', '3.0', '4.2', '1');
+  INSERT INTO `materials` VALUES (2, '2', '10.0', '3.0', '4.2', '2');
+  INSERT INTO `materials` VALUES (3, '2', '10.0', '3.0', '4.2', '3');
+  INSERT INTO `materials` VALUES (4, '2', '10.0', '3.0', '4.2', '4');
+  INSERT INTO `materials` VALUES (5, '2', '10.0', '3.0', '4.2', '5');
+
+DROP TABLE IF EXISTS `worktype_material_rel`;
+CREATE TABLE `worktype_material_rel` (
+  `worktype_id` INT(10),
+  `material_id`    INT(10)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 2);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 1);
+INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 2);
+
 
 
 DROP TABLE IF EXISTS `works`;

@@ -18,7 +18,7 @@ public class ZonesModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "zone_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private String id;
 
     @Column(name = "name", nullable = false)
@@ -132,4 +132,11 @@ public class ZonesModel implements Serializable {
         this.works = works;
     }
 
+    public GroupsModel getGroupIdForZone() {
+        return groupIdForZone;
+    }
+
+    public void setGroupIdForZone(GroupsModel groupIdForZone) {
+        this.groupIdForZone = groupIdForZone;
+    }
 }

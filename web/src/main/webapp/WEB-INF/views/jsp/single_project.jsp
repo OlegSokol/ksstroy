@@ -15,10 +15,9 @@
     <script src="${js}"></script>
 </head>
 <body>
-this is single project page!!
-
 <div id="wraper">
-
+    user: ${userName}<br>
+    project:${projectName}
     <header>
 
         <a class="menu_item" href="${projectId}/zones">Zones</a>
@@ -36,7 +35,7 @@ this is single project page!!
         </a>
 
 
-        <a class="menu_item" href="#">
+        <a class="menu_item" href="${projectId}/materials">
             Materials(will be soon)
             <table>
                 <tbody>
@@ -61,7 +60,7 @@ this is single project page!!
         </li>
         <li>
             <div>
-                <a class="menu_item" href="${projectId}/material">Materials</a>
+                <a class="menu_item" href="${projectId}/library_materials">Materials</a>
             </div>
         </li>
     </ul>

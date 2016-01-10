@@ -1,8 +1,9 @@
 package ua.ksstroy.logic.material;
 
 public class MaterialData {
+    private String id;
 
-    private MaterialType materialType;
+    private MaterialTypeData materialType;
 
     private Double unitsPerWorkZoneMeasure;
 
@@ -11,23 +12,19 @@ public class MaterialData {
     private Double dealCost;
 
     private Double closedCost;
-
-    public MaterialData() {
+    public String getId() {
+        return id;
     }
 
-    public MaterialData(MaterialType materialType, Double unitsPerWorkZoneMeasure, Double planedCost, Double dealCost, Double closedCost) {
-        this.materialType = materialType;
-        this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
-        this.planedCost = planedCost;
-        this.dealCost = dealCost;
-        this.closedCost = closedCost;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public MaterialType getMaterialType() {
+    public MaterialTypeData getMaterialType() {
         return materialType;
     }
 
-    public void setMaterialType(MaterialType materialType) {
+    public void setMaterialType(MaterialTypeData materialType) {
         this.materialType = materialType;
     }
 
@@ -62,5 +59,10 @@ public class MaterialData {
     public void setClosedCost(Double closedCost) {
         this.closedCost = closedCost;
     }
+
+
+
+
+
 
 }
