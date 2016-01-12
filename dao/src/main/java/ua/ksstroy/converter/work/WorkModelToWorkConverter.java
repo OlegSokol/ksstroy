@@ -1,5 +1,6 @@
-package ua.ksstroy.converter;
+package ua.ksstroy.converter.work;
 
+import ua.ksstroy.converter.Converter;
 import ua.ksstroy.converter.worktype.WorkTypeModelToWorkTypeConvert;
 import ua.ksstroy.converter.zonegroup.ZonesModelToZoneConverter;
 import ua.ksstroy.logic.work.Adjustment;
@@ -42,7 +43,7 @@ public class WorkModelToWorkConverter implements Converter<WorkModel, Work> {
 
         List<Adjustment> adjustments = new ArrayList<>();
         for (AdjustmentModel adjustmentModel : workModel.getAdjustments()) {
-            adjustments.add(new AdjusmentModelToAdjustmentConverter().convert(adjustmentModel));
+            adjustments.add(new AdjustmentModelToAdjustmentConverter().convert(adjustmentModel));
         }
         work.setAdjustments(adjustments);
 

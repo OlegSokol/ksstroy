@@ -1,6 +1,8 @@
-package ua.ksstroy.converter;
+package ua.ksstroy.converter.work;
 
+import ua.ksstroy.converter.Converter;
 import ua.ksstroy.converter.worktype.WorkTypeToWorkTypeModelConvert;
+import ua.ksstroy.converter.zonegroup.ZoneToZoneModelConverter;
 import ua.ksstroy.logic.work.Adjustment;
 import ua.ksstroy.logic.work.Cover;
 import ua.ksstroy.logic.work.Work;

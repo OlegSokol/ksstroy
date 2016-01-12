@@ -1,7 +1,7 @@
-package ua.ksstroy.converter;
+package ua.ksstroy.converter.projectuser;
 
+import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.project.ProjectImpl;
-import ua.ksstroy.logic.user.UserData;
 import ua.ksstroy.logic.user.UserImpl;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.user.UserModel;

@@ -1,10 +1,11 @@
-package ua.ksstroy.converter;
+package ua.ksstroy.converter.work;
 
+import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.work.Adjustment;
 import ua.ksstroy.logic.work.AdjustmentImpl;
 import ua.ksstroy.models.work.AdjustmentModel;
 
-public class AdjusmentModelToAdjustmentConverter implements Converter<AdjustmentModel, Adjustment> {
+public class AdjustmentModelToAdjustmentConverter implements Converter<AdjustmentModel, Adjustment> {
     @Override
     public Adjustment convert(AdjustmentModel adjustmentModel) {
         Adjustment adjustment = new AdjustmentImpl();

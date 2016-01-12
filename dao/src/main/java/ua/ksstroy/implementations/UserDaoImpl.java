@@ -1,9 +1,9 @@
 package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.ProjectToProjectModelConverter;
-import ua.ksstroy.converter.UserModelToUserConverter;
-import ua.ksstroy.converter.UserToUserModelConverter;
+import ua.ksstroy.converter.projectuser.ProjectToProjectModelConverter;
+import ua.ksstroy.converter.projectuser.UserModelToUserConverter;
+import ua.ksstroy.converter.projectuser.UserToUserModelConverter;
 import ua.ksstroy.logic.project.ProjectData;
 import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;

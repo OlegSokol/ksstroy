@@ -1,9 +1,9 @@
 package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.AdjustmentToAdjustmentModelConverter;
-import ua.ksstroy.converter.CoverToCoverModelConverter;
-import ua.ksstroy.converter.WorkToWorkModelConverter;
+import ua.ksstroy.converter.work.AdjustmentToAdjustmentModelConverter;
+import ua.ksstroy.converter.work.CoverToCoverModelConverter;
+import ua.ksstroy.converter.work.WorkToWorkModelConverter;
 import ua.ksstroy.logic.work.Adjustment;
 import ua.ksstroy.logic.work.Cover;
 import ua.ksstroy.logic.work.Work;

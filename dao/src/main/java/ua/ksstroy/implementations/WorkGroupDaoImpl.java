@@ -1,7 +1,7 @@
 package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.WorkGroupModelToWorkGroupConvertor;
+import ua.ksstroy.converter.work.WorkGroupModelToWorkGroupConvertor;
 import ua.ksstroy.logic.work.WorkGroup;
 import ua.ksstroy.logic.work.WorkGroupDao;
 import ua.ksstroy.models.work.WorkGroupModel;

@@ -1,5 +1,6 @@
-package ua.ksstroy.converter;
+package ua.ksstroy.converter.work;
 
+import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.work.Cover;
 import ua.ksstroy.logic.work.CoverImpl;
 import ua.ksstroy.models.work.CoverModel;

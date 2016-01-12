@@ -1,5 +1,6 @@
-package ua.ksstroy.converter;
+package ua.ksstroy.converter.work;
 
+import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.work.Adjustment;
 import ua.ksstroy.models.work.AdjustmentModel;
 
