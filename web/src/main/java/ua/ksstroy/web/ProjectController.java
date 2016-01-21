@@ -21,4 +21,10 @@ public class ProjectController {
 
         return project;
     }
+    @RequestMapping(value = "/projects/{projectId}", method = RequestMethod.GET)
+    public ModelAndView singleProjectPage(@PathVariable String projectId){
+        ModelAndView project = new ModelAndView("single_project");
+        project.addObject("projectId", projectId);
+        return project;
+    }
 }

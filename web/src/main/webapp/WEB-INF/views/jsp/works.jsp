@@ -13,6 +13,7 @@
 </head>
 <body>
 <div id="wraper">
+    <jsp:include page="single_project_menu.jsp"/>
     <ul id="workDataTree">
         <ul class="initializers">
             <work:addWorkGroup innerWorkGroup="${workGroup}"/>

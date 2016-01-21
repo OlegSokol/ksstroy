@@ -15,6 +15,7 @@
   <script src="${js}"></script>
 </head>
 <body>
+<jsp:include page="single_project_menu.jsp"/>
 materials jsp
 <ul >
   <material:material materialsList="${MaterialsList}"/>

@@ -6,8 +6,6 @@
     <title>project</title>
     <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
     <link href="${commonCss}" rel="stylesheet"/>
-    <spring:url value="/resources/css/project.css" var="customCss"/>
-    <link href="${customCss}" rel="stylesheet"/>
 
     <spring:url value="/resources/js/jquery-2.1.4.min.js" var="jQuery"/>
     <script src="${jQuery}"></script>
@@ -18,38 +16,7 @@
 <div id="wraper">
     user: ${userName}<br>
     project:${projectName}
-    <header>
-
-        <a class="menu_item" href="${projectId}/zones">Zones</a>
-
-        <a class="menu_item" href="${projectId}/work">
-            Work(new!!!)
-            <table>
-                <tbody>
-                <tr>
-                    <td>total price:</td>
-                    <td>250$</td>
-                </tr>
-                </tbody>
-            </table>
-        </a>
-
-
-        <a class="menu_item" href="${projectId}/materials">
-            Materials(will be soon)
-            <table>
-                <tbody>
-                <tr>
-                    <td>total price:</td>
-                    <td>250$</td>
-                </tr>
-                </tbody>
-            </table>
-        </a>
-
-
-    </header>
-
+   <jsp:include page="single_project_menu.jsp"/>
 
     <ul class="library">
         <h4>LIBRARY</h4>
