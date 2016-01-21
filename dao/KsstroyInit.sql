@@ -168,8 +168,8 @@ CREATE TABLE `material_type` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `material_type` VALUES (1, 'material_type_1', 'material_type_1_descr.', '3.0', 'unit_name_1', '2');
-INSERT INTO `material_type` VALUES (2, 'material_type_2', 'material_type_2_descr.', '3.0', 'unit_name_2', '3');
+INSERT INTO `material_type` VALUES (1, 'material_type_1', 'material_type_1_descr.', '3.0', 'unit_name_1', '4');
+INSERT INTO `material_type` VALUES (2, 'material_type_2', 'material_type_2_descr.', '3.0', 'unit_name_2', '5');
 INSERT INTO `material_type` VALUES (3, 'material_type_3', 'material_type_3_descr.', '3.0', 'unit_name_3', '4');
 INSERT INTO `material_type` VALUES (4, 'material_type_4', 'material_type_4_descr.', '3.0', 'unit_name_4', '5');
 INSERT INTO `material_type` VALUES (5, 'material_type_5', 'material_type_5_descr.', '3.0', 'unit_name_5', '6');

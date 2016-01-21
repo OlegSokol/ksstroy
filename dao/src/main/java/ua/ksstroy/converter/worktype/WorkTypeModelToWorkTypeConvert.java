@@ -1,7 +1,7 @@
 package ua.ksstroy.converter.worktype;
 
 import org.springframework.core.convert.converter.Converter;
-import ua.ksstroy.converter.material.MaterialModelToImpl;
+import ua.ksstroy.converter.material.MaterialModelToImplConverter;
 import ua.ksstroy.logic.material.MaterialImpl;
 import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeImpl;
@@ -24,7 +24,7 @@ public class WorkTypeModelToWorkTypeConvert implements Converter<WorkTypeModel, 
         List<MaterialModel> materialModels = model.getMaterials();
         List<MaterialImpl> materialList = new ArrayList<>();
         for (MaterialModel materialModel : materialModels) {
-            materialList.add(new MaterialModelToImpl().convert(materialModel));
+            materialList.add(new MaterialModelToImplConverter().convert(materialModel));
         }
         workType.setMaterials(materialList);
         return workType;
