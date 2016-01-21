@@ -23,6 +23,9 @@
 <div id="wrapper">
 
     <jsp:include page="single_project_menu.jsp"/>
+    <div class="filter">
+        show works  <input type="checkbox" name="vehicle" value="Bike"><br>
+    </div>
     <ul class="initializers">
         <group:addGroup zhd ="${zhd}"/>
         <group:addZone zhd ="${zhd}"/>

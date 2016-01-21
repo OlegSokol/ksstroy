@@ -202,3 +202,9 @@ header{
 .library .menu_item{
 	display: block;
 }
+
+.filter{
+	position: fixed;
+	right: 50px;
+	top:150px;
+}
