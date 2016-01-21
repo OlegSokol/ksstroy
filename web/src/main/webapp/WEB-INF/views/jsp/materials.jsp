@@ -5,21 +5,20 @@
 <%@ taglib prefix="material" tagdir="/WEB-INF/tags/material" %>
 <html>
 <head>
-  <title>materials</title>
-  <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
-  <link href="${commonCss}" rel="stylesheet"/>
+    <title>materials</title>
+    <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
+    <link href="${commonCss}" rel="stylesheet"/>
 
-  <spring:url value="/resources/js/jquery-2.1.4.min.js" var="jQuery"/>
-  <script src="${jQuery}"></script>
-  <spring:url value="/resources/js/mainScript.js" var="js"/>
-  <script src="${js}"></script>
+    <spring:url value="/resources/js/jquery-2.1.4.min.js" var="jQuery"/>
+    <script src="${jQuery}"></script>
+    <spring:url value="/resources/js/mainScript.js" var="js"/>
+    <script src="${js}"></script>
 </head>
 <body>
-materials jsp
-<ul >
-  <material:material materialsList="${MaterialsList}"/>
-</ul>
 
-
+<div align="center">
+    <h2>ALL SOLDED MATERIAL</h2>
+    <material:material materialsList="${MaterialsList}"/>
+</div>
 </body>
 </html>

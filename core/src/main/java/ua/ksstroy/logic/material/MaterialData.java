@@ -1,6 +1,7 @@
 package ua.ksstroy.logic.material;
 
 public class MaterialData {
+
     private String id;
 
     private MaterialTypeData materialType;
@@ -12,6 +13,7 @@ public class MaterialData {
     private Double dealCost;
 
     private Double closedCost;
+
     public String getId() {
         return id;
     }
@@ -59,10 +61,6 @@ public class MaterialData {
     public void setClosedCost(Double closedCost) {
         this.closedCost = closedCost;
     }
-
-
-
-
 
 
 }

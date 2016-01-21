@@ -5,7 +5,7 @@
 
 
 <spring:url value="/resources/img/arrow_drop_down.png" var="arrow_drop_down"/>
-<spring:url value="/resources/img/add_btn.png" var="purchase"/>
+<spring:url value="/resources/img/add_btn.png" var="add_btn"/>
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn"/>
 <spring:url value="/resources/img/show_updates_btn.png" var="show_update_forms_btn"/>
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
