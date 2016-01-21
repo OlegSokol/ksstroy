@@ -8,6 +8,7 @@ $(document).ready(function () {
     $(".dropdown_btn").click(function () {
         $(this).closest(".item").next("ul").toggleClass("hidden");
     })
-
+    $(".purchase_material").click(function () {
+        $(this).closest(".purchase").children(".controller").toggleClass("hidden");
+    })
 });
-

@@ -5,7 +5,7 @@
 <%@ taglib prefix="user" tagdir="/WEB-INF/tags/user" %>
 
 <spring:url value="/resources/img/arrow_drop_down.png" var="arrow_drop_down"/>
-<spring:url value="/resources/img/add_btn.png" var="add_btn"/>
+<spring:url value="/resources/img/add_btn.png" var="purchase"/>
 <spring:url value="/resources/img/delete_btn.png" var="delete_btn"/>
 <spring:url value="/resources/img/show_updates_btn.png" var="show_update_forms_btn"/>
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
@@ -19,7 +19,7 @@
             <input type="hidden" name="userId" value="${user.id}">
             <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
         </form>
-        <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+        <img class="add_btn clickableIcon" src="${purchase}" alt="Add">
         <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}"
              alt="show_update_forms">
     </div>

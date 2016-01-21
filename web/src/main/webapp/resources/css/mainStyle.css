@@ -1,156 +1,161 @@
 /*THIS CSS SHOULD CONTAIN ONLY COMMON STYLES*/
 /*Page specific styles must be in their own css file*/
 body {
-	background-color: #E0E0DF;
+    background-color: #E0E0DF;
 }
 
 li {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #ref {
-	display: inline-block;
-	color: white;
-	margin-top: 3px;
-	text-decoration: none;
-	padding: .2em 1em;
-	outline: none;
-	border-width: 0 0;
-	border-style: solid none;
-	border-radius: 6px;
-	background: linear-gradient(rgb(104, 104, 104), rgba(53, 53, 53, 0.69)) rgba(0, 0, 0, 0.86);
-	transition: 0.2s;
+    display: inline-block;
+    color: white;
+    margin-top: 3px;
+    text-decoration: none;
+    padding: .2em 1em;
+    outline: none;
+    border-width: 0 0;
+    border-style: solid none;
+    border-radius: 6px;
+    background: linear-gradient(rgb(104, 104, 104), rgba(53, 53, 53, 0.69)) rgba(0, 0, 0, 0.86);
+    transition: 0.2s;
 }
 
 #wrapper {
-	margin: 1%;
-	padding: 1%;
+    margin: 1%;
+    padding: 1%;
 }
 
 .item {
-	vertical-align: top;
-	margin: 3px;
-	color: #666666;
-	background-color: #ffffff;
-	border-color: #eeeeee;
-	display: inline-block;
-	padding: 2px;
-	white-space: nowrap;
-	font-weight: normal;
-	font-size: 18px;
-	border-radius: 3px;
-	box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
+    vertical-align: top;
+    margin: 3px;
+    color: #666666;
+    background-color: #ffffff;
+    border-color: #eeeeee;
+    display: inline-block;
+    padding: 2px;
+    white-space: nowrap;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
 }
 
 .item a {
-	display: inline-block;
-	padding-left: 5%;
-	text-decoration: none;
+    display: inline-block;
+    padding-left: 5%;
+    text-decoration: none;
 
 }
 
 .item a:hover {
-	display: inline-block;
-	transform: scale(1.1);
-	text-decoration: none;
+    display: inline-block;
+    transform: scale(1.1);
+    text-decoration: none;
 }
 
 .item a:active {
-	display: inline-block;
-	transform: scale(1.3);
-	text-decoration: none;
+    display: inline-block;
+    transform: scale(1.3);
+    text-decoration: none;
 }
 
 .item a:visited {
-	display: inline-block;
-	padding-left: 5%;
-	text-decoration: none;
+    display: inline-block;
+    padding-left: 5%;
+    text-decoration: none;
 }
 
 /*button begin
 */
 .dropdown_btn {
-	display: inline-block;
-	vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .delete_btn {
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .show_update_forms_btn {
-	display: inline-block;
-	padding-top: 2px;
+    display: inline-block;
+    padding-top: 2px;
+}
+
+.purchase_material {
+    display: inline-block;
+    padding-top: 2px;
 }
 
 .add_btn {
-	display: inline-block;
-	padding-top: 2px;
+    display: inline-block;
+    padding-top: 2px;
 }
 
 .clickableIcon {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .clickableIcon:HOVER {
-	transform: scale(1.3);
+    transform: scale(1.3);
 }
 
 .clickableIcon:ACTIVE {
-	transform: scale(0.75);
+    transform: scale(0.75);
 }
 
 .accept_changes_btn {
-	position: relative;
-	float: right;
+    position: relative;
+    float: right;
 }
 
 .add_delete_wrapper {
-	vertical-align: middle;
-	display: inline-block;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 .add_delete_wrapper form {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 /*buttons end
 */
 
 .controller_name {
-	text-align: center;
-	font-size: 80%;
+    text-align: center;
+    font-size: 80%;
 }
 
 .controller {
-	display: inline-block;
-	vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
 }
-
 
 /*
 .hidden should be in the end of the css
 */
 .hidden {
-	display: none;
-}
-.initializers .controller{
-	display:inline-block;
-	vertical-align: top;
-	margin: 3px;
-	color: #666666;
-	background-color: #ffffff;
-	border-color: #eeeeee;
-	padding: 2px;
-	white-space: nowrap;
-	font-weight: normal;
-	font-size: 18px;
-	border-radius: 3px;
-	box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
+    display: none;
 }
 
-.inline_form{
-	display:inline-block;
+.initializers .controller {
+    display: inline-block;
+    vertical-align: top;
+    margin: 3px;
+    color: #666666;
+    background-color: #ffffff;
+    border-color: #eeeeee;
+    padding: 2px;
+    white-space: nowrap;
+    font-weight: normal;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 9px 10px 43px -1px rgba(0, 0, 0, 0.75);
+}
+
+.inline_form {
+    display: inline-block;
 }
