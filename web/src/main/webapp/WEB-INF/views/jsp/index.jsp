@@ -17,7 +17,6 @@
 <div id="wraper">
     <div>
         <h2>KS STROY PROJECT</h2>
-        Путин
         <p>
             Enterprise resource planning (ERP) is a category of business management software. Typically a suite of integrated applications
             ,that an organization can use to collect, store, manage and interpret data from many

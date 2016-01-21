@@ -36,15 +36,7 @@
 
 
         <a class="menu_item" href="${projectId}/materials">
-            Materials(will be soon)
-            <table>
-                <tbody>
-                <tr>
-                    <td>total price:</td>
-                    <td>250$</td>
-                </tr>
-                </tbody>
-            </table>
+            Material Stock
         </a>
 
 
