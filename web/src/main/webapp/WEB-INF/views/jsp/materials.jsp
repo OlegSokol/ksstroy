@@ -17,8 +17,8 @@
 <body>
 
 <div align="center">
-    <h2>ALL SOLDED MATERIAL</h2>
-    <material:material materialsList="${MaterialsList}"/>
+    <h2>PURSHASED MATERIAL</h2>
+    <material:werehouse materialsList="${MaterialsList}"/>
 </div>
 </body>
 </html>
