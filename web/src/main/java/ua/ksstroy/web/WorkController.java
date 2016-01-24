@@ -11,9 +11,14 @@ import ua.ksstroy.logic.work.CoverData;
 import ua.ksstroy.logic.work.WorkData;
 import ua.ksstroy.logic.work.WorkManager;
 import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.worktype.WorkTypeGroupData;
 import ua.ksstroy.logic.worktype.WorkTypeManagerImpl;
+import ua.ksstroy.logic.zonegroup.ZoneData;
+import ua.ksstroy.logic.zonegroup.ZoneManagerImpl;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class WorkController {
@@ -24,17 +29,22 @@ public class WorkController {
     @Resource(name = "WorkTypeManagerImpl")
     WorkTypeManagerImpl workTypeManager;
 
+    @Resource(name = "ZoneManagerImpl")
+    ZoneManagerImpl zoneManager;
+
     ModelAndView workModelView;
     WorkData workData;
     CoverData coverData;
     AdjustmentData adjustmentData;
-    WorkTypeData workTypeData;
 
     @RequestMapping(value = "/projects/{projectId}/work", method = RequestMethod.GET)
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
         workModelView = new ModelAndView("works");
         workModelView.addObject("projectId", projectId);
         workModelView.addObject("workObject", workManager.getWorkHierarchy());
+        workModelView.addObject("workType", workTypeManager.getWorkTypeHierarchy());
+        workModelView.addObject("zone", zoneManager.getRootZoneHierarchy(projectId));
+
         return workModelView;
     }
 
@@ -85,14 +95,22 @@ public class WorkController {
                           @RequestParam("dealCost") String dealCost,
                           @RequestParam("parentId") String parentWorkTypeGroupId,
                           @RequestParam("projectId") String projectId,
-                          @RequestParam("workTypeId") String workTypeId) {
+                          @RequestParam("workTypeId") String workTypeId,
+                          @RequestParam("zoneId") String zoneId) {
 
         workData = new WorkData();
         workData.setName(name);
 
-        workTypeData = workTypeManager.getWorkTypeById(workTypeId);
+        workData.setType(workTypeManager.getWorkTypeById(workTypeId));
 
-        workData.setType(workTypeData);
+        /*List<ZoneData> listZones = new ArrayList<>();
+        listZones.add(new ZoneData());
+        workData.setWorkZones(listZones);
+
+        workData.setAllCovers();
+
+        workData.setAdjustments();*/
+
         try {
             workData.setPlanedCost(new Double(planedCoast).doubleValue());
             workData.setPerspectiveCost(new Double(perspectiveCost).doubleValue());
@@ -106,6 +124,7 @@ public class WorkController {
         System.out.println("add work");
         return "redirect:" + projectId + "/work";
     }
+
 
     @RequestMapping(value = "/projects/removeWork", method = RequestMethod.POST)
     public String removeWork(@RequestParam("id") String id,

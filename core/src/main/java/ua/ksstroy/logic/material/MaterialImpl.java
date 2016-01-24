@@ -36,7 +36,8 @@ public class MaterialImpl implements Material {
 
     @Override
     public Double getPlanedCost() {
-        return planedCost;
+        this.planedCost = this.materialType.getPricePerUnit() * this.unitsPerWorkZoneMeasure;
+        return this.planedCost;
     }
 
     @Override

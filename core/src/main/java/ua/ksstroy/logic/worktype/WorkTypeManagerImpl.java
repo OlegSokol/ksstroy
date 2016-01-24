@@ -17,6 +17,7 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
 
     @Override
     public void addWorkType(WorkTypeData workTypeData, String parentGroupId) {
+
         workTypeDao.addWorkType(new WorkTypeDataToWorkTypeConverter().convert(workTypeData), parentGroupId);
     }
 

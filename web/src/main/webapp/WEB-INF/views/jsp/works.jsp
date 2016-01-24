@@ -8,6 +8,8 @@
 <head>
     <spring:url value="/resources/css/mainStyle.css" var="css"/>
     <link href="${css}" rel="stylesheet"/>
+    <spring:url value="/resources/js/jquery-2.1.4.min.js" var="jQuery"/>
+    <script src="${jQuery}"></script>
     <spring:url value="/resources/js/mainScript.js" var="js"/>
     <script src="${js}"></script>
 </head>
@@ -16,9 +18,9 @@
     <ul id="workDataTree">
         <ul class="initializers">
             <work:addWorkGroup innerWorkGroup="${workGroup}"/>
-            <work:addWork workGroup="${workGroup}"/>
+            <work:addWork workGroup="${workGroup}" workType="${workType}" zone="${zone}"/>
         </ul>
-        <work:node workGroupData="${workObject}"/>
+        <work:node workGroupData="${workObject}" workType="${workType}"/>
     </ul>
 </div>
 </body>
