@@ -13,7 +13,6 @@ public class MaterialImpl implements Material {
 
     private Double closedCost;
 
-
     @Override
     public MaterialType getMaterialType() {
         return materialType;
