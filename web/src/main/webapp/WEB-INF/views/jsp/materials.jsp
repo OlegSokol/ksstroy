@@ -22,7 +22,7 @@
 </ul>
 
 <div align="center">
-    <h2>PURSHASED MATERIAL</h2>
+    <h2>MATERIALS</h2>
     <material:werehouse materialsList="${MaterialsList}"/>
 </div>
 </body>

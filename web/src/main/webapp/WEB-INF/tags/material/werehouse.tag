@@ -12,28 +12,49 @@
 
 <table border="1">
     <tr>
-        <th>Number</th>
+        <th></th>
         <th>Name</th>
-        <th>Quantity</th>
         <th>Price for unit</th>
-        <th>Total Price</th>
+        <th>Need</th>
+        <th>Purchased</th>
+        <th>Balance</th>
+        <th>Planed cost</th>
+        <th>Purchased cost</th>
+        <th>Money balance</th>
     </tr>
-    <%--
-        <c:forEach var="material" items="${materialsList}">
-    --%>
+
     <tr>
         <td>1</td>
         <td>Shtukaturka</td>
         <td>14</td>
+        <td>80</td>
         <td>70</td>
+        <td>-10</td>
+        <td>1120</td>
         <td>980</td>
+        <td>-140</td>
     </tr>
     <tr>
         <td>2</td>
-        <td>Shpaklyovka</td>
-        <td>4</td>
-        <td>45</td>
-        <td>180</td>
+        <td>Shpaklevka</td>
+        <td>14</td>
+        <td>80</td>
+        <td>70</td>
+        <td>-10</td>
+        <td>1120</td>
+        <td>980</td>
+        <td>-140</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>2240</td>
+        <td>1960</td>
+        <td>-280</td>
     </tr>
     <%--</c:forEach>--%>
 </table>
