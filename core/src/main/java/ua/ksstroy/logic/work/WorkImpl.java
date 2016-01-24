@@ -1,5 +1,6 @@
 package ua.ksstroy.logic.work;
 
+import ua.ksstroy.logic.material.MaterialImpl;
 import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.zonegroup.Zone;
 
@@ -87,8 +88,22 @@ public class WorkImpl implements Work {
 
     @Override
     public Double getPlanedCost() {
-        // TODO Auto-generated method stub
-        return planedCost;
+        double costForAllMaterials=0;
+        double valueForAllZones=0;
+
+        List<MaterialImpl> listMaterials = type.getMaterials();
+
+        for (int i = 0; i < listMaterials.size(); i++) {
+            costForAllMaterials = costForAllMaterials + listMaterials.get(i).getPlanedCost();
+        }
+
+        for (int i = 0; i < workZones.size(); i++) {
+            valueForAllZones = valueForAllZones + workZones.get(i).getValue();
+        }
+
+        this.planedCost = type.getUnitPrice() + (costForAllMaterials * valueForAllZones );
+
+        return this.planedCost;
     }
 
     @Override

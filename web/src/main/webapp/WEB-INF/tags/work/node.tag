@@ -6,13 +6,14 @@
 <%@ taglib prefix="work" tagdir="/WEB-INF/tags/work" %>
 
 <%@ attribute name="workGroupData" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
+<%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroupData" %>
 
 <ul class="group">
-    <work:workGroup workGroup ="${workGroupData}"/>
+    <work:workGroup workGroup ="${workGroupData}" workType="${workType}"/>
     <ul class="subgroups">
         <work:works workList="${workGroupData.works}"/>
         <c:forEach var="innerMaterialType" items="${workGroupData.groups}">
-            <work:node workGroupData="${innerMaterialType}"/>
+            <work:node workGroupData="${innerMaterialType}" workType="${workType}"/>
         </c:forEach>
     </ul>
 </ul>
