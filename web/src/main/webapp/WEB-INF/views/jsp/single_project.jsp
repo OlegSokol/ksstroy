@@ -18,30 +18,7 @@
 <div id="wraper">
     user: ${userName}<br>
     project:${projectName}
-    <header>
-
-        <a class="menu_item" href="${projectId}/zones">Zones</a>
-
-        <a class="menu_item" href="${projectId}/work">
-            Work(new!!!)
-            <table>
-                <tbody>
-                <tr>
-                    <td>total price:</td>
-                    <td>250$</td>
-                </tr>
-                </tbody>
-            </table>
-        </a>
-
-
-        <a class="menu_item" href="${projectId}/materials">
-            Material Stock
-        </a>
-
-
-    </header>
-
+   <jsp:include page="single_project_menu.jsp"/>
 
     <ul class="library">
         <h4>LIBRARY</h4>

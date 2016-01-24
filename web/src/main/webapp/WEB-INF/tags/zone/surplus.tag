@@ -30,6 +30,54 @@
             </div>
 
         <zone:updateZone zones="${surplus}"/>
+</div>
 
+
+        <div class="item">
+            work1
+            <div class="add_delete_wrapper">
+                <form action="${pageContext.request.contextPath}/projects/removeWork" method="post">
+                    <input type="hidden" name="projectId" value="${projectId}">
+                    <input type="hidden" name="id" value="${work.id}">
+                    <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
+                </form>
+                <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+                <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
+            </div>
+            <work:updateWork work="${work}"/>
+            <work:addCover work="${work}"/>
+            <work:addAdjustment work="${work}"/>
+        </div>
+
+        <div class="item">
+            work2
+            <div class="add_delete_wrapper">
+                <form action="${pageContext.request.contextPath}/projects/removeWork" method="post">
+                    <input type="hidden" name="projectId" value="${projectId}">
+                    <input type="hidden" name="id" value="${work.id}">
+                    <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
+                </form>
+                <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+                <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
+            </div>
+            <work:updateWork work="${work}"/>
+            <work:addCover work="${work}"/>
+            <work:addAdjustment work="${work}"/>
+        </div>
+        <div class="item">
+            work3
+            <div class="add_delete_wrapper">
+                <form action="${pageContext.request.contextPath}/projects/removeWork" method="post">
+                    <input type="hidden" name="projectId" value="${projectId}">
+                    <input type="hidden" name="id" value="${work.id}">
+                    <input class="delete_btn clickableIcon" type="image" src="${delete_btn}" alt="Delete">
+                </form>
+                <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
+                <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
+            </div>
+            <work:updateWork work="${work}"/>
+            <work:addCover work="${work}"/>
+            <work:addAdjustment work="${work}"/>
+        </div>
     </li>
 </c:forEach>

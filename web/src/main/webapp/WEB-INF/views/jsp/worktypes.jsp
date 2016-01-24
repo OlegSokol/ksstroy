@@ -15,6 +15,7 @@
 </head>
 <body>
 <div id="wraper">
+    <jsp:include page="single_project_menu.jsp"/>
     <ul id="workTypeDataTree">
         <ul class="initializers">
             <worktype:addWorkTypeGroup innerWorkTypeGroup="${workTypeGroup}"/>

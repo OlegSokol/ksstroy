@@ -11,8 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>project</title>
 
-    <spring:url value="/resources/css/mainStyle.css" var="css"/>
-    <link href="${css}" rel="stylesheet"/>
+    <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
+    <link href="${commonCss}" rel="stylesheet"/>
 
     <spring:url value="/resources/js/jquery-2.1.4.min.js" var="jQuery"/>
     <script src="${jQuery}"></script>
@@ -21,6 +21,11 @@
 </head>
 <body>
 <div id="wrapper">
+
+    <jsp:include page="single_project_menu.jsp"/>
+    <div class="filter">
+        show works  <input type="checkbox" name="vehicle" value="Bike"><br>
+    </div>
     <ul class="initializers">
         <group:addGroup zhd ="${zhd}"/>
         <group:addZone zhd ="${zhd}"/>
