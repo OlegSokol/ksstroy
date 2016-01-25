@@ -14,7 +14,7 @@
 
 <c:forEach var="surplus" items="${surplus}">
     <li>
-        <div class="item">
+        <div class="item surplus">
             <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
             -  ${surplus.name}
             <div class="add_delete_wrapper">

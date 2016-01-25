@@ -43,7 +43,7 @@ public class WorkController {
         workModelView.addObject("projectId", projectId);
         workModelView.addObject("WorkHierarchy", workManager.getWorkHierarchy());
         workModelView.addObject("workType", workTypeManager.getWorkTypeHierarchy());
-        workModelView.addObject("zone", zoneManager.getRootZoneHierarchy(projectId));
+        workModelView.addObject("ZoneHierarchy", zoneManager.getRootZoneHierarchy(projectId));
 
         return workModelView;
     }

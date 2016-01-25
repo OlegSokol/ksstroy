@@ -17,7 +17,7 @@
 <ul class="zones">
     <c:forEach var="zones" items="${zhd.zones}">
     <li>
-        <div class="item">
+        <div class="item zone">
             <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
                 ${zones.name}
             <div class="add_delete_wrapper">

@@ -79,14 +79,14 @@ CREATE TABLE `groups` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `groups` VALUES (1, 'Kvartira', NULL);
-INSERT INTO `groups` VALUES (2, 'Penthaus', NULL);
-INSERT INTO `groups` VALUES (3, 'Dacha', NULL);
-INSERT INTO `groups` VALUES (4, 'Kuhnya', 1);
-INSERT INTO `groups` VALUES (5, 'Spalnya', 1);
-INSERT INTO `groups` VALUES (6, 'Tualet', 1);
-INSERT INTO `groups` VALUES (7, 'Vannaya', 2);
-INSERT INTO `groups` VALUES (8, 'Prihozhaya', 2);
+INSERT INTO `groups` VALUES (1, 'KVARTIRA', NULL);
+INSERT INTO `groups` VALUES (2, 'PENTHAUS', NULL);
+INSERT INTO `groups` VALUES (3, 'DACHA', NULL);
+INSERT INTO `groups` VALUES (4, 'KUHNYA', 1);
+INSERT INTO `groups` VALUES (5, 'SPALNYA', 1);
+INSERT INTO `groups` VALUES (6, 'TUALET', 1);
+INSERT INTO `groups` VALUES (7, 'VANNAYA', 2);
+INSERT INTO `groups` VALUES (8, 'PRIHOZHAYA', 2);
 
 
 DROP TABLE IF EXISTS `worktypes`;
@@ -226,17 +226,18 @@ CREATE TABLE `works` (
   `parent_group_id`  BIGINT(11)
 );
 
-INSERT INTO `works` VALUES (1, 'sthroblenie kirpich', 1, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (2, 'zavod vvdonogo provoda', 2, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (3, 'probivka otverstiy v stene', 2, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (1, 'sthroblenie kirpich', 7, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (2, 'zavod vvdonogo provoda', 8, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (3, 'probivka otverstiy v stene', 9, 1, 2, 3, 4, 4);
 
-INSERT INTO `works` VALUES (4, 'ukladka otraxateley i setki', 3, 1, 2, 3, 4, 3);
-INSERT INTO `works` VALUES (5, 'prokladka trub', 3, 1, 2, 3, 4, 3);
-INSERT INTO `works` VALUES (6, 'zalivka polov', 3, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (4, 'ukladka otraxateley i setki', 4, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (5, 'prokladka trub', 5, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (6, 'zalivka polov', 6, 1, 2, 3, 4, 3);
 
-INSERT INTO `works` VALUES (7, 'probivka otverstiy mezdu sten', 3, 1, 2, 3, 4, 2);
-INSERT INTO `works` VALUES (8, 'zavod gilzi v stenu', 3, 1, 2, 3, 4, 2);
+INSERT INTO `works` VALUES (7, 'probivka otverstiy mezdu sten', 1, 1, 2, 3, 4, 2);
+INSERT INTO `works` VALUES (8, 'zavod gilzi v stenu', 2, 1, 2, 3, 4, 2);
 INSERT INTO `works` VALUES (9, 'stroblenie sten', 3, 1, 2, 3, 4, 2);
+
 
 DROP TABLE IF EXISTS `work_zone_rel`;
 CREATE TABLE `work_zone_rel` (

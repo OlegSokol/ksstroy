@@ -18,11 +18,7 @@
                 <td>name:</td>
                 <td><input type="text" name="name" value="${work.name}"></td>
             </tr>
-            <tr>
-                <td>type:</td>
-                <td><input type="text" name="type" value="${work.type.name}"></td>
-            </tr>
-            <tr>
+                      <tr>
                 <td>work type:</td>
                 <td>
                     <form method="post">
@@ -30,11 +26,15 @@
                             <c:forEach var="workType" items="${workType.workTypeGroupsData}">
 
                                 <c:forEach var="wortTypeData" items="${workType.workTypesData}">
-                                    <c:if test="${wortTypeData.name == 'worktype_4'}">
-
+                                    <c:choose>
+                                        <c:when test="${wortTypeData.name == work.type.name}">
                                     <option selected value="${wortTypeData.id}" >${wortTypeData.name}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${wortTypeData.id}" >${wortTypeData.name}</option>
+                                        </c:otherwise>
+                                    </c:choose>
 
-                                    </c:if>
 
                                 </c:forEach>
 

@@ -11,7 +11,7 @@
 <spring:url value="/resources/img/show_updates_btn.png" var="show_update_forms_btn"/>
 
 <c:if test="${rootGroupId ne zhd.id}">
-    <div class="item">
+    <div class="item zone-group">
         <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
             ${zhd.name}
 

@@ -15,5 +15,6 @@
         <c:forEach var="innerMaterialType" items="${workGroupData.groups}">
             <work:node workGroupData="${innerMaterialType}" workType="${workType}"/>
         </c:forEach>
+
     </ul>
 </ul>

@@ -15,7 +15,7 @@
 
 <c:forEach var="additional" items="${additional}">
     <li>
-        <div class="item">
+        <div class="item additional">
             <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
             + ${additional.name}
             <div class="add_delete_wrapper">
