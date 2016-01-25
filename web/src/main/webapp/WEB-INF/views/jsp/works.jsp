@@ -38,6 +38,7 @@
         <zone:node zhd="${ZoneHierarchy}"/>
         </ul>
     </ul>
+    <work:worksBalance/>
 </div>
 </body>
 </html>
