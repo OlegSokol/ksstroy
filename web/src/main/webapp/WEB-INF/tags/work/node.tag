@@ -8,9 +8,9 @@
 <%@ attribute name="workGroupData" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
 <%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroupData" %>
 
-<ul class="group">
+<ul class="work-group">
     <work:workGroup workGroup ="${workGroupData}" workType="${workType}"/>
-   <ul class="subgroups">
+   <ul class="works">
         <work:works workList="${workGroupData.works}"/>
         <c:forEach var="innerMaterialType" items="${workGroupData.groups}">
             <work:node workGroupData="${innerMaterialType}" workType="${workType}"/>

@@ -20,19 +20,7 @@
     project:${projectName}
    <jsp:include page="single_project_menu.jsp"/>
 
-    <ul class="library">
-        <h4>LIBRARY</h4>
-        <li>
-            <div>
-                <a class="menu_item" href="${projectId}/workType">WorkTypes</a>
-            </div>
-        </li>
-        <li>
-            <div>
-                <a class="menu_item" href="${projectId}/library_materials">Materials</a>
-            </div>
-        </li>
-    </ul>
+   <jsp:include page="libraries_sidebar.jsp"/>
 </div>
 </body>
 </html>

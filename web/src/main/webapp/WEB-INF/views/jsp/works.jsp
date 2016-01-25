@@ -15,6 +15,7 @@
 </head>
 <body>
 <div id="wraper">
+    <jsp:include page="libraries_sidebar.jsp"/>
     <jsp:include page="single_project_menu.jsp"/>
     <ul id="workDataTree">
      <ul class="initializers">

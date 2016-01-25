@@ -101,19 +101,17 @@ CREATE TABLE `worktypes` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `worktypes` VALUES (1, 'worktype_1', 'worktype_1_descr.', 'L', 3.45, 2);
-INSERT INTO `worktypes` VALUES (2, 'worktype_2', 'worktype_2_descr.', 'L', 3.45, 2);
-INSERT INTO `worktypes` VALUES (3, 'worktype_3', 'worktype_3_descr.', 'L', 3.45, 3);
-INSERT INTO `worktypes` VALUES (4, 'worktype_4', 'worktype_4_descr.', 'L', 3.45, 3);
-INSERT INTO `worktypes` VALUES (5, 'worktype_5', 'worktype_5_descr.', 'L', 3.45, 4);
-INSERT INTO `worktypes` VALUES (6, 'worktype_6', 'worktype_6_descr.', 'L', 3.45, 4);
-INSERT INTO `worktypes` VALUES (7, 'worktype_7', 'worktype_7_descr.', 'L', 3.45, 5);
-INSERT INTO `worktypes` VALUES (8, 'worktype_8', 'worktype_8_descr.', 'L', 3.45, 5);
-INSERT INTO `worktypes` VALUES (9, 'worktype_9', 'worktype_9_descr.', 'L', 3.45, 6);
-INSERT INTO `worktypes` VALUES (10, 'worktype_10', 'worktype_10_descr.', 'L', 3.45, 6);
-INSERT INTO `worktypes` VALUES (11, 'worktype_11', 'worktype_11_descr.', 'L', 3.45, 7);
-INSERT INTO `worktypes` VALUES (12, 'worktype_12', 'worktype_12_descr.', 'L', 3.45, 7);
+INSERT INTO `worktypes` VALUES (1, 'probivka otverstiy mezdu sten', 'worktype_1_descr.', 'L', 3.45, 4);
+INSERT INTO `worktypes` VALUES (2, 'zavod vvdonogo provoda', 'worktype_2_descr.', 'L', 3.45, 4);
+INSERT INTO `worktypes` VALUES (3, 'probivka otverstiy v stene', 'worktype_3_descr.', 'L', 3.45, 4);
 
+INSERT INTO `worktypes` VALUES (4, 'ukladka otraxateley i setki', 'worktype_4_descr.', 'L', 3.45, 3);
+INSERT INTO `worktypes` VALUES (5, 'prokladka trub', 'worktype_5_descr.', 'L', 3.45, 3);
+INSERT INTO `worktypes` VALUES (6, 'zalivka polov', 'worktype_6_descr.', 'L', 3.45, 3);
+
+INSERT INTO `worktypes` VALUES (7, 'probivka otverstiy mezdu sten', 'worktype_7_descr.', 'L', 3.45, 2);
+INSERT INTO `worktypes` VALUES (8, 'zavod gilzi v stenu', 'worktype_8_descr.', 'L', 3.45, 2);
+INSERT INTO `worktypes` VALUES (9, 'stroblenie sten', 'worktype_9_descr.', 'L', 3.45, 2);
 
 DROP TABLE IF EXISTS `worktype_groups`;
 CREATE TABLE `worktype_groups` (
@@ -125,12 +123,12 @@ CREATE TABLE `worktype_groups` (
   DEFAULT CHARSET = utf8;
 
 INSERT INTO `worktype_groups` VALUES (1, 'root_worktype_group', NULL);
-INSERT INTO `worktype_groups` VALUES (2, 'group_level_1A', 1);
-INSERT INTO `worktype_groups` VALUES (3, 'group_level_1B', 1);
-INSERT INTO `worktype_groups` VALUES (4, 'group_level_2A', 2);
-INSERT INTO `worktype_groups` VALUES (5, 'group_level_2B', 2);
+INSERT INTO `worktype_groups` VALUES (2, 'OTOPLENIE', 1);
+INSERT INTO `worktype_groups` VALUES (3, 'SISTEMA TEPLIY POL', 1);
+INSERT INTO `worktype_groups` VALUES (4, 'ELEKTRIKA', 1);
+/*INSERT INTO `worktype_groups` VALUES (5, 'group_level_2B', 2);
 INSERT INTO `worktype_groups` VALUES (6, 'group_level_2C', 3);
-INSERT INTO `worktype_groups` VALUES (7, 'group_level_2D', 3);
+INSERT INTO `worktype_groups` VALUES (7, 'group_level_2D', 3);*/
 
 
 DROP TABLE IF EXISTS `material_type_group`;

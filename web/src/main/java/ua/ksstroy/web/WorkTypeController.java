@@ -20,9 +20,9 @@ public class WorkTypeController {
     ModelAndView workTypeModelView;
     WorkTypeData workTypeData;
 
-    @RequestMapping(value = "/projects/{projectId}/workType", method = RequestMethod.GET)
+    @RequestMapping(value = "/projects/{projectId}/library_worktypes", method = RequestMethod.GET)
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
-        workTypeModelView = new ModelAndView("worktypes");
+        workTypeModelView = new ModelAndView("library_worktypes");
         workTypeModelView.addObject("projectId", projectId);
         workTypeModelView.addObject("workTypeObject", workTypeManager.getWorkTypeHierarchy());
         return workTypeModelView;
@@ -34,7 +34,7 @@ public class WorkTypeController {
 
         workTypeManager.addWorkTypeGroup(outerWorkTypeGroupName);
 
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
     @RequestMapping(value = "/projects/addInnerWorkTypeGroup", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class WorkTypeController {
 
         workTypeManager.addWorkTypeGroup(innerWorkTypeGroupName, parentWorkTypeGroupId);
 
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
     @RequestMapping(value = "/projects/removeWorkTypeGroup", method = RequestMethod.POST)
@@ -53,7 +53,7 @@ public class WorkTypeController {
 
         workTypeManager.removeWorkTypeGroup(id);
 
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
     @RequestMapping(value = "/projects/addWorkType", method = RequestMethod.POST)
@@ -77,7 +77,7 @@ public class WorkTypeController {
 
         workTypeManager.addWorkType(workTypeData, parentWorkTypeGroupId);
         System.out.println("add work type");
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
     @RequestMapping(value = "/projects/removeWorkType", method = RequestMethod.POST)
@@ -86,7 +86,7 @@ public class WorkTypeController {
 
         workTypeManager.removeWorkType(id);
 
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
     @RequestMapping(value = "/projects/updateWorkTypeGroupName", method = RequestMethod.POST)
@@ -95,7 +95,7 @@ public class WorkTypeController {
                                           @RequestParam("projectId") String projectId) {
         workTypeManager.updateWorkTypeGroupName(groupId, newGroupName);
 
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
     @RequestMapping(value = "/projects/updateWorkType", method = RequestMethod.POST)
@@ -118,7 +118,7 @@ public class WorkTypeController {
 
         workTypeManager.updateWorkType(id, workTypeData);
 
-        return "redirect:" + projectId + "/worktype";
+        return "redirect:" + projectId + "/library_worktypes";
     }
 
 }

@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="wrapper">
-
+    <jsp:include page="libraries_sidebar.jsp"/>
     <jsp:include page="single_project_menu.jsp"/>
     <div class="filter">
         show works  <input type="checkbox" name="vehicle" value="Bike"><br>
