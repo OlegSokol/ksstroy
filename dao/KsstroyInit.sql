@@ -228,12 +228,17 @@ CREATE TABLE `works` (
   `parent_group_id`  BIGINT(11)
 );
 
-INSERT INTO `works` VALUES (1, 'Work_ziro', 1, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (2, 'work_one', 2, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (3, 'work_two', 2, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (4, 'work_tree', 3, 1, 2, 3, 4, 5);
-INSERT INTO `works` VALUES (5, 'work_four', 3, 1, 2, 3, 4, 5);
-INSERT INTO `works` VALUES (6, 'work_five', 3, 1, 2, 3, 4, 6);
+INSERT INTO `works` VALUES (1, 'sthroblenie kirpich', 1, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (2, 'zavod vvdonogo provoda', 2, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (3, 'probivka otverstiy v stene', 2, 1, 2, 3, 4, 4);
+
+INSERT INTO `works` VALUES (4, 'ukladka otraxateley i setki', 3, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (5, 'prokladka trub', 3, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (6, 'zalivka polov', 3, 1, 2, 3, 4, 3);
+
+INSERT INTO `works` VALUES (7, 'probivka otverstiy mezdu sten', 3, 1, 2, 3, 4, 2);
+INSERT INTO `works` VALUES (8, 'zavod gilzi v stenu', 3, 1, 2, 3, 4, 2);
+INSERT INTO `works` VALUES (9, 'stroblenie sten', 3, 1, 2, 3, 4, 2);
 
 DROP TABLE IF EXISTS `work_zone_rel`;
 CREATE TABLE `work_zone_rel` (
@@ -291,8 +296,8 @@ CREATE TABLE `work_groups` (
 );
 
 INSERT INTO `work_groups` VALUES (1, 'root_group', NULL);
-INSERT INTO `work_groups` VALUES (2, 'group1_lvl_a', 1);
-INSERT INTO `work_groups` VALUES (3, 'group2_lvl_a', 1);
-INSERT INTO `work_groups` VALUES (4, 'group3_lvl_b', 2);
-INSERT INTO `work_groups` VALUES (5, 'group4_lvl_b', 2);
-INSERT INTO `work_groups` VALUES (6, 'group5_lvl_b', 3);
+INSERT INTO `work_groups` VALUES (2, 'OTOPLENIE', 1);
+INSERT INTO `work_groups` VALUES (3, 'SISTEMA TEPLIY POL', 1);
+INSERT INTO `work_groups` VALUES (4, 'ELEKTRIKA', 1);
+/*INSERT INTO `work_groups` VALUES (5, 'group4_lvl_b', 2);
+INSERT INTO `work_groups` VALUES (6, 'group5_lvl_b', 3);*/

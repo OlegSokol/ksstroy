@@ -17,11 +17,11 @@
 <div id="wraper">
     <jsp:include page="single_project_menu.jsp"/>
     <ul id="workDataTree">
-        <ul class="initializers">
+     <ul class="initializers">
             <work:addWorkGroup innerWorkGroup="${workGroup}"/>
             <work:addWork workGroup="${workGroup}" workType="${workType}" zone="${zone}"/>
         </ul>
-        <work:node workGroupData="${workObject}" workType="${workType}"/>
+        <work:node workGroupData="${WorkHierarchy}" workType="${workType}"/>
     </ul>
 </div>
 </body>

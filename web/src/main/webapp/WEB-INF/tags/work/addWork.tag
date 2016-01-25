@@ -21,16 +21,16 @@
                 <td>name:</td>
                 <td><input type="text" name="name" placeholder="Enter name"></td>
             </tr>
-            <tr>
+       <%--  //TODO what is this for ?
                 <td>type id:</td>
                 <td><input type="text" name="workTypeId" placeholder="Enter type id"></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>planedCost:</td>
                 <td><input type="text" name="planedCost" placeholder="Enter planedCost"></td>
             </tr>
 
-            <tr>
+       <%--     <tr>
                 <td>perspectiveCost:</td>
                 <td><input type="text" name="perspectiveCost" placeholder="Enter perspectiveCost"></td>
             </tr>
@@ -41,7 +41,7 @@
             <tr>
                 <td>dealCost:</td>
                 <td><input type="text" name="dealCost" placeholder="Enter dealCost"></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>work type:</td>
                 <td>

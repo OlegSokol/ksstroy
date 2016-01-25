@@ -51,10 +51,10 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+        <td>Total</td>
         <td>2240</td>
         <td>1960</td>
         <td>-280</td>
     </tr>
-    <%--</c:forEach>--%>
+
 </table>

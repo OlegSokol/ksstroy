@@ -41,7 +41,7 @@ public class WorkController {
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
         workModelView = new ModelAndView("works");
         workModelView.addObject("projectId", projectId);
-        workModelView.addObject("workObject", workManager.getWorkHierarchy());
+        workModelView.addObject("WorkHierarchy", workManager.getWorkHierarchy());
         workModelView.addObject("workType", workTypeManager.getWorkTypeHierarchy());
         workModelView.addObject("zone", zoneManager.getRootZoneHierarchy(projectId));
 

@@ -23,7 +23,7 @@
 
 <div align="center">
     <h2>MATERIALS</h2>
-    <material:werehouse materialsList="${MaterialsList}"/>
+    <material:materialsBalance materialsList="${MaterialsList}"/>
 </div>
 </body>
 </html>

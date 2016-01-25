@@ -10,7 +10,7 @@
 
 <ul class="group">
     <work:workGroup workGroup ="${workGroupData}" workType="${workType}"/>
-    <ul class="subgroups">
+   <ul class="subgroups">
         <work:works workList="${workGroupData.works}"/>
         <c:forEach var="innerMaterialType" items="${workGroupData.groups}">
             <work:node workGroupData="${innerMaterialType}" workType="${workType}"/>

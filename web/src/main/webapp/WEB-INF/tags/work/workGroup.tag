@@ -25,7 +25,7 @@
             <img class="add_btn clickableIcon" src="${add_btn}" alt="Add">
             <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
         </div>
-        <work:addWork workGroup="${workGroup}" workType="${workType}" zone="${zone}"/>
+      <work:addWork workGroup="${workGroup}" workType="${workType}" zone="${zone}"/>
         <work:addWorkGroup innerWorkGroup="${workGroup}"/>
         <work:updateWorkGroup workGroup="${workGroup}"/>
     </div>

@@ -16,8 +16,7 @@
         <div class="item">
             <img class="dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
                 ${work.name}
-                ${work.}
-            <div class="add_delete_wrapper">
+                         <div class="add_delete_wrapper">
                 <form action="${pageContext.request.contextPath}/projects/removeWork" method="post">
                     <input type="hidden" name="projectId" value="${projectId}">
                     <input type="hidden" name="id" value="${work.id}">
@@ -27,12 +26,12 @@
                 <img class="show_update_forms_btn clickableIcon" src="${show_update_forms_btn}" alt="show_update_forms">
             </div>
             <work:updateWork work="${work}"/>
-            <work:addCover work="${work}"/>
-            <work:addAdjustment work="${work}"/>
+  <%--          <work:addCover work="${work}"/>
+            <work:addAdjustment work="${work}"/>--%>
         </div>
         <ul class ="subgroup">
-            <work:covers coverList="${work.allCovers}"/>
-            <work:adjustment adjustmentList="${work.adjustments}"/>
+        <%--    <work:covers coverList="${work.allCovers}"/>
+            <work:adjustment adjustmentList="${work.adjustments}"/>--%>
             <work:zones zoneList="${work.workZones}"/>
         </ul>
     </ul>
