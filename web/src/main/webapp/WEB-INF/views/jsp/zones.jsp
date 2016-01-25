@@ -11,6 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>project</title>
 
+    <spring:url value="/resources/css/zones-page.css" var="zonespageCSS"/>
+    <link href="${zonespageCSS}" rel="stylesheet"/>
     <spring:url value="/resources/css/mainStyle.css" var="commonCss"/>
     <link href="${commonCss}" rel="stylesheet"/>
 
@@ -24,7 +26,7 @@
     <jsp:include page="libraries_sidebar.jsp"/>
     <jsp:include page="single_project_menu.jsp"/>
     <div class="filter">
-        show works  <input type="checkbox" name="vehicle" value="Bike"><br>
+        show works  <input id="show-hide-works" type="checkbox" name="vehicle" value="Bike"><br>
     </div>
     <ul class="initializers">
         <group:addGroup zhd ="${zhd}"/>

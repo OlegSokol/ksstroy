@@ -11,4 +11,16 @@ $(document).ready(function () {
     $(".purchase_material").click(function () {
         $(this).closest(".purchase").children(".controller").toggleClass("hidden");
     })
+
+    $('#show-hide-works').click(function() {
+       if($(this).is(':checked')){
+           $('.work-group').toggleClass("hidden");}
+        else{
+           $('.work-group').toggleClass("hidden");
+       }
+
+    })
+
+
+
 });

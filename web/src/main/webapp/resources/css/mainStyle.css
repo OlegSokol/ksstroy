@@ -137,9 +137,7 @@ li {
 /*
 .hidden should be in the end of the css
 */
-.hidden {
-    display: none;
-}
+
 
 .initializers .controller {
     display: inline-block;
@@ -218,4 +216,13 @@ header {
 
 .zones {
     margin: 5px;
+}
+
+.expand_btn {
+    vertical-align: middle;
+}
+
+
+.hidden {
+    display: none;
 }
