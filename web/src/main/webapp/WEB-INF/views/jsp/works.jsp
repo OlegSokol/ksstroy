@@ -15,6 +15,10 @@
     <script src="${jQuery}"></script>
     <spring:url value="/resources/js/mainScript.js" var="js"/>
     <script src="${js}"></script>
+    <spring:url value="/resources/js/works-page.js" var="worksPageJs"/>
+    <script src="${worksPageJs}"></script>
+
+
 </head>
 <body>
 <div id="wraper">

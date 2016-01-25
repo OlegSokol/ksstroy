@@ -26,11 +26,12 @@
     <jsp:include page="libraries_sidebar.jsp"/>
     <jsp:include page="single_project_menu.jsp"/>
     <div class="filter">
-        show works  <input id="show-hide-works" type="checkbox" name="vehicle" value="Bike"><br>
+        show works  <input id="show-hide-works" type="checkbox" ><br>
     </div>
     <ul class="initializers">
         <group:addGroup zhd ="${zhd}"/>
         <group:addZone zhd ="${zhd}"/>
+
     </ul>
     <zone:node zhd="${zhd}"/>
 </div>

@@ -1,0 +1,32 @@
+#zones-hierarchy {
+    display: inline-block;
+}
+
+#works-hierarchy {
+    vertical-align: top;
+    display: inline-block;
+}
+
+/*,.add_btn,.delete_btn*/
+#zones-hierarchy .show_update_forms_btn {
+    display: none;
+}
+
+#zones-hierarchy .add_btn {
+    display: none;
+}
+
+#zones-hierarchy .delete_btn {
+    display: none;
+}
+
+#zones-hierarchy .work-group .item {
+
+    background-color: #C5C5C5;
+}
+
+#zones-hierarchy .work-group {
+    vertical-align: top;
+    padding: 0px;
+    display: inline-block;
+}
