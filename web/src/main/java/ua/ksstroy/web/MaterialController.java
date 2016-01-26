@@ -37,7 +37,7 @@ public class MaterialController {
 
         this.materialManager.purchaseMaterial(materialData, parentMaterialTypeId);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 
 }

@@ -57,7 +57,7 @@ public class MaterialLibraryController {
 
         this.materialManager.addMaterialTypeGroupByParent(materialTypeGroupData, parentMaterialTypeId);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 
     @RequestMapping(value = "/projects/updateMaterialTypeGroup", method = RequestMethod.POST)
@@ -72,7 +72,7 @@ public class MaterialLibraryController {
 
         this.materialManager.updateMaterialTypeGroup(id, materialTypeGroupData);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 
     @RequestMapping(value = "/projects/removeMaterialTypeGroup", method = RequestMethod.POST)
@@ -81,7 +81,7 @@ public class MaterialLibraryController {
 
         this.materialManager.removeMaterialTypeGroup(id);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 
     @RequestMapping(value = "/projects/addMaterialType", method = RequestMethod.POST)
@@ -96,7 +96,7 @@ public class MaterialLibraryController {
 
         this.materialManager.addMaterialType(materialTypeData, parentMaterialTypeId);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 
 
@@ -112,7 +112,7 @@ public class MaterialLibraryController {
 
         this.materialManager.updateMaterialType(id, materialTypeData);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 
     @RequestMapping(value = "/projects/removeMaterialType", method = RequestMethod.POST)
@@ -121,6 +121,6 @@ public class MaterialLibraryController {
 
         materialManager.removeMaterialType(id);
 
-        return "redirect:" + projectId + "/material";
+        return "redirect:" + projectId + "/library_materials";
     }
 }
