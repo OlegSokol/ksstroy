@@ -1,6 +1,7 @@
 package ua.ksstroy.logic.material;
 
 public class MaterialImpl implements Material {
+
     private String id;
 
     private MaterialType materialType;
@@ -35,6 +36,7 @@ public class MaterialImpl implements Material {
 
     @Override
     public Double getPlanedCost() {
+        planedCost = unitsPerWorkZoneMeasure * materialType.getPricePerUnit();
         return planedCost;
     }
 
@@ -70,4 +72,5 @@ public class MaterialImpl implements Material {
     public void setId(String id) {
         this.id = id;
     }
+
 }
