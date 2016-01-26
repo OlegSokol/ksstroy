@@ -4,9 +4,8 @@ import java.util.List;
 
 public interface MaterialDao {
     //TODO:finish after obtain more specific information about the entity
-/*
-    temporary method for stepByStepDeveloping
-     */
+
     List<MaterialImpl> getAllMaterials();
 
+    void purchaseMaterial(final Material material, final String materialTypeId);
 }

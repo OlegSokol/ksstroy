@@ -34,6 +34,9 @@ public class MaterialImpl implements Material {
         this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
     }
 
+    /*
+    Calculate quantity on price for unit
+     */
     @Override
     public Double getPlanedCost() {
         planedCost = unitsPerWorkZoneMeasure * materialType.getPricePerUnit();

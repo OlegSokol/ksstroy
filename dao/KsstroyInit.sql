@@ -169,14 +169,14 @@ CREATE TABLE `material_type` (
   DEFAULT CHARSET = utf8;
 
 INSERT INTO `material_type` VALUES (1, 'material_type_1', 'material_type_1_descr.', '3.0', 'unit_name_1', '4');
-INSERT INTO `material_type` VALUES (2, 'material_type_2', 'material_type_2_descr.', '3.0', 'unit_name_2', '5');
-INSERT INTO `material_type` VALUES (3, 'material_type_3', 'material_type_3_descr.', '3.0', 'unit_name_3', '4');
-INSERT INTO `material_type` VALUES (4, 'material_type_4', 'material_type_4_descr.', '3.0', 'unit_name_4', '5');
-INSERT INTO `material_type` VALUES (5, 'material_type_5', 'material_type_5_descr.', '3.0', 'unit_name_5', '6');
-INSERT INTO `material_type` VALUES (6, 'material_type_6', 'material_type_6_descr.', '3.0', 'unit_name_6', '6');
-INSERT INTO `material_type` VALUES (7, 'material_type_7', 'material_type_7_descr.', '3.0', 'unit_name_7', '7');
-INSERT INTO `material_type` VALUES (8, 'material_type_8', 'material_type_8_descr.', '3.0', 'unit_name_8', '7');
-INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr.', '3.0', 'unit_name_9', '7');
+INSERT INTO `material_type` VALUES (2, 'material_type_2', 'material_type_2_descr.', '6.0', 'unit_name_2', '5');
+INSERT INTO `material_type` VALUES (3, 'material_type_3', 'material_type_3_descr.', '11.0', 'unit_name_3', '4');
+INSERT INTO `material_type` VALUES (4, 'material_type_4', 'material_type_4_descr.', '56.0', 'unit_name_4', '5');
+INSERT INTO `material_type` VALUES (5, 'material_type_5', 'material_type_5_descr.', '34.0', 'unit_name_5', '6');
+INSERT INTO `material_type` VALUES (6, 'material_type_6', 'material_type_6_descr.', '12.0', 'unit_name_6', '6');
+INSERT INTO `material_type` VALUES (7, 'material_type_7', 'material_type_7_descr.', '16.6', 'unit_name_7', '7');
+INSERT INTO `material_type` VALUES (8, 'material_type_8', 'material_type_8_descr.', '15.0', 'unit_name_8', '7');
+INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr.', '18.0', 'unit_name_9', '7');
 
 
 DROP TABLE IF EXISTS `materials`;
@@ -184,6 +184,7 @@ CREATE TABLE `materials` (
   `id`                          INT(8) NOT NULL AUTO_INCREMENT,
   `units_per_work_zone_measure` DOUBLE,
   `planed_cost`                 DOUBLE,
+  `deal_cost`                   DOUBLE,
   `closed_cost`                 DOUBLE,
   `material_type_id`            INT(8),
   PRIMARY KEY (`id`)
@@ -191,11 +192,11 @@ CREATE TABLE `materials` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `materials` VALUES (1, '2', '10.0', '4.2', '1');
-INSERT INTO `materials` VALUES (2, '2', '3.0', '4.2', '2');
-INSERT INTO `materials` VALUES (3, '2', '7.0', '4.2', '3');
-INSERT INTO `materials` VALUES (4, '2', '9.5', '4.2', '4');
-INSERT INTO `materials` VALUES (5, '2', '4.0', '4.2', '5');
+INSERT INTO `materials` VALUES (1, '2', '10.0', '4.0', '4.2', '1');
+INSERT INTO `materials` VALUES (2, '5', '3.0', '4.0', '4.2', '2');
+INSERT INTO `materials` VALUES (3, '6', '7.0', '4.0', '4.2', '3');
+INSERT INTO `materials` VALUES (4, '2', '9.5', '4.0', '4.2', '4');
+INSERT INTO `materials` VALUES (5, '14', '4.0', '4.0', '4.2', '5');
 
 
 DROP TABLE IF EXISTS `worktype_material_rel`;

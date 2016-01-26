@@ -1,6 +1,5 @@
 package ua.ksstroy.models.material;
 
-import ua.ksstroy.logic.material.MaterialType;
 import ua.ksstroy.models.worktype.WorkTypeModel;
 
 import javax.persistence.*;
@@ -34,9 +33,9 @@ public class MaterialModel implements Serializable {
     private MaterialTypeModel materialType;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "materials")
-    private List<WorkTypeModel>  workTypeModels;
+    private List<WorkTypeModel> workTypeModels;
 
-    public MaterialModel(){
+    public MaterialModel() {
 
     }
 

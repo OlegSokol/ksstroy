@@ -18,22 +18,13 @@
         <th>Price for unit</th>
         <th>Total Price</th>
     </tr>
-    <%--
-        <c:forEach var="material" items="${materialsList}">
-    --%>
-    <tr>
-        <td>1</td>
-        <td>Shtukaturka</td>
-        <td>14</td>
-        <td>70</td>
-        <td>980</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Shpaklyovka</td>
-        <td>4</td>
-        <td>45</td>
-        <td>180</td>
-    </tr>
-    <%--</c:forEach>--%>
+    <c:forEach var="material" items="${materialsList}">
+        <tr>
+            <td>${material.id}</td>
+            <td>${material.materialType.name}</td>
+            <td>${material.unitsPerWorkZoneMeasure}</td>
+            <td>${material.materialType.pricePerUnit}</td>
+            <td>${material.planedCost}</td>
+        </tr>
+    </c:forEach>
 </table>

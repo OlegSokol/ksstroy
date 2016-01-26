@@ -1,21 +1,20 @@
 package ua.ksstroy.logic.material;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.material.MaterialTypeDataToMaterialTypeConverter;
 import ua.ksstroy.converter.material.MaterialTypeGroupDataToMaterialTypeGroupConverter;
 import ua.ksstroy.converter.material.MaterialTypeGroupModelToDataHierarchyConverter;
 
-import javax.annotation.Resource;
-
 @Service
 public class MaterialLibraryManagerImpl implements MaterialLibraryManager {
 
+    @Qualifier("materialGroupTypeAndMaterialTypeDaoImpl")
     @Autowired
     MaterialTypeDao materialTypeDao;
 
-
+    @Qualifier("materialGroupTypeAndMaterialTypeDaoImpl")
     @Autowired
     MaterialTypeGroupDao materialTypeGroupDao;
 
