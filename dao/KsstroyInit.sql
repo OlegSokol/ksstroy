@@ -79,14 +79,14 @@ CREATE TABLE `groups` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `groups` VALUES (1, 'Kvartira', NULL);
-INSERT INTO `groups` VALUES (2, 'Penthaus', NULL);
-INSERT INTO `groups` VALUES (3, 'Dacha', NULL);
-INSERT INTO `groups` VALUES (4, 'Kuhnya', 1);
-INSERT INTO `groups` VALUES (5, 'Spalnya', 1);
-INSERT INTO `groups` VALUES (6, 'Tualet', 1);
-INSERT INTO `groups` VALUES (7, 'Vannaya', 2);
-INSERT INTO `groups` VALUES (8, 'Prihozhaya', 2);
+INSERT INTO `groups` VALUES (1, 'KVARTIRA', NULL);
+INSERT INTO `groups` VALUES (2, 'PENTHAUS', NULL);
+INSERT INTO `groups` VALUES (3, 'DACHA', NULL);
+INSERT INTO `groups` VALUES (4, 'KUHNYA', 1);
+INSERT INTO `groups` VALUES (5, 'SPALNYA', 1);
+INSERT INTO `groups` VALUES (6, 'TUALET', 1);
+INSERT INTO `groups` VALUES (7, 'VANNAYA', 2);
+INSERT INTO `groups` VALUES (8, 'PRIHOZHAYA', 2);
 
 
 DROP TABLE IF EXISTS `worktypes`;
@@ -101,19 +101,17 @@ CREATE TABLE `worktypes` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `worktypes` VALUES (1, 'worktype_1', 'worktype_1_descr.', 'L', 3.45, 2);
-INSERT INTO `worktypes` VALUES (2, 'worktype_2', 'worktype_2_descr.', 'L', 3.45, 2);
-INSERT INTO `worktypes` VALUES (3, 'worktype_3', 'worktype_3_descr.', 'L', 3.45, 3);
-INSERT INTO `worktypes` VALUES (4, 'worktype_4', 'worktype_4_descr.', 'L', 3.45, 3);
-INSERT INTO `worktypes` VALUES (5, 'worktype_5', 'worktype_5_descr.', 'L', 3.45, 4);
-INSERT INTO `worktypes` VALUES (6, 'worktype_6', 'worktype_6_descr.', 'L', 3.45, 4);
-INSERT INTO `worktypes` VALUES (7, 'worktype_7', 'worktype_7_descr.', 'L', 3.45, 5);
-INSERT INTO `worktypes` VALUES (8, 'worktype_8', 'worktype_8_descr.', 'L', 3.45, 5);
-INSERT INTO `worktypes` VALUES (9, 'worktype_9', 'worktype_9_descr.', 'L', 3.45, 6);
-INSERT INTO `worktypes` VALUES (10, 'worktype_10', 'worktype_10_descr.', 'L', 3.45, 6);
-INSERT INTO `worktypes` VALUES (11, 'worktype_11', 'worktype_11_descr.', 'L', 3.45, 7);
-INSERT INTO `worktypes` VALUES (12, 'worktype_12', 'worktype_12_descr.', 'L', 3.45, 7);
+INSERT INTO `worktypes` VALUES (1, 'probivka otverstiy mezdu sten', 'worktype_1_descr.', 'L', 3.45, 4);
+INSERT INTO `worktypes` VALUES (2, 'zavod vvdonogo provoda', 'worktype_2_descr.', 'L', 3.45, 4);
+INSERT INTO `worktypes` VALUES (3, 'probivka otverstiy v stene', 'worktype_3_descr.', 'L', 3.45, 4);
 
+INSERT INTO `worktypes` VALUES (4, 'ukladka otraxateley i setki', 'worktype_4_descr.', 'L', 3.45, 3);
+INSERT INTO `worktypes` VALUES (5, 'prokladka trub', 'worktype_5_descr.', 'L', 3.45, 3);
+INSERT INTO `worktypes` VALUES (6, 'zalivka polov', 'worktype_6_descr.', 'L', 3.45, 3);
+
+INSERT INTO `worktypes` VALUES (7, 'probivka otverstiy mezdu sten', 'worktype_7_descr.', 'L', 3.45, 2);
+INSERT INTO `worktypes` VALUES (8, 'zavod gilzi v stenu', 'worktype_8_descr.', 'L', 3.45, 2);
+INSERT INTO `worktypes` VALUES (9, 'stroblenie sten', 'worktype_9_descr.', 'L', 3.45, 2);
 
 DROP TABLE IF EXISTS `worktype_groups`;
 CREATE TABLE `worktype_groups` (
@@ -125,12 +123,12 @@ CREATE TABLE `worktype_groups` (
   DEFAULT CHARSET = utf8;
 
 INSERT INTO `worktype_groups` VALUES (1, 'root_worktype_group', NULL);
-INSERT INTO `worktype_groups` VALUES (2, 'group_level_1A', 1);
-INSERT INTO `worktype_groups` VALUES (3, 'group_level_1B', 1);
-INSERT INTO `worktype_groups` VALUES (4, 'group_level_2A', 2);
-INSERT INTO `worktype_groups` VALUES (5, 'group_level_2B', 2);
+INSERT INTO `worktype_groups` VALUES (2, 'OTOPLENIE', 1);
+INSERT INTO `worktype_groups` VALUES (3, 'SISTEMA TEPLIY POL', 1);
+INSERT INTO `worktype_groups` VALUES (4, 'ELEKTRIKA', 1);
+/*INSERT INTO `worktype_groups` VALUES (5, 'group_level_2B', 2);
 INSERT INTO `worktype_groups` VALUES (6, 'group_level_2C', 3);
-INSERT INTO `worktype_groups` VALUES (7, 'group_level_2D', 3);
+INSERT INTO `worktype_groups` VALUES (7, 'group_level_2D', 3);*/
 
 
 DROP TABLE IF EXISTS `material_type_group`;
@@ -146,13 +144,13 @@ CREATE TABLE `material_type_group` (
   DEFAULT CHARSET = utf8;
 
 INSERT INTO `material_type_group` VALUES (1, 'root_material_type_group', 'root_material_type_group_descr.', NULL);
-INSERT INTO `material_type_group` VALUES (2, 'material_type_group_level_1A', 'material_type_group_1A_descr.', 1);
-INSERT INTO `material_type_group` VALUES (3, 'material_type_group_level_1B', 'material_type_group_1B_descr.', 1);
-INSERT INTO `material_type_group` VALUES (4, 'material_type_group_level_2A', 'material_type_group_2A_descr.', 2);
-INSERT INTO `material_type_group` VALUES (5, 'material_type_group_level_2B', 'material_type_group_2B_descr.', 2);
+INSERT INTO `material_type_group` VALUES (2, 'OBSHE STROITELNIE MATERIALY', 'vse materiali, kotorie ne voshli v drugie gruppy.', 1);
+INSERT INTO `material_type_group` VALUES (3, 'OBORYDOVANIE', 'santeshnika, dveri, podokonniky, furnitura', 1);
+INSERT INTO `material_type_group` VALUES (4, 'FINISHNIE POKRITIYA', 'oblizovochnie materialy.', 1);
+/*INSERT INTO `material_type_group` VALUES (5, 'material_type_group_level_2B', 'material_type_group_2B_descr.', 2);
 INSERT INTO `material_type_group` VALUES (6, 'material_type_group_level_2C', 'material_type_group_2C_descr.', 3);
 INSERT INTO `material_type_group` VALUES (7, 'material_type_group_level_2D', 'material_type_group_2D_descr.', 3);
-
+*/
 
 DROP TABLE IF EXISTS `material_type`;
 CREATE TABLE `material_type` (
@@ -168,41 +166,43 @@ CREATE TABLE `material_type` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `material_type` VALUES (1, 'material_type_1', 'material_type_1_descr.', '3.0', 'unit_name_1', '4');
-INSERT INTO `material_type` VALUES (2, 'material_type_2', 'material_type_2_descr.', '6.0', 'unit_name_2', '5');
-INSERT INTO `material_type` VALUES (3, 'material_type_3', 'material_type_3_descr.', '11.0', 'unit_name_3', '4');
-INSERT INTO `material_type` VALUES (4, 'material_type_4', 'material_type_4_descr.', '56.0', 'unit_name_4', '5');
-INSERT INTO `material_type` VALUES (5, 'material_type_5', 'material_type_5_descr.', '34.0', 'unit_name_5', '6');
-INSERT INTO `material_type` VALUES (6, 'material_type_6', 'material_type_6_descr.', '12.0', 'unit_name_6', '6');
-INSERT INTO `material_type` VALUES (7, 'material_type_7', 'material_type_7_descr.', '16.6', 'unit_name_7', '7');
-INSERT INTO `material_type` VALUES (8, 'material_type_8', 'material_type_8_descr.', '15.0', 'unit_name_8', '7');
-INSERT INTO `material_type` VALUES (9, 'material_type_9', 'material_type_9_descr.', '18.0', 'unit_name_9', '7');
+
+INSERT INTO `material_type` VALUES (1, 'shpaklevka finish', 'material_type_1_descr.', '45', 'unit_name_1', '2');
+INSERT INTO `material_type` VALUES (2, 'shpaklevka start', 'material_type_2_descr.', '76', 'unit_name_2', '2');
+INSERT INTO `material_type` VALUES (3, 'gruntovka', 'material_type_3_descr.', '30', 'unit_name_3', '2');
+INSERT INTO `material_type` VALUES (4, 'vanna', 'material_type_4_descr.', '3200', 'unit_name_4', '3');
+INSERT INTO `material_type` VALUES (5, 'unitaz', 'material_type_5_descr.', '1500', 'unit_name_5', '3');
+INSERT INTO `material_type` VALUES (6, 'umivalnik', 'material_type_6_descr.', '800', 'unit_name_6', '3');
+INSERT INTO `material_type` VALUES (7, 'plitka na steny', 'material_type_7_descr.', '200', 'unit_name_7', '4');
+INSERT INTO `material_type` VALUES (8, 'plitka na pol', 'material_type_8_descr.', '300', 'unit_name_8', '4');
+INSERT INTO `material_type` VALUES (9, 'kvarzeviy grunt', 'material_type_9_descr.', '147', 'unit_name_9', '4');
 
 
 DROP TABLE IF EXISTS `materials`;
 CREATE TABLE `materials` (
-  `id`                          INT(8) NOT NULL AUTO_INCREMENT,
-  `units_per_work_zone_measure` DOUBLE,
-  `planed_cost`                 DOUBLE,
-  `deal_cost`                   DOUBLE,
-  `closed_cost`                 DOUBLE,
-  `material_type_id`            INT(8),
+  `id`                          INT(8)      NOT NULL AUTO_INCREMENT,
+  `units_per_work_zone_measure` DOUBLE  ,
+  `planed_cost`                 DOUBLE      ,
+  `deal_cost`                   DOUBLE      ,
+  `closed_cost`                 DOUBLE      ,
+  `material_type_id`          INT(8),
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-INSERT INTO `materials` VALUES (1, '2', '10.0', '4.0', '4.2', '1');
-INSERT INTO `materials` VALUES (2, '5', '3.0', '4.0', '4.2', '2');
-INSERT INTO `materials` VALUES (3, '6', '7.0', '4.0', '4.2', '3');
-INSERT INTO `materials` VALUES (4, '2', '9.5', '4.0', '4.2', '4');
-INSERT INTO `materials` VALUES (5, '14', '4.0', '4.0', '4.2', '5');
 
+
+INSERT INTO `materials` VALUES (1, '2', '10.0', '3.0', '4.2', '1');
+INSERT INTO `materials` VALUES (2, '6', '10.0', '3.0', '4.2', '2');
+INSERT INTO `materials` VALUES (3, '7', '10.0', '3.0', '4.2', '3');
+INSERT INTO `materials` VALUES (4, '45', '10.0', '3.0', '4.2', '4');
+INSERT INTO `materials` VALUES (5, '15', '10.0', '3.0', '4.2', '5');
 
 DROP TABLE IF EXISTS `worktype_material_rel`;
 CREATE TABLE `worktype_material_rel` (
   `worktype_id` INT(10),
-  `material_id` INT(10)
+  `material_id`    INT(10)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -211,6 +211,7 @@ INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1)
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 2);
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 1);
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (2, 2);
+
 
 
 DROP TABLE IF EXISTS `works`;
@@ -225,12 +226,18 @@ CREATE TABLE `works` (
   `parent_group_id`  BIGINT(11)
 );
 
-INSERT INTO `works` VALUES (1, 'Work_ziro', 1, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (2, 'work_one', 2, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (3, 'work_two', 2, 1, 2, 3, 4, 4);
-INSERT INTO `works` VALUES (4, 'work_tree', 3, 1, 2, 3, 4, 5);
-INSERT INTO `works` VALUES (5, 'work_four', 3, 1, 2, 3, 4, 5);
-INSERT INTO `works` VALUES (6, 'work_five', 3, 1, 2, 3, 4, 6);
+INSERT INTO `works` VALUES (1, 'sthroblenie kirpich', 7, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (2, 'zavod vvdonogo provoda', 8, 1, 2, 3, 4, 4);
+INSERT INTO `works` VALUES (3, 'probivka otverstiy v stene', 9, 1, 2, 3, 4, 4);
+
+INSERT INTO `works` VALUES (4, 'ukladka otraxateley i setki', 4, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (5, 'prokladka trub', 5, 1, 2, 3, 4, 3);
+INSERT INTO `works` VALUES (6, 'zalivka polov', 6, 1, 2, 3, 4, 3);
+
+INSERT INTO `works` VALUES (7, 'probivka otverstiy mezdu sten', 1, 1, 2, 3, 4, 2);
+INSERT INTO `works` VALUES (8, 'zavod gilzi v stenu', 2, 1, 2, 3, 4, 2);
+INSERT INTO `works` VALUES (9, 'stroblenie sten', 3, 1, 2, 3, 4, 2);
+
 
 DROP TABLE IF EXISTS `work_zone_rel`;
 CREATE TABLE `work_zone_rel` (
@@ -288,8 +295,8 @@ CREATE TABLE `work_groups` (
 );
 
 INSERT INTO `work_groups` VALUES (1, 'root_group', NULL);
-INSERT INTO `work_groups` VALUES (2, 'group1_lvl_a', 1);
-INSERT INTO `work_groups` VALUES (3, 'group2_lvl_a', 1);
-INSERT INTO `work_groups` VALUES (4, 'group3_lvl_b', 2);
-INSERT INTO `work_groups` VALUES (5, 'group4_lvl_b', 2);
-INSERT INTO `work_groups` VALUES (6, 'group5_lvl_b', 3);
+INSERT INTO `work_groups` VALUES (2, 'OTOPLENIE', 1);
+INSERT INTO `work_groups` VALUES (3, 'SISTEMA TEPLIY POL', 1);
+INSERT INTO `work_groups` VALUES (4, 'ELEKTRIKA', 1);
+/*INSERT INTO `work_groups` VALUES (5, 'group4_lvl_b', 2);
+INSERT INTO `work_groups` VALUES (6, 'group5_lvl_b', 3);*/
