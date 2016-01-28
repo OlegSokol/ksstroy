@@ -2,7 +2,6 @@ package ua.ksstroy.logic.material;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.ksstroy.converter.material.MaterialTypeDataToMaterialTypeConverter;
 import ua.ksstroy.converter.material.MaterialTypeImplToDataConverter;
 
 import java.util.ArrayList;
@@ -17,6 +16,13 @@ public class MaterialManagerImpl implements MaterialManager {
     @Override
     public List<MaterialData> getAllMaterials() {
         return this.convertMaterialImplToData(materialDao.getAllMaterials());
+    }
+
+    @Override
+    public void purchaseMaterial(MaterialData materialData, String materialTypeId) {
+        Material material = new MaterialImpl();
+        material.setUnitsPerWorkZoneMeasure(materialData.getUnitsPerWorkZoneMeasure());
+        this.materialDao.purchaseMaterial(material, materialTypeId);
     }
 
 

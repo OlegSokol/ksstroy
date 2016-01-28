@@ -2,9 +2,12 @@ package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Repository;
 import ua.ksstroy.converter.material.MaterialModelToImplConverter;
+import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.material.MaterialDao;
 import ua.ksstroy.logic.material.MaterialImpl;
 import ua.ksstroy.models.material.MaterialModel;
+import ua.ksstroy.models.material.MaterialTypeModel;
+import ua.ksstroy.persistence.DoInTransaction;
 import ua.ksstroy.persistence.GetInTransaction;
 import ua.ksstroy.persistence.SessionWrapper;
 import ua.ksstroy.persistence.TransactionHelper;
@@ -42,4 +45,18 @@ public class MaterialDaoImpl implements MaterialDao {
             }
         });
     }
+
+    @Override
+    public void purchaseMaterial(final Material material, final String materialTypeId) {
+        helper.doWithCommit(new DoInTransaction() {
+            @Override
+            public void process(SessionWrapper session) {
+                MaterialModel materialModel = new MaterialModel();
+                materialModel.setUnitsPerWorkZoneMeasure(material.getUnitsPerWorkZoneMeasure());
+                materialModel.setMaterialType(session.get(MaterialTypeModel.class, materialTypeId));
+                session.save(materialModel);
+            }
+        });
+    }
+
 }

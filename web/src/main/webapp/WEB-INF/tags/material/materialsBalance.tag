@@ -12,49 +12,19 @@
 
 <table border="1">
     <tr>
-        <th></th>
+        <th>Number</th>
         <th>Name</th>
+        <th>Quantity</th>
         <th>Price for unit</th>
-        <th>Need</th>
-        <th>Purchased</th>
-        <th>Balance</th>
-        <th>Planed cost</th>
-        <th>Purchased cost</th>
-        <th>Money balance</th>
+        <th>Total Price</th>
     </tr>
-
-    <tr>
-        <td>1</td>
-        <td>Shtukaturka</td>
-        <td>14</td>
-        <td>80</td>
-        <td>70</td>
-        <td>-10</td>
-        <td>1120</td>
-        <td>980</td>
-        <td>-140</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Shpaklevka</td>
-        <td>14</td>
-        <td>80</td>
-        <td>70</td>
-        <td>-10</td>
-        <td>1120</td>
-        <td>980</td>
-        <td>-140</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Total</td>
-        <td>2240</td>
-        <td>1960</td>
-        <td>-280</td>
-    </tr>
-
+    <c:forEach var="material" items="${materialsList}">
+        <tr>
+            <td>${material.id}</td>
+            <td>${material.materialType.name}</td>
+            <td>${material.unitsPerWorkZoneMeasure}</td>
+            <td>${material.materialType.pricePerUnit}</td>
+            <td>${material.planedCost}</td>
+        </tr>
+    </c:forEach>
 </table>

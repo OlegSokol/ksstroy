@@ -39,6 +39,8 @@ public class MaterialData {
     }
 
     public Double getPlanedCost() {
+
+
         return planedCost;
     }
 
@@ -61,6 +63,5 @@ public class MaterialData {
     public void setClosedCost(Double closedCost) {
         this.closedCost = closedCost;
     }
-
 
 }
