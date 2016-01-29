@@ -16,7 +16,6 @@
 </head>
 <body>
 <div id="wraper">
-    <spring:message code="welcome.springmvc" text="spring message fucked up" />
     <div>
         <h2>KS STROY PROJECT</h2>
         <p>
