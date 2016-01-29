@@ -7,16 +7,20 @@
         <!-- Database connection settings -->
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ksstroy</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ksstroy?useUnicode=true;characterEncoding=UTF-8;characterSetResults=UTF-8</property>
         <property name="hibernate.connection.username">uksstroy</property>
         <property name="hibernate.connection.password">stroy</property>
+        <property name="hibernate.connection.CharSet">utf8</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.connection.useUnicode">true</property>
+
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
 
         <!-- List of XML mapping files -->
-        <mapping class="ua.ksstroy.models.project.ProjectModel"></mapping>
-        <mapping class="ua.ksstroy.models.user.UserModel"></mapping>
-        <mapping class="ua.ksstroy.models.zone.ZonesModel"></mapping>
+        <mapping class="ua.ksstroy.models.project.ProjectModel"/>
+        <mapping class="ua.ksstroy.models.user.UserModel"/>
+        <mapping class="ua.ksstroy.models.zone.ZonesModel"/>
 
         <mapping class="ua.ksstroy.models.zone.ZonesModel"/>
         <mapping class="ua.ksstroy.models.zone.GroupsModel"/>

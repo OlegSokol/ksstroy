@@ -1,4 +1,6 @@
 USE ksstroy;
+SET NAMES 'utf8';
+SET CHARACTER SET 'utf8';
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -14,7 +16,7 @@ VALUES (33, 'Cool Project', 'Very cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
 VALUES (34, 'Another Cool Project', 'Super cool', '1');
 INSERT INTO `projects` (`ID`, `PROJECT_NAME`, `DESCRIPTION`, `ID_GROUP`)
-VALUES (35, 'Not Cool Project', 'Not cool', '1');
+VALUES (35, 'не крутой проект', 'Not cool', '1');
 
 
 DROP TABLE IF EXISTS `users`;
@@ -28,6 +30,7 @@ CREATE TABLE `users` (
   DEFAULT CHARSET = utf8;
 
 INSERT INTO `users` (`ID`, `NAME`, `PASSWORD`, `ROLE`) VALUES (1, 'admin', 'nimda', 'admin');
+INSERT INTO `users` (`ID`, `NAME`, `PASSWORD`, `ROLE`) VALUES (2, 'ѕользователь', 'пароль', 'роль');
 
 
 DROP TABLE IF EXISTS `user_project_rel`;
@@ -35,11 +38,10 @@ CREATE TABLE `user_project_rel` (
   `project` INT(10),
   `user`    INT(10)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+ ;
 
 INSERT INTO `user_project_rel` (`project`, `user`) VALUES (33, 1);
-INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 1);
+INSERT INTO `user_project_rel` (`project`, `user`) VALUES (34, 2);
 
 
 DROP TABLE IF EXISTS `zones`;
@@ -53,8 +55,7 @@ CREATE TABLE `zones` (
   `surplus_for_zones_id` INT(10) UNSIGNED, #have value only if the zonegroup is surplus
   `addit_for_zones_id`   INT(10) UNSIGNED #have value only if the zonegroup is additional
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+;
 
 INSERT INTO `zones` VALUES (1, 'pol1', 10.0, 10.0, 'M2', 4, NULL, NULL);
 INSERT INTO `zones` VALUES (2, 'stenaA', 6.0, 3.0, 'M2', 5, NULL, NULL);
@@ -76,8 +77,7 @@ CREATE TABLE `groups` (
   `name`      VARCHAR(50),
   `parent_id` BIGINT(20)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+;
 
 INSERT INTO `groups` VALUES (1, 'KVARTIRA', NULL);
 INSERT INTO `groups` VALUES (2, 'PENTHAUS', NULL);
@@ -98,8 +98,7 @@ CREATE TABLE `worktypes` (
   `unit_price`      DOUBLE,
   `parent_group_id` INT(10) UNSIGNED
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+ ;
 
 INSERT INTO `worktypes` VALUES (1, 'probivka otverstiy mezdu sten', 'worktype_1_descr.', 'L', 3.45, 4);
 INSERT INTO `worktypes` VALUES (2, 'zavod vvdonogo provoda', 'worktype_2_descr.', 'L', 3.45, 4);
@@ -118,9 +117,7 @@ CREATE TABLE `worktype_groups` (
   `group_id`  BIGINT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name`      VARCHAR(50),
   `parent_id` BIGINT(20)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+);
 
 INSERT INTO `worktype_groups` VALUES (1, 'root_worktype_group', NULL);
 INSERT INTO `worktype_groups` VALUES (2, 'OTOPLENIE', 1);
@@ -140,8 +137,7 @@ CREATE TABLE `material_type_group` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+;
 
 INSERT INTO `material_type_group` VALUES (1, 'root_material_type_group', 'root_material_type_group_descr.', NULL);
 INSERT INTO `material_type_group` VALUES (2, 'OBSHE STROITELNIE MATERIALY', 'vse materiali, kotorie ne voshli v drugie gruppy.', 1);
@@ -163,9 +159,7 @@ CREATE TABLE `material_type` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`)
 )
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
+;
 
 INSERT INTO `material_type` VALUES (1, 'shpaklevka finish', 'material_type_1_descr.', '45', 'unit_name_1', '2');
 INSERT INTO `material_type` VALUES (2, 'shpaklevka start', 'material_type_2_descr.', '76', 'unit_name_2', '2');
@@ -187,9 +181,8 @@ CREATE TABLE `materials` (
   `closed_cost`                 DOUBLE      ,
   `material_type_id`          INT(8),
   PRIMARY KEY (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+);
+
 
 
 
@@ -203,9 +196,8 @@ DROP TABLE IF EXISTS `worktype_material_rel`;
 CREATE TABLE `worktype_material_rel` (
   `worktype_id` INT(10),
   `material_id`    INT(10)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+);
+
 
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 1);
 INSERT INTO `worktype_material_rel` (`worktype_id`, `material_id`) VALUES (1, 2);

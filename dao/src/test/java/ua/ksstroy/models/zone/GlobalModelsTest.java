@@ -4,10 +4,14 @@ import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ua.ksstroy.implementations.UserDaoImpl;
+import ua.ksstroy.logic.project.ProjectImpl;
+import ua.ksstroy.logic.user.UserImpl;
 import ua.ksstroy.logic.zonegroup.Measure;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +33,7 @@ public class GlobalModelsTest {
 		session.close();
 	}
 
-	@Test
+/*	@Test
 	public void testGroup() {
 		GroupsModel group = new GroupsModel("BigKvartira");
 		ProjectModel project = new ProjectModel("BuildProject", "VeryCool", group);
@@ -106,6 +110,20 @@ public class GlobalModelsTest {
 		assertEquals("VerySurplusZone", surplusZoneDB.getName());
 
 		session.delete(zone);
-	}
+	}*/
 
+	@Test
+	public  void testUtf8(){
+		UserDaoImpl userDao= new UserDaoImpl();
+		UserImpl mockUser = new UserImpl();
+		mockUser.setName("Ñארא");
+		mockUser.setPassword("ןאנמכüןאנמכü");
+		mockUser.setRole("נמכü");
+		mockUser.setProjectsList(new ArrayList<ProjectImpl>());
+		userDao.addUser(mockUser);
+		for (UserImpl user : userDao.getAllUsers()) {
+			System.out.println(user.getName());
+		}
+
+	}
 }
