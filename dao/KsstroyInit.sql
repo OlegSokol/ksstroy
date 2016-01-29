@@ -1,6 +1,7 @@
 USE ksstroy;
 SET NAMES 'utf8';
 SET CHARACTER SET 'utf8';
+SET collation_connection='utf8_general_ci';
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `ID`           INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

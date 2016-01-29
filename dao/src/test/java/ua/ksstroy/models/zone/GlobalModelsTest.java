@@ -19,19 +19,6 @@ import static org.junit.Assert.assertEquals;
 
 public class GlobalModelsTest {
 
-	private Session session;
-
-	@Before
-	public void setUp() {
-		session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		session.getTransaction().commit();
-		session.close();
-	}
 
 /*	@Test
 	public void testGroup() {
