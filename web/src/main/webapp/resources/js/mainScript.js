@@ -22,5 +22,16 @@ $(document).ready(function () {
     })
 
 
+var url=$(location).attr('href')
+    var shortURL=url.substr(url.lastIndexOf('/') + 1)
 
+
+
+   $(".menu_item").each(function(){
+        var a_href = $(this).attr('href');
+        var shortHref= a_href.substr(a_href.lastIndexOf('/') + 1);
+if(shortHref==shortURL){
+    $(this).addClass('active_menu_item')
+}
+    });
 });
