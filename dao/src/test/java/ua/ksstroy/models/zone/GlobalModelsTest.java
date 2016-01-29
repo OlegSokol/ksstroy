@@ -103,9 +103,9 @@ public class GlobalModelsTest {
 	public  void testUtf8(){
 		UserDaoImpl userDao= new UserDaoImpl();
 		UserImpl mockUser = new UserImpl();
-		mockUser.setName("Саша");
-		mockUser.setPassword("парольпароль");
-		mockUser.setRole("роль");
+		mockUser.setName("СЃР°С€Р°");
+		mockUser.setPassword("РїР°СЂРѕР»СЊРїР°СЂРѕР»Р»");
+		mockUser.setRole("СЃР°С€Р°");
 		mockUser.setProjectsList(new ArrayList<ProjectImpl>());
 		userDao.addUser(mockUser);
 		for (UserImpl user : userDao.getAllUsers()) {
