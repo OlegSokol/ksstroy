@@ -21,5 +21,13 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	 
 	<mvc:annotation-driven />
+
+	<!-- Register the welcome.properties
+	//TODO change to reloadable to simplify development
+	-->
+	<bean id="messageSource"
+		  class="org.springframework.context.support.ResourceBundleMessageSource" >
+		<property name="basename" value="russianLanguage" />
+	</bean>
  
 </beans>
