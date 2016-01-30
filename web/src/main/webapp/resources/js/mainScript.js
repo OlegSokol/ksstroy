@@ -12,26 +12,29 @@ $(document).ready(function () {
         $(this).closest(".purchase").children(".controller").toggleClass("hidden");
     })
 
-    $('#show-hide-works').click(function() {
-       if($(this).is(':checked')){
-           $('.work-group').toggleClass("hidden");}
-        else{
-           $('.work-group').toggleClass("hidden");
-       }
+    $('#show-hide-works').click(function () {
+        if ($(this).is(':checked')) {
+            $('.work-group').toggleClass("hidden");
+        }
+        else {
+            $('.work-group').toggleClass("hidden");
+        }
 
     })
 
 
-var url=$(location).attr('href')
-    var shortURL=url.substr(url.lastIndexOf('/') + 1)
+    function underline_active_menu_item() {
+        $(".menu_item").each(function () {
+            var url = $(location).attr('href')
+            var shortURL = url.substr(url.lastIndexOf('/') + 1)
+            var a_href = $(this).attr('href');
+            var shortHref = a_href.substr(a_href.lastIndexOf('/') + 1);
+            if (shortHref == shortURL) {
+                $(this).addClass('active_menu_item')
+            }
+        });
+    }
+    underline_active_menu_item()
 
 
-
-   $(".menu_item").each(function(){
-        var a_href = $(this).attr('href');
-        var shortHref= a_href.substr(a_href.lastIndexOf('/') + 1);
-if(shortHref==shortURL){
-    $(this).addClass('active_menu_item')
-}
-    });
 });

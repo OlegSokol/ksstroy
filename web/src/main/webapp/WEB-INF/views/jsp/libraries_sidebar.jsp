@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <ul class="library">
   <h4><spring:message code="LIBRARYES" text="spring message fucked up" /></h4>

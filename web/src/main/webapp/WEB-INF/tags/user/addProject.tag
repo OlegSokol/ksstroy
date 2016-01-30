@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@attribute name="user" type="ua.ksstroy.logic.user.UserData" required="true" %>

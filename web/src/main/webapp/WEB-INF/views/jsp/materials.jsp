@@ -22,7 +22,7 @@
 </ul>
 
 <div align="center">
-    <h2>MATERIALS</h2>
+
     <jsp:include page="libraries_sidebar.jsp"/>
     <material:materialsBalance materialsList="${MaterialsList}"/>
 

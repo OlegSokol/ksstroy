@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -10,13 +11,15 @@
 
 <table id="works-balance" border="1">
   <tbody><tr>
-    <th></th>
-    <th>WorkGroup</th>
-    <th>WorkName</th>
-    <th>Worktype</th>
-    <th>Price per zone unit</th>
-    <th>Total units</th>
-    <th>TotalPlanedPrice</th>
+    <th>№</th>
+    <th>Группа</th>
+    <th>Работа</th>
+    <th>Тип работы</th>
+    <th>цена работы/ед.зоны</th>
+    <th>цена материалов/ед.зоны</th>
+    <th>общ.цена/ед.зоны</th>
+    <th>объем зон</th>
+    <th>общая цена</th>
   </tr>
 
   <tr>
@@ -24,28 +27,35 @@
     <td>ELEKTRIKA</td>
     <td>stroblenie kirpich</td>
     <td>stroblenie kirpich</td>
-    <td>70</td>
+    <td>70grn</td>
+    <td>120grn</td>
+    <td>190grn</td>
+    <td>150m2</td>
+    <td>15000grn</td>
+
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>ELEKTRIKA</td>
+    <td>stroblenie kirpich</td>
+    <td>stroblenie kirpich</td>
+    <td>70grn</td>
+    <td>120grn</td>
+    <td>190grn</td>
     <td>150m2</td>
     <td>15000grn</td>
 
   </tr>
   <tr>
-    <td>2</td>
-    <td>ELEKTRIKA</td>
-    <td>zavod vxodnogo provoda</td>
-    <td>zavod vxodnogo provoda</td>
-    <td>80</td>
-    <td>10</td>
-    <td>1120grn</td>
-
-  </tr>
-  <tr>
     <td></td>
     <td></td>
     <td></td>
     <td></td>
     <td></td>
-    <td>Total</td>
+    <td></td>
+    <td></td>
+    <td>Суммарная</td>
     <td>16120grn</td>
 
   </tr>

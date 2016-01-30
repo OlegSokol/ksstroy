@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -12,19 +13,30 @@
 
 <table border="1">
     <tr>
-        <th>Number</th>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Price for unit</th>
-        <th>Total Price</th>
+        <th>№</th>
+        <th>тип</th>
+        <th>наименование</th>
+        <th>кол-во</th>
+        <th>грн/еденица</th>
+        <th>суммарная цена</th>
     </tr>
     <c:forEach var="material" items="${materialsList}">
         <tr>
             <td>${material.id}</td>
+            <td>Шкаклевки(мок)</td>
             <td>${material.materialType.name}</td>
             <td>${material.unitsPerWorkZoneMeasure}</td>
             <td>${material.materialType.pricePerUnit}</td>
             <td>${material.planedCost}</td>
         </tr>
     </c:forEach>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>общая</td>
+        <td>10500грн</td>
+            </tr>
+
 </table>
