@@ -60,7 +60,7 @@
                 </td>
             </tr>
 
-            <tr>
+          <%--  <tr>
                 <td>zone:</td>
                 <td>
                     <form method="post">
@@ -75,6 +75,10 @@
                         </select>
                     </form>
                 </td>
+            </tr>--%>
+            <tr>
+
+                <td><button>назначить для зон</button></td>
             </tr>
 
             </tbody>

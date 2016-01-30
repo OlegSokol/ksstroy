@@ -16,18 +16,23 @@
         <th>№</th>
         <th>тип</th>
         <th>наименование</th>
-        <th>кол-во</th>
-        <th>грн/еденица</th>
-        <th>суммарная цена</th>
+        <th>цена</th>
+        <th>надо</th>
+        <th>склад</th>
+        <th>планируемая стоимость</th>
+        <th>потрачено</th>
     </tr>
     <c:forEach var="material" items="${materialsList}">
         <tr>
             <td>${material.id}</td>
             <td>Шкаклевки(мок)</td>
             <td>${material.materialType.name}</td>
-            <td>${material.unitsPerWorkZoneMeasure}</td>
-            <td>${material.materialType.pricePerUnit}</td>
-            <td>${material.planedCost}</td>
+            <td>${material.materialType.pricePerUnit} грн/шт</td>
+            <td>32шт</td>
+            <td>15шт</td>
+           <%--TODO looks redundant <td>${material.unitsPerWorkZoneMeasure}</td>--%>
+            <td>${material.planedCost} грн</td>
+            <td>253грн</td>
         </tr>
     </c:forEach>
     <tr>
@@ -35,8 +40,10 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>общая</td>
+        <td></td>
+        <td>ИТОГО</td>
         <td>10500грн</td>
+        <td>10110грн</td>
             </tr>
 
 </table>

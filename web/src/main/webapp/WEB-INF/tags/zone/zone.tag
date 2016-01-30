@@ -20,7 +20,7 @@
     <li>
         <div class="item zone">
             <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
-                ${zones.name}
+                ${zones.name} : ${zones.value}${zones.measureName}
             <div class="add_delete_wrapper">
                 <div class="delete_btn">
                     <form action="${pageContext.request.contextPath}/projects/removeZone" method="post">
@@ -149,7 +149,7 @@
             </div>
 
 
-            <ul class="works">
+            <ul class="works hidden">
 
 
                 <ul class="group">
@@ -482,7 +482,7 @@
             </div>
 
 
-            <ul class="works">
+            <ul class="works hidden">
 
 
                 <ul class="group">
