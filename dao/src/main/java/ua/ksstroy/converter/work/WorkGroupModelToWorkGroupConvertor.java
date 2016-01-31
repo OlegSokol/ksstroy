@@ -3,7 +3,6 @@ package ua.ksstroy.converter.work;
 import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.work.Work;
 import ua.ksstroy.logic.work.WorkGroup;
-import ua.ksstroy.logic.work.WorkGroupImpl;
 import ua.ksstroy.models.work.WorkGroupModel;
 import ua.ksstroy.models.work.WorkModel;
 
@@ -13,7 +12,7 @@ import java.util.List;
 public class WorkGroupModelToWorkGroupConvertor implements Converter<WorkGroupModel, WorkGroup> {
     @Override
     public WorkGroup convert(WorkGroupModel workGroupModel) {
-        WorkGroup workGroup = new WorkGroupImpl();
+        WorkGroup workGroup = new WorkGroup();
         workGroup.setId(workGroupModel.getId());
         workGroup.setName(workGroupModel.getName());
 

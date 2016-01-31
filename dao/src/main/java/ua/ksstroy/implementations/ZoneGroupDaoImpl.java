@@ -5,14 +5,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ua.ksstroy.converter.Converter;
 
-import ua.ksstroy.converter.zonegroup.GroupsModelToGroupConverter;
-import ua.ksstroy.converter.zonegroup.GroupsModelToZoneGroupHierarchyConverter;
-import ua.ksstroy.converter.zonegroup.ZoneToZoneModelConverter;
-import ua.ksstroy.converter.zonegroup.ZonesModelToZoneConverter;
-import ua.ksstroy.logic.zonegroup.Zone;
-import ua.ksstroy.logic.zonegroup.ZoneDao;
-import ua.ksstroy.logic.zonegroup.ZoneGroup;
-import ua.ksstroy.logic.zonegroup.ZoneGroupImpl;
+import ua.ksstroy.converter.zone.GroupsModelToGroupConverter;
+import ua.ksstroy.converter.zone.GroupsModelToZoneGroupHierarchyConverter;
+import ua.ksstroy.converter.zone.ZoneToZoneModelConverter;
+import ua.ksstroy.converter.zone.ZonesModelToZoneConverter;
+import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneDao;
+import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
@@ -201,8 +200,8 @@ public class ZoneGroupDaoImpl implements ZoneDao {
         return targetCollection;
     }
 
-    private ZoneGroupImpl convertGroupsModelToZoneGroup(GroupsModel groupsModel) {
-        ZoneGroupImpl zoneGroup = new ZoneGroupImpl();
+    private ZoneGroup convertGroupsModelToZoneGroup(GroupsModel groupsModel) {
+        ZoneGroup zoneGroup = new ZoneGroup();
         zoneGroup.setId(groupsModel.getId());
         zoneGroup.setName(groupsModel.getName());
 

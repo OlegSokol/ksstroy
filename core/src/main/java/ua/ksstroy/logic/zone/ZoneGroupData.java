@@ -1,4 +1,4 @@
-package ua.ksstroy.logic.zonegroup;
+package ua.ksstroy.logic.zone;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ Doesn't contains any business logic
 
 */
 
-public class ZoneHierarchyData {
+public class ZoneGroupData {
 
 	private String name;
 	
 	private String id;
 
-	private List<ZoneHierarchyData> groups;
+	private List<ZoneGroupData> groups;
 
 	private List<ZoneData> zones;
 
@@ -36,11 +36,11 @@ public class ZoneHierarchyData {
 		this.id = id;
 	}
 
-	public List<ZoneHierarchyData> getGroups() {
+	public List<ZoneGroupData> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(List<ZoneHierarchyData> groups) {
+	public void setGroups(List<ZoneGroupData> groups) {
 		this.groups = groups;
 	}
 

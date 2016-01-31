@@ -3,10 +3,10 @@ package ua.ksstroy.logic.work;
 import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.worktype.WorkTypeDataToWorkTypeConverter;
 import ua.ksstroy.converter.worktype.WorkTypeToWorkTypeDataConverter;
-import ua.ksstroy.converter.zonegroup.ZoneDataToZoneConverter;
-import ua.ksstroy.converter.zonegroup.ZoneToZoneDataConverter;
-import ua.ksstroy.logic.zonegroup.Zone;
-import ua.ksstroy.logic.zonegroup.ZoneData;
+import ua.ksstroy.converter.zone.ZoneDataToZoneConverter;
+import ua.ksstroy.converter.zone.ZoneToZoneDataConverter;
+import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneData;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class WorkManagerImpl implements WorkManager {
     }
 
     public Work convertWorkDataToWork(WorkData workData) {
-        Work work = new WorkImpl();
+        Work work = new Work();
 
         work.setId(workData.getId());
         work.setName(workData.getName());
@@ -104,7 +104,7 @@ public class WorkManagerImpl implements WorkManager {
     }
 
     public Cover convertCoverDataToCover(CoverData coverData) {
-        Cover cover = new CoverImpl();
+        Cover cover = new Cover();
 
         cover.setId(coverData.getId());
         cover.setValue(coverData.getValue());
@@ -115,7 +115,7 @@ public class WorkManagerImpl implements WorkManager {
     }
 
     public Adjustment convertAdjustmentDataToAdjustment(AdjustmentData adjustmentData) {
-        Adjustment adjustment = new AdjustmentImpl();
+        Adjustment adjustment = new Adjustment();
 
         adjustment.setId(adjustmentData.getId());
         adjustment.setAbsolute(adjustmentData.isAbsolute());

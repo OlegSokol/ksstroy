@@ -1,6 +1,6 @@
-package ua.ksstroy.logic.zonegroup;
+package ua.ksstroy.logic.zone;
 
-import ua.ksstroy.logic.zonegroup.exceptions.NameConflictException;
+import ua.ksstroy.logic.zone.exceptions.NameConflictException;
 
 public interface ZoneManager {
 	/*
@@ -8,7 +8,7 @@ public interface ZoneManager {
 	 * data-base (e.g MySQL); with already affected in runtime business logic
 	 * rules.
 	 */
-	ZoneHierarchyData getRootZoneHierarchy(String projectId) throws NameConflictException;
+	ZoneGroupData getRootZoneHierarchy(String projectId) throws NameConflictException;
 
 	void addRootGroupToProject(String groupName, Integer projectId) throws NameConflictException;
 

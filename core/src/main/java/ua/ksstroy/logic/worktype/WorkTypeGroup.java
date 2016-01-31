@@ -1,22 +1,47 @@
 package ua.ksstroy.logic.worktype;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface WorkTypeGroup {
+public class WorkTypeGroup{
 
-    Integer getId();
+    private Integer id;
 
-    void setId(Integer id);
+    private String name;
 
-    String getName();
+    private List<WorkTypeGroup> workTypeGroups = new ArrayList<>();
 
-    void setName(String name);
+    private List<WorkType> workTypes = new ArrayList<>();
 
-    List<WorkTypeGroup> getWorkTypeGroups();
+    public Integer getId() {
+        return id;
+    }
 
-    void setWorkTypeGroups(List<WorkTypeGroup> workTypeGroups);
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    List<WorkType> getWorkTypes();
+    public String getName() {
+        return name;
+    }
 
-    void setWorkTypes(List<WorkType> workTypes);
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<WorkTypeGroup> getWorkTypeGroups() {
+        return workTypeGroups;
+    }
+
+    public void setWorkTypeGroups(List<WorkTypeGroup> workTypeGroups) {
+        this.workTypeGroups = workTypeGroups;
+    }
+
+    public List<WorkType> getWorkTypes() {
+        return workTypes;
+    }
+
+    public void setWorkTypes(List<WorkType> workTypes) {
+        this.workTypes = workTypes;
+    }
 }

@@ -1,9 +1,8 @@
-package ua.ksstroy.converter.zonegroup;
+package ua.ksstroy.converter.zone;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.zonegroup.Zone;
-import ua.ksstroy.logic.zonegroup.ZoneGroup;
-import ua.ksstroy.logic.zonegroup.ZoneGroupImpl;
+import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class GroupsModelToZoneGroupHierarchyConverter implements Converter<GroupsModel, ZoneGroup> {
     public ZoneGroup convert(GroupsModel groupsModel) {
-        ZoneGroup zoneGroup = new ZoneGroupImpl();
+        ZoneGroup zoneGroup = new ZoneGroup();
         zoneGroup.setId(groupsModel.getId());
         zoneGroup.setName(groupsModel.getName());
 

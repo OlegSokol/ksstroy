@@ -3,7 +3,6 @@ package ua.ksstroy.converter.material;
 import ua.ksstroy.converter.Converter;
 import ua.ksstroy.logic.material.MaterialType;
 import ua.ksstroy.logic.material.MaterialTypeGroup;
-import ua.ksstroy.logic.material.MaterialTypeGroupImpl;
 import ua.ksstroy.models.material.MaterialTypeGroupModel;
 import ua.ksstroy.models.material.MaterialTypeModel;
 
@@ -14,7 +13,7 @@ public class MaterialTypeGroupModelToGroupHierarchyConverter implements Converte
 
     public MaterialTypeGroup convert(MaterialTypeGroupModel materialTypeGroupModel) {
 
-        MaterialTypeGroup materialTypeGroup = new MaterialTypeGroupImpl(
+        MaterialTypeGroup materialTypeGroup = new MaterialTypeGroup(
                 materialTypeGroupModel.getId(),
                 materialTypeGroupModel.getName(),
                 materialTypeGroupModel.getDescription()

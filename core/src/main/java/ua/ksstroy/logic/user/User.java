@@ -1,20 +1,17 @@
 package ua.ksstroy.logic.user;
 
 
-import ua.ksstroy.logic.project.ProjectData;
-import ua.ksstroy.logic.project.ProjectImpl;
+import ua.ksstroy.logic.project.Project;
 
 import java.util.List;
 
-public class UserImpl  {
+public class User {
     private String id;
     private  String name;
     private  String password;
     private String role;
-    private List<ProjectImpl> projectsList;
+    private List<Project> projectsList;
 
-    public void UserImpl() {
-    };
     public String getId() {
         return id;
     }
@@ -48,11 +45,11 @@ public class UserImpl  {
     }
 
 
-    public List<ProjectImpl> getProjectsList() {
+    public List<Project> getProjectsList() {
         return projectsList;
     }
 
-    public void setProjectsList(List<ProjectImpl> projectsList) {
+    public void setProjectsList(List<Project> projectsList) {
         this.projectsList = projectsList;
     }
 }

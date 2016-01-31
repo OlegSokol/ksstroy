@@ -1,50 +1,163 @@
 package ua.ksstroy.logic.work;
 
+import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.worktype.WorkType;
-import ua.ksstroy.logic.zonegroup.Zone;
+import ua.ksstroy.logic.zone.Zone;
 
 import java.util.List;
 
-public interface Work {
-	
-	public WorkType getType();
+public class Work {
 
-	public void setType(WorkType type);
+    private String id;
 
-	public List<Zone> getWorkZones();
+    private String name;
 
-	public void setWorkZones(List<Zone> workZones);
+    private WorkType type;
 
-	public List<Cover> getAllCovers();
+    private List<Zone> workZones;
 
-	public void setAllCovers(List<Cover> allCovers);
+    private List<Cover> allCovers;
 
-	public String getId(); 
+    private Double planedCost;
 
-	public void setId(String id); 
+    private Double perspectiveCost;
 
-	public String getName(); 
-	
-	public void setName(String name); 
+    private Double closedCost;
 
-	public Double getPlanedCost(); 
+    private Double dealCost;
 
-	public void setPlanedCost(Double planedCost);
+    private List<Adjustment> adjustments;
 
-	public Double getPerspectiveCost();
+    
+    public WorkType getType() {
 
-	public void setPerspectiveCost(Double perspectiveCost); 
+        return type;
+    }
 
-	public Double getClosedCost(); 
+    
+    public void setType(WorkType type) {
 
-	public void setClosedCost(Double closedCost); 
+        this.type = type;
+    }
 
-	public Double getDealCost(); 
+    
+    public List<Zone> getWorkZones() {
 
-	public void setDealCost(Double dealCost); 
+        return workZones;
+    }
 
-	public List<Adjustment> getAdjustments();
+    
+    public void setWorkZones(List<Zone> workZones) {
+        this.workZones = workZones;
 
-	public void setAdjustments(List<Adjustment> adjustments);
+    }
+
+    
+    public List<Cover> getAllCovers() {
+        return allCovers;
+    }
+
+    
+    public void setAllCovers(List<Cover> allCovers) {
+        this.allCovers = allCovers;
+
+    }
+
+    
+    public String getId() {
+        return id;
+    }
+
+    
+    public void setId(String id) {
+        this.id = id;
+
+    }
+
+    
+    public String getName() {
+        // TODO Auto-generated method stub
+        return name;
+    }
+
+    
+    public void setName(String name) {
+        this.name = name;
+
+    }
+
+    
+    public Double getPlanedCost() {
+        double costForAllMaterials=0;
+        double valueForAllZones=0;
+
+        List<Material> listMaterials = type.getMaterials();
+
+        for (int i = 0; i < listMaterials.size(); i++) {
+            costForAllMaterials = costForAllMaterials + listMaterials.get(i).getPlanedCost();
+        }
+
+        for (int i = 0; i < workZones.size(); i++) {
+            valueForAllZones = valueForAllZones + workZones.get(i).getValue();
+        }
+
+        this.planedCost = type.getUnitPrice() + (costForAllMaterials * valueForAllZones );
+
+        return this.planedCost;
+    }
+
+    
+    public void setPlanedCost(Double planedCost) {
+        this.planedCost = planedCost;
+
+    }
+
+    
+    public Double getPerspectiveCost() {
+        // TODO Auto-generated method stub
+        return perspectiveCost;
+    }
+
+    
+    public void setPerspectiveCost(Double perspectiveCost) {
+        this.perspectiveCost = perspectiveCost;
+
+    }
+
+    
+    public Double getClosedCost() {
+        // TODO Auto-generated method stub
+        return closedCost;
+    }
+
+    
+    public void setClosedCost(Double closedCost) {
+        this.closedCost = closedCost;
+
+    }
+
+    
+    public Double getDealCost() {
+        // TODO Auto-generated method stub
+        return dealCost;
+    }
+
+    
+    public void setDealCost(Double dealCost) {
+        this.dealCost = dealCost;
+
+    }
+
+    
+    public List<Adjustment> getAdjustments() {
+        // TODO Auto-generated method stub
+        return adjustments;
+    }
+
+    
+    public void setAdjustments(List<Adjustment> adjustments) {
+        this.adjustments = adjustments;
+
+    }
 
 }

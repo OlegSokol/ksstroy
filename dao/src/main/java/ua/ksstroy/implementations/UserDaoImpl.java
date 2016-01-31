@@ -4,11 +4,11 @@ import org.springframework.stereotype.Component;
 import ua.ksstroy.converter.projectuser.ProjectToProjectModelConverter;
 import ua.ksstroy.converter.projectuser.UserModelToUserConverter;
 import ua.ksstroy.converter.projectuser.UserToUserModelConverter;
+import ua.ksstroy.logic.project.Project;
 import ua.ksstroy.logic.project.ProjectData;
-import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;
 import ua.ksstroy.logic.user.UserData;
-import ua.ksstroy.logic.user.UserImpl;
+import ua.ksstroy.logic.user.User;
 import ua.ksstroy.models.project.ProjectModel;
 import ua.ksstroy.models.user.UserModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -25,14 +25,14 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public List<UserImpl> getAllUsers() {
-        return helper.simpleAction(new GetInTransaction<List<UserImpl>>() {
+    public List<User> getAllUsers() {
+        return helper.simpleAction(new GetInTransaction<List<User>>() {
             @Override
-            public List<UserImpl> process(SessionWrapper session) {
-                List<UserImpl> userList = new ArrayList<UserImpl>();
+            public List<User> process(SessionWrapper session) {
+                List<User> userList = new ArrayList<User>();
                 List<UserModel> userModelList = session.getAll(new UserModel());
                 for (UserModel userModel : userModelList) {
-                    UserImpl userImpl = new UserModelToUserConverter().convert(userModel);
+                    User userImpl = new UserModelToUserConverter().convert(userModel);
                     userList.add(userImpl);
                 }
 
@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addUser(final UserImpl user) {
+    public void addUser(final User user) {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {
@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addProject(final String userId, final ProjectImpl project) {
+    public void addProject(final String userId, final Project project) {
         helper.doWithCommit(new DoInTransaction() {
             @Override
             public void process(SessionWrapper session) {

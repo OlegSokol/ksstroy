@@ -4,11 +4,11 @@ import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.ksstroy.converter.zonegroup.ZonesModelToZoneConverter;
+import ua.ksstroy.converter.zone.ZonesModelToZoneConverter;
 import ua.ksstroy.models.zone.GroupsModel;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
-import ua.ksstroy.logic.zonegroup.*;
+import ua.ksstroy.logic.zone.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +21,7 @@ public class ZoneGroupDaoImplTest {
     String mockZoneName = "mockZoneFromTestZoneDaoImpl";
     double mockZoneWidth = 13.0;
     Measure mockZoneMeasureName = Measure.KG;
-    Zone mockZoneImpl = new ZoneImpl();
+    Zone mockZoneImpl = new Zone();
     String mockZoneImplName = "mockZoneImplName";
     Double mockZoneImplWidth = 13.05;
     Double mockZoneImplHeight = 15.1;
@@ -32,7 +32,7 @@ public class ZoneGroupDaoImplTest {
     public void setUp() throws Exception {
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        mockZoneImpl = new ZoneImpl();
+        mockZoneImpl = new Zone();
         mockZoneImpl.setName(mockZoneImplName);
         mockZoneImpl.setHeight(mockZoneImplHeight);
         mockZoneImpl.setWidth(mockZoneWidth);
@@ -201,7 +201,7 @@ public class ZoneGroupDaoImplTest {
     @Test
     public void testStoreZone() {
         ZoneDao zoneDao = new ZoneGroupDaoImpl();
-        Zone mockZoneImpl = new ZoneImpl();
+        Zone mockZoneImpl = new Zone();
         mockZoneImpl.setName(mockZoneImplName);
         mockZoneImpl.setHeight(mockZoneImplHeight);
         mockZoneImpl.setWidth(mockZoneWidth);

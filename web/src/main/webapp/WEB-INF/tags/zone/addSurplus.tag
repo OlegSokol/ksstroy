@@ -1,6 +1,6 @@
 <%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
-<%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zonegroup.ZoneData" %>
+<%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zone.ZoneData" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>

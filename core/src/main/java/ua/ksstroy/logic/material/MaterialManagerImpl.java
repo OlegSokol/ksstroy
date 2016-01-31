@@ -20,13 +20,13 @@ public class MaterialManagerImpl implements MaterialManager {
 
     @Override
     public void purchaseMaterial(MaterialData materialData, String materialTypeId) {
-        Material material = new MaterialImpl();
+        Material material = new Material();
         material.setUnitsPerWorkZoneMeasure(materialData.getUnitsPerWorkZoneMeasure());
         this.materialDao.purchaseMaterial(material, materialTypeId);
     }
 
 
-    public MaterialData convertMaterialImplToData(MaterialImpl material) {
+    public MaterialData convertMaterialImplToData(Material material) {
         MaterialData materialData = new MaterialData();
         materialData.setClosedCost(material.getClosedCost());
         materialData.setPlanedCost(material.getPlanedCost());
@@ -37,9 +37,9 @@ public class MaterialManagerImpl implements MaterialManager {
         return materialData;
     }
 
-    public List<MaterialData> convertMaterialImplToData(List<MaterialImpl> materialList) {
+    public List<MaterialData> convertMaterialImplToData(List<Material> materialList) {
         List<MaterialData> materialDatas = new ArrayList<>();
-        for (MaterialImpl material : materialList) {
+        for (Material material : materialList) {
             materialDatas.add(this.convertMaterialImplToData(material));
         }
         return materialDatas;

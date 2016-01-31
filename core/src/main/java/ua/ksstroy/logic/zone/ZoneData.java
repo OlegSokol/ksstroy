@@ -1,9 +1,9 @@
-package ua.ksstroy.logic.zonegroup;
+package ua.ksstroy.logic.zone;
 
 import java.util.ArrayList;
 import java.util.List;
 /*	
- The class is contain all information about particular zonegroup in building
+ The class is contain all information about particular zone in building
  with additional and surplus zones. Literally it is "castrated" implementation
  of Zone object. Doesn't contains any business logic. Just pure data
  representation sends to web tier and vice-versa. 

@@ -1,37 +1,83 @@
 package ua.ksstroy.logic.material;
 
-public interface MaterialType {
+public class MaterialType{
 
-    String getId();
+    private String id;
 
-    void setId(String id);
+    private String name;
 
-    String getName();
+    private String description;
 
-    void setName(String name);
+    private Double pricePerUnit;
 
-    String getDescription();
+    private String unitName;
 
-    void setDescription(String description);
+    public MaterialType() {
+    }
 
-    Double getPricePerUnit();
+    public MaterialType(String id, String name, String description, Double pricePerUnit, String unitName) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.pricePerUnit = pricePerUnit;
+        this.unitName = unitName;
+    }
 
-    void setPricePerUnit(Double pricePerUnit);
+    
+    public String getId() {
+        return id;
+    }
 
-    String getUnitName();
+    
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    void setUnitName(String unitName);
+    
+    public String getName() {
+        return name;
+    }
 
-    /*
-    * Calculate price all material into material Type
-    */
+    
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    Double getSummaryPriceMaterial();
+    
+    public String getDescription() {
+        return description;
+    }
 
-    /*
-    * Calculate quantity all material into material Type
-    */
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    Double getSummaryQuantityMaterial();
+    public Double getPricePerUnit() {
+        return pricePerUnit;
+    }
 
+    public void setPricePerUnit(Double pricaPerUnit) {
+        this.pricePerUnit = pricaPerUnit;
+    }
+
+    
+    public String getUnitName() {
+        return unitName;
+    }
+
+    
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+    
+    public Double getSummaryPriceMaterial() {
+        return null;
+    }
+
+    
+    public Double getSummaryQuantityMaterial() {
+        return null;
+    }
 }

@@ -1,11 +1,11 @@
-package ua.ksstroy.logic.zonegroup;
+package ua.ksstroy.logic.zone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.zonegroup.ZoneDataToZoneConverter;
-import ua.ksstroy.converter.zonegroup.ZoneGroupToZoneHierarchyDataHierarchyConverter;
-import ua.ksstroy.logic.zonegroup.exceptions.NameConflictException;
+import ua.ksstroy.converter.zone.ZoneDataToZoneConverter;
+import ua.ksstroy.converter.zone.ZoneGroupToZoneHierarchyDataHierarchyConverter;
+import ua.ksstroy.logic.zone.exceptions.NameConflictException;
 
 @Component(value = "ZoneManagerImpl")
 public class ZoneManagerImpl implements ZoneManager {
@@ -14,7 +14,7 @@ public class ZoneManagerImpl implements ZoneManager {
     @Qualifier("zoneDao")
     ZoneDao zoneDaoImpl;
 
-    public ZoneHierarchyData getRootZoneHierarchy(String projectId) {
+    public ZoneGroupData getRootZoneHierarchy(String projectId) {
         return new ZoneGroupToZoneHierarchyDataHierarchyConverter().convert(zoneDaoImpl.getAllHierarchy(projectId));
     }
 

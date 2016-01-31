@@ -1,6 +1,6 @@
 package ua.ksstroy.models.zone;
 
-import ua.ksstroy.logic.zonegroup.Measure;
+import ua.ksstroy.logic.zone.Measure;
 import ua.ksstroy.models.work.WorkModel;
 
 import javax.persistence.*;

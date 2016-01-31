@@ -1,25 +1,79 @@
 package ua.ksstroy.logic.material;
 
-public interface Material {
+public class Material{
 
-    MaterialType getMaterialType();
+    private String id;
 
-    void setMaterialType(MaterialType materialType);
+    private MaterialType materialType;
 
-    Double getUnitsPerWorkZoneMeasure();
+    private Double unitsPerWorkZoneMeasure;
 
-    void setUnitsPerWorkZoneMeasure(Double unitsPerWorkZoneMeasure);
+    private Double planedCost;
 
-    Double getPlanedCost();
+    private Double dealCost;
 
-    void setPlanedCost(Double planedCost);
+    private Double closedCost;
 
-    Double getDealCost();
+   
+    public MaterialType getMaterialType() {
+        return materialType;
+    }
 
-    void setDealCost(Double dealCost);
+   
+    public void setMaterialType(MaterialType materialType) {
+        this.materialType = materialType;
+    }
 
-    Double getClosedCost();
+   
+    public Double getUnitsPerWorkZoneMeasure() {
+        return unitsPerWorkZoneMeasure;
+    }
 
-    void setClosedCost(Double closedCost);
+   
+    public void setUnitsPerWorkZoneMeasure(Double unitsPerWorkZoneMeasure) {
+        this.unitsPerWorkZoneMeasure = unitsPerWorkZoneMeasure;
+    }
+
+    /*
+    Calculate quantity on price for unit
+     */
+   
+    public Double getPlanedCost() {
+        planedCost = unitsPerWorkZoneMeasure * materialType.getPricePerUnit();
+        return planedCost;
+    }
+
+   
+    public void setPlanedCost(Double planedCost) {
+        this.planedCost = planedCost;
+    }
+
+   
+    public Double getDealCost() {
+        return dealCost;
+    }
+
+   
+    public void setDealCost(Double dealCost) {
+        this.dealCost = dealCost;
+    }
+
+   
+    public Double getClosedCost() {
+        return closedCost;
+    }
+
+   
+    public void setClosedCost(Double closedCost) {
+        this.closedCost = closedCost;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }

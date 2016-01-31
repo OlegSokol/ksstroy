@@ -1,4 +1,4 @@
-package ua.ksstroy.logic.zonegroup.exceptions;
+package ua.ksstroy.logic.zone.exceptions;
 
 public class NameConflictException extends RuntimeException {
 	/**

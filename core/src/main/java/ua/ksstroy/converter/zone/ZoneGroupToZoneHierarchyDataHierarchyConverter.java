@@ -1,17 +1,17 @@
-package ua.ksstroy.converter.zonegroup;
+package ua.ksstroy.converter.zone;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.zonegroup.Zone;
-import ua.ksstroy.logic.zonegroup.ZoneData;
-import ua.ksstroy.logic.zonegroup.ZoneGroup;
-import ua.ksstroy.logic.zonegroup.ZoneHierarchyData;
+import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneGroup;
+import ua.ksstroy.logic.zone.ZoneGroupData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZoneGroupToZoneHierarchyDataHierarchyConverter implements Converter<ZoneGroup, ZoneHierarchyData> {
-    public ZoneHierarchyData convert(ZoneGroup rootZoneGroup) {
-        ZoneHierarchyData zoHiDa = new ZoneHierarchyData();
+public class ZoneGroupToZoneHierarchyDataHierarchyConverter implements Converter<ZoneGroup, ZoneGroupData> {
+    public ZoneGroupData convert(ZoneGroup rootZoneGroup) {
+        ZoneGroupData zoHiDa = new ZoneGroupData();
 
         List<ZoneData> rootZoneData = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class ZoneGroupToZoneHierarchyDataHierarchyConverter implements Converter
             rootZoneData.add(new ZoneToZoneDataConverter().convert(tempZone));
         }
 
-        List<ZoneHierarchyData> tempZoHiDa = new ArrayList<>();
+        List<ZoneGroupData> tempZoHiDa = new ArrayList<>();
         for (ZoneGroup tempGroup : rootZoneGroup.getGroups()) {
             tempZoHiDa.add(convert(tempGroup));
         }

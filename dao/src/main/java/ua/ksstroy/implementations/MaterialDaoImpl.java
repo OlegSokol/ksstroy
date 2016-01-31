@@ -2,9 +2,8 @@ package ua.ksstroy.implementations;
 
 import org.springframework.stereotype.Repository;
 import ua.ksstroy.converter.material.MaterialModelToImplConverter;
-import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.logic.material.MaterialDao;
-import ua.ksstroy.logic.material.MaterialImpl;
+import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.models.material.MaterialModel;
 import ua.ksstroy.models.material.MaterialTypeModel;
 import ua.ksstroy.persistence.DoInTransaction;
@@ -21,11 +20,11 @@ public class MaterialDaoImpl implements MaterialDao {
     private TransactionHelper helper = new TransactionHelper();
 
     @Override
-    public List<MaterialImpl> getAllMaterials() {
-        return helper.simpleAction(new GetInTransaction<List<MaterialImpl>>() {
+    public List<Material> getAllMaterials() {
+        return helper.simpleAction(new GetInTransaction<List<Material>>() {
             @Override
-            public List<MaterialImpl> process(SessionWrapper session) {
-                List<MaterialImpl> materialList = new ArrayList<>();
+            public List<Material> process(SessionWrapper session) {
+                List<Material> materialList = new ArrayList<>();
                 List<MaterialModel> materialModelsList = session.getAll(new MaterialModel());
 
                 for (MaterialModel materialModel : materialModelsList) {

@@ -2,20 +2,20 @@ package ua.ksstroy.dao.implementations;
 
 import org.junit.*;
 import ua.ksstroy.implementations.UserDaoImpl;
+import ua.ksstroy.logic.project.Project;
 import ua.ksstroy.logic.project.ProjectData;
-import ua.ksstroy.logic.project.ProjectImpl;
 import ua.ksstroy.logic.user.UserDao;
 import ua.ksstroy.logic.user.UserData;
-import ua.ksstroy.logic.user.UserImpl;
+import ua.ksstroy.logic.user.User;
 
 
 import java.util.ArrayList;
 
 public class UserDaoImplTest extends UserDaoImpl {
 
-    UserImpl mockUserImpl = new UserImpl();
+    User mockUserImpl = new User();
     UserData mockUserData = new UserData();
-    ProjectImpl mockProjectImpl = new ProjectImpl();
+    Project mockProjectImpl = new Project();
     ProjectData mockProjectData = new ProjectData();
     
     UserDao userDao = new UserDaoImpl();
@@ -25,7 +25,7 @@ public class UserDaoImplTest extends UserDaoImpl {
         mockUserImpl.setName("mockUserDataName");
         mockUserImpl.setPassword("mockUserDataProject");
         mockUserImpl.setRole("mockUserDataRole");
-        mockUserImpl.setProjectsList(new ArrayList<ProjectImpl>());
+        mockUserImpl.setProjectsList(new ArrayList<Project>());
 
         mockUserData.setId("1");
         mockUserData.setName("mockUserDataName");

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.zonegroup.ZoneData;
-import ua.ksstroy.logic.zonegroup.ZoneHierarchyData;
-import ua.ksstroy.logic.zonegroup.ZoneManager;
+import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.ZoneGroupData;
+import ua.ksstroy.logic.zone.ZoneManager;
 
 import javax.annotation.Resource;
 
@@ -26,7 +26,7 @@ public class ZonesController {
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
         project = new ModelAndView("zones");
         project.addObject("projectId", projectId);
-        ZoneHierarchyData zhd = zoneManager.getRootZoneHierarchy(projectId);
+        ZoneGroupData zhd = zoneManager.getRootZoneHierarchy(projectId);
         project.addObject("rootGroupId", zhd.getId());
         project.addObject("zhd", zhd);
         return project;

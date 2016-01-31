@@ -1,19 +1,11 @@
 package ua.ksstroy.models.zone;
 
-import org.hibernate.Session;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import ua.ksstroy.implementations.UserDaoImpl;
-import ua.ksstroy.logic.project.ProjectImpl;
-import ua.ksstroy.logic.user.UserImpl;
-import ua.ksstroy.logic.zonegroup.Measure;
-import ua.ksstroy.models.project.ProjectModel;
-import ua.ksstroy.persistence.HibernateUtil;
+import ua.ksstroy.logic.project.Project;
+import ua.ksstroy.logic.user.User;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
@@ -102,13 +94,13 @@ public class GlobalModelsTest {
 	@Test
 	public  void testUtf8(){
 		UserDaoImpl userDao= new UserDaoImpl();
-		UserImpl mockUser = new UserImpl();
+		User mockUser = new User();
 		mockUser.setName("саша");
 		mockUser.setPassword("парольпаролл");
 		mockUser.setRole("саша");
-		mockUser.setProjectsList(new ArrayList<ProjectImpl>());
+		mockUser.setProjectsList(new ArrayList<Project>());
 		userDao.addUser(mockUser);
-		for (UserImpl user : userDao.getAllUsers()) {
+		for (User user : userDao.getAllUsers()) {
 			System.out.println(user.getName());
 		}
 

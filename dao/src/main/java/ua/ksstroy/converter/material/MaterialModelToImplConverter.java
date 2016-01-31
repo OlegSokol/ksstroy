@@ -1,13 +1,13 @@
 package ua.ksstroy.converter.material;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.material.MaterialImpl;
+import ua.ksstroy.logic.material.Material;
 import ua.ksstroy.models.material.MaterialModel;
 
-public class MaterialModelToImplConverter implements Converter<MaterialModel, MaterialImpl> {
+public class MaterialModelToImplConverter implements Converter<MaterialModel, Material> {
     @Override
-    public MaterialImpl convert(MaterialModel materialModel) {
-        MaterialImpl material = new MaterialImpl();
+    public Material convert(MaterialModel materialModel) {
+        Material material = new Material();
         material.setId(materialModel.getId());
         material.setUnitsPerWorkZoneMeasure(materialModel.getUnitsPerWorkZoneMeasure());
         material.setPlanedCost(materialModel.getPlanedCost());

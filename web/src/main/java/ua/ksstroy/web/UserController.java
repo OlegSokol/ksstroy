@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ua.ksstroy.logic.project.ProjectData;
 import ua.ksstroy.logic.user.UserData;
-import ua.ksstroy.logic.user.UserImpl;
 import ua.ksstroy.logic.user.UserManager;
 
 import java.util.List;

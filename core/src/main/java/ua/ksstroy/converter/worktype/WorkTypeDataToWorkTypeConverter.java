@@ -1,13 +1,12 @@
 package ua.ksstroy.converter.worktype;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.worktype.WorkTypeImpl;
+import ua.ksstroy.logic.worktype.WorkType;
 
 public class WorkTypeDataToWorkTypeConverter implements Converter<WorkTypeData, WorkType> {
     public WorkType convert(WorkTypeData workTypeData) {
-        WorkType workType = new WorkTypeImpl();
+        WorkType workType = new WorkType();
 
         workType.setId(workTypeData.getId());
         workType.setName(workTypeData.getName());

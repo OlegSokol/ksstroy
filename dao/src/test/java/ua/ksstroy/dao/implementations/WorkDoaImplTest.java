@@ -1,12 +1,6 @@
 package ua.ksstroy.dao.implementations;
 
 import junit.framework.TestCase;
-import ua.ksstroy.logic.work.Cover;
-import ua.ksstroy.logic.work.CoverImpl;
-import ua.ksstroy.logic.work.Work;
-import ua.ksstroy.logic.work.WorkImpl;
-import ua.ksstroy.logic.worktype.WorkType;
-import ua.ksstroy.logic.worktype.WorkTypeImpl;
 
 public class WorkDoaImplTest extends TestCase {
 

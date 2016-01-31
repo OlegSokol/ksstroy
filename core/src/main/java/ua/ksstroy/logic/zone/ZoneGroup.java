@@ -1,9 +1,9 @@
-package ua.ksstroy.logic.zonegroup;
+package ua.ksstroy.logic.zone;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZoneGroupImpl implements ZoneGroup {
+public class ZoneGroup{
     private String name;
     private String id;
     private List<ZoneGroup> groups = new ArrayList<>();

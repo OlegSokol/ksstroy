@@ -1,12 +1,12 @@
-package ua.ksstroy.logic.zonegroup;
+package ua.ksstroy.logic.zone;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.ksstroy.converter.zonegroup.ZoneDataToZoneConverter;
-import ua.ksstroy.converter.zonegroup.ZoneToZoneDataConverter;
+import ua.ksstroy.converter.zone.ZoneDataToZoneConverter;
+import ua.ksstroy.converter.zone.ZoneToZoneDataConverter;
 import ua.ksstroy.models.zone.ZonesModel;
 import ua.ksstroy.persistence.HibernateUtil;
 
@@ -17,7 +17,7 @@ public class ZoneManagerTest {
 
     ZoneManagerImpl zoneManager = new ZoneManagerImpl();
 
-    Zone mockZoneImpl = new ZoneImpl();
+    Zone mockZoneImpl = new Zone();
     Double mockZoneImplWidth = 13.05;
     Double mockZoneImplHeight = 15.1;
     Measure mockZoneImplMeasureName = Measure.GR;

@@ -2,12 +2,11 @@ package ua.ksstroy.converter.work;
 
 import ua.ksstroy.converter.Converter;
 import ua.ksstroy.converter.worktype.WorkTypeModelToWorkTypeConvert;
-import ua.ksstroy.converter.zonegroup.ZonesModelToZoneConverter;
+import ua.ksstroy.converter.zone.ZonesModelToZoneConverter;
 import ua.ksstroy.logic.work.Adjustment;
 import ua.ksstroy.logic.work.Cover;
 import ua.ksstroy.logic.work.Work;
-import ua.ksstroy.logic.work.WorkImpl;
-import ua.ksstroy.logic.zonegroup.Zone;
+import ua.ksstroy.logic.zone.Zone;
 import ua.ksstroy.models.work.AdjustmentModel;
 import ua.ksstroy.models.work.CoverModel;
 import ua.ksstroy.models.work.WorkModel;
@@ -20,7 +19,7 @@ public class WorkModelToWorkConverter implements Converter<WorkModel, Work> {
 
     @Override
     public Work convert(WorkModel workModel) {
-        Work work = new WorkImpl();
+        Work work = new Work();
         work.setId(workModel.getId());
         work.setName(workModel.getName());
         work.setClosedCost(workModel.getClosedCost());

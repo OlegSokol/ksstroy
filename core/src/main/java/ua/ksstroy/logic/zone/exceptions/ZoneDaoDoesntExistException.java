@@ -1,4 +1,4 @@
-package ua.ksstroy.logic.zonegroup.exceptions;
+package ua.ksstroy.logic.zone.exceptions;
 /*
  * SAMPLE OF CUSTOM EXCEPTION IMPLEMENTATION 
 DISCLAIMER:IT COULD BE DOESNT AWFULL RIGHT

@@ -1,26 +1,55 @@
-/**
- * 
- */
 package ua.ksstroy.logic.work;
 
 import java.util.List;
 
-public interface WorkGroup {
-	
-	public String getName();
+public class WorkGroup{
 
-	public void setName(String name);
-	
-	public String getId();
+    private String id;
 
-	public void setId(String id);
+    private String name;
 
-	public List<WorkGroup> getGroups();
+    private List<WorkGroup> groups;
 
-	public void setGroups(List<WorkGroup> groups);
+    private List<Work> works;
 
-	public List<Work> getWork();
+    
+    public String getName() {
+        return name;
+    }
 
-	public void setWork(List<Work> works);
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
+    public String getId() {
+        return id;
+    }
+
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
+    public List<WorkGroup> getGroups() {
+        return groups;
+    }
+
+    
+    public void setGroups(List<WorkGroup> groups) {
+        this.groups = groups;
+    }
+
+    
+    public List<Work> getWork() {
+        return works;
+    }
+
+    
+    public void setWork(List<Work> works) {
+        this.works = works;
+    }
 
 }

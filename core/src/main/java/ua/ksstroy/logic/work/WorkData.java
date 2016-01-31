@@ -1,7 +1,7 @@
 package ua.ksstroy.logic.work;
 
 import ua.ksstroy.logic.worktype.WorkTypeData;
-import ua.ksstroy.logic.zonegroup.ZoneData;
+import ua.ksstroy.logic.zone.ZoneData;
 
 import java.util.List;
 

@@ -1,21 +1,44 @@
 package ua.ksstroy.logic.work;
 
-public interface Cover {
+public class Cover{
 
-	public String getId();
+	private String id;
+	private Double value;
+	private String date;
+	private String description;
 
-	public void setId(String id);
+	
+	public String getId() {
+		return id;
+	}
 
-	public Double getValue();
+	
+	public void setId(String id) {
+		this.id = id;
+	}
 
-	public void setValue(Double value);
+	public Double getValue() {
+		return value;
+	}
 
-	public String getDate();
+	public void setValue(Double value) {
+		this.value = value;
+	}
 
-	public void setDate(String date);
+	public String getDate() {
+		return date;
+	}
 
-	public String getDescription();
+	public void setDate(String date) {
+		this.date = date;
+	}
 
-	public void setDescription(String description);
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

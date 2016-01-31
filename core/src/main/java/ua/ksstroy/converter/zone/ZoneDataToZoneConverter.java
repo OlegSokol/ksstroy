@@ -1,10 +1,9 @@
-package ua.ksstroy.converter.zonegroup;
+package ua.ksstroy.converter.zone;
 
 import ua.ksstroy.converter.Converter;
-import ua.ksstroy.logic.zonegroup.Measure;
-import ua.ksstroy.logic.zonegroup.Zone;
-import ua.ksstroy.logic.zonegroup.ZoneData;
-import ua.ksstroy.logic.zonegroup.ZoneImpl;
+import ua.ksstroy.logic.zone.Measure;
+import ua.ksstroy.logic.zone.ZoneData;
+import ua.ksstroy.logic.zone.Zone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 public class ZoneDataToZoneConverter implements Converter<ZoneData, Zone> {
 
     public Zone convert(ZoneData zoneData) {
-        ZoneImpl convertZone = new ZoneImpl();
+        Zone convertZone = new Zone();
 
         List<Zone> additionalList = new ArrayList<>();
         for (ZoneData tempZoneData : zoneData.getAdditional()) {

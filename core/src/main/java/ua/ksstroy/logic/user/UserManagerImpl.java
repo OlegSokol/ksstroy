@@ -2,8 +2,8 @@ package ua.ksstroy.logic.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.ksstroy.logic.project.Project;
 import ua.ksstroy.logic.project.ProjectData;
-import ua.ksstroy.logic.project.ProjectImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,24 +50,24 @@ userDao.updateProject(projectData);
         userDao.deleteProject(projectId);
     }
 
-    private List<UserImpl> convertUserDatalToUserImplList(List<UserData> userDataList) {
-        List<UserImpl> userList = new ArrayList<>();
+    private List<User> convertUserDatalToUserImplList(List<UserData> userDataList) {
+        List<User> userList = new ArrayList<>();
         for (UserData userData : userDataList) {
             userList.add(convertUserDataToUserImpl(userData));
         }
         return userList;
     }
 
-    private List<UserData> convertUserImplToUserData(List<UserImpl> userImplList) {
+    private List<UserData> convertUserImplToUserData(List<User> userImplList) {
         List<UserData> userDataList = new ArrayList<>();
-        for (UserImpl user : userImplList) {
+        for (User user : userImplList) {
             UserData userData = new UserData();
             userData.setId(user.getId());
             userData.setName(user.getName());
             userData.setRole(user.getRole());
             userData.setPassword(user.getPassword());
             List<ProjectData> projectList = new ArrayList<>();
-            for (ProjectImpl projectImpl : user.getProjectsList()) {
+            for (Project projectImpl : user.getProjectsList()) {
                 ProjectData project = new ProjectData();
                 project.setId(projectImpl.getId());
                 project.setProjectName(projectImpl.getProjectName());
@@ -80,17 +80,17 @@ userDao.updateProject(projectData);
         return userDataList;
     }
 
-    private UserImpl convertUserDataToUserImpl(UserData userData) {
-        UserImpl user = new UserImpl();
+    private User convertUserDataToUserImpl(UserData userData) {
+        User user = new User();
         user.setId(userData.getId());
         user.setName(userData.getName());
         user.setRole(userData.getRole());
         user.setPassword(userData.getPassword());
-        List<ProjectImpl> projectList = new ArrayList<>();
+        List<Project> projectList = new ArrayList<>();
         //TODO curiosity: how to handle exception throughout adding of new User from WEB
         try {
             for (ProjectData projectData : userData.getProjectsList()) {
-                ProjectImpl project = new ProjectImpl();
+                Project project = new Project();
                 project.setId(projectData.getId());
                 project.setProjectName(projectData.getProjectName());
                 project.setDescription(projectData.getDescription());
@@ -104,8 +104,8 @@ userDao.updateProject(projectData);
         return user;
     }
 
-    private ProjectImpl convertProjectDataToProjectImpl(ProjectData projectData){
-        ProjectImpl project  = new ProjectImpl();
+    private Project convertProjectDataToProjectImpl(ProjectData projectData){
+        Project project  = new Project();
         project.setId(projectData.getId());
         project.setProjectName(projectData.getProjectName());
         project.setDescription(projectData.getDescription());

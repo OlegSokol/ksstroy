@@ -7,7 +7,7 @@
 <%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
 <%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroupData" %>
 
-<%@attribute name="zone" required="true" type="ua.ksstroy.logic.zonegroup.ZoneHierarchyData" %>
+<%@attribute name="zone" required="true" type="ua.ksstroy.logic.zone.ZoneGroupData" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
