@@ -1,7 +1,7 @@
 <%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="zhd" required="true"
-              type="ua.ksstroy.logic.zone.ZoneGroupData" %>
+              type="ua.ksstroy.logic.zone.ZoneGroup" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>

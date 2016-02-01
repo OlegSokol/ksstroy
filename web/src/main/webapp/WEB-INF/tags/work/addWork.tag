@@ -4,10 +4,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
-<%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroupData" %>
+<%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroup" %>
+<%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroup" %>
 
-<%@attribute name="zone" required="true" type="ua.ksstroy.logic.zone.ZoneGroupData" %>
+<%@attribute name="zone" required="true" type="ua.ksstroy.logic.zone.ZoneGroup" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
@@ -48,9 +48,9 @@
                 <td>
                 <form method="post">
                     <select name="workTypeId">
-                        <c:forEach var="workType" items="${workType.workTypeGroupsData}">
+                        <c:forEach var="workType" items="${workType.workTypeGroups}">
 
-                            <c:forEach var="wortTypeData" items="${workType.workTypesData}">
+                            <c:forEach var="wortTypeData" items="${workType.workTypes}">
                                 <option value="${wortTypeData.id}">${wortTypeData.name}</option>
                             </c:forEach>
 

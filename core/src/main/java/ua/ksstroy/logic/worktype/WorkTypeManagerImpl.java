@@ -1,9 +1,6 @@
 package ua.ksstroy.logic.worktype;
 
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.worktype.WorkTypeDataToWorkTypeConverter;
-import ua.ksstroy.converter.worktype.WorkTypeGroupToWorkTypeGroupDataHierarchyConverter;
-import ua.ksstroy.converter.worktype.WorkTypeToWorkTypeDataConverter;
 
 import javax.annotation.Resource;
 
@@ -16,9 +13,9 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
     WorkTypeGroupDao workTypeGroupDao;
 
     @Override
-    public void addWorkType(WorkTypeData workTypeData, String parentGroupId) {
+    public void addWorkType(WorkType WorkType, String parentGroupId) {
 
-        workTypeDao.addWorkType(new WorkTypeDataToWorkTypeConverter().convert(workTypeData), parentGroupId);
+        workTypeDao.addWorkType(WorkType, parentGroupId);
     }
 
     @Override
@@ -42,8 +39,8 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
     }
 
     @Override
-    public WorkTypeGroupData getWorkTypeHierarchy() {
-        return new WorkTypeGroupToWorkTypeGroupDataHierarchyConverter().convert(workTypeGroupDao.getWorkTypeHierarchy());
+    public WorkTypeGroup getWorkTypeHierarchy() {
+        return workTypeGroupDao.getWorkTypeHierarchy();
     }
 
     @Override
@@ -52,13 +49,13 @@ public class WorkTypeManagerImpl implements WorkTypeManager {
     }
 
     @Override
-    public WorkTypeData getWorkTypeById(String id) {
-        return new WorkTypeToWorkTypeDataConverter().convert(workTypeDao.getWorkTypeById(id));
+    public WorkType getWorkTypeById(String id) {
+        return workTypeDao.getWorkTypeById(id);
     }
 
     @Override
-    public void updateWorkType(String WorkTypeId, WorkTypeData newWorkType) {
-        workTypeDao.updateWorkType(WorkTypeId, new WorkTypeDataToWorkTypeConverter().convert(newWorkType));
+    public void updateWorkType(String WorkTypeId, WorkType newWorkType) {
+        workTypeDao.updateWorkType(WorkTypeId,newWorkType);
     }
 
 }

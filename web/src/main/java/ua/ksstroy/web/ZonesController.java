@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.zone.ZoneData;
-import ua.ksstroy.logic.zone.ZoneGroupData;
+import ua.ksstroy.logic.zone.Measure;
+import ua.ksstroy.logic.zone.Zone;
+import ua.ksstroy.logic.zone.ZoneGroup;
 import ua.ksstroy.logic.zone.ZoneManager;
 
 import javax.annotation.Resource;
@@ -26,7 +27,7 @@ public class ZonesController {
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
         project = new ModelAndView("zones");
         project.addObject("projectId", projectId);
-        ZoneGroupData zhd = zoneManager.getRootZoneHierarchy(projectId);
+        ZoneGroup zhd = zoneManager.getRootZoneHierarchy(projectId);
         project.addObject("rootGroupId", zhd.getId());
         project.addObject("zhd", zhd);
         return project;
@@ -47,7 +48,7 @@ public class ZonesController {
                           @RequestParam("parentGroupId") String parentGroupId,
                           @RequestParam("projectId") String projectId) {
 
-        ZoneData zoneFromWeb = new ZoneData();
+        Zone zoneFromWeb = new Zone();
         zoneFromWeb.setName(name);
         try {
             zoneFromWeb.setHeight(new Double(height).doubleValue());
@@ -56,7 +57,7 @@ public class ZonesController {
             // TODO curiosity:CANT GET THIS MESSAGE EXPLICITLY!!
             logger.debug("empty string from web!!!");
         }
-        zoneFromWeb.setMeasureName(measureName);
+        zoneFromWeb.setMeasure(Measure.valueOf(measureName));
         zoneManager.addZone(zoneFromWeb, parentGroupId);
         return "redirect:" + projectId + "/zones";
     }
@@ -67,7 +68,7 @@ public class ZonesController {
                                     @RequestParam("parentZoneId") String parentZoneId,
                                     @RequestParam("projectId") String projectId) {
 
-        ZoneData zoneFromWeb = new ZoneData();
+        Zone zoneFromWeb = new Zone();
         zoneFromWeb.setName(name);
         try {
             zoneFromWeb.setHeight(new Double(height).doubleValue());
@@ -75,7 +76,7 @@ public class ZonesController {
         } catch (NumberFormatException exception) {
             logger.debug("empty string from web!!!");
         }
-        zoneFromWeb.setMeasureName(measureName);
+        zoneFromWeb.setMeasure(Measure.valueOf(measureName));
         zoneManager.addAdditionalToZone(zoneFromWeb, parentZoneId);
         return "redirect:" + projectId + "/zones";
     }
@@ -86,7 +87,7 @@ public class ZonesController {
                                  @RequestParam("parentZoneId") String parentZoneId,
                                  @RequestParam("projectId") String projectId) {
 
-        ZoneData zoneFromWeb = new ZoneData();
+        Zone zoneFromWeb = new Zone();
         zoneFromWeb.setName(name);
         try {
             zoneFromWeb.setHeight(new Double(height).doubleValue());
@@ -94,7 +95,7 @@ public class ZonesController {
         } catch (NumberFormatException exception) {
             logger.debug("empty string from web!!!");
         }
-        zoneFromWeb.setMeasureName(measureName);
+        zoneFromWeb.setMeasure(Measure.valueOf(measureName));
 
         zoneManager.addSurplusToZone(zoneFromWeb, parentZoneId);
         return "redirect:" + projectId + "/zones";
@@ -131,7 +132,7 @@ public class ZonesController {
                              @RequestParam("measureName") String measureName,
                              @RequestParam("projectId") String projectId) {
 
-        ZoneData zoneFromWeb = new ZoneData();
+        Zone zoneFromWeb = new Zone();
         zoneFromWeb.setName(name);
         try {
             zoneFromWeb.setHeight(new Double(height).doubleValue());
@@ -139,7 +140,7 @@ public class ZonesController {
         } catch (NumberFormatException exception) {
             logger.info("empty string from web!!!");
         }
-        zoneFromWeb.setMeasureName(measureName);
+        zoneFromWeb.setMeasure(Measure.valueOf(measureName));
 
         zoneManager.updateZone(zoneId, zoneFromWeb);
         return "redirect:" + projectId + "/zones";

@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ attribute name="materialTypeGroupData" required="true" type="ua.ksstroy.logic.material.MaterialTypeGroupData" %>
+<%@ attribute name="materialTypeGroupData" required="true" type="ua.ksstroy.logic.material.MaterialTypeGroup" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 

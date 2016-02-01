@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.work.AdjustmentData;
-import ua.ksstroy.logic.work.CoverData;
-import ua.ksstroy.logic.work.WorkData;
-import ua.ksstroy.logic.work.WorkManager;
+import ua.ksstroy.logic.work.*;
 import ua.ksstroy.logic.worktype.WorkTypeManagerImpl;
 import ua.ksstroy.logic.zone.ZoneManagerImpl;
 
@@ -28,9 +25,9 @@ public class WorkController {
     ZoneManagerImpl zoneManager;
 
     ModelAndView workModelView;
-    WorkData workData;
-    CoverData coverData;
-    AdjustmentData adjustmentData;
+    Work Work;
+    Cover cover;
+    Adjustment adjustment;
 
     @RequestMapping(value = "/projects/{projectId}/work", method = RequestMethod.GET)
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
@@ -93,29 +90,29 @@ public class WorkController {
                           @RequestParam("workTypeId") String workTypeId,
                           @RequestParam("zoneId") String zoneId) {
 
-        workData = new WorkData();
-        workData.setName(name);
+        Work = new Work();
+        Work.setName(name);
 
-        workData.setType(workTypeManager.getWorkTypeById(workTypeId));
+        Work.setType(workTypeManager.getWorkTypeById(workTypeId));
 
         /*List<ZoneData> listZones = new ArrayList<>();
         listZones.add(new ZoneData());
-        workData.setWorkZones(listZones);
+        Work.setWorkZones(listZones);
 
-        workData.setAllCovers();
+        Work.setAllCovers();
 
-        workData.setAdjustments();*/
+        Work.setAdjustments();*/
 
         try {
-            workData.setPlanedCost(new Double(planedCoast).doubleValue());
-            workData.setPerspectiveCost(new Double(perspectiveCost).doubleValue());
-            workData.setClosedCost(new Double(closedCost).doubleValue());
-            workData.setDealCost(new Double(dealCost).doubleValue());
+            Work.setPlanedCost(new Double(planedCoast).doubleValue());
+            Work.setPerspectiveCost(new Double(perspectiveCost).doubleValue());
+            Work.setClosedCost(new Double(closedCost).doubleValue());
+            Work.setDealCost(new Double(dealCost).doubleValue());
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-        workManager.addWork(workData, parentWorkTypeGroupId);
+        workManager.addWork(Work, parentWorkTypeGroupId);
         System.out.println("add work");
         return "redirect:" + projectId + "/work";
     }
@@ -139,19 +136,19 @@ public class WorkController {
                              @RequestParam("dealCost") String dealCost,
                              @RequestParam("projectId") String projectId) {
 
-        workData = new WorkData();
-        workData.setName(name);
+        Work = new Work();
+        Work.setName(name);
         try {
-            workData.setPlanedCost(new Double(planedCoast).doubleValue());
-            workData.setPerspectiveCost(new Double(perspectiveCost).doubleValue());
-            workData.setClosedCost(new Double(closedCost).doubleValue());
-            workData.setDealCost(new Double(dealCost).doubleValue());
+            Work.setPlanedCost(new Double(planedCoast).doubleValue());
+            Work.setPerspectiveCost(new Double(perspectiveCost).doubleValue());
+            Work.setClosedCost(new Double(closedCost).doubleValue());
+            Work.setDealCost(new Double(dealCost).doubleValue());
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-        workManager.updateWork(id, workData);
+        workManager.updateWork(id, Work);
 
         return "redirect:" + projectId + "/work";
     }
@@ -163,18 +160,18 @@ public class WorkController {
                                  @RequestParam("date") String date,
                                  @RequestParam("description") String description) {
 
-        coverData = new CoverData();
-        coverData.setDescription(description);
-        coverData.setDate(date);
+        cover = new Cover();
+        cover.setDescription(description);
+        cover.setDate(date);
 
         try {
-            coverData.setValue(new Double(value).doubleValue());
+            cover.setValue(new Double(value).doubleValue());
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-        workManager.addCoverToWork(coverData, workId);
+        workManager.addCoverToWork(cover, workId);
 
         return "redirect:" + projectId + "/work";
     }
@@ -185,18 +182,18 @@ public class WorkController {
                                       @RequestParam("value") String value,
                                       @RequestParam("isAbsolute") String isAbsolute) {
 
-        adjustmentData = new AdjustmentData();
+        adjustment = new Adjustment();
         try {
             System.out.println("VALUE IS STARTING ASSIGNED");
-            adjustmentData.setValue(new Double(value).doubleValue());
+            adjustment.setValue(new Double(value).doubleValue());
             System.out.println("VALUE ASSIGNED!!");
-            adjustmentData.setAbsolute(new Boolean(isAbsolute).booleanValue());
+            adjustment.setAbsolute(new Boolean(isAbsolute).booleanValue());
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
-        workManager.addAdjustmentToWork(adjustmentData, workId);
+        workManager.addAdjustmentToWork(adjustment, workId);
 
         return "redirect:" + projectId + "/work";
     }

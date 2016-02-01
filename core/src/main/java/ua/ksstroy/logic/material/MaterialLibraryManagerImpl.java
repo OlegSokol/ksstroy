@@ -3,9 +3,7 @@ package ua.ksstroy.logic.material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import ua.ksstroy.converter.material.MaterialTypeDataToMaterialTypeConverter;
-import ua.ksstroy.converter.material.MaterialTypeGroupDataToMaterialTypeGroupConverter;
-import ua.ksstroy.converter.material.MaterialTypeGroupModelToDataHierarchyConverter;
+
 
 @Service
 public class MaterialLibraryManagerImpl implements MaterialLibraryManager {
@@ -19,23 +17,23 @@ public class MaterialLibraryManagerImpl implements MaterialLibraryManager {
     MaterialTypeGroupDao materialTypeGroupDao;
 
     @Override
-    public MaterialTypeGroupData getMaterialHierarchy() {
-        return new MaterialTypeGroupModelToDataHierarchyConverter().convert(this.materialTypeGroupDao.getMaterialHierarchy());
+    public MaterialTypeGroup getMaterialHierarchy() {
+        return materialTypeGroupDao.getMaterialHierarchy();
     }
 
     @Override
-    public void addMaterialTypeGroup(MaterialTypeGroupData materialTypeGroupDao) {
-        this.materialTypeGroupDao.addMaterialTypeGroup(new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(materialTypeGroupDao));
+    public void addMaterialTypeGroup(MaterialTypeGroup materialTypeGroupDao) {
+        this.materialTypeGroupDao.addMaterialTypeGroup(materialTypeGroupDao);
     }
 
     @Override
-    public void addMaterialTypeGroupByParent(MaterialTypeGroupData materialTypeGroupDao, String parentMaterialTypeGroupId) {
-        this.materialTypeGroupDao.addMaterialTypeGroupByParent(new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(materialTypeGroupDao), parentMaterialTypeGroupId);
+    public void addMaterialTypeGroupByParent(MaterialTypeGroup materialTypeGroupDao, String parentMaterialTypeGroupId) {
+        this.materialTypeGroupDao.addMaterialTypeGroupByParent(materialTypeGroupDao, parentMaterialTypeGroupId);
     }
 
     @Override
-    public void updateMaterialTypeGroup(String materialTypeGroupId, MaterialTypeGroupData newMaterialTypeGroup) {
-        this.materialTypeGroupDao.updateMaterialTypeGroup(materialTypeGroupId, new MaterialTypeGroupDataToMaterialTypeGroupConverter().convert(newMaterialTypeGroup));
+    public void updateMaterialTypeGroup(String materialTypeGroupId, MaterialTypeGroup newMaterialTypeGroup) {
+        this.materialTypeGroupDao.updateMaterialTypeGroup(materialTypeGroupId, newMaterialTypeGroup);
     }
 
     @Override
@@ -44,13 +42,13 @@ public class MaterialLibraryManagerImpl implements MaterialLibraryManager {
     }
 
     @Override
-    public void addMaterialType(MaterialTypeData materialTypeData, String parentMaterialTypeId) {
-        this.materialTypeDao.addMaterialType(new MaterialTypeDataToMaterialTypeConverter().convert(materialTypeData), parentMaterialTypeId);
+    public void addMaterialType(MaterialType materialType, String parentMaterialTypeId) {
+        this.materialTypeDao.addMaterialType(materialType, parentMaterialTypeId);
     }
 
     @Override
-    public void updateMaterialType(String materialTypeId, MaterialTypeData newMaterialType) {
-        this.materialTypeDao.updateMaterialType(materialTypeId, new MaterialTypeDataToMaterialTypeConverter().convert(newMaterialType));
+    public void updateMaterialType(String materialTypeId, MaterialType newMaterialType) {
+        this.materialTypeDao.updateMaterialType(materialTypeId, newMaterialType);
     }
 
     @Override

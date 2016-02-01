@@ -8,19 +8,19 @@ public interface ZoneManager {
 	 * data-base (e.g MySQL); with already affected in runtime business logic
 	 * rules.
 	 */
-	ZoneGroupData getRootZoneHierarchy(String projectId) throws NameConflictException;
+	ZoneGroup getRootZoneHierarchy(String projectId) throws NameConflictException;
 
 	void addRootGroupToProject(String groupName, Integer projectId) throws NameConflictException;
 
 	void addGroupToGroup(String groupName, String parentGroupId) throws NameConflictException;
 
-	void addZone(ZoneData zone, String parentGroupId) throws NameConflictException;
+	void addZone(Zone zone, String parentGroupId) throws NameConflictException;
 
-	void addSurplusToZone(ZoneData surplusZone, String parentZoneId) throws NameConflictException;
+	void addSurplusToZone(Zone surplusZone, String parentZoneId) throws NameConflictException;
 
-	void addAdditionalToZone(ZoneData additionalZone, String parentZoneId) throws NameConflictException;
+	void addAdditionalToZone(Zone additionalZone, String parentZoneId) throws NameConflictException;
 
-	void updateZone(String zoneId, ZoneData newZone);
+	void updateZone(String zoneId, Zone newZone);
 
 	void removeZone(String zoneId);
 

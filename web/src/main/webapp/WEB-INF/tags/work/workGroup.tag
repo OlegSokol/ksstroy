@@ -2,8 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
-<%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroupData" %>
+<%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroup" %>
+<%@attribute name="workType" required="true" type="ua.ksstroy.logic.worktype.WorkTypeGroup" %>
 <%@ taglib prefix="work" tagdir="/WEB-INF/tags/work" %>
 
 <spring:url value="/resources/img/arrow_drop_down.png" var="arrow_drop_down"/>

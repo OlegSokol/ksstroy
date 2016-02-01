@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<%@ attribute name="work" required="true" type="ua.ksstroy.logic.work.WorkData" %>
+<%@ attribute name="work" required="true" type="ua.ksstroy.logic.work.Work" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 

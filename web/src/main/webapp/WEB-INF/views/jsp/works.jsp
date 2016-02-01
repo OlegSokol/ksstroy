@@ -32,7 +32,7 @@
         </ul>
         <ul id="works-hierarchy">
 
-        <work:node workGroupData="${WorkHierarchy}" workType="${workType}"/>
+        <work:node workGroup="${WorkHierarchy}" workType="${workType}"/>
         </ul>
         <ul id="zones-hierarchy">
 

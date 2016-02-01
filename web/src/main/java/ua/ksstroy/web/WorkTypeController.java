@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.worktype.WorkTypeData;
+import ua.ksstroy.logic.worktype.WorkType;
 import ua.ksstroy.logic.worktype.WorkTypeManager;
 
 import javax.annotation.Resource;
@@ -18,7 +18,7 @@ public class WorkTypeController {
     WorkTypeManager workTypeManager;
 
     ModelAndView workTypeModelView;
-    WorkTypeData workTypeData;
+    WorkType workTypeData;
 
     @RequestMapping(value = "/projects/{projectId}/library_worktypes", method = RequestMethod.GET)
     public ModelAndView showZHD(@PathVariable("projectId") String projectId) {
@@ -64,7 +64,7 @@ public class WorkTypeController {
                               @RequestParam("parentId") String parentWorkTypeGroupId,
                               @RequestParam("projectId") String projectId) {
 
-        workTypeData = new WorkTypeData();
+        workTypeData = new WorkType();
         workTypeData.setName(name);
         workTypeData.setDescription(description);
         workTypeData.setMeasure(measure);
@@ -106,7 +106,7 @@ public class WorkTypeController {
                                  @RequestParam("unitPrice") String unitPrice,
                                  @RequestParam("projectId") String projectId) {
 
-        workTypeData = new WorkTypeData();
+        workTypeData = new WorkType();
         workTypeData.setName(name);
         workTypeData.setDescription(description);
         workTypeData.setMeasure(measure);

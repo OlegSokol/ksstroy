@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ attribute name="work" required="true" type="ua.ksstroy.logic.work.WorkData" %>
+<%@ attribute name="work" required="true" type="ua.ksstroy.logic.work.Work" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 
@@ -21,33 +21,33 @@
             </tr>
                       <tr>
                 <td>work type:</td>
-                <td>
-                    <form method="post">
-                        <select name="workTypeId">
-                            <c:forEach var="workType" items="${workType.workTypeGroupsData}">
+                <%--<td>--%>
+                    <%--<form method="post">--%>
+                        <%--<select name="workTypeId">--%>
+                            <%--<c:forEach var="workType" items="${workType.workTypeGroups}">--%>
 
-                                <c:forEach var="wortTypeData" items="${workType.workTypesData}">
-                                    <c:choose>
-                                        <c:when test="${wortTypeData.name == work.type.name}">
-                                    <option selected value="${wortTypeData.id}" >${wortTypeData.name}</option>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="${wortTypeData.id}" >${wortTypeData.name}</option>
-                                        </c:otherwise>
-                                    </c:choose>
-
-
-                                </c:forEach>
-
-                            </c:forEach>
-
-                            <c:if test="${wortTypeData.name == work.type.name}">
+                                <%--<c:forEach var="wortTypeData" items="${workType.workTypesData}">--%>
+                                    <%--<c:choose>--%>
+                                        <%--<c:when test="${wortTypeData.name == work.type.name}">--%>
+                                    <%--<option selected value="${wortTypeData.id}" >${wortTypeData.name}</option>--%>
+                                        <%--</c:when>--%>
+                                        <%--<c:otherwise>--%>
+                                            <%--<option value="${wortTypeData.id}" >${wortTypeData.name}</option>--%>
+                                        <%--</c:otherwise>--%>
+                                    <%--</c:choose>--%>
 
 
-                            </c:if>
-                        </select>
-                    </form>
-                </td>
+                                <%--</c:forEach>--%>
+
+                            <%--</c:forEach>--%>
+
+                            <%--<c:if test="${wortTypeData.name == work.type.name}">--%>
+
+
+                            <%--</c:if>--%>
+                        <%--</select>--%>
+                    <%--</form>--%>
+                <%--</td>--%>
             </tr>
             <tr>
                 <td>planedCost:</td>

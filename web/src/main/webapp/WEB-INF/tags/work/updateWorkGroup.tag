@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
+<%@ attribute name="workGroup" required="true" type="ua.ksstroy.logic.work.WorkGroup" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>
 

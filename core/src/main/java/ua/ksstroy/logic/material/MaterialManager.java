@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface MaterialManager {
 
-    List<MaterialData> getAllMaterials();
+    List<Material> getAllMaterials();
 
-    void purchaseMaterial(MaterialData materialData, String materialTypeId);
+    void purchaseMaterial(Material material, String materialTypeId);
 }

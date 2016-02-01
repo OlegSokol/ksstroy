@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<%@ attribute name="innerWorkGroup" required="true" type="ua.ksstroy.logic.work.WorkGroupData" %>
+<%@ attribute name="innerWorkGroup" required="true" type="ua.ksstroy.logic.work.WorkGroup" %>
 <%@ taglib prefix="work" tagdir="/WEB-INF/tags/work" %>
 
 <spring:url value="/resources/img/done_btn.png" var="done_btn"/>

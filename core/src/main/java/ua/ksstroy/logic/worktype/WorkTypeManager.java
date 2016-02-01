@@ -3,7 +3,7 @@ package ua.ksstroy.logic.worktype;
 
 public interface WorkTypeManager {
 
-    void addWorkType(WorkTypeData workTypeData, String parentGroupId);
+    void addWorkType(WorkType WorkType, String parentGroupId);
 
     void removeWorkType(String workTypeId);
 
@@ -13,11 +13,11 @@ public interface WorkTypeManager {
 
     void removeWorkTypeGroup(String groupId);
 
-    WorkTypeGroupData getWorkTypeHierarchy();
+    WorkTypeGroup getWorkTypeHierarchy();
 
-    void updateWorkType(String WorkTypeId, WorkTypeData newWorkType);
+    void updateWorkType(String WorkTypeId, WorkType newWorkType);
 
     void updateWorkTypeGroupName(String groupId, String newGroupName);
 
-    WorkTypeData getWorkTypeById(String id);
+    WorkType getWorkTypeById(String id);
 }

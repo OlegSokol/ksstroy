@@ -1,7 +1,7 @@
 <%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="zhd" required="true"
-              type="ua.ksstroy.logic.zone.ZoneGroupData" %>
+              type="ua.ksstroy.logic.zone.ZoneGroup" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>
@@ -20,7 +20,7 @@
     <li>
         <div class="item zone">
             <img class=" dropdown_btn clickableIcon" src="${arrow_drop_down}" alt="Arrow">
-                ${zones.name} : ${zones.value}${zones.measureName}
+                ${zones.name} : ${zones.value}${zones.measure}
             <div class="add_delete_wrapper">
                 <div class="delete_btn">
                     <form action="${pageContext.request.contextPath}/projects/removeZone" method="post">

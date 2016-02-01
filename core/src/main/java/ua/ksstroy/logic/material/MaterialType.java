@@ -15,8 +15,8 @@ public class MaterialType{
     public MaterialType() {
     }
 
-    public MaterialType(String id, String name, String description, Double pricePerUnit, String unitName) {
-        this.id = id;
+    public MaterialType( String name, String description, Double pricePerUnit, String unitName) {
+
         this.name = name;
         this.description = description;
         this.pricePerUnit = pricePerUnit;

@@ -3,8 +3,6 @@ package ua.ksstroy.logic.zone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ua.ksstroy.converter.zone.ZoneDataToZoneConverter;
-import ua.ksstroy.converter.zone.ZoneGroupToZoneHierarchyDataHierarchyConverter;
 import ua.ksstroy.logic.zone.exceptions.NameConflictException;
 
 @Component(value = "ZoneManagerImpl")
@@ -14,8 +12,8 @@ public class ZoneManagerImpl implements ZoneManager {
     @Qualifier("zoneDao")
     ZoneDao zoneDaoImpl;
 
-    public ZoneGroupData getRootZoneHierarchy(String projectId) {
-        return new ZoneGroupToZoneHierarchyDataHierarchyConverter().convert(zoneDaoImpl.getAllHierarchy(projectId));
+    public ZoneGroup getRootZoneHierarchy(String projectId) {
+        return zoneDaoImpl.getAllHierarchy(projectId);
     }
 
     @Override
@@ -27,18 +25,18 @@ public class ZoneManagerImpl implements ZoneManager {
         zoneDaoImpl.addGroupToGroup(groupName, parentGroupId);
     }
 
-    public void addZone(ZoneData zone, String parentGroupId) throws NameConflictException {
-        zoneDaoImpl.storeZone(new ZoneDataToZoneConverter().convert(zone), parentGroupId);
+    public void addZone(Zone zone, String parentGroupId) throws NameConflictException {
+        zoneDaoImpl.storeZone(zone, parentGroupId);
     }
 
     @Override
-    public void addSurplusToZone(ZoneData surplusZone, String parentZoneId) throws NameConflictException {
-        zoneDaoImpl.storeSurplusToZone(new ZoneDataToZoneConverter().convert(surplusZone), parentZoneId);
+    public void addSurplusToZone(Zone surplusZone, String parentZoneId) throws NameConflictException {
+        zoneDaoImpl.storeSurplusToZone(surplusZone, parentZoneId);
     }
 
     @Override
-    public void addAdditionalToZone(ZoneData additionalZone, String parentZoneId) throws NameConflictException {
-        zoneDaoImpl.storeAdditionalToZone(new ZoneDataToZoneConverter().convert(additionalZone), parentZoneId);
+    public void addAdditionalToZone(Zone additionalZone, String parentZoneId) throws NameConflictException {
+        zoneDaoImpl.storeAdditionalToZone(additionalZone, parentZoneId);
     }
 
     @Override
@@ -47,8 +45,8 @@ public class ZoneManagerImpl implements ZoneManager {
     }
 
     @Override
-    public void updateZone(String zoneId, ZoneData newZone) {
-        zoneDaoImpl.updateZone(zoneId, new ZoneDataToZoneConverter().convert(newZone));
+    public void updateZone(String zoneId, Zone newZone) {
+        zoneDaoImpl.updateZone(zoneId,newZone);
     }
 
     @Override

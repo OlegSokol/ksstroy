@@ -2,13 +2,13 @@ package ua.ksstroy.logic.work;
 
 public interface WorkManager {
 
-    void addWork(WorkData workData, String parentGroupId);
+    void addWork(Work work, String parentGroupId);
 
-    void addCoverToWork(CoverData coverData, String workId);
+    void addCoverToWork(Cover cover, String workId);
 
-    void addAdjustmentToWork(AdjustmentData adjustmentData, String workId);
+    void addAdjustmentToWork(Adjustment adjustment, String workId);
 
-    void updateWork(String workId, WorkData work);
+    void updateWork(String workId, Work work);
 
     void remoteWork(String workId);
 
@@ -18,7 +18,7 @@ public interface WorkManager {
 
     void removeWorkTypeGroup(String groupId);
 
-    WorkGroupData getWorkHierarchy();
+    WorkGroup getWorkHierarchy();
 
     void updateWorkGroupName(String groupId, String newName);
 

@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import ua.ksstroy.logic.material.MaterialLibraryManager;
-import ua.ksstroy.logic.material.MaterialTypeData;
-import ua.ksstroy.logic.material.MaterialTypeGroupData;
+import ua.ksstroy.logic.material.*;
 
 @Controller
 public class MaterialLibraryController {
@@ -18,8 +16,8 @@ public class MaterialLibraryController {
     MaterialLibraryManager materialManager;
 
     ModelAndView materialModelView;
-    MaterialTypeData materialTypeData;
-    MaterialTypeGroupData materialTypeGroupData;
+    MaterialType materialType;
+    MaterialTypeGroup materialTypeGroup;
 
     //TODO:refactoring: libraries url should be global /libraries/material for example. and what a hell are project id is for?
     @RequestMapping(value = "/projects/{projectId}/library_materials", method = RequestMethod.GET)
@@ -35,11 +33,11 @@ public class MaterialLibraryController {
                                        @RequestParam("description") String description,
                                        @RequestParam("projectId") String projectId) {
 
-        this.materialTypeData = new MaterialTypeData();
-        this.materialTypeData.setName(name);
-        this.materialTypeData.setDescription(description);
+        this.materialType = new MaterialTypeData();
+        this.materialType.setName(name);
+        this.materialType.setDescription(description);
 
-        this.materialManager.addMaterialTypeGroup(materialTypeData);
+        this.materialManager.addMaterialTypeGroup(materialType);
 
         return "redirect:" + projectId;
     }*/
@@ -51,11 +49,11 @@ public class MaterialLibraryController {
                                             @RequestParam("parentId") String parentMaterialTypeId,
                                             @RequestParam("projectId") String projectId) {
 
-        this.materialTypeGroupData = new MaterialTypeGroupData();
-        this.materialTypeGroupData.setName(name);
-        this.materialTypeGroupData.setDescription(description);
+        this.materialTypeGroup = new MaterialTypeGroup();
+        this.materialTypeGroup.setName(name);
+        this.materialTypeGroup.setDescription(description);
 
-        this.materialManager.addMaterialTypeGroupByParent(materialTypeGroupData, parentMaterialTypeId);
+        this.materialManager.addMaterialTypeGroupByParent(materialTypeGroup, parentMaterialTypeId);
 
         return "redirect:" + projectId + "/library_materials";
     }
@@ -66,11 +64,11 @@ public class MaterialLibraryController {
                                           @RequestParam("description") String description,
                                           @RequestParam("projectId") String projectId) {
 
-        this.materialTypeGroupData = new MaterialTypeGroupData();
-        this.materialTypeGroupData.setName(name);
-        this.materialTypeGroupData.setDescription(description);
+        this.materialTypeGroup = new MaterialTypeGroup();
+        this.materialTypeGroup.setName(name);
+        this.materialTypeGroup.setDescription(description);
 
-        this.materialManager.updateMaterialTypeGroup(id, materialTypeGroupData);
+        this.materialManager.updateMaterialTypeGroup(id, materialTypeGroup);
 
         return "redirect:" + projectId + "/library_materials";
     }
@@ -92,9 +90,9 @@ public class MaterialLibraryController {
                                   @RequestParam("parentId") String parentMaterialTypeId,
                                   @RequestParam("projectId") String projectId) {
 
-        this.materialTypeData = new MaterialTypeData(name, description, Double.parseDouble(pricePerUnit), unitName);
+        this.materialType = new MaterialType(name, description, Double.parseDouble(pricePerUnit), unitName);
 
-        this.materialManager.addMaterialType(materialTypeData, parentMaterialTypeId);
+        this.materialManager.addMaterialType(materialType, parentMaterialTypeId);
 
         return "redirect:" + projectId + "/library_materials";
     }
@@ -108,9 +106,9 @@ public class MaterialLibraryController {
                                      @RequestParam("unitName") String unitName,
                                      @RequestParam("projectId") String projectId) {
 
-        this.materialTypeData = new MaterialTypeData(name, description, Double.parseDouble(pricePerUnit), unitName);
+        this.materialType = new MaterialType(name, description, Double.parseDouble(pricePerUnit), unitName);
 
-        this.materialManager.updateMaterialType(id, materialTypeData);
+        this.materialManager.updateMaterialType(id, materialType);
 
         return "redirect:" + projectId + "/library_materials";
     }

@@ -1,6 +1,6 @@
 <%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
-<%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zone.ZoneData" %>
+<%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zone.Zone" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td>measureName</td>
-                <td><input type="text" name="measureName" value="${zones.measureName}"></td>
+                <td><input type="text" name="measureName" value="${zones.measure}"></td>
             </tr>
             <tr>
                 <td>value</td>
