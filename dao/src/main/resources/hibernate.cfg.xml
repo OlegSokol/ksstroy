@@ -7,9 +7,9 @@
         <!-- Database connection settings -->
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ksstroy?useUnicode=true;characterEncoding=UTF-8;characterSetResults=UTF-8</property>
-        <property name="hibernate.connection.username">uksstroy</property>
-        <property name="hibernate.connection.password">stroy</property>
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/mkyongdb</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+
         <property name="hibernate.connection.CharSet">UTF-8</property>
         <property name="hibernate.connection.characterEncoding">UTF-8</property>
         <property name="hibernate.connection.useUnicode">true</property>
