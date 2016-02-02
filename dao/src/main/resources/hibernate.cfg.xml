@@ -7,8 +7,7 @@
         <!-- Database connection settings -->
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.datasource">java:comp/env/jdbc/mkyongdb</property>
-        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/ksstroy</property>
 
         <property name="hibernate.connection.CharSet">UTF-8</property>
         <property name="hibernate.connection.characterEncoding">UTF-8</property>
@@ -32,9 +31,9 @@
         <mapping class="ua.ksstroy.models.material.MaterialTypeModel"/>
         <mapping class="ua.ksstroy.models.material.MaterialTypeGroupModel"/>
 
-        <mapping class="ua.ksstroy.models.work.WorkModel"></mapping>
-        <mapping class="ua.ksstroy.models.work.WorkGroupModel"></mapping>
-        <mapping class="ua.ksstroy.models.work.AdjustmentModel"></mapping>
-        <mapping class="ua.ksstroy.models.work.CoverModel"></mapping>
+        <mapping class="ua.ksstroy.models.work.WorkModel"/>
+        <mapping class="ua.ksstroy.models.work.WorkGroupModel"/>
+        <mapping class="ua.ksstroy.models.work.AdjustmentModel"/>
+        <mapping class="ua.ksstroy.models.work.CoverModel"/>
     </session-factory>
 </hibernate-configuration>

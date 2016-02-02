@@ -16,8 +16,7 @@
 </head>
 <body>
 <div id="wraper">
-    user: ${userName}<br>
-    project:${projectName}
+
    <jsp:include page="single_project_menu.jsp"/>
 
    <jsp:include page="libraries_sidebar.jsp"/>
