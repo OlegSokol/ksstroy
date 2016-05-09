@@ -14,6 +14,8 @@ http://kharkov-smetus.rhcloud.com/projects/33/rooms
      <li>Spring IoC</li>
       <li>Spring MVC</li>
          <li>JQuery</li>
+         <li>Spring Security</li>
+       
         
  </ul>
 
