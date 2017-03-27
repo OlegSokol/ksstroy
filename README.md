@@ -1,5 +1,5 @@
 # ksstroy
-Project I have been worked on to study typical Java application technologies.
+The project that I worked on to study typical Java application technologies.
 
 The application designed for quantifies the materials, labor, and equipment need to complete a building project. 
 Calculations base on default and user custom libraries. 
