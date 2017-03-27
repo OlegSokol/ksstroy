@@ -1,6 +1,10 @@
 # ksstroy
 Project I have been worked on to study typical Java application technologies.
 
+The application designed for quantifies the materials, labor, and equipment need to complete a building project. 
+Calculations base on default and user custom libraries. 
+I have been worked mainly on the Dao layer and database.
+
 After it became a commercial product for local house-building company 
 
 http://kharkov-smetus.rhcloud.com/projects/33/rooms
