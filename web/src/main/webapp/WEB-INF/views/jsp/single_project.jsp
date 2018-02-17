@@ -21,6 +21,8 @@
    <jsp:include page="single_project_menu.jsp"/>
 
    <jsp:include page="libraries_sidebar.jsp"/>
+
+
 </div>
 </body>
 </html>

@@ -226,3 +226,10 @@ header {
 .hidden {
     display: none;
 }
+
+table{
+    border-collapse: collapse;
+}
+.active_menu_item{
+    background-color: #A4F7AE;
+}

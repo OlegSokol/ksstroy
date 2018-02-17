@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="zone" tagdir="/WEB-INF/tags/zone" %>
@@ -26,7 +25,8 @@
     <jsp:include page="libraries_sidebar.jsp"/>
     <jsp:include page="single_project_menu.jsp"/>
     <div class="filter">
-        show works  <input id="show-hide-works" type="checkbox" ><br>
+        показать работы  <input id="show-hide-works" type="checkbox" ><br>
+        показать объем зон<input id="show-hide-value" type="checkbox"  checked><br>
     </div>
     <ul class="initializers">
         <group:addGroup zhd ="${zhd}"/>
@@ -34,6 +34,38 @@
 
     </ul>
     <zone:node zhd="${zhd}"/>
+
+    <table border="1" style="    margin-left: auto;
+    text-align: center;
+    margin-right: auto;">
+        <tbody>
+        <tr>
+            <th>№</th>
+            <th>Группа</th>
+            <th>Зона</th>
+            <th>общая площадь</th>
+
+
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>
+                КУХНЯ
+            </td>
+            <td>станаА</td>
+            <td>18.25m2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>
+                КУХНЯ
+            </td>
+            <td>потолок</td>
+            <td>18.25m2</td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>

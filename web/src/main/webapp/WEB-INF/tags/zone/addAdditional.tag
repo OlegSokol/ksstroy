@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="zones" required="true" type="ua.ksstroy.logic.zonegroup.ZoneData" %>
 

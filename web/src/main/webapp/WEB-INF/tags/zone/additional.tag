@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="additional" required="true" type="java.util.List" %>
 
